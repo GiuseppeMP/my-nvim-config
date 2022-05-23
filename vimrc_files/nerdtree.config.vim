@@ -26,6 +26,8 @@ let NERDTreeQuitOnOpen=0
 
 let NERDTreeShowBookmarks=1
 
+let NERDTreeWinSize=60
+
 " Start NERDTree. If a file is specified, move the cursor to its window.
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
