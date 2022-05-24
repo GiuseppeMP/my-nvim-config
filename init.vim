@@ -138,7 +138,7 @@ Plug 'https://github.com/tc50cal/vim-terminal', Cond(!exists('g:vscode')) " Vim 
 " .............................................................................
 " Plug for tabgar outline
 Plug 'preservim/tagbar', Cond(!exists('g:vscode'))
-nmap <Leader>T :TagbarToggle<CR>
+nmap <C-w><C-t> :TagbarToggle<CR>
 
 " .............................................................................
 " Plug Vim Only for make tests easy

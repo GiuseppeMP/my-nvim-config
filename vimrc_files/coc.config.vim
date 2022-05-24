@@ -1,4 +1,4 @@
-let g:coc_global_extensions = [ 'coc-json', 'coc-git', 'coc-java', 'coc-markdownlint', 'coc-tsserver' ]
+let g:coc_global_extensions = [ 'coc-json', 'coc-git', 'coc-java', 'coc-markdownlint', 'coc-tsserver', 'coc-marketplace']
 
 
 set encoding=utf-8

@@ -1,0 +1,22 @@
+{
+    "java.jdt.ls.vmargs": "-Dfile.encoding=UTF-8 -noverify -Xmx1G -javaagent:/Users/giuseppemp/.config/nvim/coc-files/lombok-1.18.22.jar",
+    "diagnostic.checkCurrentLine": true,
+    "typescript.suggest.paths": true,
+    "java.trace.server": "verbose",
+    "java.home": "~/.asdf/installs/java/corretto-11.0.12.7.2",
+    "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-11",
+            "path": "~/.asdf/installs/java/corretto-11.0.12.7.2",
+            "default": true
+        },
+        {
+            "name": "JavaSE-17",
+            "path": "~/.asdf/installs/java/corretto-17.0.3.6.1"
+        },
+        {
+            "name": "JavaSE-1.8",
+            "path": "~/.asdf/installs/java/corretto-8.302.08.1"
+        }
+    ]
+}
