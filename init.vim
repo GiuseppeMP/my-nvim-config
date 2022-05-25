@@ -240,8 +240,12 @@ set hlsearch                  " highlight the search
 set showmatch                 " show matching bracket
 
 " .............................................................................
+" Neovide configs
+let g:neovide_cursor_vfx_mode = "railgun"
+
+" .............................................................................
 " Custom font.
-set guifont=CaskaydiaCoveNerdFontComplete-:h20
+set guifont=CaskaydiaCove\ Nerd\ Font:h15
 
 " .............................................................................
 " Manter o cursor centralizado.
