@@ -148,6 +148,21 @@ Plug 'roxma/vim-hug-neovim-rpc', Cond(!exists('g:vscode'))
 Plug 'vim-test/vim-test', Cond(!exists('g:vscode'))
 Plug 'rcarriga/vim-ultest', Cond(!exists('g:vscode'), { 'do': ':UpdateRemotePlugins' })
 
+Plug 'tpope/vim-projectionist', Cond(!exists('g:vscode')) 
+" go test
+nnoremap <Leader>gt :A<CR>
+
+" .............................................................................
+" Plug to debug with coc
+" Plugin para debugar com coc
+Plug 'puremourning/vimspector', Cond(!exists('g:vscode'))
+
+" .............................................................................
+" Plug for smoothie ctrl-d and ctrl-up scrolling
+" Plugin para tornar ctrl-d e ctrl-u mais coconut oil
+Plug 'psliwka/vim-smoothie', Cond(!exists('g:vscode'))
+
+
 call plug#end()
 
 " .............................................................................
