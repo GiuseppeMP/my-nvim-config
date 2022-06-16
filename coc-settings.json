@@ -11,6 +11,10 @@
             "default": true
         },
         {
+            "name": "JavaSE-14",
+            "path": "~/.asdf/installs/java/zulu-14.29.23"
+        },
+        {
             "name": "JavaSE-17",
             "path": "~/.asdf/installs/java/corretto-17.0.3.6.1"
         },

@@ -61,6 +61,10 @@ Plug 'vim-airline/vim-airline', Cond(!exists('g:vscode'))
 " Plugin com temas adicionais ao airline
 Plug 'vim-airline/vim-airline-themes', Cond(!exists('g:vscode'))
 
+" .............................................................................
+" Plugin for customizable status bar additional themes
+" Plugin para customizacoes adicionais da status bar
+Plug 'itchyny/lightline.vim', Cond(!exists('g:vscode'))
 
 " .............................................................................
 " Themes collections
@@ -329,6 +333,10 @@ source $HOME/.config/nvim/vimrc_files/bufferline_tabs.config.vim
 " .............................................................................
 " vim-test config file.
 source $HOME/.config/nvim/vimrc_files/vim_tests.config.vim
+
+" .............................................................................
+" viminspector config file.
+source $HOME/.config/nvim/vimrc_files/vimspector.config.vim
 
 endif
 
