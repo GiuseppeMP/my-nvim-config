@@ -166,6 +166,11 @@ Plug 'puremourning/vimspector', Cond(!exists('g:vscode'))
 " Plugin para tornar ctrl-d e ctrl-u mais coconut oil
 Plug 'psliwka/vim-smoothie', Cond(!exists('g:vscode'))
 
+" .............................................................................
+" Plug for float windows like fzf but for anything and vim-test
+" Plugin para utilizar janelas flutuantes parecido com fzf, suportar vim-test
+Plug 'voldikss/vim-floaterm', Cond(!exists('g:vscode'))
+nnoremap <silent> <Leader><Leader><Enter> :FloatermNew<CR>
 
 call plug#end()
 
