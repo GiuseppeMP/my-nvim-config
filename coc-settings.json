@@ -3,11 +3,11 @@
     "diagnostic.checkCurrentLine": true,
     "typescript.suggest.paths": true,
     "java.trace.server": "verbose",
-    "java.home": "~/.asdf/installs/java/corretto-11.0.12.7.2",
+    "java.home": "~/.asdf/installs/java/corretto-11.0.15.9.1",
     "java.configuration.runtimes": [
         {
             "name": "JavaSE-11",
-            "path": "~/.asdf/installs/java/corretto-11.0.12.7.2",
+            "path": "~/.asdf/installs/java/corretto-11.0.15.9.1",
             "default": true
         },
         {
@@ -20,7 +20,7 @@
         },
         {
             "name": "JavaSE-1.8",
-            "path": "~/.asdf/installs/java/corretto-8.302.08.1"
+            "path": "~/.asdf/installs/java/corretto-8.332.08.1"
         }
     ]
 }

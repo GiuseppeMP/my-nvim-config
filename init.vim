@@ -149,7 +149,8 @@ nmap <C-w><C-t> :TagbarToggle<CR>
 " Plugin de testes para neovim
 Plug 'roxma/nvim-yarp', Cond(!exists('g:vscode'))
 Plug 'roxma/vim-hug-neovim-rpc', Cond(!exists('g:vscode'))
-Plug 'vim-test/vim-test', Cond(!exists('g:vscode'))
+" Plug 'vim-test/vim-test', Cond(!exists('g:vscode'))
+Plug 'GiuseppeMP/vim-test', Cond(!exists('g:vscode'))
 Plug 'rcarriga/vim-ultest', Cond(!exists('g:vscode'), { 'do': ':UpdateRemotePlugins' })
 
 Plug 'tpope/vim-projectionist', Cond(!exists('g:vscode')) 
@@ -170,7 +171,12 @@ Plug 'psliwka/vim-smoothie', Cond(!exists('g:vscode'))
 " Plug for float windows like fzf but for anything and vim-test
 " Plugin para utilizar janelas flutuantes parecido com fzf, suportar vim-test
 Plug 'voldikss/vim-floaterm', Cond(!exists('g:vscode'))
-nnoremap <silent> <Leader><Leader><Enter> :FloatermNew<CR>
+nnoremap <silent> <Leader>ft :FloatermNew<CR>
+
+" .............................................................................
+" Plug for dracula syntax highlight
+" Plugin para suportar syntax com tema dracula
+" Plug 'dracula/vim', Cond(!exists('g:vscode'), { 'as': 'dracula' })
 
 call plug#end()
 
@@ -262,7 +268,9 @@ set incsearch                 " incremental search
 set ignorecase                " search ignoring case
 set hlsearch                  " highlight the search
 set showmatch                 " show matching bracket
-
+if &compatible
+  set nocompatible
+endif
 " .............................................................................
 " Neovide configs
 let g:neovide_cursor_vfx_mode = "railgun"
@@ -342,6 +350,10 @@ source $HOME/.config/nvim/vimrc_files/vim_tests.config.vim
 " .............................................................................
 " viminspector config file.
 source $HOME/.config/nvim/vimrc_files/vimspector.config.vim
+
+" .............................................................................
+" java-syntax config file.
+" source $HOME/.config/nvim/vimrc_files/java-syntax.config.vim
 
 endif
 
