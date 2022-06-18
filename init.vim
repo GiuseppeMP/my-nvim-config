@@ -124,8 +124,10 @@ Plug 'ryanoasis/vim-devicons', Cond(!exists('g:vscode'))
 
 " .............................................................................
 " Plugin for sintax highlight languages
-Plug 'sheerun/vim-polyglot', Cond(!exists('g:vscode'))
-
+" Plug 'sheerun/vim-polyglot', Cond(!exists('g:vscode'))
+" Plugin for sintax highlight languages
+" Alternative for polyglot highlight using lua.
+Plug 'nvim-treesitter/nvim-treesitter', Cond(!exists('g:vscode'),{'do': ':TSUpdate'})
 
 " .............................................................................
 " Plugin for buffers as tabs in neovim
@@ -352,8 +354,8 @@ source $HOME/.config/nvim/vimrc_files/vim_tests.config.vim
 source $HOME/.config/nvim/vimrc_files/vimspector.config.vim
 
 " .............................................................................
-" java-syntax config file.
-" source $HOME/.config/nvim/vimrc_files/java-syntax.config.vim
+" tree-sitter configs lua file. highlight sintax for java and etc
+lua require("treesitter")
 
 endif
 
