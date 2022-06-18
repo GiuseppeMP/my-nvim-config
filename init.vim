@@ -128,6 +128,8 @@ Plug 'ryanoasis/vim-devicons', Cond(!exists('g:vscode'))
 " Plugin for sintax highlight languages
 " Alternative for polyglot highlight using lua.
 Plug 'nvim-treesitter/nvim-treesitter', Cond(!exists('g:vscode'),{'do': ':TSUpdate'})
+" Plug for rainbow parentheses in treesitter highlight
+Plug 'p00f/nvim-ts-rainbow', Cond(!exists('g:vscode'))
 
 " .............................................................................
 " Plugin for buffers as tabs in neovim
