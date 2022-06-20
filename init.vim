@@ -154,10 +154,18 @@ nmap <C-w><C-t> :TagbarToggle<CR>
 Plug 'roxma/nvim-yarp', Cond(!exists('g:vscode'))
 Plug 'roxma/vim-hug-neovim-rpc', Cond(!exists('g:vscode'))
 " Plug 'vim-test/vim-test', Cond(!exists('g:vscode'))
-Plug 'GiuseppeMP/vim-test', Cond(!exists('g:vscode'))
-Plug 'rcarriga/vim-ultest', Cond(!exists('g:vscode'), { 'do': ':UpdateRemotePlugins' })
+Plug 'GiuseppeMP/vim-test', Cond(!exists('g:vscode'), { 'branch': 'master' })
 
+" Plug for tests neotest alternative for vim-ultest(deprecated)
+" Plugin de testes alternativo ao vim-ultest que esta deprecated
+" Plug 'rcarriga/vim-ultest', Cond(!exists('g:vscode'), { 'do': ':UpdateRemotePlugins' })
+Plug 'nvim-neotest/neotest', Cond(!exists('g:vscode')) 
+Plug 'nvim-neotest/neotest-vim-test', Cond(!exists('g:vscode')) 
+Plug 'nvim-neotest/neotest-plenary', Cond(!exists('g:vscode')) 
+Plug 'nvim-lua/plenary.nvim', Cond(!exists('g:vscode')) 
+Plug 'antoinemadec/FixCursorHold.nvim', Cond(!exists('g:vscode')) 
 Plug 'tpope/vim-projectionist', Cond(!exists('g:vscode')) 
+
 " go test
 nnoremap <Leader>gt :A<CR>
 
@@ -357,7 +365,13 @@ source $HOME/.config/nvim/vimrc_files/vimspector.config.vim
 
 " .............................................................................
 " tree-sitter configs lua file. highlight sintax for java and etc
-lua require("treesitter")
+lua require("user.treesitter")
+lua require("user.neotest")
+nnoremap <silent> <Leader>t <Cmd>lua require("neotest").run.run()<CR>
+
+" .............................................................................
+" bufferline configs lua file. highlight sintax for java and etc
+lua require("user.bufferline")
 
 endif
 

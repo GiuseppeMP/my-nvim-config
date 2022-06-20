@@ -1,9 +1,10 @@
 " .............................................................................
 " Plug 'akinsho/bufferline.nvim' configs
 
-lua << EOF
-require("bufferline").setup{}
-EOF
+" lua << EOF
+" require("bufferline").setup{}
+" EOF
+
 
 " These commands will move the current buffer backwards or forwards in the bufferline
 nnoremap <silent>[b :BufferLineCycleNext<CR>
