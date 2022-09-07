@@ -153,8 +153,8 @@ nmap <C-w><C-t> :TagbarToggle<CR>
 " Plugin de testes para neovim
 Plug 'roxma/nvim-yarp', Cond(!exists('g:vscode'))
 Plug 'roxma/vim-hug-neovim-rpc', Cond(!exists('g:vscode'))
-" Plug 'vim-test/vim-test', Cond(!exists('g:vscode'))
-Plug 'GiuseppeMP/vim-test', Cond(!exists('g:vscode'), { 'branch': 'master' })
+Plug 'vim-test/vim-test', Cond(!exists('g:vscode'))
+" Plug 'GiuseppeMP/vim-test', Cond(!exists('g:vscode'), { 'branch': 'master' })
 
 " Plug for tests neotest alternative for vim-ultest(deprecated)
 " Plugin de testes alternativo ao vim-ultest que esta deprecated
@@ -183,7 +183,6 @@ Plug 'psliwka/vim-smoothie', Cond(!exists('g:vscode'))
 " Plug for float windows like fzf but for anything and vim-test
 " Plugin para utilizar janelas flutuantes parecido com fzf, suportar vim-test
 Plug 'voldikss/vim-floaterm', Cond(!exists('g:vscode'))
-nnoremap <silent> <Leader>ft :FloatermNew<CR>
 
 " .............................................................................
 " Plug for dracula syntax highlight
@@ -198,6 +197,7 @@ call plug#end()
 "
 " [ VIM + VSCODE ]
 " .............................................................................
+nnoremap <Leader>ff :FloatermNew<CR>
 
 " remove anything binded to spacebar
 " remove todos binds da barra de espaço
