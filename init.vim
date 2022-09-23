@@ -69,6 +69,9 @@ Plug 'itchyny/lightline.vim', Cond(!exists('g:vscode'))
 " .............................................................................
 " Themes collections
 Plug 'rafi/awesome-vim-colorschemes', Cond(!exists('g:vscode'))
+" Theme commands like next, and switcher
+Plug 'xolox/vim-misc', Cond(!exists('g:vscode'))
+Plug 'xolox/vim-colorscheme-switcher', Cond(!exists('g:vscode'))
 
 " .............................................................................
 " Theme synthwave dedicated
@@ -166,6 +169,13 @@ Plug 'nvim-lua/plenary.nvim', Cond(!exists('g:vscode'))
 Plug 'antoinemadec/FixCursorHold.nvim', Cond(!exists('g:vscode')) 
 Plug 'tpope/vim-projectionist', Cond(!exists('g:vscode')) 
 
+
+" Plug for mark files and terminals on the fly, to avoid repeat commands like
+" bnext, bprev, or fzf
+" Plug para marcar arquivos e terminais conforme precisar, para evitar uso
+" execesssivo de commandos como bnext, bprev e FZF
+Plug 'ThePrimeagen/harpoon', Cond(!exists('g:vscode')) 
+
 " go test
 nnoremap <Leader>gt :A<CR>
 
@@ -253,7 +263,7 @@ set background=dark
 set showmode " show mode, at ruler.
 set hidden
 set title
-set number
+set number relativenumber
 set showcmd
 set nobackup
 set nowritebackup
@@ -372,6 +382,12 @@ nnoremap <silent> <Leader>t <Cmd>lua require("neotest").run.run()<CR>
 " .............................................................................
 " bufferline configs lua file. highlight sintax for java and etc
 lua require("user.bufferline")
+
+" .............................................................................
+" harpoon config lua file. mark files and terminals for faster navigation
+lua require("user.harpoon")
+" harpoon vim keybinds file
+source $HOME/.config/nvim/vimrc_files/harpoon_keybinds.vim
 
 endif
 
