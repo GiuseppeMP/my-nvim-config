@@ -1,5 +1,6 @@
 let g:coc_global_extensions = [ 'coc-vimlsp', 'coc-java-vimspector', 'coc-json', 'coc-git', 'coc-java', 'coc-markdownlint', 'coc-tsserver', 'coc-marketplace']
 
+let g:coc_disable_transparent_cursor = 1
 
 set encoding=utf-8
 " Don't pass messages to |ins-completion-menu|.

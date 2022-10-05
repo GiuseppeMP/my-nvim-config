@@ -333,6 +333,9 @@ nnoremap <C-j> <C-w><C-j>
 " alternar entre splits buffers.
 nnoremap <S-Tab> <C-w>w
 
+" break line in normal mode
+:nnoremap <NL> i<CR><ESC>
+
 " .............................................................................
 " Nerdtree Plugin config file.
 source $HOME/.config/nvim/vimrc_files/nerdtree.config.vim
