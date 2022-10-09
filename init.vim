@@ -15,16 +15,19 @@ source $HOME/.config/nvim/vimrc_files/cond_helper.func.vim
 call plug#begin('$HOME/.config/nvim/plugged')
 
 " .............................................................................
-" Plugin para comentar linhas.
-" Plugin to easy comment lines.
+" Plugin para comentar linhas usando "gcc" ou (selection)gc.
+" Plugin to easy comment lines using gcc or (selection)gc.
 Plug 'tpope/vim-commentary', Cond(!exists('g:vscode'))
 
 " .............................................................................
-" Plugin easymotion for VIM
+" Plugin easymotion for VIM using leader leader (motion)
+" Plugin easymotion para se mover rapidamente no buffer usando leader leader
+" (motion)
 Plug 'easymotion/vim-easymotion', Cond(!exists('g:vscode'))
 
 " .............................................................................
 " Plugin easymotion for vscode - as vsc-easymotion to avoid names conflicts
+" Plugin para suportar easymotion dentro do vscode
 Plug 'asvetliakov/vim-easymotion', Cond(exists('g:vscode'), { 'as': 'vsc-easymotion' })
 
 " .............................................................................
@@ -36,12 +39,14 @@ Plug 'asvetliakov/vim-easymotion', Cond(exists('g:vscode'), { 'as': 'vsc-easymot
 Plug 'powerline/powerline-fonts', Cond(!exists('g:vscode'))
 
 " .............................................................................
-" Plugin for add/remove surround like quotes, parantheses, brackets etc.
+" Plugin for add/remove surround like quotes, parantheses, brackets etc. using
+" ys(char) to add surround or cs(char) to change surround
 " Plugin para adicionar e remover chaves, paranteses etc em volta de algo.
+" usando ys para adicionar e cs para alterar
 Plug 'tpope/vim-surround'
 
 " .............................................................................
-" Repeat for plugins using dot command
+" Repeat for plugins using dot command 
 " Plugin que consegue repetir comandos de plugins usando ponto (.)
 Plug 'tpope/vim-repeat'
 
@@ -73,26 +78,31 @@ Plug 'rafi/awesome-vim-colorschemes', Cond(!exists('g:vscode'))
 Plug 'xolox/vim-misc', Cond(!exists('g:vscode'))
 Plug 'xolox/vim-colorscheme-switcher', Cond(!exists('g:vscode'))
 
+
 " .............................................................................
 " Theme synthwave dedicated
 " Tema dedicado ao synthwave84
 Plug 'artanikin/vim-synthwave84', Cond(!exists('g:vscode'))
+
 " .............................................................................
-" Highlight f,F,t,T 
+" Plugin to Highlight f,F,t,T jumps
+" Plugin que destacada os pulos do movimento f,F,t,T
 Plug 'unblevable/quick-scope', Cond(!exists('g:vscode'))
 " Trigger a highlight in the appropriate direction when pressing these keys:
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
-
 " .............................................................................
-"" NERD tree will be loaded on the first invocation of NERDTreeToggle command
+" Plugin for filesystem explorer
+" Plugin de explorer de filesystem
 Plug 'scrooloose/nerdtree', Cond(!exists('g:vscode'))
 
 " .............................................................................
-" Git fugitive, cli GIT by :G
+" Plug for Git fugitive, cli GIT by :G (command)
+" Plug para executar qualquer comando git usando :G (comando)
 Plug 'tpope/vim-fugitive', Cond(!exists('g:vscode'))
 
 " .............................................................................
+" Plug for mapping text objects of languages (maybe replaced by coc)
 "" Plug para transformar funcoes em text objects (Java, c, vim scrips)
 Plug 'kana/vim-textobj-user' ", Cond(!exists('g:vscode'))
 "" Plug text-obj layer for functions
@@ -109,7 +119,7 @@ Plug 'junegunn/fzf', Cond(!exists('g:vscode'))
 Plug 'junegunn/fzf.vim', Cond(!exists('g:vscode'))
 
 " .............................................................................
-" COC - conquer of completion
+" COC - conquer of completion is a plugin like intelisense of vscode
 " Language server para auto completar sintax/validacoes/imports
 Plug 'neoclide/coc.nvim', Cond(!exists('g:vscode'), {'branch': 'release'})
 
@@ -126,11 +136,10 @@ Plug 'honza/vim-snippets', Cond(!exists('g:vscode'))
 Plug 'ryanoasis/vim-devicons', Cond(!exists('g:vscode'))
 
 " .............................................................................
-" Plugin for sintax highlight languages
-" Plug 'sheerun/vim-polyglot', Cond(!exists('g:vscode'))
-" Plugin for sintax highlight languages
-" Alternative for polyglot highlight using lua.
+" Plugin for sintax highlight languages, refactoring, text objects, etc
+" Its a competidor of coc but have nice extra features like improved syntax highlight
 Plug 'nvim-treesitter/nvim-treesitter', Cond(!exists('g:vscode'),{'do': ':TSUpdate'})
+
 " Plug for rainbow parentheses in treesitter highlight
 Plug 'p00f/nvim-ts-rainbow', Cond(!exists('g:vscode'))
 
@@ -195,10 +204,17 @@ Plug 'psliwka/vim-smoothie', Cond(!exists('g:vscode'))
 Plug 'voldikss/vim-floaterm', Cond(!exists('g:vscode'))
 
 " .............................................................................
+" Plug for snippets of various languanges
+" Plugin de snippets/templates de varias linguagens
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets', Cond(!exists('g:vscode'))
+" .............................................................................
 " Plug for dracula syntax highlight
 " Plugin para suportar syntax com tema dracula
 " Plug 'dracula/vim', Cond(!exists('g:vscode'), { 'as': 'dracula' })
 
+" Plug for git status gutter.
+" Plug para mostrar status do git no buffer.
+Plug 'airblade/vim-gitgutter', Cond(!exists('g:vscode'))
 call plug#end()
 
 " .............................................................................
@@ -207,7 +223,7 @@ call plug#end()
 "
 " [ VIM + VSCODE ]
 " .............................................................................
-nnoremap <Leader>ff :FloatermNew<CR>
+nmap <c-f><c-f> :FloatermNew<CR>
 
 " remove anything binded to spacebar
 " remove todos binds da barra de espaço
@@ -299,7 +315,7 @@ let g:neovide_cursor_vfx_mode = "railgun"
 
 " .............................................................................
 " Custom font.
-set guifont=CaskaydiaCove\ Nerd\ Font:h15
+set guifont=CaskaydiaCove\ Nerd\ Font\ SemiLight:h12
 
 " .............................................................................
 " Manter o cursor centralizado.
@@ -322,6 +338,7 @@ inoremap [ [<c-g>u
 inoremap { {<c-g>u
 inoremap { {<c-g>u
 
+
 " .............................................................................
 " Navigate around splits with a single key combo.
 " Navegar entre os splits com uma hotkey
@@ -334,7 +351,7 @@ nnoremap <C-j> <C-w><C-j>
 nnoremap <S-Tab> <C-w>w
 
 " break line in normal mode
-:nnoremap <NL> i<CR><ESC>
+nnoremap <NL> i<CR><ESC>
 
 " .............................................................................
 " Nerdtree Plugin config file.
@@ -402,4 +419,11 @@ endif
 " [ VSCODE ]
 " .............................................................................
 source $HOME/.config/nvim/vimrc_files/vscode.config.vim
+
+
+let g:gitgutter_set_sign_backgrounds = 1
+highlight GitGutterAdd    guifg=#009900 ctermfg=Green
+highlight GitGutterChange guifg=#bbbb00 ctermfg=Yellow
+highlight GitGutterDelete guifg=#ff2222 ctermfg=Red
+
 

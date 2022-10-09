@@ -39,7 +39,7 @@ bufferline.setup {
     max_name_length = 30,
     max_prefix_length = 30, -- prefix used when a buffer is de-duplicated
     tab_size = 21,
-    diagnostics = false, -- | "nvim_lsp" | "coc",
+    diagnostics = "coc", -- | "nvim_lsp" | "coc",
     diagnostics_update_in_insert = false,
     -- diagnostics_indicator = function(count, level, diagnostics_dict, context)
     --   return "("..count..")"
@@ -160,10 +160,10 @@ bufferline.setup {
       fg = { attribute = "bg", highlight = "Normal" },
       bg = { attribute = "bg", highlight = "Normal" },
     },
-    -- separator_visible = {
-    --   fg = {attribute='bg',highlight='TabLine'},
-    --   bg = {attribute='bg',highlight='TabLine'}
-    --   },
+    separator_visible = {
+      fg = {attribute='bg',highlight='TabLine'},
+      bg = {attribute='bg',highlight='TabLine'}
+      },
     indicator_selected = {
       fg = { attribute = "fg", highlight = "LspDiagnosticsDefaultHint" },
       bg = { attribute = "bg", highlight = "Normal" },
