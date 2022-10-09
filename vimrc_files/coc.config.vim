@@ -175,3 +175,17 @@ let g:coc_snippet_next = '<tab>'
 
 " coc-explorer settings
 :nmap <space>e <Cmd>CocCommand explorer<CR>
+
+
+" coc configs for coc-debug-java debug with coc-java
+
+" function! JavaStartDebugCallback(err, port)
+"   execute "cexpr! 'Java debug started on port: " . a:port . "'"
+"   call vimspector#LaunchWithSettings({ "configuration": "Java Attach", "AdapterPort": a:port })
+" endfunction
+
+" function JavaStartDebug()
+"   call CocActionAsync('runCommand', 'vscode.java.startDebugSession', function('JavaStartDebugCallback'))
+" endfunction
+
+" nmap <F1> :call JavaStartDebug()<CR>

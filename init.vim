@@ -165,8 +165,8 @@ nmap <C-w><C-t> :TagbarToggle<CR>
 " Plugin de testes para neovim
 Plug 'roxma/nvim-yarp', Cond(!exists('g:vscode'))
 Plug 'roxma/vim-hug-neovim-rpc', Cond(!exists('g:vscode'))
-Plug 'vim-test/vim-test', Cond(!exists('g:vscode'))
-" Plug 'GiuseppeMP/vim-test', Cond(!exists('g:vscode'), { 'branch': 'master' })
+" Plug 'vim-test/vim-test', Cond(!exists('g:vscode'))
+Plug 'GiuseppeMP/vim-test', Cond(!exists('g:vscode'), { 'branch': '#586-Question-How-to-configure-so-nvim-dap-is-used' })
 
 " Plug for tests neotest alternative for vim-ultest(deprecated)
 " Plugin de testes alternativo ao vim-ultest que esta deprecated
@@ -194,6 +194,11 @@ nnoremap <Leader>gt :A<CR>
 Plug 'puremourning/vimspector', Cond(!exists('g:vscode'))
 
 " .............................................................................
+" Plug for debugging java without coc support
+" Plugin para debugar sem suporte coc
+Plug 'mfussenegger/nvim-dap', Cond(!exists('g:vscode'))
+
+" .............................................................................
 " Plug for smoothie ctrl-d and ctrl-up scrolling
 " Plugin para tornar ctrl-d e ctrl-u mais coconut oil
 Plug 'psliwka/vim-smoothie', Cond(!exists('g:vscode'))
@@ -212,10 +217,36 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets', Cond(!exists('g:vscode'))
 " Plugin para suportar syntax com tema dracula
 " Plug 'dracula/vim', Cond(!exists('g:vscode'), { 'as': 'dracula' })
 
+" .............................................................................
 " Plug for git status gutter.
 " Plug para mostrar status do git no buffer.
 Plug 'airblade/vim-gitgutter', Cond(!exists('g:vscode'))
+
+" .............................................................................
+" Plug for testing vim plugins/files
+" Plug para testar arquivos e plugins vim
+Plug 'kana/vim-vspec', Cond(!exists('g:vscode')) 
+
+" .............................................................................
+" lsp installer utilitary
+Plug 'williamboman/nvim-lsp-installer', Cond(!exists('g:vscode'))
+Plug 'neovim/nvim-lspconfig', Cond(!exists('g:vscode'))
+
+" .............................................................................
+" Runs commands asynchronosuly using new APIs in Vim 8 and NeoVim
+" Roda comandos de maneira async utilizando as novas apis do VIM8 e Neovim
+Plug 'skywind3000/asyncrun.vim', Cond(!exists('g:vscode'))
+
+
+" .............................................................................
+" Plug for better diagnostics (fork for coc support)
+" Plug para melhor exp com diagnostics (usando fork arafatamim que funciona
+" com coc
+" disabled until google how to use with coc
+" Plug 'arafatamim/trouble.nvim', Cond(!exists('g:vscode'))
+
 call plug#end()
+
 
 " .............................................................................
 " Configuracoes gerais usadas tanto pelo vim quanto pelo vscode.
@@ -351,7 +382,8 @@ nnoremap <C-j> <C-w><C-j>
 nnoremap <S-Tab> <C-w>w
 
 " break line in normal mode
-nnoremap <NL> i<CR><ESC>
+" disabled because its conflict with window navigation
+" nnoremap <NL> i<CR><ESC>
 
 " .............................................................................
 " Nerdtree Plugin config file.
@@ -389,6 +421,9 @@ source $HOME/.config/nvim/vimrc_files/bufferline_tabs.config.vim
 " vim-test config file.
 source $HOME/.config/nvim/vimrc_files/vim_tests.config.vim
 
+" nvim-dap config file
+source $HOME/.config/nvim/vimrc_files/nvim_dap.config.vim
+
 " .............................................................................
 " viminspector config file.
 source $HOME/.config/nvim/vimrc_files/vimspector.config.vim
@@ -397,7 +432,6 @@ source $HOME/.config/nvim/vimrc_files/vimspector.config.vim
 " tree-sitter configs lua file. highlight sintax for java and etc
 lua require("user.treesitter")
 lua require("user.neotest")
-nnoremap <silent> <Leader>t <Cmd>lua require("neotest").run.run()<CR>
 
 " .............................................................................
 " bufferline configs lua file. highlight sintax for java and etc
