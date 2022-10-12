@@ -138,7 +138,7 @@ local plugins = {
     -- { name='arafatamim/trouble.nvim'}, --fixme
 
     -- last index fixme
-    { name=''}
+    { name=nil}
 }
 
 local function isempty(s)
@@ -150,10 +150,12 @@ local Plug = vim.fn['plug#']
 vim.call('plug#begin', '$HOME/.config/nvim/plugged')
 
 for k,v in pairs(plugins) do
-    if isempty(v.cfg) and not isempty(v.name) then
-        Plug(v.name)
-    else
-        Plug(v.name, v.cfg)
+    if not isempty(v.name) then
+        if (isempty(v.cfg)) then
+            Plug(v.name)
+        else
+            Plug(v.name, v.cfg)
+        end
     end
 end
 
