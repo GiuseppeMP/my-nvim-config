@@ -1,4 +1,4 @@
-let g:coc_global_extensions = ['coc-emoji', 'coc-vimlsp', 'coc-java-vimspector', 'coc-json', 'coc-git','coc-java-debug', 'coc-java', 'coc-markdownlint', 'coc-tsserver', 'coc-marketplace', 'coc-snippets', 'coc-explorer']
+let g:coc_global_extensions = ['coc-emoji', 'coc-vimlsp', 'coc-java-vimspector', 'coc-json', 'coc-git','coc-java-debug', 'coc-java', 'coc-markdownlint', 'coc-tsserver', 'coc-marketplace', 'coc-snippets', 'coc-explorer', 'coc-lua']
 
 let g:coc_disable_transparent_cursor = 1
 
