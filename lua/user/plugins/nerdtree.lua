@@ -7,11 +7,11 @@ local ne = kutils.ne
 
 local exp = "g:NERDTree.IsOpen() ? :NERDTreeClose<CR> : bufexists(expand('%')) ? :NERDTreeFind<CR> : :NERDTreeToogle<CR>"
 
-local function _G.nerdtreeOpen()
+local function nerdtreeOpen()
     print('teste')
 end
 
-ne( "<Leader>n", exp)
+ne( "<Leader>n", nerdtreeOpen)
 
 
 n( '<C-n>', ':NERDTreeToggle<CR>')
