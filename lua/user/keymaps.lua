@@ -1,29 +1,7 @@
-local function k(mode, key, map)
-   local opts = { noremap = true, silent = true }
-   vim.api.nvim_set_keymap(mode,key, map, opts)
-end
-
--- Modes
---     n: normal only
---     v: visual and select
---     o: operator-pending
---     x: visual only
---     s: select only
---     i: insert
---     c: command-line
---     l: insert, command-line, regexp-search (and others. Collectively called "Lang-Arg" pseudo-mode)
-
-local function n(key, map)
-   k("n",key, map)
-end
-
-local function i(key, map)
-   k("i",key, map)
-end
-
-local function v(key, map)
-   k("v",key, map)
-end
+local kutils = require "user.keymaps.utils"
+local n = kutils.n
+local v = kutils.v
+local i = kutils.i
 
 -- Remap space as leader key --
 n("<SPACE>", "<Nop>")

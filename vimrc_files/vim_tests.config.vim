@@ -44,5 +44,7 @@ let g:test#harpoon_term = 1
 " config para habilitar a interação com os tests em PTY, ex: jest com watchALL
 let g:ultest_use_pty = 1
 
+" projectionist
+"nnoremap <Leader>gt :A<CR>
 
 

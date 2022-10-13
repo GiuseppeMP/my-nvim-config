@@ -1,63 +1,13 @@
-
-" vim settings
 lua require("user.settings")
 
-" plugins stuff
 lua require("user.plugins")
 
-" vim keybinds
 lua require("user.keymaps")
 
-" rainbow
-let g:rainbow_active=1
-
-" quick-scope
-let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-
-" tagbar
-nmap <C-w><C-t> :TagbarToggle<CR>
-
-" projectionist
-"nnoremap <Leader>gt :A<CR>
-
-"" .............................................................................
-"" Plug for mapping text objects of languages (maybe replaced by coc)
-""" Plug para transformar funcoes em text objects (Java, c, vim scrips)
-"Plug 'kana/vim-textobj-user' ", Cond(!exists('g:vscode'))
-""" Plug text-obj layer for functions
-"Plug 'kana/vim-textobj-function' ", Cond(!exists('g:vscode'))
-""" Enhancement de sintaxe para text objects functions
-"Plug 'haya14busa/vim-textobj-function-syntax' ", Cond(!exists('g:vscode'))
-""" Suporte text object para funcoes python
-"Plug 'bps/vim-textobj-python' ", Cond(!exists('g:vscode'))
-
-" .............................................................................
-" Configuracoes gerais usadas tanto pelo vim quanto pelo vscode.
-" General configurations used by both vscode and vim.
-"
-" [ VIM + VSCODE ]
-" .............................................................................
-nmap <c-f><c-f> :FloatermNew<CR>
-
-" .............................................................................
-" Nice cursor for different modes
-let &t_SI.= "\e[5 q"
-let &t_EI.= "\e[1 q"
-                                               
-" .............................................................................
-" Configuracoes utilizadas somente pelo VIM
-" General configurations that can be only loaded by VIM.
-"
-" [VIM]
-" .............................................................................
 
 " Verifica se init.vim foi carregado fora do VSCode.
 " Verify if init.vim was not loaded by VSCode.
 if (!exists('g:vscode'))
-
-" .............................................................................
-" Neovide configs
-let g:neovide_cursor_vfx_mode = "railgun"
 
 " .............................................................................
 " Nerdtree Plugin config file.

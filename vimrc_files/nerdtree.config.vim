@@ -3,30 +3,6 @@
 " .............................................................................
 
 
-" Toggle da Nertree using leader + ne
-" nmap <leader>ne :NERDTreeToggle<cr>
-" Open nerd tree at the current file or close nerd tree if pressed again.
-nnoremap <silent> <expr> <Leader>n g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTreeToogle<CR>"
-
-nnoremap <leader>n :NERDTreeFocus<CR>
-" nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-n> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
-
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
-let g:NERDTreeShowHidden=1 " Show hidden files
-
-let g:NERDTreeMapActivateNode = 'l'
-
-" focus node in tab
-let g:NERDTreeMapOpenInTab = 'yes'
-
-let NERDTreeQuitOnOpen=0
-
-let NERDTreeShowBookmarks=1
-
-let NERDTreeWinSize=60
 
 " Start NERDTree. If a file is specified, move the cursor to its window.
 autocmd StdinReadPre * let s:std_in=1
