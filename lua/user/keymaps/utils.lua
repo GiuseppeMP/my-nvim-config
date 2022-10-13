@@ -5,7 +5,7 @@ end
 
 local function kexpr(mode, key, func)
    local opts_exp = { noremap = true, silent = false, expr=true }
-   vim.api.nvim_set_keymap(mode, key, func, opts_exp)
+   vim.keymap.set(mode, key, func, opts_exp)
 end
 
 -- Modes

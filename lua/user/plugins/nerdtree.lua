@@ -4,7 +4,14 @@ local kutils = require "user.keymaps.utils"
 local n = kutils.n
 local ne = kutils.ne
 
-ne( "<Leader>n", "g:NERDTree.IsOpen() ? ':NERDTreeClose<CR>' : bufexists(expand('%')) ? ':NERDTreeFind<CR>' : ':NERDTreeToogle<CR>'" )
+
+local exp = "g:NERDTree.IsOpen() ? :NERDTreeClose<CR> : bufexists(expand('%')) ? :NERDTreeFind<CR> : :NERDTreeToogle<CR>"
+
+local function _G.nerdtreeOpen()
+    print('teste')
+end
+
+ne( "<Leader>n", exp)
 
 
 n( '<C-n>', ':NERDTreeToggle<CR>')
