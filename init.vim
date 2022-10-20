@@ -273,7 +273,7 @@ let &t_EI.= "\e[1 q"
                                                
 " Compartilhar clipboard com yank/delete/change vim
 " Share cliboard buffer with vim.
-set clipboard=unnamedplus
+set clipboard+=unnamedplus
 set nolist
 set autoindent
 set autoread
@@ -460,4 +460,19 @@ highlight GitGutterAdd    guifg=#009900 ctermfg=Green
 highlight GitGutterChange guifg=#bbbb00 ctermfg=Yellow
 highlight GitGutterDelete guifg=#ff2222 ctermfg=Red
 
+if has('wsl')
 
+let g:clipboard = {
+            \   'name': 'WslClipboard',
+            \   'copy': {
+            \      '+': 'clip.exe',
+            \      '*': 'clip.exe',
+            \    },
+            \   'paste': {
+            \      '+': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+            \      '*': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+            \   },
+            \   'cache_enabled': 0,
+            \ }
+
+endif

@@ -1,9 +1,23 @@
 {
-    "java.jdt.ls.vmargs": "-Dfile.encoding=UTF-8 -noverify -Xmx1G -javaagent:/home/giuseppemp/.config/nvim/coc-files/lombok-1.18.22.jar",
+    "java.jdt.ls.vmargs": "-Dfile.encoding=UTF-8 -noverify -Xmx1G -javaagent:/home/t0708gsp/.config/nvim/coc-files/lombok-1.18.22.jar",
     "diagnostic.checkCurrentLine": true,
     "typescript.suggest.paths": true,
     "java.trace.server": "verbose",
+    "java.configuration.maven.userSettings": "~/.config/maven/settings.xml",
     "codeLens.enable": true,
+    "coc.preferences.formatOnType": true,
+    "coc.preferences.formatOnSaveFiletypes": [
+        "c",
+        "java",
+        "go",
+        "python",
+        "rust",
+        "markdown",
+        "javascript",
+        "typescript",
+        "json",
+        "jsonc"
+    ],
     "java.referencesCodeLens.enabled": true,
     "java.implementationsCodeLens.enabled": true,
     "typescript.implementationsCodeLens.enable": true,
@@ -16,7 +30,7 @@
     "git.topRemovedSign.hlGroup": "GitGutterDelete",
     "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
     "explorer.icon.enableNerdfont": true,
-    "explorer.icon.source" : "vim-devicons",
+    "explorer.icon.source": "vim-devicons",
     "java.configuration.runtimes": [
         {
             "name": "JavaSE-11",
