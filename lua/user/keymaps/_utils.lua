@@ -4,7 +4,7 @@ local function k(mode, key, map)
 end
 
 local function kexpr(mode, key, func)
-   local opts_exp = { noremap = true, silent = false, expr=true }
+   local opts_exp = { remap =false, noremap = true, expr=true }
    vim.keymap.set(mode, key, func, opts_exp)
 end
 
@@ -22,7 +22,7 @@ local function n(key, map)
    k("n",key, map)
 end
 
-local function ne(key, func)
+local function nexpr(key, func)
     kexpr("n", key, func)
 end
 
@@ -39,4 +39,4 @@ local function x(key, map)
 end
 
 
-return { ne = ne, n = n, i = i, v = v }
+return { nexpr = nexpr, n = n, i = i, v = v, x = x }

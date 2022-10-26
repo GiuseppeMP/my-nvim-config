@@ -1,18 +1,12 @@
+
 -- Module of Nerdtree configs and keymaps
 -- Modulo de configuracoes e keymaps do Nerdtree
 local kutils = require "user.keymaps._utils"
 local n = kutils.n
-local ne = kutils.ne
+local nexpr = kutils.nexpr
 
 
-local exp = "g:NERDTree.IsOpen() ? :NERDTreeClose<CR> : bufexists(expand('%')) ? :NERDTreeFind<CR> : :NERDTreeToogle<CR>"
-
-local function nerdtreeOpen()
-    print("teste")
-    return ':NERDTreeToogle<CR>'
-end
-
-ne( "6", nerdtreeOpen)
+-- nexpr( '<Leader>n', function() return vim.g.NERDtree.isOpen() == 1 and ":NerdTreeToggle<CR>" or ":NerdTreeFind<CR>" end)
 
 
 n( '<C-n>', ':NERDTreeToggle<CR>')
