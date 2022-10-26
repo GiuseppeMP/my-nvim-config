@@ -54,6 +54,7 @@ local plugins = {
     { name='xolox/vim-colorscheme-switcher'},
     { name='artanikin/vim-synthwave84'},
     { name='ryanoasis/vim-devicons'},
+    { name='Mofiqul/dracula.nvim'},
 
     -- Trigger a highlight in the appropriate direction when pressing these keys: f, F, t, T
     -- Adiciona destaca aos possiveis pulos com f, F, t, T

@@ -3,5 +3,6 @@ let g:onedark_termcolors = 256
 " let g:lightline = { 'colorscheme': 'onedark' }
 " colorscheme onedark
 " colorscheme synthwave84
-colorscheme onehalfdark
+" colorscheme onehalfdark
+" colorscheme dracula
 

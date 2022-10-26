@@ -1,4 +1,4 @@
-local kutils = require "user.keymaps.utils"
+local kutils = require "user.keymaps._utils"
 local n = kutils.n
 
 -- Module of short keymaps of simple plugins

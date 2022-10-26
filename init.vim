@@ -1,8 +1,10 @@
 lua require("user.settings")
 
+lua require("user.keymaps")
+
 lua require("user.plugins")
 
-lua require("user.keymaps")
+lua require("user.colorscheme")
 
 
 " Verifica se init.vim foi carregado fora do VSCode.
@@ -52,22 +54,6 @@ source $HOME/.config/nvim/vimrc_files/nvim_dap.config.vim
 " viminspector config file.
 source $HOME/.config/nvim/vimrc_files/vimspector.config.vim
 
-" .............................................................................
-" tree-sitter configs lua file. highlight sintax for java and etc
-lua require("user.treesitter")
-lua require("user.neotest")
-
-" .............................................................................
-" bufferline configs lua file. highlight sintax for java and etc
-lua require("user.bufferline")
-
-" .............................................................................
-" harpoon config lua file. mark files and terminals for faster navigation
-lua require("user.harpoon")
-" harpoon vim keybinds file
-
-
-source $HOME/.config/nvim/vimrc_files/harpoon_keybinds.vim
 
 endif
 
