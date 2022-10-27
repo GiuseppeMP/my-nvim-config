@@ -42,11 +42,6 @@ source $HOME/.config/nvim/vimrc_files/vim_tests.config.vim
 " nvim-dap config file
 source $HOME/.config/nvim/vimrc_files/nvim_dap.config.vim
 
-" .............................................................................
-" viminspector config file.
-source $HOME/.config/nvim/vimrc_files/vimspector.config.vim
-
-
 endif
 
 

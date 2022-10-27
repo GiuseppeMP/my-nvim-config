@@ -11,7 +11,9 @@ require "user.plugins.configs.harpoon"
 require "user.plugins.configs.coc"
 require "user.plugins.configs.neotest"
 require "user.plugins.configs.bufferline"
+require "user.plugins.configs.vimspector"
 
 -- plugins keymaps modules
 require "user.plugins.keymaps.harpoon"
 require "user.plugins.keymaps.coc"
+require "user.plugins.keymaps.vimspector"
