@@ -72,6 +72,8 @@ local plugins = {
     { name='junegunn/fzf'},
     { name='junegunn/fzf.vim'},
 
+    -- Fuzzy finder written in lua
+    { name = 'nvim-telescope/telescope.nvim', cfg ={ tag = '0.1.0' }},
 
     { name='honza/vim-snippets'},
     { name='honza/vim-snippets'},

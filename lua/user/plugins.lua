@@ -12,8 +12,10 @@ require "user.plugins.configs.coc"
 require "user.plugins.configs.neotest"
 require "user.plugins.configs.bufferline"
 require "user.plugins.configs.vimspector"
+require "user.plugins.configs.telescope"
 
 -- plugins keymaps modules
 require "user.plugins.keymaps.harpoon"
 require "user.plugins.keymaps.coc"
 require "user.plugins.keymaps.vimspector"
+require "user.plugins.keymaps.telescope"
