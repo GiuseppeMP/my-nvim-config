@@ -14,3 +14,4 @@ require "user.plugins.configs.bufferline"
 
 -- plugins keymaps modules
 require "user.plugins.keymaps.harpoon"
+require "user.plugins.keymaps.coc"
