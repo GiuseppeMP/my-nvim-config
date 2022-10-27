@@ -7,11 +7,10 @@ require "user.plugins.install.with-vimplug"
 require "user.plugins.configs.treesitter"
 require "user.plugins.configs.short_configs"
 require "user.plugins.configs.nerdtree"
-require "user.plugins.configs.bufferline"
 require "user.plugins.configs.harpoon"
 require "user.plugins.configs.coc"
 require "user.plugins.configs.neotest"
-
+require "user.plugins.configs.bufferline"
 
 -- plugins keymaps modules
 require "user.plugins.keymaps.harpoon"

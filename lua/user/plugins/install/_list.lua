@@ -32,7 +32,8 @@ local plugins = {
 
     -- Plugin for buffers as tabs
     -- Transforma os buffers em abas
-    { name='akinsho/bufferline.nvim', cfg={ tag = 'v2.*' }},
+    { name='akinsho/bufferline.nvim', cfg={ tag = 'v3.*' }},
+
     -- bufferline icons
     { name='kyazdani42/nvim-web-devicons'},
 
@@ -45,7 +46,6 @@ local plugins = {
     { name='vim-airline/vim-airline'},
     { name='vim-airline/vim-airline-themes'},
     { name='itchyny/lightline.vim'},
-    -- { name='dracula/vim', cfg = { as= 'dracula' }},
 
     -- Plugins for VIM :colorscheme collections
     -- Plugins para temas :colorscheme

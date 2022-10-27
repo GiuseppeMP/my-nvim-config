@@ -10,10 +10,7 @@ o.autoindent = true
 o.autoread = true
 o.backspace =  [[indent,eol,start]]
 
-
-
 if not vim.g.vscode then
-
     o.mouse = 'a'
     o.termguicolors = true
     o.background='dark'
@@ -35,7 +32,7 @@ if not vim.g.vscode then
     o.foldenable = false
     o.foldlevel=2
     o.cmdheight=2
-    o.updatetime=1000
+    o.updatetime=000
     o.shortmess=o.shortmess..'c'
     o.signcolumn='number'
     o.encoding='UTF-8'

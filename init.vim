@@ -36,14 +36,6 @@ source $HOME/.config/nvim/vimrc_files/vim_airline.config.vim
 source $HOME/.config/nvim/vimrc_files/vim_awesome_themes.config.vim
 
 " .............................................................................
-" coc config
-source $HOME/.config/nvim/vimrc_files/coc.config.vim
-
-" .............................................................................
-" bufferline tabs config file.
-source $HOME/.config/nvim/vimrc_files/bufferline_tabs.config.vim
-
-" .............................................................................
 " vim-test config file.
 source $HOME/.config/nvim/vimrc_files/vim_tests.config.vim
 
