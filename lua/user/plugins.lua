@@ -13,6 +13,9 @@ require "user.plugins.configs.neotest"
 require "user.plugins.configs.bufferline"
 require "user.plugins.configs.vimspector"
 require "user.plugins.configs.telescope"
+require "user.plugins.configs.fzf"
+require "user.plugins.configs.modicator"
+require "user.plugins.configs.boole"
 
 -- plugins keymaps modules
 require "user.plugins.keymaps.harpoon"

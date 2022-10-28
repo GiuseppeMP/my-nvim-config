@@ -11,12 +11,13 @@ local Plug = vim.fn['plug#']
 
 vim.call('plug#begin', '$HOME/.config/nvim/plugged')
 
-for _, v in pairs(plugins) do
-    if not isempty(v.name) then
-        if (isempty(v.cfg)) then
-            Plug(v.name)
+for i =1, #plugins do 
+    local p = plugins[i]
+    if not isempty(p.name) then
+        if (isempty(p.cfg)) then
+            Plug(p.name)
         else
-            Plug(v.name, v.cfg)
+            Plug(p.name, p.cfg)
         end
     end
 end

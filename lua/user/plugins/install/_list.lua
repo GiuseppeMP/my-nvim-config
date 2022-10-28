@@ -148,9 +148,16 @@ local plugins = {
     -- { name='kana/vim-textobj-function' }, fixme
     -- { name='haya14busa/vim-textobj-function-syntax' }, fixme
     -- { name='bps/vim-textobj-python' }, fixme
+    --
+    -- linenumber mode indicator
+    { name='melkster/modicator.nvim'},
 
-    -- last index fixme
-    { name=nil}
+    -- Markdown preview
+    { name = 'toppair/peek.nvim'},
+
+    -- toggle custom values
+    { name = 'nat-418/boole.nvim'}
+
 }
 
 return plugins
