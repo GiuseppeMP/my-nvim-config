@@ -7,7 +7,8 @@ require 'boole'.setup({
   additions = {
     {'private', 'public', 'protected'},
     {'String', 'List<String>'},
-    {'Integer', 'List<Integer>'}
+    {'Integer', 'List<Integer>'},
+    {'require', 'import', 'export'}
   },
 
 })

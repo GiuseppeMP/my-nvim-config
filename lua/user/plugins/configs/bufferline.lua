@@ -1,11 +1,6 @@
-local status_ok, bufferline = pcall(require, "bufferline")
-if not status_ok then
-  return
-end
-
-bufferline.setup {
+ require 'bufferline'.setup {
   options = {
-    numbers = "none", -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
+    numbers = "both", -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
     close_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
     right_mouse_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
     left_mouse_command = "buffer %d", -- can be a string | function, see "Mouse actions"
@@ -156,10 +151,10 @@ bufferline.setup {
       fg = { attribute = "bg", highlight = "Normal" },
       bg = { attribute = "bg", highlight = "Normal" },
     },
-    -- separator_visible = {
-    --   fg = {attribute='bg',highlight='TabLine'},
-    --   bg = {attribute='bg',highlight='TabLine'}
-    --   },
+    separator_visible = {
+      fg = {attribute='bg',highlight='TabLine'},
+      bg = {attribute='bg',highlight='TabLine'}
+      },
     indicator_selected = {
       fg = { attribute = "fg", highlight = "LspDiagnosticsDefaultHint" },
       bg = { attribute = "bg", highlight = "Normal" },
