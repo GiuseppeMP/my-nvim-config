@@ -1,5 +1,4 @@
-" Configs for vim-tests, neotest
-" Test nearaest test
+" Configs for vim-tests, neotest Test nearaest test
 nnoremap <silent> <Leader>t <Cmd>lua require("neotest").run.run()<CR>
 
 " run the file tests

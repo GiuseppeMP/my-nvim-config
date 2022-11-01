@@ -6,32 +6,9 @@ lua require("user.plugins")
 
 lua require("user.colorscheme")
 
-
-" Verifica se init.vim foi carregado fora do VSCode.
-" Verify if init.vim was not loaded by VSCode.
-if (!exists('g:vscode'))
-
 " .............................................................................
-" Nerdtree Plugin config file.
-source $HOME/.config/nvim/vimrc_files/nerdtree.config.vim
+source $HOME/.config/nvim/vimrc_files/highlight_yank.func.vim
 
-" .............................................................................
-" vim-test config file.
-source $HOME/.config/nvim/vimrc_files/vim_tests.config.vim
-
-endif
-
-
-" .............................................................................
-" Load vscode configs from another file.
-" Carrega as configs do vscode de outro arquivo.
-"
-" [ VSCODE ]
-" .............................................................................
-source $HOME/.config/nvim/vimrc_files/vscode.config.vim
-
-
-let g:gitgutter_set_sign_backgrounds = 1
 highlight GitGutterAdd    guifg=#009900 ctermfg=Green
 highlight GitGutterChange guifg=#bbbb00 ctermfg=Yellow
 highlight GitGutterDelete guifg=#ff2222 ctermfg=Red
