@@ -6,9 +6,6 @@ lua require("user.plugins")
 
 lua require("user.colorscheme")
 
-" .............................................................................
-source $HOME/.config/nvim/vimrc_files/highlight_yank.func.vim
+lua require("user.autocmds")
 
-highlight GitGutterAdd    guifg=#009900 ctermfg=Green
-highlight GitGutterChange guifg=#bbbb00 ctermfg=Yellow
-highlight GitGutterDelete guifg=#ff2222 ctermfg=Red
+lua require('user.testing')
