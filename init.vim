@@ -16,26 +16,6 @@ if (!exists('g:vscode'))
 source $HOME/.config/nvim/vimrc_files/nerdtree.config.vim
 
 " .............................................................................
-" FZF Plugin config file.
-source $HOME/.config/nvim/vimrc_files/fzf.config.vim
-
-" .............................................................................
-" vim/comentary config file.
-source $HOME/.config/nvim/vimrc_files/vim_commentary.config.vim
-
-" .............................................................................
-" vim-easymotion config file.
-source $HOME/.config/nvim/vimrc_files/vim_easymotion.config.vim
-
-" .............................................................................
-" airline config file.
-source $HOME/.config/nvim/vimrc_files/vim_airline.config.vim
-
-" .............................................................................
-" awesome themes config file.
-source $HOME/.config/nvim/vimrc_files/vim_awesome_themes.config.vim
-
-" .............................................................................
 " vim-test config file.
 source $HOME/.config/nvim/vimrc_files/vim_tests.config.vim
 
@@ -55,5 +35,3 @@ let g:gitgutter_set_sign_backgrounds = 1
 highlight GitGutterAdd    guifg=#009900 ctermfg=Green
 highlight GitGutterChange guifg=#bbbb00 ctermfg=Yellow
 highlight GitGutterDelete guifg=#ff2222 ctermfg=Red
-
-

@@ -1,5 +1,9 @@
 local g = vim.g
 
+
+vim.env.FZF_DEFAULT_OPTS= '--bind ctrl-a:select-all'
+vim.opt.rtp:prepend("/usr/local/opt/fzf")
+
 g.fzf_colors = {
     fg = {'fg', 'Normal'},
     bg=      {'bg', 'Normal'},
