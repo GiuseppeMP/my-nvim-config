@@ -115,7 +115,7 @@ x("<C-s>", "<Plug>(coc-range-select)")
 -- Show all diagnostics.
 n( "<space>a", ":<C-u>CocList diagnostics<cr>")
 -- Manage extensions.
-n( "<space>e", ":<Cmd>CocCommand explorer<CR>")
+n( "<space>e", ":CocCommand explorer<CR>")
 -- Show commands.
 n( "<space>c", ":<C-u>CocList commands<cr>")
 -- Find symbol of current document.

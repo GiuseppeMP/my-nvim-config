@@ -16,7 +16,7 @@ g.coc_global_extensions = {
     'coc-snippets',
     'coc-explorer',
     'coc-lua',
-    'coc-pairs'
+    -- 'coc-pairs'
 }
 
 g.coc_disable_transparent_cursor = 1

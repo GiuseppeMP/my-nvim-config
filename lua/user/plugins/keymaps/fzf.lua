@@ -11,7 +11,10 @@ local function rp_term_cmd(cmd)
 end
 
 local function fzfOpenLF(cmd)
-    if string.find(vim.fn.expand('%'), 'NERD_tree') and vim.fn.winnr('$') > 1 then
+    local b_name = vim.fn.expand('%')
+    local is_forb_buffer = b_name:find('coc-explorer', 0, true) or b_name:find('NERD_tree', 0, true)
+    local _winnr = vim.fn.winnr('$') > 1
+    if is_forb_buffer and _winnr then
         rp_term_cmd("normal! <c-w><c-w>")
     end
     rp_term_cmd("normal! " .. cmd .. "<cr>")
@@ -19,6 +22,8 @@ end
 
 n("<C-p>", function() fzfOpenLF(':Files') end)
 n("<C-p><C-p>", function() fzfOpenLF(':GFiles') end)
+
+n("<C-p><C-f>", function() fzfOpenLF(':Ag') end)
 
 n("<Leader><Enter>", function() fzfOpenLF(':Buffers') end)
 n("<Leader>l", function() fzfOpenLF(':Lines') end)
