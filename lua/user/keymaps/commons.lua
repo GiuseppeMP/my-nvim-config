@@ -65,3 +65,9 @@ i( '(', '(<c-g>u')
 i( '[', '[<c-g>u')
 i( '{', '{<c-g>u')
 i( '}', '}<c-g>u')
+
+-- insert ; at end of the line
+i(';;', '<C-o>A;')
+-- insert ; at end of the line and start new line
+i(';<Enter>', '<ESC>A;<ESC>o')
+
