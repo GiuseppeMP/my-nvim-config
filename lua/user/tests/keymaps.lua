@@ -3,6 +3,7 @@ local n = u.n
 local neotest = require 'neotest'
 
 
+-- write buffer before run tests in order to execute a smooth tdd flow
 local function write_buffer()
     vim.cmd("write")
 end
@@ -15,6 +16,7 @@ n('<Leader>td', function() write_buffer() neotest.run.run({strategy = "dap"}) en
 
 
 -- change keymaps based on buffer extesion
+-- FIXME convert to autocmd on lua
 vim.cmd([[
 autocmd FileType java nnoremap <buffer> <silent> <Leader>td :TestDebugNearest<CR>
 

@@ -20,11 +20,13 @@ local function fzfOpenLF(cmd)
     rp_term_cmd("normal! :CocCommand fzf-preview." .. cmd .. "<cr>")
 end
 
-n("<C-p>", function() fzfOpenLF('ProjectFiles') end)
-n("<C-p><C-p>", function() fzfOpenLF('GitFiles') end)
+-- " Select file from directory files (default to current working directory) (Required [ripgrep](https://github.com/BurntSushi/ripgrep))
+n("<C-p><C-d>", function() fzfOpenLF('DirectoryFiles') end)
+n("<C-p><C-g>", function() fzfOpenLF('GitFiles') end)
+n("<C-p><C-p>", function() fzfOpenLF('ProjectFiles') end)
 
 -- n("<C-p><C-f>", function() fzfOpenLF(':Ag') end)
-n("<C-p><C-f>", function() fzfOpenLF('ProjectGrep<Space>') end)
+n("<C-p><C-f>", function() fzfOpenLF('ProjectGrep') end)
 
 n("<Leader><Enter>", function() fzfOpenLF(':Buffers') end)
 n("<Leader>l", function() fzfOpenLF(':Lines') end)

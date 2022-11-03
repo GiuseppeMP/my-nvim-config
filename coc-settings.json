@@ -1,9 +1,11 @@
 {
-    "java.jdt.ls.vmargs": "-Dfile.encoding=UTF-8 -noverify -Xmx1G -javaagent:/Users/giuseppemp/.config/nvim/coc-files/lombok-1.18.24.jar",
+    "java.jdt.ls.vmargs": "-Dfile.encoding=UTF-8 -noverify -Xmx1G -javaagent:/home/t0708gsp/.config/nvim/coc-files/lombok-1.18.24.jar",
     "diagnostic.checkCurrentLine": true,
     "typescript.suggest.paths": true,
     "java.trace.server": "verbose",
-    "explorer.root.strategies": [ "cwd" ],
+    "explorer.root.strategies": [
+        "cwd"
+    ],
     "explorer.file.showHiddenFiles": true,
     "explorer.file.reveal.auto": true,
     "explorer.file.reveal.whenOpen": true,
@@ -33,7 +35,7 @@
     "git.topRemovedSign.hlGroup": "GitGutterDelete",
     "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
     "explorer.icon.enableNerdfont": true,
-    "explorer.icon.source" : "vim-devicons",
+    "explorer.icon.source": "vim-devicons",
     "explorer.buffer.root.template": "[icon & 1] OPEN EDITORS",
     "explorer.file.root.template": "[icon & 1] PROJECT ([root])",
     "explorer.file.child.template": "[git | 2] [selection | clip | 1] [indent][icon | 1] [diagnosticError & 1][filename omitCenter 1][modified][readonly] [linkIcon & 1][link growRight 1 omitCenter 5]",
