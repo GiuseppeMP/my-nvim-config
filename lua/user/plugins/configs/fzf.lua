@@ -4,6 +4,8 @@ local g = vim.g
 vim.env.FZF_DEFAULT_OPTS= '--bind ctrl-a:select-all'
 vim.opt.rtp:prepend("/usr/local/opt/fzf")
 
+g.fzf_preview_use_dev_icons = 1
+g.fzf_preview_dev_icon_prefix_string_length = 5
 g.fzf_colors = {
     fg = {'fg', 'Normal'},
     bg=      {'bg', 'Normal'},

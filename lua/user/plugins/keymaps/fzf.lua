@@ -17,13 +17,14 @@ local function fzfOpenLF(cmd)
     if is_forb_buffer and _winnr then
         rp_term_cmd("normal! <c-w><c-w>")
     end
-    rp_term_cmd("normal! " .. cmd .. "<cr>")
+    rp_term_cmd("normal! :CocCommand fzf-preview." .. cmd .. "<cr>")
 end
 
-n("<C-p>", function() fzfOpenLF(':Files') end)
-n("<C-p><C-p>", function() fzfOpenLF(':GFiles') end)
+n("<C-p>", function() fzfOpenLF('ProjectFiles') end)
+n("<C-p><C-p>", function() fzfOpenLF('GitFiles') end)
 
-n("<C-p><C-f>", function() fzfOpenLF(':Ag') end)
+-- n("<C-p><C-f>", function() fzfOpenLF(':Ag') end)
+n("<C-p><C-f>", function() fzfOpenLF('ProjectGrep<Space>') end)
 
 n("<Leader><Enter>", function() fzfOpenLF(':Buffers') end)
 n("<Leader>l", function() fzfOpenLF(':Lines') end)

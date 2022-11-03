@@ -69,13 +69,11 @@ local plugins = {
 
     -- Fuzzy finder in VIM
     -- Usando Fuzzy Finder no VIM
-    { name='junegunn/fzf'},
-    { name='junegunn/fzf.vim'},
+    { name='junegunn/fzf', cfg={ ['do'] = 'fzf#install()'}},
 
     -- Fuzzy finder written in lua
     { name = 'nvim-telescope/telescope.nvim', cfg ={ tag = '0.1.0' }},
 
-    { name='honza/vim-snippets'},
     { name='honza/vim-snippets'},
 
     -- COC - conquer of completion is a plugin like intelisense of vscode
