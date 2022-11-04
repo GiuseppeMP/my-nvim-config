@@ -28,8 +28,8 @@ n("<C-p><C-p>", function() fzfOpenLF('ProjectFiles') end)
 -- n("<C-p><C-f>", function() fzfOpenLF(':Ag') end)
 n("<C-p><C-f>", function() fzfOpenLF('ProjectGrep') end)
 
-n("<Leader><Enter>", function() fzfOpenLF(':Buffers') end)
-n("<Leader>l", function() fzfOpenLF(':Lines') end)
+n("<Leader><Enter>", function() fzfOpenLF('AllBuffers') end)
+n("<Leader>l", function() fzfOpenLF('Lines') end)
 
 -- Insert mode completion
 i( '<c-x><c-k>', '<plug>(fzf-complete-word)')

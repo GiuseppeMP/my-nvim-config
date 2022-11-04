@@ -34,7 +34,8 @@ if not vim.g.vscode then
     o.cmdheight=2
     o.updatetime=000
     o.shortmess=o.shortmess..'c'
-    o.signcolumn='number'
+    -- o.shortmess:append({'c'})
+    o.signcolumn='auto:[1-9]'
     o.encoding='UTF-8'
     o.wm=5
     o.scrolloff=5

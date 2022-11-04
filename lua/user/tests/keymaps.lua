@@ -10,9 +10,10 @@ end
 
 -- default testing keymaps
 n('<Leader>tt', ':TestFile<CR>')
-n('<Leader>t' , function() write_buffer() neotest.run.run() end)
+n('<Leader>t' , function() require'neotest'.run.run() end)
 n('<Leader>tf', function() write_buffer() neotest.run.run(vim.fn.expand("%")) end)
 n('<Leader>td', function() write_buffer() neotest.run.run({strategy = "dap"}) end)
+n('ga', function() write_buffer() vim.cmd(":A") end)
 
 
 -- change keymaps based on buffer extesion

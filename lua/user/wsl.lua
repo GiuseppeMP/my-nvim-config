@@ -1,5 +1,5 @@
--- If your using nvim in wsl2 env.
-if vim.fn.has('wsl') then
+-- If your using nvim on wsl2 env.
+if vim.fn.has('wsl') > 0 then
     vim.cmd([[
     let g:clipboard = {
             \   'name': 'WslClipboard',
@@ -13,6 +13,5 @@ if vim.fn.has('wsl') then
             \   },
             \   'cache_enabled': 0,
             \ }
-
     ]])
 end
