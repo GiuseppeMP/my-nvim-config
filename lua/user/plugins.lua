@@ -19,7 +19,7 @@ require "user.plugins.configs.projectionist"
 require "user.plugins.configs.short_configs"
 require "user.plugins.configs.telescope"
 require "user.plugins.configs.treesitter"
-require "lua.user.plugins.configs.vim-tmux-navigator"
+require "user.plugins.configs.vim-tmux-navigator"
 require "user.plugins.configs.vimspector"
 
 -- plugins keymaps modules
