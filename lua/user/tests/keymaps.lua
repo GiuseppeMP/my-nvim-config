@@ -1,9 +1,9 @@
-local u = require'user.keymaps._utils'
-local n = u.n
+local n = require'user.keymaps._utils'.n
 local neotest = require 'neotest'
 
 
 -- write buffer before run tests in order to execute a smooth tdd flow
+-- escreve/salva o buffer antes de executar o teste
 local function write_buffer()
     vim.cmd("write")
 end
@@ -13,6 +13,9 @@ n('<Leader>tt', ':TestFile<CR>')
 n('<Leader>t' , function() require'neotest'.run.run() end)
 n('<Leader>tf', function() write_buffer() neotest.run.run(vim.fn.expand("%")) end)
 n('<Leader>td', function() write_buffer() neotest.run.run({strategy = "dap"}) end)
+
+-- alternates between test and code
+-- alterna entre arquivo de testes e codigo
 n('ga', function() write_buffer() vim.cmd(":A") end)
 
 

@@ -1,4 +1,4 @@
- require 'bufferline'.setup {
+ require'bufferline'.setup {
   options = {
     numbers = "both", -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
     close_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
