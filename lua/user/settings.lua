@@ -4,6 +4,7 @@ local o = vim.o -- For the globals options
 -- local w = vim.wo -- For the window local options
 -- local b = vim.bo -- For the buffer local options
 
+
 o.clipboard = 'unnamedplus'
 o.list = false
 o.autoindent = true
@@ -54,3 +55,5 @@ if not vim.g.vscode then
     o.guifont='CaskaydiaCove Nerd Font SemiLight:h12'
 
 end
+
+vim.opt.laststatus = 3
