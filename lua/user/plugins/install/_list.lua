@@ -33,6 +33,10 @@ local plugins = {
     -- bufferline icons
     { name='kyazdani42/nvim-web-devicons'},
 
+    -- close buffers without exit vim or messing layouts
+    -- fechar buffers sem perder config de layout ou acabar saindo do nvim sem querer
+    { name='moll/vim-bbye'},
+
     -- Plugin for buffers as tabs
     -- Transforma os buffers em abas
     { name='akinsho/bufferline.nvim', cfg={ tag = 'v3.*' }},

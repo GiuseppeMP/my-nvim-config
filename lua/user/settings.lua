@@ -46,6 +46,7 @@ if not vim.g.vscode then
     o.hlsearch = true
     o.showmatch = true
     o.compatible = false
+    o.laststatus = 3
     o.guifont='CaskaydiaCove Nerd Font SemiLight:h12'
 
 end
