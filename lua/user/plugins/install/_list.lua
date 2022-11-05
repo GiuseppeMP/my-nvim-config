@@ -139,6 +139,9 @@ local plugins = {
     -- vim8, neovim async interface
     { name='skywind3000/asyncrun.vim'},
 
+    -- tmux <-> neovim navigation using C-l,k,j,h
+    { name='christoomey/vim-tmux-navigator'},
+
     -- { name='arafatamim/trouble.nvim'}, --fixme
 
     -- Plugin for custom text objects (disabled because coc)
