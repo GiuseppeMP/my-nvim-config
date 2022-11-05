@@ -30,12 +30,12 @@ local plugins = {
     -- Rainbow in Treesitter
     { name='p00f/nvim-ts-rainbow'},
 
+    -- bufferline icons
+    { name='kyazdani42/nvim-web-devicons'},
+
     -- Plugin for buffers as tabs
     -- Transforma os buffers em abas
     { name='akinsho/bufferline.nvim', cfg={ tag = 'v3.*' }},
-
-    -- bufferline icons
-    { name='kyazdani42/nvim-web-devicons'},
 
     -- Rainbow brackers and parentheses
     -- Chaves e parenteses arco-iris
@@ -45,7 +45,7 @@ local plugins = {
     -- Status bar personalizada
     { name='vim-airline/vim-airline'},
     { name='vim-airline/vim-airline-themes'},
-    { name='itchyny/lightline.vim'},
+    -- { name='itchyny/lightline.vim'},
 
     -- Plugins for VIM :colorscheme collections
     -- Plugins para temas :colorscheme
