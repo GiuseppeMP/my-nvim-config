@@ -2,7 +2,12 @@ vim.opt.termguicolors = true
 
 require'bufferline'.setup {
     options = {
-        indicator = { style = "icon", icon = "▎"},
+        numbers = "none",
+        close_command = "Bdelete! %d",
+        right_mouse_command = "Bdelete! %d",
+        left_mouse_command = "buffer %d",
+        middle_mouse_command = nil,
+        indicator = { style = "icon", icon = " │ "},
         buffer_close_icon = '',
         modified_icon = "●",
         close_icon = "",
@@ -19,7 +24,7 @@ require'bufferline'.setup {
         show_close_icon = true,
         show_tab_indicators = true,
         persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
-        separator_style = "thin", -- | "thick" | "thin" | { 'any', 'any' },
+        separator_style = {},
         enforce_regular_tabs = true,
         always_show_bufferline = true,
     },
