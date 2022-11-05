@@ -23,6 +23,7 @@ require "user.plugins.configs.vimspector"
 
 -- plugins keymaps modules
 require "user.plugins.keymaps.coc"
+require "user.plugins.keymaps.floaterm"
 require "user.plugins.keymaps.fzf"
 require "user.plugins.keymaps.harpoon"
 require "user.plugins.keymaps.nvimdap"
