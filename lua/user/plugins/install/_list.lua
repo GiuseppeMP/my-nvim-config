@@ -2,6 +2,10 @@
 -- Modulo que retorna a lista de vim plugins que precisam ser instalados.
 -- You can manage your plugins here, separated from plugin manager.
 local plugins = {
+    -- Language server plugin but with better syntax highlight than coc
+    -- Language server assim como coc mas com features melhores como syntaxh
+    { name='nvim-treesitter/nvim-treesitter', cfg={ ['do'] =':TSUpdateSync'} },
+
     -- Repeat plugins cmds using dot command
     -- Repetir os cmds dos plugins usando ponto
     { name='tpope/vim-repeat' },
@@ -23,9 +27,6 @@ local plugins = {
     { name="tpope/vim-commentary"},
 
 
-    -- Language server plugin but with better syntax highlight than coc
-    -- Language server assim como coc mas com features melhores como syntaxh
-    { name='nvim-treesitter/nvim-treesitter', cfg={ ['do'] =':TSUpdateSync'} },
 
     -- Rainbow in Treesitter
     { name='p00f/nvim-ts-rainbow'},
@@ -99,13 +100,14 @@ local plugins = {
     -- { name='roxma/vim-hug-neovim-rpc'}, fixme
 
     -- Collection of plugins for tests, Debug and TDD
-    { name='GiuseppeMP/vim-test', cfg={ branch= '#586-Question-How-to-configure-so-nvim-dap-is-used' } },
+    { name='nvim-lua/plenary.nvim'},
+    { name= 'vim-test/vim-test'},
+    -- { name='GiuseppeMP/vim-test', cfg={ branch= '#586-Question-How-to-configure-so-nvim-dap-is-used' } },
     { name='nvim-neotest/neotest'},
     { name='nvim-neotest/neotest-vim-test'},
     { name='nvim-neotest/neotest-plenary'},
     -- vim tests
     { name='kana/vim-vspec'},
-    { name='nvim-lua/plenary.nvim'},
     -- fix cursor in tests/debug
     { name='antoinemadec/FixCursorHold.nvim'},
     -- go to test file

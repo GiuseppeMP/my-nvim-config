@@ -68,6 +68,15 @@ i( '}', '}<c-g>u')
 
 -- insert ; at end of the line
 i(';;', '<C-o>A;')
+i(',,', '<C-o>A,')
+
 -- insert ; at end of the line and start new line
 i(';<Enter>', '<ESC>A;<ESC>o')
+i(',<Enter>', '<ESC>A,<ESC>o')
+
+-- reload nvim config whithout leaving nvim
+n("<leader><leader><leader>", ":source $MYVIMRC<CR>")
+
+i("<c-l>", "<Right>")
+i("<c-h>", "<Left>")
 

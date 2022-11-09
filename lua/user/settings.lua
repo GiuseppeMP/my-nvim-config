@@ -49,7 +49,7 @@ if not vim.g.vscode then
     o.compatible = false
     o.laststatus = 3
     o.ls = 0 -- hide status line
-    o.ch = 0 -- hide command line
+    o.ch = 1 -- hide command line
     o.spelllang = 'en_us'
     o.spell = false
     o.guifont='CaskaydiaCove Nerd Font SemiLight:h12'
