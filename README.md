@@ -49,8 +49,15 @@ plugin manager instead of vim-plug.
 
 This configuration use a set of plugins listed in this README.
 
+
+
 ## Plugins
 
 |  Name      |    description       |  docs  |
 | ------------- |-------------  | ------- |
 |    nvim-treesitter/nvim-treesitter    |     Tree-sitter is a parser generator tool and an incremental parsing library. It can build a concrete syntax tree for a source file and efficiently update the syntax tree as the source file is edited. | [github](https://github.com/nvim-treesitter/nvim-treesitter) |
+| tpope/vim-repeat | Repeat plugins commands using dot | [github]() |
+| tpope/vim-surround | Fast add, remove or change surronds | [github]() |
+| powerline/powerline-fonts | Package of powerline fonts for nvim | [github]() |
+| easymotion/vim-easymotion | Powerfull and precise navigation tool | [github]() |
+
