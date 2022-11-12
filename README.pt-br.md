@@ -16,7 +16,7 @@ Terei o prazer de compartilhar como funciona meu workflow.
 Eu sou brasileiro também e por isso criei o README.pt-br.md, para
 ser acessível para pessoas que não tem familiaridade com Inglês. 🤝
 
-**Como é essa config:**
+**Como fica essa config:**
 
 ![neovim-image](docs/neovim-beppe.png)
 

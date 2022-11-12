@@ -10,7 +10,7 @@ I use it to code in lua, java, j(t)avascript, python, golang, scala and so on ..
 
 If you want to use these configs and need help, let me known. 🤝
 
-**How it's look like**
+**It's look like this:**
 
 ![neovim-image](docs/neovim-beppe.png)
 
