@@ -171,4 +171,4 @@ This configuration use the set of plugins listed below:
 | melkster/modicator | Highlight the number of the cursor line | [github](https://github.com/melkster/modicator) |
 | toppair/peek.nvim | Another awesome Markdown Previewer | [github](https://github.com/toppair/peek.nvim) |
 | nat-418/boole.nvim | Rotate custom values like `false` <-> `true` using `<C-x,a>` | [github](https://github.com/nat-418/boole.nvim) |
-|
+| Desculpe pela longa lista de plugins! | Pega ae uma batata de recompensa: 🥔 | [github](https://github.com/GiuseppeMP) |
