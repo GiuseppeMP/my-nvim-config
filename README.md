@@ -47,59 +47,57 @@ plugin manager instead of vim-plug.
 - The `name` property is the plugin itself.
 - The `cfg` property hold the vim-plug hooks and configs.
 
-This configuration use a set of plugins listed in this README.
-
-
-
 ## Plugins
+
+This configuration use the set of plugins listed below:
 
 |  Name      |    description       |  docs  |
 | ------------- |-------------  | ------- |
 |    nvim-treesitter/nvim-treesitter    |     Tree-sitter is a parser generator tool and an incremental parsing library. It can build a concrete syntax tree for a source file and efficiently update the syntax tree as the source file is edited. | [github](https://github.com/nvim-treesitter/nvim-treesitter) |
-| tpope/vim-repeat | Repeat plugins commands using dot | [github]() |
-| tpope/vim-surround | Fast add, remove or change surronds | [github]() |
-| powerline/powerline-fonts | Package of powerline fonts for nvim | [github]() |
-| easymotion/vim-easymotion | Powerfull and precise navigation tool | [github]() |
-| tpope/vim-commentary | Comments made easy | [github]() |
-| p00f/nvim-ts-raindow  | Treesitter rainbow effect | [github]() |
-| kyazdani42/nvim-web-devicons | Web Devicons | [github]() |
-| moll/vim-bbye | Close buffers withouth accidently leaving vim | [github]() |
-| akinsho/bufferline |  Niceee tabs | [github]() |
-| vim-airline  | Beautiful and fully customizable status bar | [github]() |
-| vim-airline-themes | Awesome status bar themes | [github]() |
-| awesome-vim-colorscheme | Package of vim themes | [github]() |
-| artanikin/vim-synthwave84 | I love synthwave84 sometings I switcht to it! | [github]() |
-| vim-devicons | Devicons | [github]() |
-| Mofiqul/dracula | A simple and awesome Dracula theme, for who likes. | [github]() |
-| unblevable/quick-scope | Highlight jumps when using `F,f,t,T` | [github]() |
-| scrooloose/nerdtree | A File Explorer | [github]() |
-| tpope/vim-fugitive | All git commands available throught `:G` | [github]() |
-| junegunn/fzf | Awesome fuzzy finder plugin | [github]() |
-| nvim-telescope/telescope | Awesome fuzzy finder lists plugin | [github]() |
-| honza/vim-snippets | Powerfull package of snippets | [github]() |
-| neoclide/coc.vim | LSP Support, extensions, and more. | [github]() |
-| iamcco/markdown-preview.nvim | Edit markdowns with livereload with `<C-m><C-m>` | [github]() |
-| preservim/tagbar | A nice tagbar outline  | [github]() |
-| nvim-lua/plenary.nvim | A nice lua library of utils functions | [github]() |
-| vim-test/vim-test | Run tests in very different languages | [github]() |
-| nvim-neotest/neotest | A new plugin for tests written in lua | [github]() |
-| nvim-neotest/neotest-vim-test | An adapter to neotest use vim-test adapters | [github]() |
-| nvim-neotest/neotest-plenary | Functions dependencies of neotest | [github]() |
-| kana/vim-vspec | Testing framework for vim script | [github]() |
-| antoinemadec/FixCursorHold.nvim | Fix some cursor interactions | [github]() |
-| tpope/vim-projectionist | Alternate between to related files like code of implementation and tests | [github]() |
-| puremourning/vimspector | Debugger interface for many adapters | [github]() |
-| mfussenegger/nvim-dap | Debugger adapters for nvim | [github]() |
-| neovim/nvim-lspconfig | Utilitary for LSP Configurations | [github]() |
-| ThePrimeagen/harpoon | Nice marker file plugin, for fast navigation `ma`, `mm`| [github]() |
-| psliwka/vim-smoothie | Make `C-d`, `C-up` smoothie for human eyes | [github]() |
-| voldikss/vim-floaterm | Awesome floating terminals | [github]() |
-| Sirver/ultisnips | Awesome package of snippets | [github]() |
-| honza/vim-snippets | Another awesome package of snippets, but extensable. | [github]() |
-| airblade/vim-gitgutter | Git status in signcolumn, very useful| [github]() |
-|skywind3000/asyncrun.vim | Awesome interface to run background tasks | [github]() |
-| christoomey/vim-tmux-navigator | Navigate between tmux terminals and neovim with `<C-l,k,j,h>` | [github]() |
-| melkster/modicator | Highlight current number of the cursor line | [github]() |
-| toppair/peek.nvim | Another awesome Markdown Previewer | [github]() |
-| nat-418/boole.nvim | Rotate custom values like `false` <-> `true` using `<C-x,a>` | [github]() |
-| Sorry for the long plugin list! | Here is a potato:🥔 | [github]() |
+| tpope/vim-repeat | Repeat plugins commands using dot | [github](https://github.com/tpope/vim-repeat) |
+| tpope/vim-surround | Fast add, remove or change surrounds | [github](https://github.com/tpope/vim-surround) |
+| powerline/powerline-fonts | Package of powerline fonts for nvim | [github](https://github.com/powerline/powerline-fonts) |
+| easymotion/vim-easymotion | Powerfull and precise navigation tool | [github](https://github.com/easymotion/vim-easymotion) |
+| tpope/vim-commentary | Comments made easy | [github](https://github.com/tpope/vim-commentary) |
+| p00f/nvim-ts-raindow  | Treesitter rainbow effect | [github](https://github.com/p00f/nvim-ts-raindow) |
+| kyazdani42/nvim-web-devicons | Web Devicons | [github](https://github.com/kyazdani42/nvim-web-devicons) |
+| moll/vim-bbye | Close buffers without accidently leaving vim | [github](https://github.com/moll/vim-bbye) |
+| akinsho/bufferline |  Niceee tabs | [github](https://github.com/akinsho/bufferline) |
+| vim-airline  | Beautiful and fully customizable status bar | [github](https://github.com/vim-airline) |
+| vim-airline-themes | Awesome status bar themes | [github](https://github.com/vim-airline-themes) |
+| awesome-vim-colorscheme | Package of vim themes | [github](https://github.com/awesome-vim-colorscheme) |
+| artanikin/vim-synthwave84 | I love synthwave84 sometings I switcht to it! | [github](https://github.com/artanikin/vim-synthwave84) |
+| vim-devicons | Devicons | [github](https://github.com/vim-devicons) |
+| Mofiqul/dracula | A simple and awesome Dracula theme, for who likes. | [github](https://github.com/Mofiqul/dracula) |
+| unblevable/quick-scope | Highlight jumps when using `F,f,t,T` | [github](https://github.com/unblevable/quick-scope) |
+| scrooloose/nerdtree | A File Explorer | [github](https://github.com/scrooloose/nerdtree) |
+| tpope/vim-fugitive | All git commands available throught `:G` | [github](https://github.com/tpope/vim-fugitive) |
+| junegunn/fzf | Awesome fuzzy finder plugin | [github](https://github.com/junegunn/fzf) |
+| nvim-telescope/telescope | Awesome fuzzy finder lists plugin | [github](https://github.com/nvim-telescope/telescope) |
+| honza/vim-snippets | Powerfull package of snippets | [github](https://github.com/honza/vim-snippets) |
+| neoclide/coc.vim | LSP Support, extensions, and more. | [github](https://github.com/neoclide/coc.vim) |
+| iamcco/markdown-preview.nvim | Edit markdowns with livereload with `<C-m><C-m>` | [github](https://github.com/iamcco/markdown-preview.nvim) |
+| preservim/tagbar | A nice tagbar outline  | [github](https://github.com/preservim/tagbar) |
+| nvim-lua/plenary.nvim | A nice lua library of utils functions | [github](https://github.com/nvim-lua/plenary.nvim) |
+| vim-test/vim-test | Run tests in very different languages | [github](https://github.com/vim-test/vim-test) |
+| nvim-neotest/neotest | A new plugin for tests written in lua | [github](https://github.com/nvim-neotest/neotest) |
+| nvim-neotest/neotest-vim-test | An adapter to neotest use vim-test adapters | [github](https://github.com/nvim-neotest/neotest-vim-test) |
+| nvim-neotest/neotest-plenary | Functions dependencies of neotest | [github](https://github.com/nvim-neotest/neotest-plenary) |
+| kana/vim-vspec | Testing framework for vim script | [github](https://github.com/kana/vim-vspec) |
+| antoinemadec/FixCursorHold.nvim | Fix some cursor interactions | [github](https://github.com/antoinemadec/FixCursorHold.nvim) |
+| tpope/vim-projectionist | Alternate between to related files like code of implementation and tests | [github](https://github.com/tpope/vim-projectionist) |
+| puremourning/vimspector | Debugger interface for many adapters | [github](https://github.com/puremourning/vimspector) |
+| mfussenegger/nvim-dap | Debugger adapters for nvim | [github](https://github.com/mfussenegger/nvim-dap) |
+| neovim/nvim-lspconfig | Utilitary for LSP Configurations | [github](https://github.com/neovim/nvim-lspconfig) |
+| ThePrimeagen/harpoon | Nice marker file plugin, for fast navigation `ma`, `mm`| [github](https://github.com/ThePrimeagen/harpoon) |
+| psliwka/vim-smoothie | Make `C-d`, `C-up` smoothie for human eyes | [github](https://github.com/psliwka/vim-smoothie) |
+| voldikss/vim-floaterm | Awesome floating terminals | [github](https://github.com/voldikss/vim-floaterm) |
+| Sirver/ultisnips | Awesome package of snippets | [github](https://github.com/Sirver/ultisnips) |
+| honza/vim-snippets | Another awesome package of snippets, but extensable. | [github](https://github.com/honza/vim-snippets) |
+| airblade/vim-gitgutter | Git status in signcolumn, very useful| [github](https://github.com/airblade/vim-gitgutter) |
+|skywind3000/asyncrun.vim | Awesome interface to run background tasks | [github](https://github.com/skywind3000/asyncrun.vim) |
+| christoomey/vim-tmux-navigator | Navigate between tmux terminals and neovim with `<C-l,k,j,h>` | [github](https://github.com/christoomey/vim-tmux-navigator) |
+| melkster/modicator | Highlight current number of the cursor line | [github](https://github.com/melkster/modicator) |
+| toppair/peek.nvim | Another awesome Markdown Previewer | [github](https://github.com/toppair/peek.nvim) |
+| nat-418/boole.nvim | Rotate custom values like `false` <-> `true` using `<C-x,a>` | [github](https://github.com/nat-418/boole.nvim) |
+| Sorry for the long plugin list! | Here is a potato:🥔 | [github](https://github.com/GiuseppeMP) |
