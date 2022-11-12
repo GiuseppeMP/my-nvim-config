@@ -55,8 +55,6 @@ local plugins = {
     -- Plugins for VIM :colorscheme collections
     -- Plugins para temas :colorscheme
     { name='rafi/awesome-vim-colorschemes'},
-    { name='xolox/vim-misc'},
-    { name='xolox/vim-colorscheme-switcher'},
     { name='artanikin/vim-synthwave84'},
     { name='ryanoasis/vim-devicons'},
     { name='Mofiqul/dracula.nvim'},
