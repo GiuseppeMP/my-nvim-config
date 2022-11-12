@@ -30,23 +30,39 @@ ser acessível para pessoas que não tem familiaridade com Inglês. 🤝
 Obs: Recomendo fortemente utilizar tmux, algumas das minhas configurações
 foram feitas para serem integradas com tmux.
 
-### ASDF ( Optional )
+### ASDF ( Opcional )
 
-1. [Install asdf](https://asdf-vm.com/guide/getting-started.html)
-2. Install Plugins Dependencies:
+ASDF é uma ferramenta poderosa, que consegue gerenciar diferentes
+runtimes, ambientes e versões em uma única CLI.
+
+Eu uso asdf para instalar todas as sdks, servidores e linguagens que uso
+para trabalhar.
+
+1. [Instalar asdf](https://asdf-vm.com/guide/getting-started.html)
+2. Instalar algumas dependências dependendo do seu sistema operacional:
     - MacOS: `brew install gpg gawk`
     - Debian: `apt-get install dirmngr gpg curl gawk`
 
-3. Add java plugin:
+#### ASDF (Java) (Opcional)
+
+Para codar java com essa config é necessário instalar as jdks que estão sendo
+usadas pelo `coc-settings.json`, você pode fazer isso com asdf seguindo
+os passos abaixo:
+
+1.Adicione o plugin de java ao asdf.
 
     `asdf plugin-add java https://github.com/halcyon/asdf-java.git`
 
-4. Install Java Versions:
+2.Baixe todas as jdks necessárias:
 
 - `asdf java install corretto-11.0.16.9.1`
 - `asdf java install zulu-14.29.23`
 - `asdf java install corretto-17.0.4.9.1`
 - `asdf java install corretto-8.342.07.1`
+
+3.você pode utilizar qualquer uma delas como `java` global. (Opcional)
+
+- `asdf global java corretto-11.0.16.9.1`
 
 ## Dependencies
 

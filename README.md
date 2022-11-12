@@ -10,8 +10,6 @@ I use it to code in lua, java, j(t)avascript, python, golang, scala and so on ..
 
 If you want to use these configs and need help, let me known. 🤝
 
-I'm brazilian, so you can read this in my native language:
-
 ## Install / Updates
 
 1. Clone this repository in ~/.config/nvim.
@@ -28,21 +26,35 @@ Obs: You may use tmux to improve your workflow experience.
 
 ### ASDF ( Optional )
 
+ASDF is an awesome tool that manage multiple runtime versions
+with a single CLI tool.
+
+I use to install all my languages dependencies like sdks and etc.
+
 1. [Install asdf](https://asdf-vm.com/guide/getting-started.html)
 2. Install Plugins Dependencies:
     - MacOS: `brew install gpg gawk`
     - Debian: `apt-get install dirmngr gpg curl gawk`
 
-3. Add java plugin:
+#### ASDF (Java) (Optional)
+
+For Java, I'm using four JDK's in `coc-settings.json`, they can be installed by
+the follow steps:
+
+1. Add java plugin:
 
     `asdf plugin-add java https://github.com/halcyon/asdf-java.git`
 
-4. Install Java Versions:
+2. Install all Java Versions needed:
 
 - `asdf java install corretto-11.0.16.9.1`
 - `asdf java install zulu-14.29.23`
 - `asdf java install corretto-17.0.4.9.1`
 - `asdf java install corretto-8.342.07.1`
+
+3.You can set one of them as `java` global. (Optional)
+
+- `asdf global java corretto-11.0.16.9.1`
 
 ## Dependencies
 
