@@ -1,27 +1,32 @@
-# My nvim configs
+# Minhas Configurações de Neovim
 
-Hello, I'm Giuseppe Matheus (Beppe). 👋
+Olá, Eu sou Giuseppe Matheus, (Beppe). 👋
 
-This is all my neovim configurations that I use as daily driver.
-I use it to code in lua, java, j(t)avascript, python, golang, scala and so on ...
-😄
+Este repositório são todas as minhas configurações de neovim que 
+uso diariamente em praticamente tudo que faço.
 
-If you want to use these configs and need help, let me known. 🤝
+Atualmente eu utilizo nvim para codar lua, java, t(j)ascript, python, golang,
+scala e por aí vai. 😄
 
-I'm brazilian, so you can read this in my native language:
+Se você for utilizar essas configs e precisar de ajuda, por contar comigo!
+Terei prazer de compartilhar como funciona meu workflow.
+
+Eu sou brasileiro também e por isso estou escrevendo esse README.pt-br.md, para
+ser acessível para pessoas que não tem familiaridade com Inglês. 🤝
 
 *Read this in other languages: [English](README.md), [Portuguese](README.pt-br.md)*
 
-## Install / Updates
+## Instalação e Atualizações
 
-1. Clone this repository in ~/.config/nvim.
-2. [Install vim-plug](https://github.com/junegunn/vim-plug)
-3. In nvim execute :PlugInstall
-4. In nvim execute :TSUpdateSync to download treesitter adapters.
-5. In nvim execute :CocUpdateSync to install coc extensions.
-6. Enjoy! :)
+1. Clone esse repositório em in ~/.config/nvim.
+2. [Instale o vim-plug](https://github.com/junegunn/vim-plug)
+3. Dentro do nvim execute :PlugInstall
+4. Dentro do nvim execute :TSUpdateSync para baixar os adapters do treesitter.
+5. Dentro do nvim execute :CocUpdateSync para instalar as extensões do coc-vim.
+6. Sucesso! 🤞
 
-Obs: You may use tmux to improve your workflow experience.
+Obs: Recomendo fortemente utilizar tmux, algumas das minhas configurações
+foram feitas para serem integradas com tmux.
 
 ### ASDF ( Optional )
 
@@ -112,4 +117,4 @@ This configuration use the set of plugins listed below:
 | melkster/modicator | Highlight the number of the cursor line | [github](https://github.com/melkster/modicator) |
 | toppair/peek.nvim | Another awesome Markdown Previewer | [github](https://github.com/toppair/peek.nvim) |
 | nat-418/boole.nvim | Rotate custom values like `false` <-> `true` using `<C-x,a>` | [github](https://github.com/nat-418/boole.nvim) |
-| Sorry for the long plugin list! | Here is a potato:🥔 | [github](https://github.com/GiuseppeMP) |
+|
