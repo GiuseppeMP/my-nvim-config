@@ -47,7 +47,9 @@ para trabalhar.
     - MacOS: `brew install gpg gawk`
     - Debian: `apt-get install dirmngr gpg curl gawk`
 
-#### ASDF (Java) (Opcional)
+Todas as instações do asdf ficam na pasta `~/.asdf/installs/{plugin-name}`.
+
+#### Instalar java com asdf. (Opcional)
 
 Para codar java com essa config é necessário instalar as jdks que estão sendo
 usadas pelo `coc-settings.json`, você pode fazer isso com asdf seguindo
@@ -59,20 +61,47 @@ os passos abaixo:
 
 2.Baixe todas as jdks necessárias:
 
-- `asdf java install corretto-11.0.16.9.1`
-- `asdf java install zulu-14.29.23`
-- `asdf java install corretto-17.0.4.9.1`
-- `asdf java install corretto-8.342.07.1`
+- `asdf install java  corretto-11.0.16.9.1`
+- `asdf install java  zulu-14.29.23`
+- `asdf install java  corretto-17.0.4.9.1`
+- `asdf install java  corretto-8.342.07.1`
 
-3.você pode utilizar qualquer uma delas como `java` global. (Opcional)
+3.Você pode utilizar qualquer uma delas como `java` global. (Opcional)
 
 - `asdf global java corretto-11.0.16.9.1`
 
+#### Instalar nodejs com asdf. (Required)
+
+Alguns plugins dependem de um nodejs instalado, se você já possuí um nodejs
+você pode ignorar essa etapa.
+
+Você pode instalar o nodejs do jeito que você quiser, abaixo é como eu faço isso, 
+utilizando o asdf.
+
+1. Adicione o plugin de nodejs ao asdf.
+
+`asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git`
+
+2.Baixe todos as versões que você desejar, eu utilizo lts-gallium.
+
+`asdf install nodejs lts-gallium`
+
+3.É preciso ter um nodejs disponível, caso você não tenha, e está
+seguindo os passos desse README.md execute o comando abaixo:
+
+`asdf global nodejs lts-gallium`
+
+Os comandos `nodejs` e `npm` no terminal devem estar funcionando.
+
 ## Dependencies
+
+Alguns plugins possuem dependências de pacotes externos como rg.
+Abaixo a lista do que precisa ser instalado.
 
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
 - [asdf](https://asdf-vm.com/)
 - [nerdfonts](https://www.nerdfonts.com/) (For icons and ligatures.)
+- [node-js](https://nodejs.org/en/)
 
 ## Plugins Index and Modules
 
