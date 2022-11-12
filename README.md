@@ -1,5 +1,7 @@
 # My nvim configs
 
+*Read this in other languages: 🇺🇸[English](README.md), 🇧🇷[Portuguese](README.pt-br.md).*
+
 Hello, I'm Giuseppe Matheus (Beppe). 👋
 
 This is all my neovim configurations that I use as daily driver.
@@ -10,8 +12,6 @@ If you want to use these configs and need help, let me known. 🤝
 
 I'm brazilian, so you can read this in my native language:
 
-*Read this in other languages: [English](README.md), [Portuguese](README.pt-br.md)*
-
 ## Install / Updates
 
 1. Clone this repository in ~/.config/nvim.
@@ -20,6 +20,9 @@ I'm brazilian, so you can read this in my native language:
 4. In nvim execute :TSUpdateSync to download treesitter adapters.
 5. In nvim execute :CocUpdateSync to install coc extensions.
 6. Enjoy! :)
+
+**⚠ Warning: The coc extensions and treesitter adapters can't be updated by
+vim-plug, please use the commands listed before `:TSUpdateSync and :CocUpdateSync`**
 
 Obs: You may use tmux to improve your workflow experience.
 
