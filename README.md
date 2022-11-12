@@ -65,6 +65,10 @@ the follow steps:
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
 - [asdf](https://asdf-vm.com/)
 - [nerdfonts](https://www.nerdfonts.com/) (For icons and ligatures.)
+- [node-js](https://nodejs.org/en/)
+- [java](https://openjdk.org/)
+- [python](https://www.python.org/)
+- [ruby](https://www.ruby-lang.org/)
 
 ## Plugins Index and Modules
 
