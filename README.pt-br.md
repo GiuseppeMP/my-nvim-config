@@ -93,7 +93,7 @@ seguindo os passos desse README.md execute o comando abaixo:
 
 Os comandos `nodejs` e `npm` no terminal devem estar funcionando.
 
-## Dependencies
+## Dependências
 
 Alguns plugins possuem dependências de pacotes externos como rg.
 Abaixo a lista do que precisa ser instalado.
@@ -106,7 +106,7 @@ Abaixo a lista do que precisa ser instalado.
 - [python](https://www.python.org/)
 - [ruby](https://www.ruby-lang.org/)
 
-## Plugins Index and Modules
+## Plugins Lista e Módulos
 
 All plugins are listed in a table in the `lua/user/plugins/install/_list.lua`
 module, this table is iterated by `lua/user/plugins/install/with-vimplug.lua`
