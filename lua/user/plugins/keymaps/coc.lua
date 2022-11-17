@@ -1,6 +1,5 @@
 -- coc-extensions keymaps
 require "user.plugins.keymaps.coc-explorer"
-require "user.plugins.keymaps.coc-go"
 
 -- Utils for keymaps
 local kutils = require "user.keymaps._utils"
@@ -88,7 +87,6 @@ n( "<leader>a", "<Plug>(coc-codeaction-selected)")
 -- Remap keys for applying codeAction to the current buffer.
 -- Executa code actions para o buffer atual
 n( "<leader>ac", "<Plug>(coc-codeaction)")
-
 
 -- Apply AutoFix to problem on the current line.
 -- Executa comando de quick fix para linha atual
