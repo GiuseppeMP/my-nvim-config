@@ -1,3 +1,7 @@
+-- coc-extensions keymaps
+require "user.plugins.keymaps.coc-explorer"
+require "user.plugins.keymaps.coc-go"
+
 -- Utils for keymaps
 local kutils = require "user.keymaps._utils"
 local i_expr_nrk = kutils.i_expr_nrk
@@ -134,9 +138,6 @@ x("<C-s>", "<Plug>(coc-range-select)")
 -- Mostra todos os problemas diagnistics
 n( "<space>a", ":<C-u>CocList diagnostics<cr>")
 
--- Show file explorer
--- Abre painel de arquivos coc-explorer
-n( "<space>e", ":CocCommand explorer<CR>")
 
 -- Show commands.
 -- Mostra todos os comandos possíveis para o buffer

@@ -16,7 +16,8 @@ g.coc_global_extensions = {
     'coc-snippets',
     'coc-explorer',
     'coc-lua',
-    'coc-fzf-preview'
+    'coc-fzf-preview',
+    'coc-go'
     -- 'coc-pairs'
 }
 
