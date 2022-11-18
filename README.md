@@ -40,6 +40,8 @@ I use to install all my languages dependencies like sdks and etc.
     - MacOS: `brew install gpg gawk`
     - Debian: `apt-get install dirmngr gpg curl gawk`
 
+All the binaries are stored in `~/.asdf/installs/{plugin-name}`.
+
 #### ASDF (Java) (Optional)
 
 For Java, I'm using four JDK's in `coc-settings.json`, they can be installed by
@@ -59,6 +61,25 @@ the follow steps:
 3.You can set one of them as `java` global. (Optional)
 
 - `asdf global java corretto-11.0.16.9.1`
+
+### Install nodejs (Required)
+
+Some of plugins dependens of a nodejs runtime, if you already have installed
+you may ignore this step, otherwise, you can install with the following steps:
+
+1.Add the nodejs asdf plugin.
+
+`asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git`
+
+2.Install all the versions that you want.
+
+`asdf install nodejs lts-gallium`
+
+3.Set some nodejs version as global.
+
+`asdf global nodejs lts-gallium`
+
+The commands `nodejs` and `npm` should work.
 
 ## Dependencies
 
