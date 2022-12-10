@@ -20,6 +20,8 @@ ser acessível para pessoas que não tem familiaridade com Inglês. 🤝
 
 ![neovim-image](docs/neovim-beppe.png)
 
+---
+
 ## Instalação e Atualizações
 
 1. Clone esse repositório em in ~/.config/nvim.
@@ -29,7 +31,8 @@ ser acessível para pessoas que não tem familiaridade com Inglês. 🤝
 5. Dentro do nvim execute :CocUpdateSync para instalar as extensões do coc-vim.
 6. Sucesso! 🤞
 
-**⚠ Importante: As atualizações do coc-vim e treesitter precisam ser feitas com os comandos acima, elas não são atualizadas pelo vim-plug.**
+**⚠ Importante: As atualizações do coc-vim e treesitter precisam ser feitas com
+os comandos acima, elas não são atualizadas pelo vim-plug.**
 
 Obs: Recomendo fortemente utilizar tmux, algumas das minhas configurações
 foram feitas para serem integradas com tmux.
@@ -75,7 +78,7 @@ os passos abaixo:
 Alguns plugins dependem de um nodejs instalado, se você já possuí um nodejs
 você pode ignorar essa etapa.
 
-Você pode instalar o nodejs do jeito que você quiser, abaixo é como eu faço isso, 
+Você pode instalar o nodejs do jeito que você quiser, abaixo é como eu faço isso,
 utilizando o asdf.
 
 1. Adicione o plugin de nodejs ao asdf.
@@ -93,10 +96,10 @@ seguindo os passos desse README.md execute o comando abaixo:
 
 Os comandos `nodejs` e `npm` no terminal devem estar funcionando.
 
-## Dependências
+## Dependencies
 
-Alguns plugins possuem dependências de pacotes externos como rg.
-Abaixo a lista do que precisa ser instalado.
+Some plugin needs external packages like rg.
+The follow list you need to install separately
 
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
 - [asdf](https://asdf-vm.com/)
