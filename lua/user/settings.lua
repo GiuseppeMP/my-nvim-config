@@ -52,6 +52,7 @@ if not vim.g.vscode then
     o.ch = 0 -- hide command line
     o.spelllang = 'en_us'
     o.spell = false
+    o.cursorline = true
     o.guifont='CaskaydiaCove Nerd Font SemiLight:h12'
 
 end
