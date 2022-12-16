@@ -161,8 +161,10 @@ local plugins = {
     { name = 'toppair/peek.nvim'},
 
     -- toggle custom values
-    { name = 'nat-418/boole.nvim'}
+    { name = 'nat-418/boole.nvim'},
 
+    -- display images in buffer
+    { name = 'edluffy/hologram.nvim'}
 }
 
 return plugins
