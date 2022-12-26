@@ -178,7 +178,7 @@ This configuration use the set of plugins listed below:
 
 ## Roadmap
 
-Sgue a lista de alterações que serão feitas futuramente, caso queira adicionar algum, por favor suba um pull request ou um issue!
+Segue a lista de alterações que serão feitas futuramente, caso queira adicionar algum, por favor suba um pull request ou um issue!
 
 - Adoção do [mason](https://github.com/williamboman/mason-lspconfig.nvim) para utilizar LSP e Debug Servers
 - Remover coc.java
