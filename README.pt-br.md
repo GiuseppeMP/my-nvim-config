@@ -175,3 +175,11 @@ This configuration use the set of plugins listed below:
 | toppair/peek.nvim | Another awesome Markdown Previewer | [github](https://github.com/toppair/peek.nvim) |
 | nat-418/boole.nvim | Rotate custom values like `false` <-> `true` using `<C-x,a>` | [github](https://github.com/nat-418/boole.nvim) |
 | Desculpe pela longa lista de plugins! | Pega ae uma batata de recompensa: 🥔 | [github](https://www.memeland.com/potatoz) |
+
+## Roadmap
+
+Sgue a lista de alterações que serão feitas futuramente, caso queira adicionar algum, por favor suba um pull request ou um issue!
+
+- Adoção do [mason](https://github.com/williamboman/mason-lspconfig.nvim) para utilizar LSP e Debug Servers
+- Remover coc.java
+- Adicionar [dap-buddy](https://github.com/Pocco81/dap-buddy.nvim) e remover vimspector.
