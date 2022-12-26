@@ -4,7 +4,6 @@ local o = vim.o -- For the globals options
 -- local w = vim.wo -- For the window local options
 -- local b = vim.bo -- For the buffer local options
 
-
 o.clipboard = 'unnamedplus'
 o.list = false
 o.autoindent = true

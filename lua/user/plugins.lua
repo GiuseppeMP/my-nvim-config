@@ -13,6 +13,7 @@ require "user.plugins.configs.fzf"
 require "user.plugins.configs.gitgutter"
 require "user.plugins.configs.harpoon"
 require "user.plugins.configs.hologram"
+require "user.plugins.configs.mason"
 require "user.plugins.configs.modicator"
 require "user.plugins.configs.neotest"
 require "user.plugins.configs.nerdtree"
@@ -32,3 +33,7 @@ require "user.plugins.keymaps.markdown-preview"
 require "user.plugins.keymaps.nvimdap"
 require "user.plugins.keymaps.telescope"
 require "user.plugins.keymaps.vimspector"
+
+-- lsp configs, mason ext
+require "user.plugins.lsp.jdtls"
+

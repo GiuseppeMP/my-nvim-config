@@ -47,7 +47,7 @@ n( "[g", "<Plug>(coc-diagnostic-prev)")
 n( "]g", "<Plug>(coc-diagnostic-next)")
 
 -- GoTo code navigation.
-n( "gd", "<Plug>(coc-definition)")
+-- n( "gd", "<Plug>(coc-definition)")
 n( "gy", "<Plug>(coc-type-definition)")
 n( "gi", "<Plug>(coc-implementation)")
 n( "gr", "<Plug>(coc-references)")

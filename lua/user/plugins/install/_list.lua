@@ -112,10 +112,7 @@ local plugins = {
     { name='tpope/vim-projectionist'},
     -- debug
     { name='puremourning/vimspector'},
-    { name='mfussenegger/nvim-dap'},
 
-    -- Language server utils
-    { name='neovim/nvim-lspconfig'},
 
     --Plug for mark files and terminals on the fly, to avoid repeat commands like
     --bnext, bprev, or fzf
@@ -164,7 +161,17 @@ local plugins = {
     { name = 'nat-418/boole.nvim'},
 
     -- display images in buffer
-    { name = 'edluffy/hologram.nvim'}
+    { name = 'edluffy/hologram.nvim'},
+
+    -- lsp tools
+    -- Language server utils
+    -- Debug servers 
+    { name = 'williamboman/mason.nvim' },
+    { name = 'williamboman/mason-lspconfig.nvim'},
+    { name = 'neovim/nvim-lspconfig'},
+    { name = 'mfussenegger/nvim-dap'},
+    { name = 'jose-elias-alvarez/null-ls.nvim'},
+
 }
 
 return plugins
