@@ -2,12 +2,12 @@
 require "user.plugins.keymaps.coc-explorer"
 
 -- Utils for keymaps
--- local kutils = require "user.keymaps._utils"
--- local i_expr_nrk = kutils.i_expr_nrk
--- local i_expr = kutils.i_expr
+local kutils = require "user.keymaps._utils"
+local i_expr_nrk = kutils.i_expr_nrk
+local i_expr = kutils.i_expr
 -- local n_expr = kutils.n_expr
 -- local v_expr = kutils.v_expr
--- local i = kutils.i
+local i = kutils.i
 -- local n = kutils.n
 -- local x = kutils.x
 -- local o = kutils.o
@@ -30,15 +30,15 @@ require "user.plugins.keymaps.coc-explorer"
 -- Make <CR> to accept selected completion item or notify coc.nvim to format
 -- <C-g>u breaks current undo, please make your own choice.
 -- Faz com que o Enter seleciona o item sugerido pelo complete.
--- i_expr_nrk("<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]])
+i_expr_nrk("<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]])
 
 -- Use <c-j> to trigger snippets
 -- Usando <c-j> para mostrar somente snippets nas sugestoes de autocomplete
--- i("<c-j>", "<Plug>(coc-snippets-expand-jump)")
+i("<c-j>", "<Plug>(coc-snippets-expand-jump)")
 
 -- Use <c-space> to trigger completion.
 -- Usando <c-space> para triggar auto complete
--- i_expr("<c-space>", "coc#refresh()")
+i_expr("<c-space>", "coc#refresh()")
 
 -- Use `[g` and `]g` to navigate diagnostics
 -- Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
