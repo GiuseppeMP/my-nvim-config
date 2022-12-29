@@ -22,7 +22,7 @@ end
 
 
 require('lspconfig')['jdtls'].setup{
-    on_atach = on_attach,
+    on_attach = on_attach,
     cmd = get_jdtls_cmd(),
     settings = {
         java = {

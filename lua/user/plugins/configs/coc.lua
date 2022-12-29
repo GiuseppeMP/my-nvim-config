@@ -4,20 +4,20 @@ local opt = vim.opt
 
 g.coc_global_extensions = {
     'coc-emoji',
-    'coc-vimlsp',
-    'coc-java-vimspector',
+    -- 'coc-vimlsp',
+    -- 'coc-java-vimspector',
     'coc-json',
     'coc-git',
-    'coc-java-debug',
-    'coc-java',
+    -- 'coc-java-debug',
+    -- 'coc-java',
     'coc-markdownlint',
-    'coc-tsserver',
+    -- 'coc-tsserver',
     'coc-marketplace',
     'coc-snippets',
     'coc-explorer',
-    'coc-lua',
+    -- 'coc-lua',
     'coc-fzf-preview',
-    'coc-go'
+    -- 'coc-go'
     -- 'coc-pairs'
 }
 

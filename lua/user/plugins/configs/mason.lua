@@ -13,7 +13,7 @@ require("mason-lspconfig").setup({
     ensure_installed = { "pyright", "jdtls", "sumneko_lua" }
 })
 
-
+-- if these configs over extends, move to lsp/ folder.
 require('lspconfig').pyright.setup{
     on_attach = on_attach
 }
