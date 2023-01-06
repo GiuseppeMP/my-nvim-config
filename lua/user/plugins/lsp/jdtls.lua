@@ -26,6 +26,13 @@ require('lspconfig')['jdtls'].setup{
     cmd = get_jdtls_cmd(),
     settings = {
         java = {
+            format = {
+                onType = true,
+                settings = {
+                    profile = "GoogleStyle",
+                    url = "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml"
+                }
+            },
             configuration = {
                 runtimes =  {
                     {
