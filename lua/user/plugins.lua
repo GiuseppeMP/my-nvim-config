@@ -8,6 +8,7 @@ require "user.plugins.configs.airline"
 require "user.plugins.configs.boole"
 require "user.plugins.configs.bufferline"
 require "user.plugins.configs.coc"
+require "user.plugins.configs.dap"
 require "user.plugins.configs.dracula"
 require "user.plugins.configs.fzf"
 require "user.plugins.configs.gitgutter"
@@ -34,5 +35,6 @@ require "user.plugins.keymaps.nvimdap"
 require "user.plugins.keymaps.telescope"
 require "user.plugins.keymaps.vimspector"
 
--- lsp configs, mason ext
-require "user.plugins.lsp.jdtls"
+-- LSPs, DAPs configs
+require "user.plugins.configs.lsp.lsp-configs"
+require('user.plugins.configs.dap.dap-languages-setup')
