@@ -36,4 +36,3 @@ require "user.plugins.keymaps.vimspector"
 
 -- lsp configs, mason ext
 require "user.plugins.lsp.jdtls"
-

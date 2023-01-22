@@ -11,10 +11,9 @@ end
 
 
 -- default testing keymaps
-n('<Leader>tt', ':TestFile<CR>')
+n('<Leader>td', ":lua require'neotest'.run.run({ strategy = 'dap' })<CR>")
 n('<Leader>t' , ":lua require'neotest'.run.run()<CR>")
 n('<Leader>tf' , ":lua require'neotest'.run.run(vim.fn.expand('%'))<CR>")
--- n('<Leader>tf', function() write_buffer() neotest(vim.fn.expand("%")) end)
 n('<Leader>td', function() write_buffer() neotest({strategy = "dap"}) end)
 
 -- alternates between test and code

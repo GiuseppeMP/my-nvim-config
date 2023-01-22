@@ -163,12 +163,17 @@ local plugins = {
 
     -- lsp tools
     -- Language server utils
-    -- Debug servers 
+    -- Debug servers
     { name = 'williamboman/mason.nvim' },
     { name = 'williamboman/mason-lspconfig.nvim'},
     { name = 'neovim/nvim-lspconfig'},
+
+    { name = 'mfussenegger/nvim-jdtls'},
     { name = 'mfussenegger/nvim-dap'},
+    { name = 'jayp0521/mason-nvim-dap.nvim'},
     { name = 'jose-elias-alvarez/null-ls.nvim'},
+    { name = 'rcarriga/nvim-dap-ui'},
+    { name = 'WhoIsSethDaniel/mason-tool-installer.nvim'},
 
 }
 

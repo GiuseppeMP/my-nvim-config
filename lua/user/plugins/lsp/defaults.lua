@@ -7,7 +7,7 @@ local on_attach = function(_client, bufnr)
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  local bufopts = { noremap=true, silent=false, buffer=bufnr }
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
@@ -23,6 +23,15 @@ local on_attach = function(_client, bufnr)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
   vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+
+
+  vim.keymap.set('n', 'gt', ":lua require('jdtls').test_class()<CR>", bufopts)
+
+  vim.keymap.set('n', 'gw', ":lua =vim.lsp.buf_get_clients()<CR>", bufopts)
+
+  require('jdtls').setup_dap({ hotcodereplace = false })
+
 end
+
 
 return { on_attach = on_attach }

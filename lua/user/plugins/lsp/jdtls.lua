@@ -1,7 +1,17 @@
 local on_attach = require("user.plugins.lsp.defaults").on_attach
 
+local HOME = os.getenv "HOME"
+
+-- Debugger installation location
+local get_package_path = function(package_name)
+    return require("mason-registry").get_package(package_name):get_install_path()
+end
+
+local JAVA_DEBUG_ADAPTER_LOC = get_package_path('java-debug-adapter').."/extension/server"
+local VSCODE_JAVA_TEST_LOC = get_package_path('java-test').."/extension/server"
+
 local get_lombok_javaagent = function()
-    local lombok_jar = os.getenv('HOME')..'/.config/nvim/coc-files/lombok-1.18.24.jar'
+    local lombok_jar = HOME..'/.config/nvim/coc-files/lombok-1.18.24.jar'
     return string.format('--jvm-arg=-javaagent:%s', lombok_jar)
 end
 
@@ -21,9 +31,30 @@ local get_jdtls_cmd = function()
 end
 
 
+local get_bundles = function()
+
+-- Debugging
+    local bundles = { }
+        -- vim.fn.glob(
+        --     DEBUGGER_LOCATION .. "/com.microsoft.java.debug.plugin-*.jar"
+        -- ),
+    -- }
+    -- java-debug-adapter
+    vim.list_extend(bundles, vim.split(vim.fn.glob(JAVA_DEBUG_ADAPTER_LOC .. "/*.jar"), "\n"))
+    -- java-test
+    vim.list_extend(bundles, vim.split(vim.fn.glob(VSCODE_JAVA_TEST_LOC .. "/*.jar"), "\n"))
+
+    return bundles
+
+end
+
+
 require('lspconfig')['jdtls'].setup{
     on_attach = on_attach,
     cmd = get_jdtls_cmd(),
+    init_options = {
+        bundles = get_bundles()
+    },
     settings = {
         java = {
             format = {
@@ -56,4 +87,16 @@ require('lspconfig')['jdtls'].setup{
             }
         }
     }
+
+}
+
+local dap = require('dap')
+dap.configurations.java = {
+  {
+    type = 'java';
+    request = 'attach';
+    name = "Debug (Attach) - Remote";
+    hostName = "127.0.0.1";
+    port = 5005;
+  },
 }
