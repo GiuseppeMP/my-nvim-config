@@ -8,7 +8,6 @@ local on_attach_jdtls = function(_client, bufnr)
     on_attach(_client, bufnr)
     vim.keymap.set('n', 'df', ":lua require('jdtls').test_class()<CR>", bufopts)
     vim.keymap.set('n', 'dn', ":lua require('jdtls').test_nearest_method()<CR>", bufopts)
-    print("jdtls-attach")
 end
 
 -- Debugger installation location

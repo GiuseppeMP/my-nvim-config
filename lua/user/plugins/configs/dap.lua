@@ -7,7 +7,8 @@ vim.api.nvim_set_hl(0, "green",  { fg = "#9ece6a" })
 vim.api.nvim_set_hl(0, "yellow", { fg = "#FFFF00" })
 vim.api.nvim_set_hl(0, "orange", { fg = "#f09000" })
 vim.api.nvim_set_hl(0, "red", { fg = "#BD2031" })
---  
+
+-- Dap Icons.
 vim.fn.sign_define('DapBreakpoint',          { text='󰪥', texthl='red',   linehl='DapBreakpoint', numhl='DapBreakpoint' })
 vim.fn.sign_define('DapBreakpointCondition', { text='', texthl='blue',   linehl='DapBreakpoint', numhl='DapBreakpoint' })
 vim.fn.sign_define('DapBreakpointRejected',  { text='', texthl='orange', linehl='DapBreakpoint', numhl='DapBreakpoint' })
@@ -19,9 +20,11 @@ vim.cmd[[vnoremap <leader>de <Cmd>lua require("dapui").eval()<CR>]]
 dap.listeners.after.event_initialized["dapui_config"] = function()
   dapui.open()
 end
+
 dap.listeners.before.event_terminated["dapui_config"] = function()
   dapui.close()
 end
+
 dap.listeners.before.event_exited["dapui_config"] = function()
   dapui.close()
 end

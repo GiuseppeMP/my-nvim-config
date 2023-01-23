@@ -1,6 +1,3 @@
--- coc-extensions keymaps
-require "user.plugins.keymaps.coc-explorer"
-
 -- Utils for keymaps
 local kutils = require "user.keymaps._utils"
 local i_expr_nrk = kutils.i_expr_nrk
