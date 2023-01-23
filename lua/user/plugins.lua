@@ -23,7 +23,7 @@ require "user.plugins.configs.short_configs"
 require "user.plugins.configs.telescope"
 require "user.plugins.configs.treesitter"
 require "user.plugins.configs.vim-tmux-navigator"
-require "user.plugins.configs.vimspector"
+-- require "user.plugins.configs.vimspector"
 
 -- plugins keymaps modules
 require "user.plugins.keymaps.coc"
@@ -33,7 +33,7 @@ require "user.plugins.keymaps.harpoon"
 require "user.plugins.keymaps.markdown-preview"
 require "user.plugins.keymaps.nvimdap"
 require "user.plugins.keymaps.telescope"
-require "user.plugins.keymaps.vimspector"
+-- require "user.plugins.keymaps.vimspector"
 
 -- LSPs, DAPs configs
 require "user.plugins.configs.lsp.lsp-configs"
