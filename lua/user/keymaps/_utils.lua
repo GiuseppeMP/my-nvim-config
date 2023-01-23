@@ -43,7 +43,7 @@ end
 
 ---normal mode, noremap, silent
 ---@param key string
----@param map string
+---@param map string|function
 local function n(key, map)
     _k("n", key, map)
 end

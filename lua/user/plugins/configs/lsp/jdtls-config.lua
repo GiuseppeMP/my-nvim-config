@@ -1,6 +1,6 @@
 local HOME = os.getenv "HOME"
 local jdtls = require('jdtls')
-local on_attach = require("user.plugins.lsp.defaults_on_attach").on_attach
+local on_attach = require("user.plugins.configs.lsp.defaults_on_attach").on_attach
 
 -- custom attach with jdtls extensions
 local on_attach_jdtls = function(_client, bufnr)

@@ -2,6 +2,17 @@
 -- configurations
 local dap, dapui = require("dap"), require("dapui")
 
+vim.api.nvim_set_hl(0, "blue",   { fg = "#3d59a1" })
+vim.api.nvim_set_hl(0, "green",  { fg = "#9ece6a" })
+vim.api.nvim_set_hl(0, "yellow", { fg = "#FFFF00" })
+vim.api.nvim_set_hl(0, "orange", { fg = "#f09000" })
+vim.api.nvim_set_hl(0, "red", { fg = "#BD2031" })
+
+vim.fn.sign_define('DapBreakpoint',          { text='ﴫ', texthl='red',   linehl='DapBreakpoint', numhl='DapBreakpoint' })
+vim.fn.sign_define('DapBreakpointCondition', { text='ﴫ•', texthl='blue',   linehl='DapBreakpoint', numhl='DapBreakpoint' })
+vim.fn.sign_define('DapBreakpointRejected',  { text='ﴫ•', texthl='orange', linehl='DapBreakpoint', numhl='DapBreakpoint' })
+vim.fn.sign_define('DapStopped',             { text='ﴫ•', texthl='green',  linehl='DapBreakpoint', numhl='DapBreakpoint' })
+vim.fn.sign_define('DapLogPoint',            { text='ﴫ•', texthl='yellow', linehl='DapBreakpoint', numhl='DapBreakpoint' })
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
   dapui.open()

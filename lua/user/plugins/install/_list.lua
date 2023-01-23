@@ -175,7 +175,10 @@ local plugins = {
     { name = 'rcarriga/nvim-dap-ui'},
 
     { name = 'jose-elias-alvarez/null-ls.nvim'},
+    { name = 'mfussenegger/nvim-dap-python' },
 
+    -- Debug tests python
+    { name = 'nvim-neotest/neotest-python' }
 }
 
 return plugins
