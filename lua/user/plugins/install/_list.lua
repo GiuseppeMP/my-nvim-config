@@ -181,7 +181,9 @@ local plugins = {
     { name = 'nvim-neotest/neotest-python' },
 
     -- Debug tests python
-    { name = 'nvim-tree/nvim-tree.lua' }
+    { name = 'nvim-tree/nvim-tree.lua' },
+
+    { name = 'startup-nvim/startup.nvim' },
 }
 
 return plugins
