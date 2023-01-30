@@ -6,17 +6,29 @@ g.loaded_netrwPlugin = 1
 
 local keys_list = {
     { key = { "l", "<2-LeftMouse>" }, action = "edit"},
+    { key = { "h" }, action = "dir_up"},
     { key = "<C-v>", action = "vsplit" },
     { key = "<C-x>", action = "split" },
     { key = "<C-t>", action = "tabnew" },
 }
 
 require'nvim-tree'.setup {
+    sort_by = "case_sensitive",
     view = {
+        float = {
+            enable = false
+        },
+        width = {},
         mappings = {
             list = keys_list
         }
-    }
+    },
+    renderer = {
+        group_empty = true,
+    },
+    filters = {
+        dotfiles = false,
+    },
 }
 -- BEGIN_DEFAULT_MAPPINGS for easy access/reminder
     -- { key = { "<CR>", "o", "<2-LeftMouse>" }, action = "edit" },
