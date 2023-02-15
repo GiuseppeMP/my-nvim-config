@@ -21,7 +21,9 @@ require('mason-tool-installer').setup {
         { 'jdtls', auto_update = true },
         { 'pyright', auto_update = true },
         { 'lua-language-server', auto_update = true },
-        { 'stylua', auto_update = true}
+        { 'stylua', auto_update = true },
+        { 'html-lsp' , auto_update = true },
+        { 'lemminx', auto_update = true },
     },
     auto_update = false,
     run_on_start = true,

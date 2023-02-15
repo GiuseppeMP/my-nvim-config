@@ -2,9 +2,6 @@
 -- Modulo que retorna a lista de vim plugins que precisam ser instalados.
 -- You can manage your plugins here, separated from plugin manager.
 local plugins = {
-    -- Language server plugin but with better syntax highlight than coc
-    -- Language server assim como coc mas com features melhores como syntaxh
-    { name='nvim-treesitter/nvim-treesitter', cfg={ ['do'] =':TSUpdateSync'} },
 
     -- Repeat plugins cmds using dot command
     -- Repetir os cmds dos plugins usando ponto
@@ -26,6 +23,24 @@ local plugins = {
     -- Comentarios rapidos atraves de gcc ou v(selecao)gcc
     { name="tpope/vim-commentary"},
 
+    -- Language server plugin but with better syntax highlight than coc
+    -- Language server assim como coc mas com features melhores como syntaxh
+    { name='nvim-treesitter/nvim-treesitter', cfg={ ['do'] =':TSUpdateSync'} },
+
+    -- text objects treesitter
+    { name='nvim-treesitter/nvim-treesitter-textobjects' },
+
+    -- refactor module for tresitter
+    { name='nvim-treesitter/nvim-treesitter-refactor' },
+
+    -- comment string for multiple languages in the same buffer
+    { name='JoosepAlviste/nvim-ts-context-commentstring' },
+
+    -- better context, for long functions
+    { name='romgrk/nvim-treesitter-context' },
+
+    -- auto close and auto rename xml, htmls tags
+    { name='windwp/nvim-ts-autotag' },
 
 
     -- Rainbow in Treesitter
