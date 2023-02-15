@@ -25,16 +25,6 @@ require "user.plugins.configs.telescope"
 require "user.plugins.configs.treesitter"
 require "user.plugins.configs.vim-tmux-navigator"
 
--- plugins keymaps modules
--- require "user.plugins.keymaps.coc"
-require "user.plugins.keymaps.floaterm"
-require "user.plugins.keymaps.fzf"
-require "user.plugins.keymaps.harpoon"
-require "user.plugins.keymaps.markdown-preview"
-require "user.plugins.keymaps.nvimdap"
-require "user.plugins.keymaps.nvimtree"
-require "user.plugins.keymaps.telescope"
-
 -- LSPs, DAPs configs
 require "user.plugins.configs.lsp.lsp-configs"
 require('user.plugins.configs.dap.dap-languages-setup')
