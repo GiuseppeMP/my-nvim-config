@@ -11,7 +11,7 @@ local Plug = vim.fn['plug#']
 
 vim.call('plug#begin', '$HOME/.config/nvim/plugged')
 
-for i =1, #plugins do 
+for i =1, #plugins do
     local p = plugins[i]
     if not isempty(p.name) then
         if (isempty(p.cfg)) then

@@ -25,7 +25,7 @@ local plugins = {
 
     -- Language server plugin but with better syntax highlight than coc
     -- Language server assim como coc mas com features melhores como syntaxh
-    { name='nvim-treesitter/nvim-treesitter', cfg={ ['do'] =':TSUpdateSync'} },
+    { name='nvim-treesitter/nvim-treesitter', cfg={ ['do'] = vim.fn[':TSUpdate'] } },
 
     -- text objects treesitter
     { name='nvim-treesitter/nvim-treesitter-textobjects' },
@@ -87,14 +87,14 @@ local plugins = {
 
     -- Fuzzy finder in VIM
     -- Usando Fuzzy Finder no VIM
-    { name='junegunn/fzf', cfg={ ['do'] = 'fzf#install()'}},
+    { name='junegunn/fzf', cfg={ ['do'] = ':call fzf#install()'}},
 
     -- Fuzzy finder written in lua
     { name = 'nvim-telescope/telescope.nvim', cfg ={ tag = '0.1.0' }},
 
     -- COC - conquer of completion is a plugin like intelisense of vscode
     -- Language server plugin para auto completar sintax/validacoes/imports
-    { name='neoclide/coc.nvim', cfg={ branch = 'release'}},
+    -- { name='neoclide/coc.nvim', cfg={ branch = 'release'}},
 
     -- Markdown Preview
     { name='iamcco/markdown-preview.nvim', cfg={ ['do']= 'cd app && yarn install' }},
