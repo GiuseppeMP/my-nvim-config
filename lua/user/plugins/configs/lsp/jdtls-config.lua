@@ -64,6 +64,16 @@ require('lspconfig')['jdtls'].setup{
     init_options = {
         bundles = get_bundles()
     },
+    use_lombok_agent = true,
+    vmargs = {
+        "-XX:+UseParallelGC",
+        "-XX:GCTimeRatio=4",
+        "-XX:AdaptiveSizePolicyWeight=90",
+        "-Dsun.zip.disableMemoryMapping=true",
+        "-Djava.import.generatesMetadataFilesAtProjectRoot=false",
+        "-Xmx1G",
+        "-Xms256m",
+    },
     settings = {
         java = {
             format = {

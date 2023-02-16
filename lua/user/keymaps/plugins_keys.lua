@@ -56,7 +56,7 @@ n( '<leader>so', ":lua require('dap').step_out()<CR>")
 
 n( '<leader>tb', ":lua require('dap').toggle_breakpoint()<CR>") -- toggle breakpoint
 n( '<leader>td', ":lua require'neotest'.run.run({ strategy = 'dap' })<CR>") -- debug nearest
-n( '<leader>t' , ":lua require'neotest'.run.run()<CR>") -- test nearest
+n( '<leader>t' , function() k.write_buffer() vim.cmd(":lua require'neotest'.run.run()") end) -- test nearest
 n( '<leader>tf', ":lua require'neotest'.run.run(vim.fn.expand('%'))<CR>") -- test file
 
 i("c-j>", "<Plug>(coc-snippets-expand-jump)")
