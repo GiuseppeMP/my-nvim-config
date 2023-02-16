@@ -18,7 +18,10 @@ require'nvim-tree'.setup {
         float = {
             enable = false
         },
-        width = {},
+        width = {
+            max = 50,
+            min = 30
+        },
         mappings = {
             list = keys_list
         }

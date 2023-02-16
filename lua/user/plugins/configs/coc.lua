@@ -6,15 +6,15 @@ g.coc_global_extensions = {
     'coc-emoji',
     -- 'coc-vimlsp',
     -- 'coc-java-vimspector',
-    'coc-json',
-    'coc-git',
+    -- 'coc-json',
+    -- 'coc-git',
     -- 'coc-java-debug',
     -- 'coc-java',
-    'coc-markdownlint',
+    -- 'coc-markdownlint',
     -- 'coc-tsserver',
-    'coc-marketplace',
+    -- 'coc-marketplace',
     'coc-snippets',
-    'coc-explorer',
+    -- 'coc-explorer',
     -- 'coc-lua',
     'coc-fzf-preview',
     -- 'coc-go'
@@ -50,13 +50,13 @@ api.nvim_create_autocmd("User", {
 
 
 -- Add `:Format` command to format current buffer.
-api.nvim_create_user_command("Format", "call CocAction('format')", {})
+-- api.nvim_create_user_command("Format", "call CocAction('format')", {})
 
 -- " Add `:Fold` command to fold current buffer.
-api.nvim_create_user_command("Fold", "call CocAction('fold', <f-args>)", {nargs = '?'})
+-- api.nvim_create_user_command("Fold", "call CocAction('fold', <f-args>)", {nargs = '?'})
 
 -- Add `:OR` command for organize imports of the current buffer.
-api.nvim_create_user_command("OR", "call CocActionAsync('runCommand', 'editor.action.organizeImport')", {})
+-- api.nvim_create_user_command("OR", "call CocActionAsync('runCommand', 'editor.action.organizeImport')", {})
 
 -- Add (Neo)Vim's native statusline support.
 -- NOTE: Please see `:h coc-status` for integrations with external plugins that

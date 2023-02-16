@@ -111,12 +111,19 @@ local function o(key, map)
     _k("o",key, map)
 end
 
+local function write_buffer()
+    if vim.fn.getbufinfo('%')[1].changed == 1 then
+        vim.cmd("write")
+    end
+end
+
 return {
     n_expr_nrk = n_expr_nrk,
     i_expr_nrk = i_expr_nrk,
     n_expr = n_expr,
     i_expr = i_expr,
     v_expr = v_expr,
+    write_buffer = write_buffer,
     n = n,
     i = i,
     v = v,

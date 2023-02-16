@@ -1,22 +1,7 @@
 {
-    // change to your home path, javaagent demands full path, without "~"
-    // modifique essa linha para seu diretório home, infelizmente javaagent precisa do full path, sem ~
-    "java.jdt.ls.vmargs": "-Dfile.encoding=UTF-8 -noverify -Xmx1G -javaagent:/Users/giuseppemp/.config/nvim/coc-files/lombok-1.18.24.jar",
     "diagnostic.checkCurrentLine": true,
     "typescript.suggest.paths": true,
     "java.trace.server": "verbose",
-    "explorer.root.strategies": [
-        "cwd"
-    ],
-    //    "explorer.keyMappings.global": {
-    //        "<cr>": [
-    //            "expandable?",
-    //            "expand",
-    //            "open"
-    //        ],
-    //        "-": "open:vsplit",
-    //        "|": "open:hsplit"
-    //    },
     "explorer.git.icon.status.modified": "ﰣ ",
     "explorer.git.icon.rootStatus.conflicted": " ",
     "explorer.git.icon.status.renamed": " ",
@@ -35,21 +20,8 @@
     "explorer.file.reveal.whenOpen": true,
     "codeLens.enable": true,
     "coc.preferences.formatOnType": true,
-    "coc.preferences.formatOnSaveFiletypes": [
-        "c",
-        "java",
-        "go",
-        "python",
-        "rust",
-        "markdown",
-        "javascript",
-        "typescript",
-        "json",
-        "jsonc"
-    ],
     "java.referencesCodeLens.enabled": true,
     "java.implementationsCodeLens.enabled": true,
-    "typescript.implementationsCodeLens.enable": true,
     "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
     "java.format.settings.profile": "GoogleStyle",
     "java.home": "~/.asdf/installs/java/corretto-17.0.4.9.1",
@@ -58,23 +30,16 @@
     "git.removedSign.hlGroup": "GitGutterDelete",
     "git.topRemovedSign.hlGroup": "GitGutterDelete",
     "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
-    "java.configuration.runtimes": [
-        {
-            "name": "JavaSE-11",
-            "path": "~/.asdf/installs/java/corretto-11.0.16.9.1",
-            "default": true
-        },
-        {
-            "name": "JavaSE-14",
-            "path": "~/.asdf/installs/java/zulu-14.29.23"
-        },
-        {
-            "name": "JavaSE-17",
-            "path": "~/.asdf/installs/java/corretto-17.0.4.9.1"
-        },
-        {
-            "name": "JavaSE-1.8",
-            "path": "~/.asdf/installs/java/corretto-8.342.07.1"
+    "languageserver": {
+        "java": {
+            "command": "jdtls",
+            "rootPatterns": [
+                "pom.xml"
+            ],
+            "trace.server": "verbose",
+            "filetypes": [
+                "java"
+            ]
         }
-    ]
+    }
 }

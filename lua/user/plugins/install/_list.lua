@@ -94,7 +94,7 @@ local plugins = {
 
     -- COC - conquer of completion is a plugin like intelisense of vscode
     -- Language server plugin para auto completar sintax/validacoes/imports
-    -- { name='neoclide/coc.nvim', cfg={ branch = 'release'}},
+    { name='neoclide/coc.nvim', cfg={ branch = 'release'}},
 
     -- Markdown Preview
     { name='iamcco/markdown-preview.nvim', cfg={ ['do']= 'cd app && yarn install' }},
