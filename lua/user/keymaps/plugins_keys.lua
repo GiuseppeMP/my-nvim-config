@@ -59,6 +59,6 @@ n( '<leader>td', ":lua require'neotest'.run.run({ strategy = 'dap' })<CR>") -- d
 n( '<leader>t' , function() k.write_buffer() vim.cmd(":lua require'neotest'.run.run()") end) -- test nearest
 n( '<leader>tf', ":lua require'neotest'.run.run(vim.fn.expand('%'))<CR>") -- test file
 
-i("c-j>", "<Plug>(coc-snippets-expand-jump)")
+-- i("c-j>", "<Plug>(coc-snippets-expand-jump)")
 i_expr("<c-space>", "coc#refresh()")
 i_expr_nrk("<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]])

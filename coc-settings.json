@@ -30,6 +30,7 @@
     "git.removedSign.hlGroup": "GitGutterDelete",
     "git.topRemovedSign.hlGroup": "GitGutterDelete",
     "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
+    "snippets.userSnippetsDirectory": "~/.config/nvim/lua/user/snippets",
     "languageserver": {
         "java": {
             "command": "jdtls",

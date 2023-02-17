@@ -1,0 +1,36 @@
+snippet asst "Assertj assertThat" b
+
+assertThat(${1:code}).$0
+
+endsnippet
+
+snippet asse "Assertj isEqualTo" b
+
+assertThat(${1:code}).isEqualTo(${2:actual});
+$0
+
+endsnippet
+
+snippet var "Create a variable" b
+
+${1:Object} ${2:name} = ${3:value};
+$0
+
+endsnippet
+
+snippet str "Create a string" b
+
+String ${1:name} = "${2:value}";
+$0
+
+endsnippet
+
+
+endsnippet
+
+snippet import_assj "Import assertj assertions." A
+
+import static org.assertj.core.api.Assertions.*;
+
+endsnippet
+

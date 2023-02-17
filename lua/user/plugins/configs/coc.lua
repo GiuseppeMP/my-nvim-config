@@ -24,29 +24,29 @@ g.coc_global_extensions = {
 g.coc_disable_transparent_cursor = 1
 g.coc_snippet_next = '<tab>'
 
--- Highlight the symbol and its references when holding the cursor.
-api.nvim_create_augroup("CocGroup", {})
-api.nvim_create_autocmd("CursorHold", {
-    group = "CocGroup",
-    command = "silent call CocActionAsync('highlight')",
-    desc = "Highlight symbol under cursor on CursorHold"
-})
+-- -- Highlight the symbol and its references when holding the cursor.
+-- api.nvim_create_augroup("CocGroup", {})
+-- api.nvim_create_autocmd("CursorHold", {
+--     group = "CocGroup",
+--     command = "silent call CocActionAsync('highlight')",
+--     desc = "Highlight symbol under cursor on CursorHold"
+-- })
 
--- Setup formatexpr specified filetype(s).
-api.nvim_create_autocmd("FileType", {
-    group = "CocGroup",
-    pattern = "typescript,json",
-    command = "setl formatexpr=CocAction('formatSelected')",
-    desc = "Setup formatexpr specified filetype(s)."
-})
+-- -- Setup formatexpr specified filetype(s).
+-- api.nvim_create_autocmd("FileType", {
+--     group = "CocGroup",
+--     pattern = "typescript,json",
+--     command = "setl formatexpr=CocAction('formatSelected')",
+--     desc = "Setup formatexpr specified filetype(s)."
+-- })
 
--- Update signature help on jump placeholder.
-api.nvim_create_autocmd("User", {
-    group = "CocGroup",
-    pattern = "CocJumpPlaceholder",
-    command = "call CocActionAsync('showSignatureHelp')",
-    desc = "Update signature help on jump placeholder"
-})
+-- -- Update signature help on jump placeholder.
+-- api.nvim_create_autocmd("User", {
+--     group = "CocGroup",
+--     pattern = "CocJumpPlaceholder",
+--     command = "call CocActionAsync('showSignatureHelp')",
+--     desc = "Update signature help on jump placeholder"
+-- })
 
 
 -- Add `:Format` command to format current buffer.
