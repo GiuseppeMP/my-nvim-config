@@ -3,6 +3,8 @@ require ("user.plugins.configs.dracula")
 
 -- vim.cmd[[colorscheme happy_hacking]]
 
+-- set colorscheme after options
+-- vim.cmd('colorscheme rose-pine')
 vim.cmd[[colorscheme dracula]]
 -- vim.cmd[[colorscheme synthwave84]]
 

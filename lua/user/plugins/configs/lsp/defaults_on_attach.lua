@@ -3,7 +3,7 @@
 -- on_attach used for all languange servers
 -- If your language server have extensions/different commands
 -- Please extend this function, e.g lsp/jdtls.lua
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 

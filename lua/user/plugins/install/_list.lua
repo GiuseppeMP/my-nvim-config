@@ -74,6 +74,8 @@ local plugins = {
     { name='ryanoasis/vim-devicons'},
     { name='Mofiqul/dracula.nvim'},
 
+    { name='rose-pine/neovim', cfg={ ['as'] = 'rose-pine-neovim' }} ,
+
     -- Trigger a highlight in the appropriate direction when pressing these keys: f, F, t, T
     -- Adiciona destaca aos possiveis pulos com f, F, t, T
     { name='unblevable/quick-scope' },
@@ -199,6 +201,8 @@ local plugins = {
     { name = 'nvim-tree/nvim-tree.lua' },
 
     { name = 'startup-nvim/startup.nvim' },
+
+    { name = 'mbbill/undotree' },
 }
 
 return plugins

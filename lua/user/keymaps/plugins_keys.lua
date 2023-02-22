@@ -15,6 +15,7 @@ n( "mm", ":lua require('harpoon.ui').toggle_quick_menu()<CR>")
 n( "<c-f>", ":NvimTreeFindFile<CR>")
 n( '<c-f><c-f>',':FloatermToggle<CR>')
 n( "<c-m><c-m>", "<Plug>MarkdownPreview")
+n( "<c-p>", builtin.git_files)
 n( "<c-t><c-t>", ":lua require('harpoon.tmux').gotoTerminal(0)<CR>")
 
 -- leader session
@@ -45,11 +46,14 @@ n( '<leader>fk', builtin.keymaps )
 n( '<leader>fm', ':Telescope harpoon marks <CR>' )
 
 n( 'ga', function() k.write_buffer() vim.cmd(":A") end)
+n( 'gs', vim.cmd.G) -- git status and actions
 
 n( "<leader>ht1", ":lua require('harpoon.tmux').gotoTerminal(1)<CR>")
 n( "<leader>ht2", ":lua require('harpoon.tmux').gotoTerminal(2)<CR>")
 n( "<leader>ht3", ":lua require('harpoon.tmux').gotoTerminal(3)<CR>")
 n( "<leader>ht4", ":lua require('harpoon.tmux').gotoTerminal(4)<CR>")
+
+n( "<leader>ps", function() builtin.grep_string({ search = vim.fn.input("Greg > ") }) end)
 
 n( '<leader>si', ":lua require('dap').step_into()<CR>")
 n( '<leader>so', ":lua require('dap').step_out()<CR>")
@@ -58,6 +62,8 @@ n( '<leader>tb', ":lua require('dap').toggle_breakpoint()<CR>") -- toggle breakp
 n( '<leader>td', ":lua require'neotest'.run.run({ strategy = 'dap' })<CR>") -- debug nearest
 n( '<leader>t' , function() k.write_buffer() vim.cmd(":lua require'neotest'.run.run()") end) -- test nearest
 n( '<leader>tf', ":lua require'neotest'.run.run(vim.fn.expand('%'))<CR>") -- test file
+
+n( '<leader>u', vim.cmd.UndotreeToggle) -- undo history tree
 
 -- i("c-j>", "<Plug>(coc-snippets-expand-jump)")
 i_expr("<c-space>", "coc#refresh()")
