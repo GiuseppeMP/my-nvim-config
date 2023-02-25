@@ -1,6 +1,10 @@
 
 -- install module options: 'packer', 'vimplug'
 vim.g.plugin_manager = 'packer'
+
+-- 2 = write all buffers, 1 = write only the current buffer
+vim.g.tmux_navigator_save_on_switch=2
+
 require "user.plugins.install"
 
 -- configs modules
@@ -23,7 +27,6 @@ require "user.plugins.configs.short_configs"
 require "user.plugins.configs.startup_nvim"
 require "user.plugins.configs.telescope"
 require "user.plugins.configs.treesitter"
-require "user.plugins.configs.vim-tmux-navigator"
 
 
 -- LSPs, DAPs configs
