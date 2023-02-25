@@ -86,10 +86,6 @@ local plugins = {
     -- Interface git atraves de :G (comando)
     { name='tpope/vim-fugitive'},
 
-    -- Fuzzy finder in VIM
-    -- Usando Fuzzy Finder no VIM
-    { name='junegunn/fzf', plug={ ['do'] = ':call fzf#install()'}, packer = { run = ':call fzf#install()' }},
-
     -- Fuzzy finder written in lua
     { name = 'nvim-telescope/telescope.nvim', spec={ tag = '0.1.0' }},
 
