@@ -1,11 +1,7 @@
 local builtin = require('telescope.builtin')
 
-local k = require "user.keymaps._utils"
-local n = k.n
-local v = k.v
-local i = k.i
-local i_expr_nrk = k.i_expr_nrk
-local i_expr = k.i_expr
+local n = utils.keymap.n
+local k = utils.keymap
 
 -- no-mods session - fastest keystrokes
 n("ma", ":lua require('harpoon.mark').add_file()<CR>")

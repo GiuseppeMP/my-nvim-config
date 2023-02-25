@@ -25,11 +25,11 @@
 local lume = { _version = "2.3.0" }
 
 local pairs, ipairs = pairs, ipairs
-local type, assert, unpack = type, assert, unpack or table.unpack
+local type, assert, unpack = type, assert, table.unpack
 local tostring, tonumber = tostring, tonumber
 local math_floor = math.floor
 local math_ceil = math.ceil
-local math_atan2 = math.atan2 or math.atan
+local math_atan2 = math.atan
 local math_sqrt = math.sqrt
 local math_abs = math.abs
 
@@ -671,7 +671,7 @@ end
 
 
 function lume.dostring(str)
-  return assert((loadstring or load)(str))()
+  return assert((load)(str))()
 end
 
 

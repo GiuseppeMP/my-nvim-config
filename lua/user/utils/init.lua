@@ -23,3 +23,5 @@ _G.utils.is_empty = function(s)
     return s == nil or s == ''
 end
 
+_G.utils.keymap = require('user.utils.set_keymaps')
+

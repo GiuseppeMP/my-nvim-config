@@ -26,7 +26,6 @@ require "user.plugins.configs.treesitter"
 require "user.plugins.configs.vim-tmux-navigator"
 
 
-
 -- LSPs, DAPs configs
-require "user.plugins.configs.lsp.lsp-configs"
-require('user.plugins.configs.dap.dap-languages-setup')
+require "user.plugins.configs.lsp"
+require "user.plugins.configs.dap"

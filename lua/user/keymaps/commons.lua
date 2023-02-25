@@ -1,7 +1,6 @@
-local kutils = require "user.keymaps._utils"
-local n = kutils.n
-local v = kutils.v
-local i = kutils.i
+local n = utils.keymap.n
+local v = utils.keymap.v
+local i = utils.keymap.i
 
 -- Remap space as leader key --
 n("<SPACE>", "<Nop>")

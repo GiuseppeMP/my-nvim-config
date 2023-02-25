@@ -1,5 +1,6 @@
 -- init vim
-
+--
+-- utils functions
 require("user.utils")
 
 require("user.settings")
