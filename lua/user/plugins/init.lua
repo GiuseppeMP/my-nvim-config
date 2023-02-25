@@ -1,13 +1,12 @@
--- plugins description pls see "plugins._list.lua"
 
--- install module
-require "user.plugins.install.with-vimplug"
+-- install module options: 'packer', 'vimplug'
+vim.g.plugin_manager = 'packer'
+require "user.plugins.install"
 
 -- configs modules
 require "user.plugins.configs.airline"
 require "user.plugins.configs.boole"
 require "user.plugins.configs.bufferline"
-require "user.plugins.configs.coc"
 require "user.plugins.configs.dap"
 require "user.plugins.configs.dracula"
 require "user.plugins.configs.fzf"
@@ -25,6 +24,8 @@ require "user.plugins.configs.startup_nvim"
 require "user.plugins.configs.telescope"
 require "user.plugins.configs.treesitter"
 require "user.plugins.configs.vim-tmux-navigator"
+
+
 
 -- LSPs, DAPs configs
 require "user.plugins.configs.lsp.lsp-configs"

@@ -6,17 +6,36 @@ g.loaded_netrwPlugin = 1
 
 local keys_list = {
     { key = { "l", "<2-LeftMouse>" }, action = "edit"},
-    { key = { "h" }, action = "dir_up"},
-    { key = "<C-v>", action = "vsplit" },
-    { key = "<C-x>", action = "split" },
+    { key = "<C-\\>", action = "vsplit" },
+    { key = "<C-->", action = "split" },
     { key = "<C-t>", action = "tabnew" },
 }
 
+-- :help nvim-tree-setup
 require'nvim-tree'.setup {
     sort_by = "case_sensitive",
+    diagnostics = {
+        enable = true,
+        show_on_dirs = true,
+        icons = {
+            hint = "",
+            info = "",
+            warning = "",
+            error = "",
+        },
+    },
     view = {
         float = {
-            enable = false
+            enable = true,
+            quit_on_focus_loss = true,
+            open_win_config = {
+                relative = "editor",
+                border = "rounded",
+                width = 50,
+                height = 50,
+                row = 1,
+                col = 1,
+            },
         },
         width = {
             max = 50,

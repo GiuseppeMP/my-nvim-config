@@ -23,9 +23,8 @@ local plugins = {
     -- Comentarios rapidos atraves de gcc ou v(selecao)gcc
     { name="tpope/vim-commentary"},
 
-    -- Language server plugin but with better syntax highlight than coc
-    -- Language server assim como coc mas com features melhores como syntaxh
-    { name='nvim-treesitter/nvim-treesitter', cfg={ ['do'] = vim.fn[':TSUpdate'] } },
+    -- parser, formatter, better syntax highlight
+    { name='nvim-treesitter/nvim-treesitter', plug={ ['do'] = vim.fn[':TSUpdate'] }, packer={ run = ':TSUpdate'} },
 
     -- text objects treesitter
     { name='nvim-treesitter/nvim-treesitter-textobjects' },
@@ -55,7 +54,7 @@ local plugins = {
 
     -- Plugin for buffers as tabs
     -- Transforma os buffers em abas
-    { name='akinsho/bufferline.nvim', cfg={ tag = 'v3.*' }},
+    { name='akinsho/bufferline.nvim', spec = { tag = 'v3.*'}},
 
     -- Rainbow brackers and parentheses
     -- Chaves e parenteses arco-iris
@@ -74,7 +73,7 @@ local plugins = {
     { name='ryanoasis/vim-devicons'},
     { name='Mofiqul/dracula.nvim'},
 
-    { name='rose-pine/neovim', cfg={ ['as'] = 'rose-pine-neovim' }} ,
+    { name='rose-pine/neovim', spec = { as = 'rose-pine-neovim'}} ,
 
     -- Trigger a highlight in the appropriate direction when pressing these keys: f, F, t, T
     -- Adiciona destaca aos possiveis pulos com f, F, t, T
@@ -89,33 +88,21 @@ local plugins = {
 
     -- Fuzzy finder in VIM
     -- Usando Fuzzy Finder no VIM
-    { name='junegunn/fzf', cfg={ ['do'] = ':call fzf#install()'}},
+    { name='junegunn/fzf', plug={ ['do'] = ':call fzf#install()'}, packer = { run = ':call fzf#install()' }},
 
     -- Fuzzy finder written in lua
-    { name = 'nvim-telescope/telescope.nvim', cfg ={ tag = '0.1.0' }},
-
-    -- COC - conquer of completion is a plugin like intelisense of vscode
-    -- Language server plugin para auto completar sintax/validacoes/imports
-    { name='neoclide/coc.nvim', cfg={ branch = 'release'}},
+    { name = 'nvim-telescope/telescope.nvim', spec={ tag = '0.1.0' }},
 
     -- Markdown Preview
-    { name='iamcco/markdown-preview.nvim', cfg={ ['do']= 'cd app && yarn install' }},
-
-    -- { name='HerringtonDarkholme/yats.vim'}, fixme
-    -- { name='maxmellon/vim-jsx-pretty'}, fixme
-    -- { name='https://github.com/tc50cal/vim-terminal'}, fixme
+    { name='iamcco/markdown-preview.nvim', plug={ ['do']= 'cd app && yarn install' }, packer={ run = 'cd app && yarn install', cmd = 'MarkdownPreview'}},
 
     -- Tagbar outline
     { name='preservim/tagbar'},
 
 
-    -- { name='roxma/nvim-yarp'}, fixme
-    -- { name='roxma/vim-hug-neovim-rpc'}, fixme
-
     -- Collection of plugins for tests, Debug and TDD
     { name='nvim-lua/plenary.nvim'},
     { name= 'vim-test/vim-test'},
-    -- { name='GiuseppeMP/vim-test', cfg={ branch= '#586-Question-How-to-configure-so-nvim-dap-is-used' } },
     { name='nvim-neotest/neotest'},
     { name='nvim-neotest/neotest-vim-test'},
     { name='nvim-neotest/neotest-plenary'},
@@ -126,7 +113,7 @@ local plugins = {
     -- go to test file
     { name='tpope/vim-projectionist'},
     -- debug
-    { name='puremourning/vimspector'},
+    -- { name='puremourning/vimspector'},
 
 
     --Plug for mark files and terminals on the fly, to avoid repeat commands like
@@ -160,12 +147,6 @@ local plugins = {
 
     -- { name='arafatamim/trouble.nvim'}, --fixme
 
-    -- Plugin for custom text objects (disabled because coc)
-    -- { name='kana/vim-textobj-user' }, fixme
-    -- { name='kana/vim-textobj-function' }, fixme
-    -- { name='haya14busa/vim-textobj-function-syntax' }, fixme
-    -- { name='bps/vim-textobj-python' }, fixme
-    --
     -- linenumber mode indicator
     { name='melkster/modicator.nvim'},
 
@@ -178,14 +159,11 @@ local plugins = {
     -- display images in buffer
     { name = 'edluffy/hologram.nvim'},
 
-    -- lsp tools
-    -- Language server utils
-    -- Debug servers
+    -- Mason tools, LSPs, Debug Servers
     { name = 'williamboman/mason.nvim' },
     { name = 'williamboman/mason-lspconfig.nvim'},
     { name = 'WhoIsSethDaniel/mason-tool-installer.nvim'},
     { name = 'neovim/nvim-lspconfig'},
-
     { name = 'mfussenegger/nvim-dap'},
     { name = 'mfussenegger/nvim-jdtls'},
     { name = 'jayp0521/mason-nvim-dap.nvim'},
@@ -200,9 +178,11 @@ local plugins = {
     -- Debug tests python
     { name = 'nvim-tree/nvim-tree.lua' },
 
+    -- startup screen
     { name = 'startup-nvim/startup.nvim' },
 
-    { name = 'mbbill/undotree' },
+    -- undo history tree
+    { name = 'mbbill/undotree' }
 }
 
 return plugins

@@ -1,5 +1,7 @@
 -- init vim
 
+require("user.utils")
+
 require("user.settings")
 
 require("user.plugins")
