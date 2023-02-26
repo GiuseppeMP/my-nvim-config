@@ -1,7 +1,6 @@
 local builtin = require('telescope.builtin')
 
 local n = utils.keymap.n
-local k = utils.keymap
 
 -- no-mods session - fastest keystrokes
 n("ma", ":lua require('harpoon.mark').add_file()<CR>")
@@ -32,19 +31,19 @@ n('<leader>dr', ":lua require('dap').repl.open()<CR>")
 n('<leader>e', ':NvimTreeToggle<CR>')
 
 n('<leader>ff', builtin.find_files)
-n('<leader>fg', builtin.live_grep)
+n('<leader>flg', builtin.live_grep)
 n('<leader>fgc', builtin.git_commits)
 n('<leader>fgb', builtin.git_branches)
 n('<leader>fb', builtin.buffers)
 n('<leader>fh', builtin.help_tags)
 n('<leader>fk', builtin.keymaps)
-n("<leader>gg", builtin.git_files)
+n("<leader>fgg", builtin.git_files)
+n('<leader>fls', builtin.diagnostics)
+n('<leader>fqq', builtin.quickfix)
 n('<leader>fm', ':Telescope harpoon marks <CR>')
 
-n('ga', function()
-    k.write_buffer()
-    vim.cmd(":A")
-end)
+n('ga', function() vim.cmd(":w") vim.cmd(":A") end)
+
 n('gs', vim.cmd.G) -- git status and actions
 
 n("<leader>ht1", ":lua require('harpoon.tmux').gotoTerminal(1)<CR>")

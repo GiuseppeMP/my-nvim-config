@@ -94,7 +94,7 @@ end
 ---@param key string
 ---@param expr string
 local function v_expr(key, expr)
-    _k_expr("v", key, expr)
+   _k_expr("v", key, expr)
 end
 
 ---visual only mode, noremap, silent

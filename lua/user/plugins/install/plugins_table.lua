@@ -129,7 +129,6 @@ local plugins = {
 
     -- Plugin for snippets in different languages
     -- Plugin de snipptes (~)
-    { name='SirVer/ultisnips' },
     { name='honza/vim-snippets'},
 
     -- Git buffer symbols
@@ -178,7 +177,36 @@ local plugins = {
     { name = 'startup-nvim/startup.nvim' },
 
     -- undo history tree
-    { name = 'mbbill/undotree' }
+    { name = 'mbbill/undotree' },
+
+    -- cmp for autocompletion
+    { name = 'hrsh7th/cmp-nvim-lsp'}, -- lsp completions
+    { name = 'hrsh7th/cmp-buffer'}, -- buffer completions
+    { name = 'hrsh7th/cmp-path'}, -- path completions
+    { name = 'hrsh7th/cmp-cmdline'}, -- cmdline completions
+    { name = 'hrsh7th/nvim-cmp'}, -- completion plugin
+
+    -- cmp vsnip users
+    { name = 'hrsh7th/cmp-vsnip'},
+    { name = 'hrsh7th/vim-vsnip'},
+
+    -- cmp  luasnip users
+    { name = 'L3MON4D3/LuaSnip',
+        packer = { tag = 'v1.2.*' , run = "make install_jsregexp"}},
+
+    { name = 'saadparwaiz1/cmp_luasnip'},
+
+    -- cmp ultisnips users
+    { name = 'SirVer/ultisnips'},
+    { name = 'quangnguyen30192/cmp-nvim-ultisnips'},
+
+    -- cmp snippy users
+    { name = 'dcampos/nvim-snippy'},
+    { name = 'dcampos/cmp-snippy'},
+
+    -- which key
+    { name = "folke/which-key.nvim"}
 }
+
 
 return plugins

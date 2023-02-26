@@ -1,5 +1,6 @@
 local n = utils.keymap.n
 local v = utils.keymap.v
+local x = utils.keymap.x
 local i = utils.keymap.i
 
 -- Remap space as leader key --
@@ -35,15 +36,13 @@ i("jk", "<ESC>")
 -- Visual mode --
 --
 -- Stay in indent selection
-v("<" ,"<gv")
-v(">" ,">gv")
+v("<", "<gv")
+v(">", ">gv")
 
 -- Move visual selection up and down
 -- k("v", "A-j", ":m .+1<CR>==", opts)
 -- k("v", "A-k", ":m .-2<CR>==", opts)
-v("p", '"_dP"')
-
-
+x("p", '"_dP"')
 
 -- Manter o cursor centralizado.
 -- keep the cursor at center while using n,N,k,j,J
@@ -56,14 +55,14 @@ n('j', 'jzz')
 
 -- Create breakpoints to not lost all the stuff in the undo
 -- Criando breakpoints durante insert mode para n perder textos no undo
-i( ',', ',<c-g>u')
-i( '.', '.<c-g>u')
-i( '!', '!<c-g>u')
-i( '?', '?<c-g>u')
-i( '(', '(<c-g>u')
-i( '[', '[<c-g>u')
-i( '{', '{<c-g>u')
-i( '}', '}<c-g>u')
+i(',', ',<c-g>u')
+i('.', '.<c-g>u')
+i('!', '!<c-g>u')
+i('?', '?<c-g>u')
+i('(', '(<c-g>u')
+i('[', '[<c-g>u')
+i('{', '{<c-g>u')
+i('}', '}<c-g>u')
 
 -- insert ; at end of the line
 i(';;', '<C-o>A;')
@@ -73,9 +72,5 @@ i(',,', '<C-o>A,')
 i(';<Enter>', '<ESC>A;<ESC>o')
 i(',<Enter>', '<ESC>A,<ESC>o')
 
--- reload nvim config whithout leaving nvim
-n("<leader><leader><leader>", ":source $MYVIMRC<CR>")
-
 i("<c-l>", "<Right>")
 i("<c-h>", "<Left>")
-

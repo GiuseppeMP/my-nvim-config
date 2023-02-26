@@ -11,6 +11,7 @@ require "user.plugins.install"
 require "user.plugins.configs.airline"
 require "user.plugins.configs.boole"
 require "user.plugins.configs.bufferline"
+require "user.plugins.configs.cmp"
 require "user.plugins.configs.dap"
 require "user.plugins.configs.dracula"
 require "user.plugins.configs.gitgutter"
@@ -26,6 +27,7 @@ require "user.plugins.configs.short_configs"
 require "user.plugins.configs.startup_nvim"
 require "user.plugins.configs.telescope"
 require "user.plugins.configs.treesitter"
+require "user.plugins.configs.which_key"
 
 
 -- LSPs, DAPs configs
