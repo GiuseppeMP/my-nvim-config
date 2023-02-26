@@ -1,0 +1,9 @@
+{
+	"assertj_that": {
+		"prefix": "asst",
+		"body": [
+			"assertThat(${1:code}).${2:is}"
+		],
+        "description": "assert that something is ..."
+	}
+}

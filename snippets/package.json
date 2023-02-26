@@ -1,0 +1,13 @@
+{
+	"name": "custom-java-snippets",
+	"contributes": {
+		"snippets": [
+			{
+				"language": [
+					"java"
+				],
+				"path": "./java.json"
+			}
+		]
+	}
+}
