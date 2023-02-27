@@ -1,7 +1,4 @@
-local n = utils.keymap.n
-local v = utils.keymap.v
-local x = utils.keymap.x
-local i = utils.keymap.i
+local n,v,x,i = utils.keymap.n, utils.keymap.v,utils.keymap.x, utils.keymap.i
 
 -- Remap space as leader key --
 n("<SPACE>", "<Nop>")

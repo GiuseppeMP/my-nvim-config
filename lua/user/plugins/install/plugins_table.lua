@@ -129,7 +129,7 @@ local plugins = {
 
     -- Plugin for snippets in different languages
     -- Plugin de snipptes (~)
-    { name='honza/vim-snippets'},
+    { name='honza/vim-snippets', packer={ rtp ='.' }},
 
     -- Git buffer symbols
     { name='airblade/vim-gitgutter'},
@@ -187,8 +187,8 @@ local plugins = {
     { name = 'hrsh7th/nvim-cmp'}, -- completion plugin
 
     -- cmp vsnip users
-    { name = 'hrsh7th/cmp-vsnip'},
-    { name = 'hrsh7th/vim-vsnip'},
+    { name = 'hrsh7th/cmp-vsnip' , packer={ rtl='.' } },
+    { name = 'hrsh7th/vim-vsnip', packer={ rtl='.' } },
 
     -- cmp  luasnip users
     { name = 'L3MON4D3/LuaSnip',
@@ -197,15 +197,21 @@ local plugins = {
     { name = 'saadparwaiz1/cmp_luasnip'},
 
     -- cmp ultisnips users
-    -- { name = 'SirVer/ultisnips'},
-    -- { name = 'quangnguyen30192/cmp-nvim-ultisnips'},
+    { name = 'SirVer/ultisnips'},
+    { name = 'quangnguyen30192/cmp-nvim-ultisnips'},
 
     -- cmp snippy users
     { name = 'dcampos/nvim-snippy'},
     { name = 'dcampos/cmp-snippy'},
 
+    -- cmp snippet collections
+    { name = "rafamadriz/friendly-snippets" },
+
     -- which key
-    { name = "folke/which-key.nvim"}
+    { name = "folke/which-key.nvim"},
+
+    -- terminal plugin
+    { name = 'NvChad/nvterm' },
 }
 
 

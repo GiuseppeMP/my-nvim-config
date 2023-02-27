@@ -17,11 +17,16 @@ local opts_expr_no_replace_keycodes = vim.tbl_extend('force', opts_expr, { repla
 
 
 ---keymap with @opts
----@param mode any
----@param key any
----@param map any
-local function _k(mode, key, map)
-    vim.keymap.set(mode,key, map, opts)
+---@param mode string
+---@param key string
+---@param map string|function
+-- @param desc[opt] string
+local function _k(mode, key, map, desc)
+    local k_opts = opts
+    if not utils.is_empty(desc) then
+        k_opts.desc = desc
+    end
+    vim.keymap.set(mode,key, map, k_opts)
 end
 
 ---keymap with @opts_expr
@@ -44,8 +49,9 @@ end
 ---normal mode, noremap, silent
 ---@param key string
 ---@param map string|function
-local function n(key, map)
-    _k("n", key, map)
+-- @param desc[opt] string
+local function n(key, map, desc)
+    _k("n", key, map, desc)
 end
 
 ---normal mode, noremap, silent, expr, no replace keycode

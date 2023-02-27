@@ -58,8 +58,8 @@ end
 
 local function get_mapping()
     return cmp.mapping.preset.insert({
-        ["<C-k>"] = cmp.mapping.select_prev_item(),
-        ["<C-j>"] = cmp.mapping.select_next_item(),
+        -- ["<C-k>"] = cmp.mapping.select_prev_item(),
+        -- ["<C-j>"] = cmp.mapping.select_next_item(),
         ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
         ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
         ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
@@ -76,7 +76,7 @@ local function get_mapping()
             else
                 fallback()
             end
-        end, { "i", "v" }),
+        end, { "i", "v", "s" }),
 
         ["<S-Tab>"] = cmp.mapping(function(fallback)
             if luasnip.jumpable(-1) then
@@ -84,7 +84,7 @@ local function get_mapping()
             else
                 fallback()
             end
-        end, { "i", "v" }),
+        end, { "i", "v", "s" }),
     })
 end
 
@@ -94,7 +94,7 @@ local function get_sources()
             { name = 'nvim_lsp' },
             { name = 'vsnip' }, -- For vsnip users.
             { name = 'luasnip' }, -- For luasnip users.
-            -- { name = 'ultisnips' }, -- For ultisnips users.
+            { name = 'ultisnips' }, -- For ultisnips users.
             { name = 'snippy' }, -- For snippy users.
         }, {
             { name = 'buffer' },
