@@ -8,8 +8,11 @@ local snip_status_ok, luasnip = pcall(require, "luasnip")
 if not snip_status_ok then
     return
 end
+vim.g.UltiSnipsSnippetDirectories={"UltiSnips", "snippets/ultisnips"}
+vim.g.UltiSnipsExpandTrigger="<tab>"
+
+require("luasnip.loaders.from_vscode").load({ paths = "~/.config/nvim/snippets/vscode" })
 require("luasnip.loaders.from_vscode").lazy_load()
-require("luasnip.loaders.from_vscode").load({ paths = "~/.config/nvim/snippets" })
 
 
 --   פּ ﯟ   some other good icons

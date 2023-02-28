@@ -187,8 +187,8 @@ local plugins = {
     { name = 'hrsh7th/nvim-cmp'}, -- completion plugin
 
     -- cmp vsnip users
-    { name = 'hrsh7th/cmp-vsnip' , packer={ rtl='.' } },
-    { name = 'hrsh7th/vim-vsnip', packer={ rtl='.' } },
+    { name = 'hrsh7th/cmp-vsnip' , packer={ rtp='.' } },
+    { name = 'hrsh7th/vim-vsnip', packer={ rtp='.' } },
 
     -- cmp  luasnip users
     { name = 'L3MON4D3/LuaSnip',

@@ -1,0 +1,61 @@
+global !p
+
+def get_package_definition():
+    input_str = vim.eval('expand("%:p")')
+    transformed_str = re.sub(r'^.*/src/(test|main)/java/((.+/)*)(.*?)/.*\.java$', r'\3\4', input_str)
+    return re.sub('/', '.', transformed_str)
+
+endglobal
+
+snippet pkg "Declare java package" b
+package `!p snip.rv = get_package_definition()`;
+endsnippet
+
+
+snippet class "Declare java class" b
+package `!p snip.rv = get_package_definition()`;
+
+public class ${1:`!p snip.rv = snip.basename or "untitled"`} {
+	$0
+}
+endsnippet
+
+snippet int "Declare java class" b
+package `!p snip.rv = get_package_definition()`;
+
+public interface ${1:`!p snip.rv = snip.basename or "untitled"`} {
+	$0
+}
+endsnippet
+
+snippet classl "Declare java class" b
+package `!p snip.rv = get_package_definition()`;
+
+import lombok.Data;
+
+@Data
+public class ${1:`!p snip.rv = snip.basename or "untitled"`} {
+	$0
+}
+endsnippet
+
+
+snippet classt "Declare java test class" b
+package `!p snip.rv = get_package_definition()`;
+
+import org.junit.jupiter.api.DisplayNameGeneration;
+import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
+
+@DisplayNameGeneration(ReplaceUnderscores.class)
+public class `!p snip.rv = snip.basename or "untitled"` {
+
+	@Test
+	public void test_${1:test_name}() {
+        assertThat(${2:actual}).isNotNull();
+    }
+
+}
+endsnippet
+

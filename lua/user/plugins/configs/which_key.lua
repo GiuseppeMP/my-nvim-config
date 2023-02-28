@@ -1,4 +1,4 @@
-vim.g.which_key_timeout = 300
+-- vim.g.which_key_timeout = 750
 
 -- plugins
 -- telescope
@@ -101,14 +101,14 @@ wk.register({
 
 wk.register({
     ["<leader>t"] = {
-        name = "tests and terminals",
-        t = { function()
-            vim.cmd(":w")
-            neotest.run.run()
-        end, 'Run nearest test' },
+        name = "tests",
+        t = { function() neotest.run.run() end, 'Run nearest test' },
         d = { function() neotest.run.run({ strategy = 'dap' }) end, 'Debug nearest test' },
         f = { function() neotest.run.run(vim.fn.expand('%')) end, 'Run all tests in the file' },
+        s = { function() neotest.summary.toggle() end, 'Toggle tests summary' },
+        o = { function() neotest.output_panel.toggle() end, 'Toggle tests output window' },
         a = { function() neotest.run.run({ suite = true }) end, 'Run all tests' },
+        -- e = { function() neotest.diagnostic() end, 'Show tests diagnostics' },
     },
 })
 
@@ -128,6 +128,8 @@ wk.register({
 wk.register({
     ["g"] = {
         name = "goto",
+        d = "Go to definition",
+        i = "Go to implemetion",
         a = { function()
             vim.cmd(":w")
             vim.cmd(":A")

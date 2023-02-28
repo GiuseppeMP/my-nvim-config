@@ -28,6 +28,7 @@ require "user.plugins.configs.short_configs"
 require "user.plugins.configs.startup_nvim"
 require "user.plugins.configs.telescope"
 require "user.plugins.configs.treesitter"
+require "user.plugins.configs.vim_test"
 require "user.plugins.configs.which_key"
 
 
