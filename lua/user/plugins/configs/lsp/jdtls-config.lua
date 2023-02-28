@@ -158,6 +158,7 @@ end
 -- jdtls attach function
 local function jdtls_start_or_attach()
     local config = {
+        capabilities = require('cmp_nvim_lsp').default_capabilities(),
         flags = {
             debounce_text_changes = 80,
         },
