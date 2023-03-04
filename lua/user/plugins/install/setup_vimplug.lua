@@ -1,7 +1,7 @@
 -- Module that installs the vim plugin list.
 -- Modulo que instala os plugins utilizando vimplug
 -- You can change the plugin manager by rewritting this module.
-local plugins = require("user.plugins.install.plugins_table")
+local plugins = require("user.plugins.install.plugins")
 
 
 local Plug = vim.fn['plug#']

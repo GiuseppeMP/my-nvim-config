@@ -1,6 +1,6 @@
 
--- install module options: 'packer', 'vimplug'
-vim.g.plugin_manager = 'packer'
+-- install module options: 'packer', 'vimplug', 'lazy'
+vim.g.plugin_manager = 'lazy'
 
 -- 2 = write all buffers, 1 = write only the current buffer
 vim.g.tmux_navigator_save_on_switch=2

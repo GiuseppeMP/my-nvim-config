@@ -113,9 +113,10 @@ wk.register({
 })
 
 wk.register({
-    ['<A-v>'] = { function() nvterm.terminal.toggle 'vertical' end, 'Toggle vertical terminal' },
-    ['<A-s>'] = { function() nvterm.terminal.toggle 'horizontal' end, 'Toggle horizontal terminal' },
-    ['<A-f>'] = { function() nvterm.terminal.toggle 'float' end, 'Toggle float terminal' },
+    ['<M-l>'] = { function() nvterm.terminal.toggle 'vertical' end, 'Toggle vertical terminal' },
+    ['<M-j>'] = { function() nvterm.terminal.toggle 'horizontal' end, 'Toggle horizontal terminal' },
+    ['<M-f>'] = { function() nvterm.terminal.toggle 'float' end, 'Toggle float terminal' },
+    ['<A-s>'] = { vim.cmd.write , 'Save buffer'},
 }, { mode = { 't', 'n' } })
 
 

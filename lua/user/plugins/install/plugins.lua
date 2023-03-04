@@ -1,6 +1,14 @@
 -- Module that returns the list of the vim plugins that must be installed.
 -- Modulo que retorna a lista de vim plugins que precisam ser instalados.
 -- You can manage your plugins here, separated from plugin manager.
+
+
+---equivalent of packer rtp='.'
+---@param plugin any
+local lazy_rtp = function(plugin)
+    vim.opt.rtp:append(plugin.dir)
+end
+
 local plugins = {
 
     -- Repeat plugins cmds using dot command
@@ -24,7 +32,11 @@ local plugins = {
     { name="tpope/vim-commentary"},
 
     -- parser, formatter, better syntax highlight
-    { name='nvim-treesitter/nvim-treesitter', plug={ ['do'] = vim.fn[':TSUpdate'] }, packer={ run = ':TSUpdate'} },
+    { name='nvim-treesitter/nvim-treesitter',
+        plug={ ['do'] = vim.fn[':TSUpdate'] },
+        packer={ run = ':TSUpdate'},
+        lazy={ build = ':TSUpdate'}
+    },
 
     -- text objects treesitter
     { name='nvim-treesitter/nvim-treesitter-textobjects' },
@@ -46,7 +58,7 @@ local plugins = {
     { name='p00f/nvim-ts-rainbow'},
 
     -- bufferline icons
-    { name='kyazdani42/nvim-web-devicons'},
+    -- { name='kyazdani42/nvim-web-devicons'},
 
     -- close buffers without exit vim or messing layouts
     -- fechar buffers sem perder config de layout ou acabar saindo do nvim sem querer
@@ -54,7 +66,9 @@ local plugins = {
 
     -- Plugin for buffers as tabs
     -- Transforma os buffers em abas
-    { name='akinsho/bufferline.nvim', spec = { tag = 'v3.*'}},
+    { name='akinsho/bufferline.nvim',
+        spec = { tag = 'v3.5.0'}
+    },
 
     -- Rainbow brackers and parentheses
     -- Chaves e parenteses arco-iris
@@ -73,7 +87,12 @@ local plugins = {
     { name='ryanoasis/vim-devicons'},
     { name='Mofiqul/dracula.nvim'},
 
-    { name='rose-pine/neovim', spec = { as = 'rose-pine-neovim'}} ,
+    { name='rose-pine/neovim',
+        lazy = { name = 'rose-pine-neovim'},
+        packer = { as = 'rose-pine-neovim'},
+        plug = { as = 'rose-pine-neovim'}
+
+    },
 
     -- Trigger a highlight in the appropriate direction when pressing these keys: f, F, t, T
     -- Adiciona destaca aos possiveis pulos com f, F, t, T
@@ -87,10 +106,16 @@ local plugins = {
     { name='tpope/vim-fugitive'},
 
     -- Fuzzy finder written in lua
-    { name = 'nvim-telescope/telescope.nvim', spec={ tag = '0.1.0' }},
+    { name = 'nvim-telescope/telescope.nvim',
+        spec={ tag = '0.1.0' }
+    },
 
     -- Markdown Preview
-    { name='iamcco/markdown-preview.nvim', plug={ ['do']= 'cd app && yarn install' }, packer={ run = 'cd app && yarn install', cmd = 'MarkdownPreview'}},
+    { name='iamcco/markdown-preview.nvim',
+        plug={ ['do']= 'cd app && yarn install' },
+        packer={ run = 'cd app && yarn install', cmd = 'MarkdownPreview'},
+        lazy = { build = 'cd app && yarn install', cmd = 'MarkdownPreview'}
+    },
 
     -- Tagbar outline
     { name='preservim/tagbar'},
@@ -129,7 +154,13 @@ local plugins = {
 
     -- Plugin for snippets in different languages
     -- Plugin de snipptes (~)
-    { name='honza/vim-snippets', packer={ rtp ='.' }},
+    { name='honza/vim-snippets',
+        packer={ rtp ='.' },
+        lazy = {
+            lazy = false,
+            config = lazy_rtp
+        }
+    },
 
     -- Git buffer symbols
     { name='airblade/vim-gitgutter'},
@@ -170,8 +201,11 @@ local plugins = {
     -- Debug tests python
     { name = 'nvim-neotest/neotest-python' },
 
-    -- Debug tests python
-    { name = 'nvim-tree/nvim-tree.lua' },
+    -- File explorer
+    { name = 'nvim-tree/nvim-tree.lua',
+        packer = {requires = { 'nvim-tree/nvim-web-devicons' }, tag='nightly' },
+        lazy={ dependencies = { 'nvim-tree/nvim-web-devicons' }, tag='nightly' }
+    },
 
     -- startup screen
     { name = 'startup-nvim/startup.nvim' },
@@ -187,12 +221,26 @@ local plugins = {
     { name = 'hrsh7th/nvim-cmp'}, -- completion plugin
 
     -- cmp vsnip users
-    { name = 'hrsh7th/cmp-vsnip' , packer={ rtp='.' } },
-    { name = 'hrsh7th/vim-vsnip', packer={ rtp='.' } },
+    { name = 'hrsh7th/cmp-vsnip',
+        packer={ rtp='.' },
+        lazy = {
+            lazy = false,
+            config = lazy_rtp
+        }
+    },
+    { name = 'hrsh7th/vim-vsnip',
+        packer={ rtp='.' },
+        lazy = {
+            lazy = false,
+            config = lazy_rtp
+        }
+    },
 
     -- cmp  luasnip users
     { name = 'L3MON4D3/LuaSnip',
-        packer = { tag = 'v1.2.*' , run = "make install_jsregexp"}},
+        packer = { tag = 'v1.2.*' , run = "make install_jsregexp"},
+        lazy= { tag = 'v1.2.1' , build = "make install_jsregexp"}
+    },
 
     { name = 'saadparwaiz1/cmp_luasnip'},
 

@@ -1,6 +1,7 @@
 require('rose-pine').setup({
 	--- @usage 'main' | 'moon'
-	dark_variant = 'main',
+	-- dark_variant = 'main',
+	dark_variant = 'moon',
 	bold_vert_split = false,
 	dim_nc_background = false,
 	disable_background = false,
@@ -35,7 +36,10 @@ require('rose-pine').setup({
 
 	-- Change specific vim highlight groups
 	highlight_groups = {
-		ColorColumn = { bg = 'rose' }
+		ColorColumn = { bg = 'rose' },
+        -- Blend colours against the "base" background
+		CursorLine = { bg = 'foam', blend = 10 },
+		StatusLine = { fg = 'love', bg = 'love', blend = 10 },
 	}
 })
 

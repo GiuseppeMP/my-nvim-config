@@ -1,6 +1,6 @@
 -- Module that installs the vim plugin list.
 -- You can change the plugin manager by rewritting this module.
-local plugins = require("user.plugins.install.plugins_table")
+local plugins = require("user.plugins.install.plugins")
 
 
 local ensure_packer = function()
@@ -24,6 +24,7 @@ require'packer'.startup(function(use)
 
     -- Automatically maps plugin table to the packer use syntax
     for i =1, #plugins do
+
         local p = plugins[i]
         if not utils.is_empty(p.name) then
             -- merge all configs, plugin name, commons specs, and packer configs

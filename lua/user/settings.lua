@@ -54,5 +54,8 @@ o.spelllang = 'en_us'
 o.spell = false
 o.cursorline = true
 o.guifont='CaskaydiaCove Nerd Font SemiLight:h12'
+-- o.guifont='Hack Nerd Font Mono Regular:h12'
+-- o.guifont='Fira Code Regular:h12'
+
 
 vim.opt.laststatus = 3
