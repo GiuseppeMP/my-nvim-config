@@ -1,4 +1,3 @@
-
 -- install module options: 'packer', 'vimplug', 'lazy'
 vim.g.plugin_manager = 'lazy'
 
@@ -18,13 +17,11 @@ require "user.plugins.configs.gitgutter"
 require "user.plugins.configs.harpoon"
 require "user.plugins.configs.hologram"
 require "user.plugins.configs.mason"
-require "user.plugins.configs.modicator"
 require "user.plugins.configs.neotest"
 require "user.plugins.configs.nvimtree"
 require "user.plugins.configs.nvterm"
 require "user.plugins.configs.projectionist"
 require "user.plugins.configs.rose_pine"
-require "user.plugins.configs.short_configs"
 require "user.plugins.configs.startup_nvim"
 require "user.plugins.configs.telescope"
 require "user.plugins.configs.treesitter"

@@ -72,7 +72,9 @@ local plugins = {
 
     -- Rainbow brackers and parentheses
     -- Chaves e parenteses arco-iris
-    { name='frazrepo/vim-rainbow'},
+    { name='frazrepo/vim-rainbow',
+        lazy = { init = function() vim.g.rainbow_active=1  end },
+    },
 
     -- Plugins for beauty status bar
     -- Status bar personalizada
@@ -95,8 +97,9 @@ local plugins = {
     },
 
     -- Trigger a highlight in the appropriate direction when pressing these keys: f, F, t, T
-    -- Adiciona destaca aos possiveis pulos com f, F, t, T
-    { name='unblevable/quick-scope' },
+    { name='unblevable/quick-scope',
+        lazy = { lazy = false, init = function() vim.g.qs_highlight_on_keys = { 'f', 'F', 't', 'T' } end}
+    },
 
     -- File Explorer
     { name='scrooloose/nerdtree'},
@@ -197,6 +200,9 @@ local plugins = {
 
     { name = 'jose-elias-alvarez/null-ls.nvim'},
     { name = 'mfussenegger/nvim-dap-python' },
+
+    -- lsp kind icons
+    { name = 'onsails/lspkind.nvim' },
 
     -- Debug tests python
     { name = 'nvim-neotest/neotest-python' },

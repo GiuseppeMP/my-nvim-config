@@ -60,7 +60,7 @@ wk.register({
         g = { builtin.git_files, "Git files" },
         d = { builtin.diagnostics, "Diagnostics" },
         m = { function() vim.cmd(":Telescope harpoon marks") end, "Harpoon marks" },
-        s = { function() builtin.grep_string({ search = vim.fn.input("Greg > ") }) end, 'Search ...' }
+        s = { function() builtin.grep_string({ search = vim.fn.input("Greg > ") }) end, 'Search ...' },
     },
 })
 
@@ -80,6 +80,15 @@ wk.register({
     ["<F9>"] = { dap.run_last, 'Debug run last' },
 })
 
+-- [<leader>u] - utils
+wk.register({
+    ["<leader>u"] = {
+        name = "utils",
+        t = { vim.cmd.TagbarToggle, 'Toggle Tagbar' },
+        u = { vim.cmd.UndotreeToggle, 'Show Undotree' },
+        l = { vim.cmd.Lazy, 'Lazy Plugin Manager' },
+    },
+})
 
 -- [<leader>h] - harpoon+
 wk.register({
@@ -122,7 +131,6 @@ wk.register({
 
 wk.register({
     ["<leader>e"] = { vim.cmd.NvimTreeToggle, 'Open file explorer' },
-    ["<leader>u"] = { vim.cmd.UndotreeToggle, 'Show Undotree' },
 })
 
 -- [g] goto+

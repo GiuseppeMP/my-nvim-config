@@ -1,6 +1,5 @@
 require("telescope").load_extension('harpoon')
 
-
 require("telescope").setup {
     pickers = {
         buffers = {
