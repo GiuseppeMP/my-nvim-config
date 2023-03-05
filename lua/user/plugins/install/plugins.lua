@@ -78,9 +78,10 @@ local plugins = {
 
     -- Plugins for beauty status bar
     -- Status bar personalizada
-    { name='vim-airline/vim-airline'},
-    { name='vim-airline/vim-airline-themes'},
+    -- { name='vim-airline/vim-airline'},
+    -- { name='vim-airline/vim-airline-themes'},
     -- { name='itchyny/lightline.vim'},
+    { name='windwp/windline.nvim' , lazy = { config = function() require('wlsample.evil_line') end}},
 
     -- Plugins for VIM :colorscheme collections
     -- Plugins para temas :colorscheme
@@ -264,10 +265,25 @@ local plugins = {
     -- terminal plugin
     { name = 'NvChad/nvterm' },
 
+    -- better lsp progress ui
     { name = 'j-hui/fidget.nvim',
         lazy = { config = function() require'fidget'.setup{} end },
     },
+
+    -- better nvim ui
+    { name = 'stevearc/dressing.nvim' },
+
+    -- clipboard/yank manager
+    { name = 'AckslD/nvim-neoclip.lua',
+        lazy = { config = function() require'neoclip'.setup{} end, dependencies = {'nvim-telescope/telescope.nvim', 'ibhagwan/fzf-lua' } },
+    },
+
+    -- better ui for diagnostics
+    { name =  "folke/trouble.nvim",
+        lazy = { config = function() require'trouble'.setup{} end, dependencies = { 'nvim-tree/nvim-web-devicons' }}
+    },
 }
+
 
 
 return plugins

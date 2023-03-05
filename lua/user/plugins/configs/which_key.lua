@@ -61,6 +61,7 @@ wk.register({
         d = { builtin.diagnostics, "Diagnostics" },
         m = { function() vim.cmd(":Telescope harpoon marks") end, "Harpoon marks" },
         s = { function() builtin.grep_string({ search = vim.fn.input("Greg > ") }) end, 'Search ...' },
+        v = { function() require'neoclip.fzf'() end, 'Clipboard history' },
     },
 })
 
@@ -84,9 +85,10 @@ wk.register({
 wk.register({
     ["<leader>u"] = {
         name = "utils",
-        t = { vim.cmd.TagbarToggle, 'Toggle Tagbar' },
-        u = { vim.cmd.UndotreeToggle, 'Show Undotree' },
-        l = { vim.cmd.Lazy, 'Lazy Plugin Manager' },
+        t = { vim.cmd.TagbarToggle, 'Toggle tagbar' },
+        u = { vim.cmd.UndotreeToggle, 'Show undotree' },
+        l = { vim.cmd.Lazy, 'Lazy plugin manager' },
+        d = { vim.cmd.TroubleToggle, 'Show diagnostics panel' },
     },
 })
 
