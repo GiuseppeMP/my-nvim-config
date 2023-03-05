@@ -83,7 +83,7 @@ local function get_settings()
     return {
         signature_help = { enabled = true },
         java = {
-            trace = {server = true},
+            trace = {server =false},
             configuration = {
                 updateBuildConfiguration = "interactive",
                 implementationsCodeLens = {

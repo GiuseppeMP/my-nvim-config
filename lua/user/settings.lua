@@ -48,14 +48,12 @@ o.compatible = false
 o.laststatus = 3
 o.timeoutlen = 700
 o.timeout= true
--- o.ls = 0 -- hide status line
--- o.ch = 0 -- hide command line
+o.ls = 0 -- hide status line
+o.ch = 0 -- hide command line
 o.spelllang = 'en_us'
 o.spell = false
 o.cursorline = true
 o.guifont='CaskaydiaCove Nerd Font SemiLight:h12'
 -- o.guifont='Hack Nerd Font Mono Regular:h12'
 -- o.guifont='Fira Code Regular:h12'
-
-
-vim.opt.laststatus = 3
+vim.opt.laststatus = 3 -- global last status

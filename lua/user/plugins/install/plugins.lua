@@ -176,9 +176,6 @@ local plugins = {
 
     -- { name='arafatamim/trouble.nvim'}, --fixme
 
-    -- linenumber mode indicator
-    { name='melkster/modicator.nvim'},
-
     -- Markdown preview
     { name = 'toppair/peek.nvim'},
 
@@ -266,6 +263,10 @@ local plugins = {
 
     -- terminal plugin
     { name = 'NvChad/nvterm' },
+
+    { name = 'j-hui/fidget.nvim',
+        lazy = { config = function() require'fidget'.setup{} end },
+    },
 }
 
 
