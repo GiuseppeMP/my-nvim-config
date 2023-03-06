@@ -212,7 +212,12 @@ local plugins = {
     },
 
     -- startup screen
-    { name = 'startup-nvim/startup.nvim' },
+    { name = 'goolord/alpha-nvim',
+        lazy = { config = function()
+                require("alpha").setup(require'alpha.themes.startify'.config)
+            end
+        }
+    },
 
     -- undo history tree
     { name = 'mbbill/undotree' },

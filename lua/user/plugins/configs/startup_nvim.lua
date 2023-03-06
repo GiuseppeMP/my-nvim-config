@@ -1,2 +1,2 @@
-require("startup").setup({theme = "dashboard"}) -- put theme name herek
+-- require("startup").setup({ theme = "evil" }) -- put theme name herek
 

@@ -1,6 +1,7 @@
 {
   "FixCursorHold.nvim": { "branch": "master", "commit": "1900f89dc17c603eec29960f57c00bd9ae696495" },
   "LuaSnip": { "branch": "master", "commit": "500981ff6cefc7343e3959ef0f939bd0bfd49ba9" },
+  "alpha-nvim": { "branch": "main", "commit": "4b0ba68022d8612b04b26844f1ce5e708c0d23b0" },
   "asyncrun.vim": { "branch": "master", "commit": "80750a80e7999318f14d754bb68b64de7af93bc3" },
   "awesome-vim-colorschemes": { "branch": "master", "commit": "9f96bbdef5cb19daf58449f0fbb597af6fc4c2eb" },
   "boole.nvim": { "branch": "main", "commit": "f4f9996f91159e54b8f1893b20e2e599c91bc1bd" },
@@ -59,7 +60,6 @@
   "promise-async": { "branch": "main", "commit": "7fa127fa80e7d4d447e0e2c78e99af4355f4247b" },
   "quick-scope": { "branch": "master", "commit": "428e8698347f254d24b248af9f656194a80081e5" },
   "rose-pine-neovim": { "branch": "main", "commit": "f977f0885384776e5f0e3bffa51abbbfd57d90cc" },
-  "startup.nvim": { "branch": "master", "commit": "dd7fe4d10e68701c51548b3073650f20be873322" },
   "tagbar": { "branch": "master", "commit": "af3ce7c3cec81f2852bdb0a0651d2485fcd01214" },
   "telescope.nvim": { "branch": "master", "commit": "b79cd6c88b3d96b0f49cb7d240807cd59b610cd8" },
   "trouble.nvim": { "branch": "main", "commit": "67337644e38144b444d026b0df2dc5fa0038930f" },
