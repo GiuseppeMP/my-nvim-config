@@ -7,8 +7,10 @@ g.loaded_netrwPlugin = 1
 local keys_list = {
     { key = { "l", "<2-LeftMouse>" }, action = "edit"},
     { key = "<C-\\>", action = "vsplit" },
-    { key = "<C-->", action = "split" },
+    { key = "<C--", action = "split" },
     { key = "<C-t>", action = "tabnew" },
+    { key = { "<C-]>", "<2-RightMouse>" },    action = "cd" },
+
 }
 
 -- :help nvim-tree-setup

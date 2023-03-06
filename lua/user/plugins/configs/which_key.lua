@@ -193,3 +193,13 @@ wk.register({
         M = { require('ufo').closeAllFolds, 'Close all foldings'},
     },
 })
+
+-- tmux navigator
+vim.g.tmux_navigator_no_mappings = 1
+vim.g.tmux_navigator_save_on_switch = 2
+wk.register({
+    ["<C-k>"] = { vim.cmd.TmuxNavigateUp, 'Tmux navigate up' },
+    ["<C-j>"] = { vim.cmd.TmuxNavigateDown , 'Tmux navigate down' },
+    ["<C-h>"] = { vim.cmd.TmuxNavigateLeft, 'Tmux navigate left' },
+    ["<C-l>"] = { vim.cmd.TmuxNavigateRight , 'Tmux navigate right' },
+})
