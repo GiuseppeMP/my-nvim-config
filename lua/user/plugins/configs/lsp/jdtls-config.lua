@@ -13,7 +13,7 @@ end
 local home = os.getenv "HOME"
 
 -- maybe needs to improve marks because multimodule projects (maven/gradle)
-local root_markers = {'gradlew', 'mvnw', '.git', 'settings.gradle', 'pom.xml'}
+local root_markers = {'gradlew', 'mvnw', '.git', 'settings.gradle', 'pom.xml', ".lsp_root"}
 
 -- root dir, workspace and project name
 local root_dir = function() require('jdtls.setup').find_root(root_markers) end
@@ -84,6 +84,41 @@ local function get_settings()
         signature_help = { enabled = true },
         java = {
             trace = {server =false},
+                -- Specify any completion options
+            completion = {
+                favoriteStaticMembers = {
+                    "org.hamcrest.MatcherAssert.assertThat",
+                    "org.hamcrest.Matchers.*",
+                    "org.hamcrest.CoreMatchers.*",
+                    "org.junit.jupiter.api.Assertions.*",
+                    "java.util.Objects.requireNonNull",
+                    "java.util.Objects.requireNonNullElse",
+                    "org.assertj.core.api.Assertions.*",
+                    "org.mockito.Mockito.*"
+                },
+                filteredTypes = {
+                    "com.sun.*",
+                    "io.micrometer.shaded.*",
+                    "java.awt.*",
+                    "jdk.*", "sun.*",
+                },
+            },
+            format = {
+                settings = {
+                    -- make sure to download the file from https://github.com/google/styleguide/blob/gh-pages/eclipse-java-google-style.xml
+                    url = home .. "/.config/nvim/jdtls/eclipse-java-google-style.xml",
+                    profile = "GoogleStyle",
+                },
+            },
+            signatureHelp = { enabled = true },
+            contentProvider = { preferred = 'fernflower' },  -- Use fernflower to decompile library code
+            -- Specify any options for organizing imports
+            sources = {
+                organizeImports = {
+                    starThreshold = 9999;
+                    staticStarThreshold = 9999;
+                },
+            },
             configuration = {
                 updateBuildConfiguration = "interactive",
                 implementationsCodeLens = {

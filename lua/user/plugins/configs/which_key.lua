@@ -124,6 +124,14 @@ wk.register({
 })
 
 wk.register({
+    ["<leader>c"] = {
+        name = "code",
+        a = { 'Code actions' },
+        f = { 'Code format' },
+    }
+})
+
+wk.register({
     ['<M-l>'] = { function() nvterm.terminal.toggle 'vertical' end, 'Toggle vertical terminal' },
     ['<M-j>'] = { function() nvterm.terminal.toggle 'horizontal' end, 'Toggle horizontal terminal' },
     ['<M-f>'] = { function() nvterm.terminal.toggle 'float' end, 'Toggle float terminal' },
@@ -132,7 +140,27 @@ wk.register({
 
 
 wk.register({
-    ["<leader>e"] = { vim.cmd.NvimTreeToggle, 'Open file explorer' },
+    ["<leader>e"] = { vim.cmd.NvimTreeToggle, 'File explorer' },
+    ["<leader>D"] = { 'Type definitions' },
+    ["<leader>k"] = { 'Signature help' },
+    ["<leader>rn"] = { 'Rename' },
+    ["K"] = { 'Lsp hover' }
+})
+
+wk.register({
+    ["d"] = {
+        f = { 'Debug file' },
+        n = { 'Debug nearest test' },
+    }
+})
+
+wk.register({
+    ["w"] = {
+        name = "workspace",
+        a = { 'Add workspace folder'},
+        r = { 'Remove workspace folder'},
+        l = { 'List workspace folders'},
+    }
 })
 
 -- [g] goto+
@@ -140,7 +168,9 @@ wk.register({
     ["g"] = {
         name = "goto",
         d = "Go to definition",
+        D = "Go to declaration",
         i = "Go to implemetion",
+        r = "Go to references",
         a = { function()
             vim.cmd(":w")
             vim.cmd(":A")
@@ -153,5 +183,13 @@ wk.register({
 wk.register({
     ["m"] = {
         name = "marks",
+    },
+})
+
+wk.register({
+    ["z"] = {
+        name = "folding",
+        R = { require('ufo').openAllFolds, 'Open all foldings'},
+        M = { require('ufo').closeAllFolds, 'Close all foldings'},
     },
 })

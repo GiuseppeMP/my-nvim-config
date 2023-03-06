@@ -1,5 +1,5 @@
 -- lsp default on_attach
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
 
     local buf_opts = { noremap=true, silent=false, buffer=bufnr }
 
@@ -18,7 +18,7 @@ local on_attach = function(_, bufnr)
     vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, buf_opts)
     vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, buf_opts)
     vim.keymap.set('n', '<leader>cf', function() vim.lsp.buf.format { async = true } end, buf_opts)
-    vim.keymap.set('n', '<leader-k>', vim.lsp.buf.signature_help, buf_opts)
+    vim.keymap.set('n', '<leader>k', vim.lsp.buf.signature_help, buf_opts)
     vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, buf_opts)
     vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, buf_opts)
     vim.keymap.set('n', '<leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, buf_opts)
