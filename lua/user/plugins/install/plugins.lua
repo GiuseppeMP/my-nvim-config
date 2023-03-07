@@ -111,7 +111,7 @@ local plugins = {
 
     -- Fuzzy finder written in lua
     { name = 'nvim-telescope/telescope.nvim',
-        spec={ tag = '0.1.0' }
+        spec={ tag = '0.1.1' }
     },
 
     -- Markdown Preview
@@ -312,6 +312,10 @@ local plugins = {
         },
 
     },
+
+    { name = 'jvgrootveld/telescope-zoxide',
+        lazy ={ dependencies = { 'nvim-lua/popup.nvim','nvim-lua/plenary.nvim' }}
+    }
 }
 
 

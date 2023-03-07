@@ -2,6 +2,7 @@
 
 -- plugins
 -- telescope
+local telescope = require 'telescope'
 local builtin = require 'telescope.builtin'
 
 -- chad/nvterm
@@ -89,6 +90,7 @@ wk.register({
         u = { vim.cmd.UndotreeToggle, 'Show undotree' },
         l = { vim.cmd.Lazy, 'Lazy plugin manager' },
         d = { vim.cmd.TroubleToggle, 'Show diagnostics panel' },
+        z = { telescope.extensions.zoxide.list, 'Show zoxide directories' },
     },
 })
 

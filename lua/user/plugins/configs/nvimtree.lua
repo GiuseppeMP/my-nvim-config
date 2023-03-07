@@ -16,6 +16,7 @@ local keys_list = {
 -- :help nvim-tree-setup
 require'nvim-tree'.setup {
     sort_by = "case_sensitive",
+    sync_root_with_cwd = true,
     diagnostics = {
         enable = true,
         show_on_dirs = true,
