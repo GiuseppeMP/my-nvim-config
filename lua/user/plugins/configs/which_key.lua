@@ -158,7 +158,7 @@ wk.register({
 })
 
 wk.register({
-    ["w"] = {
+    ["<leader>w"] = {
         name = "workspace",
         a = { 'Add workspace folder'},
         r = { 'Remove workspace folder'},

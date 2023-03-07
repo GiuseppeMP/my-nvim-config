@@ -1,3 +1,7 @@
+local format_callback = function()
+    vim.lsp.buf.format { async = true }
+end
+
 -- lsp default on_attach
 local on_attach = function(client, bufnr)
 
@@ -17,12 +21,21 @@ local on_attach = function(client, bufnr)
     --leader
     vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, buf_opts)
     vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, buf_opts)
-    vim.keymap.set('n', '<leader>cf', function() vim.lsp.buf.format { async = true } end, buf_opts)
+    vim.keymap.set('n', '<leader>cf', format_callback, buf_opts)
     vim.keymap.set('n', '<leader>k', vim.lsp.buf.signature_help, buf_opts)
     vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, buf_opts)
     vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, buf_opts)
     vim.keymap.set('n', '<leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, buf_opts)
     vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, buf_opts)
+
+    -- format on save
+    if client.server_capabilities.documentFormattingProvider then
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            group = vim.api.nvim_create_augroup("format_lsp_attach", { clear = true }),
+            buffer = bufnr,
+            callback = format_callback;
+        })
+    end
 
 end
 
