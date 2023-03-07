@@ -1,5 +1,5 @@
 require("telescope").load_extension('harpoon')
-require("telescope").load_extension('zoxide')
+
 require("telescope").setup {
     pickers = {
         buffers = {
@@ -20,3 +20,4 @@ require("telescope").setup {
     },
 }
 
+require("telescope").load_extension('zoxide')

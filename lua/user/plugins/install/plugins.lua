@@ -315,7 +315,12 @@ local plugins = {
 
     { name = 'jvgrootveld/telescope-zoxide',
         lazy ={ dependencies = { 'nvim-lua/popup.nvim','nvim-lua/plenary.nvim' }}
-    }
+    },
+
+
+    { name = 'preservim/vim-markdown',
+        lazy = { dependencies = { 'godlygeek/tabular' }}
+    },
 }
 
 
