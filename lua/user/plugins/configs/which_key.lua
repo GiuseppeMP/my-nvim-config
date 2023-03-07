@@ -146,7 +146,8 @@ wk.register({
     ["<leader>D"] = { 'Type definitions' },
     ["<leader>k"] = { 'Signature help' },
     ["<leader>rn"] = { 'Rename' },
-    ["K"] = { 'Lsp hover' }
+    ["K"] = { 'Lsp hover' },
+    ["<leader>q"] = { vim.cmd.Bdelete, 'Buffer delete' }
 })
 
 wk.register({
