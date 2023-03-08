@@ -1,5 +1,5 @@
--- jdtls 
-local jdtls = require'jdtls'
+-- jdtls
+local jdtls = require 'jdtls'
 
 -- mason installations registry
 local mason_registry = require("mason-registry");
@@ -13,7 +13,7 @@ end
 local home = os.getenv "HOME"
 
 -- maybe needs to improve marks because multimodule projects (maven/gradle)
-local root_markers = {'gradlew', 'mvnw', '.git', 'settings.gradle', 'pom.xml', ".lsp_root"}
+local root_markers = { 'gradlew', 'mvnw', '.git', 'settings.gradle', 'pom.xml', ".lsp_root" }
 
 -- root dir, workspace and project name
 local root_dir = function() require('jdtls.setup').find_root(root_markers) end
@@ -32,14 +32,12 @@ local jdtls_path = get_package_install_path('jdtls')
 
 -- on_attach custom for nvim-jdtls
 local on_attach_jdtls = function(_client, buf_nr)
-
     -- call default on_attach
-    require("user.plugins.configs.lsp.defaults_on_attach")(_client, buf_nr)
+    require("user.plugins.configs.lsp.utils.on_attach_options").default()(_client, buf_nr)
 
-    -- add some nvim-jdtls extras
-    local buf_opts = { noremap=true, silent=false, buffer=buf_nr }
-    vim.keymap.set('n', 'df',  jdtls.test_class, buf_opts)
-    vim.keymap.set('n', 'dn',  jdtls.test_nearest_method, buf_opts)
+    local buf_opts = { noremap = true, silent = false, buffer = buf_nr }
+    vim.keymap.set('n', 'df', jdtls.test_class, buf_opts)
+    vim.keymap.set('n', 'dn', jdtls.test_nearest_method, buf_opts)
 
     -- setup dap
     jdtls.setup_dap({ hotcodereplace = 'auto' })
@@ -47,15 +45,14 @@ end
 
 -- create bundles table
 local get_bundles = function()
-
     -- java-debug-adapter loc
-    local JAVA_DEBUG_ADAPTER_LOC = get_package_install_path('java-debug-adapter').."/extension/server"
+    local JAVA_DEBUG_ADAPTER_LOC = get_package_install_path('java-debug-adapter') .. "/extension/server"
 
     -- java-test loc
-    local VSCODE_JAVA_TEST_LOC = get_package_install_path('java-test').."/extension/server"
+    local VSCODE_JAVA_TEST_LOC = get_package_install_path('java-test') .. "/extension/server"
 
     -- Debugging bundles
-    local bundles = { }
+    local bundles = {}
 
     vim.list_extend(bundles, vim.split(vim.fn.glob(JAVA_DEBUG_ADAPTER_LOC .. "/*.jar"), "\n"))
     vim.list_extend(bundles, vim.split(vim.fn.glob(VSCODE_JAVA_TEST_LOC .. "/*.jar"), "\n"))
@@ -66,13 +63,13 @@ end
 -- resolve os string to determine the jdtls plugin jar launcher
 local function get_os_string()
     local os
-        if vim.fn.has "macunix" then
-          os = "mac"
-        elseif vim.fn.has "win32" then
-          os = "win"
-        else
-          os = "linux"
-        end
+    if vim.fn.has "macunix" then
+        os = "mac"
+    elseif vim.fn.has "win32" then
+        os = "win"
+    else
+        os = "linux"
+    end
     return os
 end
 
@@ -83,8 +80,8 @@ local function get_settings()
     return {
         signature_help = { enabled = true },
         java = {
-            trace = {server =false},
-                -- Specify any completion options
+            trace = { server = false },
+            -- Specify any completion options
             completion = {
                 favoriteStaticMembers = {
                     "org.hamcrest.MatcherAssert.assertThat",
@@ -111,12 +108,12 @@ local function get_settings()
                 },
             },
             signatureHelp = { enabled = true },
-            contentProvider = { preferred = 'fernflower' },  -- Use fernflower to decompile library code
+            contentProvider = { preferred = 'fernflower' }, -- Use fernflower to decompile library code
             -- Specify any options for organizing imports
             sources = {
                 organizeImports = {
-                    starThreshold = 9999;
-                    staticStarThreshold = 9999;
+                    starThreshold = 9999,
+                    staticStarThreshold = 9999,
                 },
             },
             configuration = {
@@ -139,27 +136,27 @@ local function get_settings()
                 format = {
                     enabled = true
                 },
-                runtimes =  {
+                runtimes = {
                     {
-                        name= "JavaSE-1.8",
-                        path= home .."/.asdf/installs/java/corretto-8.342.07.1"
+                        name = "JavaSE-1.8",
+                        path = home .. "/.asdf/installs/java/corretto-8.342.07.1"
                     },
                     {
-                        name= "JavaSE-11",
-                        path= home .. "/.asdf/installs/java/corretto-11.0.16.9.1",
+                        name = "JavaSE-11",
+                        path = home .. "/.asdf/installs/java/corretto-11.0.16.9.1",
                     },
                     {
-                        name= "JavaSE-14",
-                        path= home .. "/.asdf/installs/java/zulu-14.29.23",
+                        name = "JavaSE-14",
+                        path = home .. "/.asdf/installs/java/zulu-14.29.23",
                     },
                     {
-                        name= "JavaSE-17",
-                        path= home .. "/.asdf/installs/java/corretto-17.0.4.9.1",
+                        name = "JavaSE-17",
+                        path = home .. "/.asdf/installs/java/corretto-17.0.4.9.1",
                         default = true,
                     },
                     {
-                        name= "JavaSE-19",
-                        path= home .. "/.asdf/installs/java/openjdk-19.0.2",
+                        name = "JavaSE-19",
+                        path = home .. "/.asdf/installs/java/openjdk-19.0.2",
                     },
                 }
             }
@@ -170,30 +167,30 @@ end
 -- The command that starts the language server
 -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
 local function get_cmd()
-        return {
-            home .. '/.asdf/installs/java/corretto-17.0.4.9.1/bin/java', -- jdk used for LSP Server
-            '-Declipse.application=org.eclipse.jdt.ls.core.id1',
-            '-Dosgi.bundles.defaultStartLevel=4',
-            '-Declipse.product=org.eclipse.jdt.ls.core.product',
-            '-Dlog.protocol=true',
-            '-Dlog.level=ALL',
-            '-Xms2g',
-            '-javaagent:' .. lombok_jar,
-            '--add-modules=ALL-SYSTEM',
-            '--add-opens',
-            'java.base/java.util=ALL-UNNAMED',
-            '--add-opens',
-            'java.base/java.lang=ALL-UNNAMED',
-            '-jar',  vim.fn.glob(jdtls_path .."/plugins/org.eclipse.equinox.launcher_*.jar"),
-            '-configuration', jdtls_path .. "/config_"..get_os_string(),
-            '-data', workspace_folder(),
-        }
+    return {
+        home .. '/.asdf/installs/java/corretto-17.0.4.9.1/bin/java', -- jdk used for LSP Server
+        '-Declipse.application=org.eclipse.jdt.ls.core.id1',
+        '-Dosgi.bundles.defaultStartLevel=4',
+        '-Declipse.product=org.eclipse.jdt.ls.core.product',
+        '-Dlog.protocol=true',
+        '-Dlog.level=ALL',
+        '-Xms2g',
+        '-javaagent:' .. lombok_jar,
+        '--add-modules=ALL-SYSTEM',
+        '--add-opens',
+        'java.base/java.util=ALL-UNNAMED',
+        '--add-opens',
+        'java.base/java.lang=ALL-UNNAMED',
+        '-jar', vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar"),
+        '-configuration', jdtls_path .. "/config_" .. get_os_string(),
+        '-data', workspace_folder(),
+    }
 end
 
 -- jdtls attach function
 local function jdtls_start_or_attach()
     local config = {
-        capabilities = require('cmp_nvim_lsp').default_capabilities(),
+        capabilities = require('user.plugins.configs.lsp.utils.capabilities_options').default,
         flags = {
             debounce_text_changes = 80,
         },
@@ -206,19 +203,18 @@ local function jdtls_start_or_attach()
             },
             useBlocks = true,
         },
-        cmd = get_cmd();
+        cmd = get_cmd(),
         settings = get_settings(),
         root_dir = root_dir(),
         init_options = {
             bundles = get_bundles()
         },
-
         on_attach = on_attach_jdtls,
     }
     jdtls.start_or_attach(config)
 end
 
 vim.api.nvim_create_autocmd("Filetype", {
-      pattern = "java", -- autocmd to start jdtls in java files
-      callback = jdtls_start_or_attach
+    pattern = "java", -- autocmd to start jdtls in java files
+    callback = jdtls_start_or_attach
 })
