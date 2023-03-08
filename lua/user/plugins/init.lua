@@ -7,7 +7,6 @@ vim.g.tmux_navigator_save_on_switch=2
 require "user.plugins.install"
 
 -- configs modules
-require "user.plugins.configs.airline"
 require "user.plugins.configs.boole"
 require "user.plugins.configs.bufferline"
 require "user.plugins.configs.cmp"
