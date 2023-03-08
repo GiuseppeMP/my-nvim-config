@@ -5,7 +5,7 @@ local format_callback = function()
 end
 
 M.with_format = function(client, bufnr)
-        if client.server_capabilities.documentFormattingProvider then
+    if client.server_capabilities.documentFormattingProvider then
         vim.api.nvim_create_autocmd({ "FileWritePre", "BufWritePre" }, {
             group = vim.api.nvim_create_augroup("format_lsp_attach", { clear = true }),
             buffer = bufnr,
@@ -20,7 +20,7 @@ M.get = function(params)
 
         -- formatOnSave default true
         if params.formatOnSave == nil or params.formatOnSave then
-           M.with_format(client,bufnr);
+            M.with_format(client, bufnr);
         end
 
         -- format default true
@@ -40,21 +40,22 @@ M.get = function(params)
         vim.keymap.set('n', 'gr', vim.lsp.buf.references, buf_opts)
 
         --leader
-        vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, buf_opts)
+        if params.code_action == nil or params.code_action then
+            vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, buf_opts)
+        end
         vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, buf_opts)
         vim.keymap.set('n', '<leader>k', vim.lsp.buf.signature_help, buf_opts)
         vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, buf_opts)
         vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, buf_opts)
-        vim.keymap.set('n', '<leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, buf_opts)
+        vim.keymap.set('n', '<leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
+        buf_opts)
         vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, buf_opts)
     end
 end
 
 
 -- lsp default on_attach
-M.default = function()
-    return M.get { format = true, formatOnSave = true }
-end
+M.default = M.get { format = true, formatOnSave = true }
 
 local border = {
     { "🭽", "FloatBorder" },
