@@ -17,36 +17,6 @@ require("luasnip.loaders.from_vscode").lazy_load()
 
 local lspkind = require'lspkind'
 
---   פּ ﯟ   some other good icons
--- find more here: https://www.nerdfonts.com/cheat-sheet
-local kind_icons = {
-    Text = "",
-    Method = "m",
-    Function = "",
-    Constructor = "",
-    Field = "",
-    Variable = "",
-    Class = "",
-    Interface = "",
-    Module = "",
-    Property = "",
-    Unit = "",
-    Value = "",
-    Enum = "",
-    Keyword = "",
-    Snippet = "",
-    Color = "",
-    File = "",
-    Reference = "",
-    Folder = "",
-    EnumMember = "",
-    Constant = "",
-    Struct = "",
-    Event = "",
-    Operator = "",
-    TypeParameter = "",
-}
-
 local function get_snippet()
     return {
         expand = function(args)

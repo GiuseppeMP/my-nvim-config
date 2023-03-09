@@ -85,7 +85,7 @@ local plugins = {
     -- { name='vim-airline/vim-airline'},
     -- { name='vim-airline/vim-airline-themes'},
     -- { name='itchyny/lightline.vim'},
-    { name = 'windwp/windline.nvim',       lazy = { config = function() require('wlsample.evil_line') end } },
+    { name = 'windwp/windline.nvim',         lazy = { config = function() require('wlsample.evil_line') end } },
 
     -- Plugins for VIM :colorscheme collections
     -- Plugins para temas :colorscheme
@@ -235,10 +235,10 @@ local plugins = {
 
     -- cmp for autocompletion
     { name = 'hrsh7th/cmp-nvim-lsp' }, -- lsp completions
-    { name = 'hrsh7th/cmp-buffer' },  -- buffer completions
-    { name = 'hrsh7th/cmp-path' },    -- path completions
-    { name = 'hrsh7th/cmp-cmdline' }, -- cmdline completions
-    { name = 'hrsh7th/nvim-cmp' },    -- completion plugin
+    { name = 'hrsh7th/cmp-buffer' },   -- buffer completions
+    { name = 'hrsh7th/cmp-path' },     -- path completions
+    { name = 'hrsh7th/cmp-cmdline' },  -- cmdline completions
+    { name = 'hrsh7th/nvim-cmp' },     -- completion plugin
 
     -- cmp vsnip users
     {
@@ -296,14 +296,27 @@ local plugins = {
     -- clipboard/yank manager
     {
         name = 'AckslD/nvim-neoclip.lua',
-        lazy = { config = function() require 'neoclip'.setup {} end,
-            dependencies = { 'nvim-telescope/telescope.nvim', 'ibhagwan/fzf-lua' } },
+        lazy = {
+            config = function() require 'neoclip'.setup {} end,
+            dependencies = { 'nvim-telescope/telescope.nvim', 'ibhagwan/fzf-lua' }
+        },
     },
 
     -- better ui for diagnostics
     {
         name = "folke/trouble.nvim",
-        lazy = { config = function() require 'trouble'.setup {} end, dependencies = { 'nvim-tree/nvim-web-devicons' } }
+        lazy = {
+            config = function()
+                require 'trouble'.setup { signs = {
+                    error = "",
+                    warning = "",
+                    hint = "",
+                    information = "",
+                    other = ""
+                }, }
+            end,
+            dependencies = { 'nvim-tree/nvim-web-devicons' }
+        }
     },
 
     -- better easymotion
