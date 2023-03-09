@@ -322,7 +322,15 @@ local plugins = {
     -- better easymotion
     {
         name = "phaazon/hop.nvim",
-        lazy = { config = function() require 'hop'.setup() end }
+        lazy = {
+            config = function()
+                -- using homerow hopping is much confortable and faster
+                local querty_home_row = 'asdfghjkl;';
+                -- local colemak_dh_home_row = 'arstgmneio';
+                require 'hop'.setup({ keys = querty_home_row })
+            end,
+            branch = "v2"
+        }
     },
 
     -- better folding (using treesitter, lsp, etc)
