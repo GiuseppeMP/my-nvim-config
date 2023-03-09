@@ -1,4 +1,5 @@
--- import individual LSP configs
+-- lsp settings:
+-- jdtls https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#jdtls
 require "user.plugins.configs.lsp.eslint"
 require "user.plugins.configs.lsp.html"
 require "user.plugins.configs.lsp.jdtls"

@@ -1,6 +1,6 @@
-local on_attach_pyright = function(_client, bufnr)
+local on_attach_pyright = function(client, bufnr)
     -- default on_attach
-    require("user.plugins.configs.lsp.utils.on_attach_options").default()(_client, bufnr)
+    require("user.plugins.configs.lsp.utils.on_attach_options").get { lsp_client = 'pyright' } (client, bufnr)
 
     -- pyright extras
     local bufopts = { noremap = true, silent = false, buffer = bufnr }
@@ -10,5 +10,5 @@ end
 
 require('lspconfig').pyright.setup {
     on_attach = on_attach_pyright,
-    capabilities = require'user.plugins.configs.lsp.utils.capabilities_options'.default
+    capabilities = require 'user.plugins.configs.lsp.utils.capabilities_options'.default
 }

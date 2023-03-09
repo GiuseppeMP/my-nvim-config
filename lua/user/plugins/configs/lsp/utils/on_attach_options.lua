@@ -1,15 +1,21 @@
 local M = {}
 
-local format_callback = function()
-    vim.lsp.buf.format { async = false }
+local format_callback = function(lsp_client, bufnr)
+    vim.lsp.buf.format {
+        buffer = bufnr,
+        async = false,
+        filter = function(client)
+            return client.name == lsp_client
+        end
+    }
 end
 
-M.with_format = function(client, bufnr)
+local create_autocmd_format_on_save = function(client, bufnr, lsp_client)
     if client.server_capabilities.documentFormattingProvider then
         vim.api.nvim_create_autocmd({ "FileWritePre", "BufWritePre" }, {
             group = vim.api.nvim_create_augroup("format_lsp_attach", { clear = true }),
             buffer = bufnr,
-            callback = format_callback
+            callback = function() format_callback(lsp_client, bufnr) end
         })
     end
 end
@@ -19,13 +25,15 @@ M.get = function(params)
         local buf_opts = { noremap = true, silent = false, buffer = bufnr }
 
         -- formatOnSave default true
-        if params.formatOnSave == nil or params.formatOnSave then
-            M.with_format(client, bufnr);
+        if params.format_on_save == nil or params.format_on_save then
+            client.server_capabilities.documentFormattingProvider = true
+            create_autocmd_format_on_save(client, bufnr, params.lsp_client);
         end
 
         -- format default true
         if params.format == nil or params.format then
-            vim.keymap.set('n', '<leader>cf', format_callback, buf_opts)
+            client.server_capabilities.documentFormattingProvider = true
+            vim.keymap.set('n', '<leader>cf', function() format_callback(params.lsp_client, bufnr) end, buf_opts)
         end
 
         -- Disable completion triggered by <c-x><c-o>
@@ -48,14 +56,11 @@ M.get = function(params)
         vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, buf_opts)
         vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, buf_opts)
         vim.keymap.set('n', '<leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
-        buf_opts)
+            buf_opts)
         vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, buf_opts)
     end
 end
 
-
--- lsp default on_attach
-M.default = M.get { format = true, formatOnSave = true }
 
 local border = {
     { "🭽", "FloatBorder" },
