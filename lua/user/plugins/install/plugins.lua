@@ -85,7 +85,7 @@ local plugins = {
     -- { name='vim-airline/vim-airline'},
     -- { name='vim-airline/vim-airline-themes'},
     -- { name='itchyny/lightline.vim'},
-    { name = 'windwp/windline.nvim',         lazy = { config = function() require('wlsample.evil_line') end } },
+    { name = 'windwp/windline.nvim',         lazy = { config = function() require('user.plugins.configs.windline') end } },
 
     -- Plugins for VIM :colorscheme collections
     -- Plugins para temas :colorscheme
