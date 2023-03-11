@@ -49,20 +49,31 @@ end
 -- 	"zig",
 -- }
 
+local border = {
+    { "🭽", "FloatBorder" },
+    { "▔",  "FloatBorder" },
+    { "🭾", "FloatBorder" },
+    { "▕",  "FloatBorder" },
+    { "🭿", "FloatBorder" },
+    { "▁",  "FloatBorder" },
+    { "🭼", "FloatBorder" },
+    { "▏",  "FloatBorder" },
+}
+
 require("nvim-treesitter.parsers").list.xml = {
-	install_info = {
-		url = "https://github.com/Trivernis/tree-sitter-xml",
-		files = { "src/parser.c" },
-		generate_requires_npm = true,
-		branch = "main",
-	},
-	filetype = "xml",
+    install_info = {
+        url = "https://github.com/Trivernis/tree-sitter-xml",
+        files = { "src/parser.c" },
+        generate_requires_npm = true,
+        branch = "main",
+    },
+    filetype = "xml",
 }
 
 configs.setup {
     autotag = {
         enable = true,
-        filetypes = { "html" , "xml" }
+        filetypes = { "html", "xml" }
     },
     enable = true,
     context_commentstring = { enable = true },
@@ -83,12 +94,12 @@ configs.setup {
     textobjects = {
         swap = {
             enable = true,
-            swap_next = {["<leader>xp"] = "@parameter.inner"},
-            swap_previous = {["<leader>xP"] = "@parameter.inner"}
+            swap_next = { ["<leader>xp"] = "@parameter.inner" },
+            swap_previous = { ["<leader>xP"] = "@parameter.inner" }
         },
         lsp_interop = {
             enable = true,
-            border = 'none',
+            border = border,
             peek_definition_code = {
                 ["<leader>pf"] = "@function.outer",
                 ["<leader>pc"] = "@class.outer"
@@ -127,13 +138,13 @@ configs.setup {
             }
         }
     },
-    ensure_installed = "all" , -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-    sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
+    ensure_installed = "all",  -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+    sync_install = false,      -- install languages synchronously (only applied to `ensure_installed`)
     auto_install = true,
-    ignore_install = { "" }, -- List of parsers to ignore installing
+    ignore_install = { "" },   -- List of parsers to ignore installing
     autopairs = { enable = true, },
     highlight = {
-        enable = true, -- false will disable the whole extension
+        enable = true,    -- false will disable the whole extension
         disable = { "" }, -- list of language that will be disabled
         use_languagetree = true,
         additional_vim_regex_highlighting = false,
@@ -152,5 +163,15 @@ configs.setup {
         enable = true,
         extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
         max_file_lines = nil, -- Do not enable for files with more than n lines, int
-    }
+    },
+    -- https://github.com/RRethy/nvim-treesitter-textsubjects
+    textsubjects = {
+        enable = true,
+        prev_selection = ',', -- (Optional) keymap to select the previous selection
+        keymaps = {
+            ['.'] = 'textsubjects-smart',
+            [';'] = 'textsubjects-container-outer',
+            ['i;'] = 'textsubjects-container-inner',
+        },
+    },
 }

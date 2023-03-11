@@ -105,6 +105,11 @@ local plugins = {
         spec = { tag = '0.1.1' }
     },
 
+    -- -- Integration of telescope with native lsp actions
+    -- {
+    --     name = 'gbrlsnchs/telescope-lsp-handlers.nvim',
+    -- },
+
     -- Markdown Preview
     {
         name = 'iamcco/markdown-preview.nvim',
