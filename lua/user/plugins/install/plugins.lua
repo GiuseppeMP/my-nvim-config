@@ -60,7 +60,7 @@ local plugins = {
 
 
     -- Rainbow in Treesitter
-    { name = 'p00f/nvim-ts-rainbow' },
+    { name = 'HiPhish/nvim-ts-rainbow2' },
 
 
     -- close buffers without exit vim or messing layouts
@@ -314,7 +314,7 @@ local plugins = {
                 -- using homerow hopping is much confortable and faster
                 local querty_home_row = 'asdfghjkl;';
                 -- local colemak_dh_home_row = 'arstgmneio';
-                require 'hop'.setup({ keys = querty_home_row })
+                require 'hop'.setup({ keys = querty_home_row .. 'woei' })
             end,
             branch = "v2"
         }
