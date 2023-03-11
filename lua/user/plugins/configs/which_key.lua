@@ -30,13 +30,14 @@ local conf = {
         position = "bottom", -- bottom, top
     },
     layout = {
-        spacing = 6, -- spacing between columns
+        spacing = 8, -- spacing between columns
     },
     hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " },
     icons = {
-        breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
-        separator = "  ", -- symbol used between a key and it's label
-        group = "+",       -- symbol prepended to a group
+        breadcrumb = "»",           -- symbol used in the command line area that shows your active key combo
+        separator = "  ",         -- symbol used between a key and it's label
+        -- group = "+",       -- symbol prepended to a group
+        group = conf.icons.git.added .. ' ' -- symbol prepended to a group
     },
     triggers_blacklist = {
         -- list of mode / prefixes that should never be hooked by WhichKey
@@ -170,18 +171,16 @@ wk.register({
 
 -- [g] goto+
 wk.register({
-    ["g"] = {
-        name = "goto",
-        d = "Go to definition",
-        D = "Go to declaration",
-        i = "Go to implemetion",
-        r = "Go to references",
-        a = { function()
-            vim.cmd(":w")
-            vim.cmd(":A")
-        end, 'Go to tests (Alternate)' },
-        s = { vim.cmd.G, "Go to git status" }
-    },
+    ["gd"] = { "Go to definition" },
+    ["gD"] = { "Go to declaration" },
+    ["gi"] = { "Go to implementation" },
+    ["gr"] = { "Go to references" },
+    ["ga"] = { function()
+        vim.cmd(":w")
+        vim.cmd(":A")
+    end, 'Go to tests (Alternate)' },
+    ["gs"] = { vim.cmd.G, "Go to references" },
+    ["gc"] = { "Comment.." },
 })
 
 -- [m] marks+
