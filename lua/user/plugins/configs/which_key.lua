@@ -51,7 +51,7 @@ wk.setup(conf)
 
 -- [<leader>f] - fzf+
 wk.register({
-        ["<leader>f"] = {
+    ["<leader>f"] = {
         name = "fuzzy finder",
         f = { builtin.find_files, 'Find files' },
         r = { builtin.oldfiles, "Open recent file" },
@@ -73,19 +73,19 @@ wk.register({ ["<F4>"] = { dapui.eval, 'Debug eval' } }, { mode = 'v' })
 
 -- debug normal mode
 wk.register({
-        ["<F1>"] = { dap.toggle_breakpoint, 'Debug toggle breakpoint' },
-        ["<F2>"] = { dap.list_breakpoints, 'Debug toggle breakpoint' },
-        ["<F3>"] = { dap.repl.open, 'Debug repl open' },
-        ["<F5>"] = { dap.continue, 'Debug continue' },
-        ["<F6>"] = { dap.step_into, 'Debug step into' },
-        ["<F7>"] = { dap.step_out, 'Debug step out' },
-        ["<F8>"] = { dap.step_over, 'Debug step over' },
-        ["<F9>"] = { dap.run_last, 'Debug run last' },
+    ["<F1>"] = { dap.toggle_breakpoint, 'Debug toggle breakpoint' },
+    ["<F2>"] = { dap.list_breakpoints, 'Debug toggle breakpoint' },
+    ["<F3>"] = { dap.repl.open, 'Debug repl open' },
+    ["<F5>"] = { dap.continue, 'Debug continue' },
+    ["<F6>"] = { dap.step_into, 'Debug step into' },
+    ["<F7>"] = { dap.step_out, 'Debug step out' },
+    ["<F8>"] = { dap.step_over, 'Debug step over' },
+    ["<F9>"] = { dap.run_last, 'Debug run last' },
 })
 
 -- [<leader>u] - utils
 wk.register({
-        ["<leader>u"] = {
+    ["<leader>u"] = {
         name = "utils",
         t = { vim.cmd.TagbarToggle, 'Toggle tagbar' },
         u = { vim.cmd.UndotreeToggle, 'Show undotree' },
@@ -97,25 +97,25 @@ wk.register({
 
 -- [<leader>h] - harpoon+
 wk.register({
-        ["<leader>h"] = {
+    ["<leader>h"] = {
         name = "harpoon, hop",
         a = { harpoon.mark.add_file, 'Harpoon add mark file' },
         h = { hop.hint_words, 'Hop words' },
         m = { harpoon.ui.toggle_quick_menu, 'Harpoon quick menu' },
-            ['1'] = { function() harpoon.ui.nav_file(1) end, 'Go to harpoon mark 1' },
-            ['2'] = { function() harpoon.ui.nav_file(2) end, 'Go to harpoon mark 2' },
-            ['3'] = { function() harpoon.ui.nav_file(3) end, 'Go to harpoon mark 3' },
-            ['4'] = { function() harpoon.ui.nav_file(4) end, 'Go to harpoon mark 4' },
-            ['5'] = { function() harpoon.ui.nav_file(5) end, 'Go to harpoon mark 5' },
-            ['6'] = { function() harpoon.ui.nav_file(6) end, 'Go to harpoon mark 6' },
-            ['7'] = { function() harpoon.ui.nav_file(7) end, 'Go to harpoon mark 7' },
-            ['8'] = { function() harpoon.ui.nav_file(8) end, 'Go to harpoon mark 8' },
-            ['9'] = { function() harpoon.ui.nav_file(9) end, 'Go to harpoon mark 9' },
+        ['1'] = { function() harpoon.ui.nav_file(1) end, 'Go to harpoon mark 1' },
+        ['2'] = { function() harpoon.ui.nav_file(2) end, 'Go to harpoon mark 2' },
+        ['3'] = { function() harpoon.ui.nav_file(3) end, 'Go to harpoon mark 3' },
+        ['4'] = { function() harpoon.ui.nav_file(4) end, 'Go to harpoon mark 4' },
+        ['5'] = { function() harpoon.ui.nav_file(5) end, 'Go to harpoon mark 5' },
+        ['6'] = { function() harpoon.ui.nav_file(6) end, 'Go to harpoon mark 6' },
+        ['7'] = { function() harpoon.ui.nav_file(7) end, 'Go to harpoon mark 7' },
+        ['8'] = { function() harpoon.ui.nav_file(8) end, 'Go to harpoon mark 8' },
+        ['9'] = { function() harpoon.ui.nav_file(9) end, 'Go to harpoon mark 9' },
     },
 })
 
 wk.register({
-        ["<leader>t"] = {
+    ["<leader>t"] = {
         name = "tests",
         t = { function() neotest.run.run() end, 'Run nearest test' },
         d = { function() neotest.run.run({ strategy = 'dap' }) end, 'Debug nearest test' },
@@ -128,7 +128,7 @@ wk.register({
 })
 
 wk.register({
-        ["<leader>c"] = {
+    ["<leader>c"] = {
         name = "code",
         a = { 'Code actions' },
         f = { 'Code format' },
@@ -136,31 +136,31 @@ wk.register({
 })
 
 wk.register({
-        ['<M-l>'] = { function() nvterm.terminal.toggle 'vertical' end, 'Toggle vertical terminal' },
-        ['<M-j>'] = { function() nvterm.terminal.toggle 'horizontal' end, 'Toggle horizontal terminal' },
-        ['<M-f>'] = { function() nvterm.terminal.toggle 'float' end, 'Toggle float terminal' },
-        ['<A-s>'] = { vim.cmd.write, 'Save buffer' },
-}, { mode = { 't', 'n' } })
+    ['<M-l>'] = { function() nvterm.terminal.toggle 'vertical' end, 'Toggle vertical terminal' },
+    ['<M-j>'] = { function() nvterm.terminal.toggle 'horizontal' end, 'Toggle horizontal terminal' },
+    ['<M-f>'] = { function() nvterm.terminal.toggle 'float' end, 'Toggle float terminal' },
+    ['<M-s>'] = { vim.cmd.write, 'Save buffer' },
+}, { mode = { 't', 'n', 'i' } })
 
 
 wk.register({
-        ["<leader>e"] = { vim.cmd.NvimTreeToggle, 'File explorer' },
-        ["<leader>D"] = { 'Type definitions' },
-        ["<leader>k"] = { 'Signature help' },
-        ["<leader>rn"] = { 'Rename' },
-        ["K"] = { 'Lsp hover' },
-        ["<leader>q"] = { vim.cmd.Bdelete, 'Buffer delete' }
+    ["<leader>e"] = { vim.cmd.NvimTreeToggle, 'File explorer' },
+    ["<leader>D"] = { 'Type definitions' },
+    ["<leader>k"] = { 'Signature help' },
+    ["<leader>rn"] = { 'Rename' },
+    ["K"] = { 'Lsp hover' },
+    ["<leader>q"] = { vim.cmd.Bdelete, 'Buffer delete' }
 })
 
 wk.register({
-        ["d"] = {
+    ["d"] = {
         f = { 'Debug file' },
         n = { 'Debug nearest test' },
     }
 })
 
 wk.register({
-        ["<leader>w"] = {
+    ["<leader>w"] = {
         name = "workspace",
         a = { 'Add workspace folder' },
         r = { 'Remove workspace folder' },
@@ -170,7 +170,7 @@ wk.register({
 
 -- [g] goto+
 wk.register({
-        ["g"] = {
+    ["g"] = {
         name = "goto",
         d = "Go to definition",
         D = "Go to declaration",
@@ -186,13 +186,13 @@ wk.register({
 
 -- [m] marks+
 wk.register({
-        ["m"] = {
+    ["m"] = {
         name = "marks",
     },
 })
 
 wk.register({
-        ["z"] = {
+    ["z"] = {
         name = "folding",
         R = { require('ufo').openAllFolds, 'Open all foldings' },
         M = { require('ufo').closeAllFolds, 'Close all foldings' },
@@ -203,8 +203,8 @@ wk.register({
 vim.g.tmux_navigator_no_mappings = 1
 vim.g.tmux_navigator_save_on_switch = 2
 wk.register({
-        ["<C-k>"] = { vim.cmd.TmuxNavigateUp, 'Tmux navigate up' },
-        ["<C-j>"] = { vim.cmd.TmuxNavigateDown, 'Tmux navigate down' },
-        ["<C-h>"] = { vim.cmd.TmuxNavigateLeft, 'Tmux navigate left' },
-        ["<C-l>"] = { vim.cmd.TmuxNavigateRight, 'Tmux navigate right' },
+    ["<C-k>"] = { vim.cmd.TmuxNavigateUp, 'Tmux navigate up' },
+    ["<C-j>"] = { vim.cmd.TmuxNavigateDown, 'Tmux navigate down' },
+    ["<C-h>"] = { vim.cmd.TmuxNavigateLeft, 'Tmux navigate left' },
+    ["<C-l>"] = { vim.cmd.TmuxNavigateRight, 'Tmux navigate right' },
 })

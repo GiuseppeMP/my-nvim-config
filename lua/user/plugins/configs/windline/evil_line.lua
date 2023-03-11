@@ -30,7 +30,7 @@ basic.vi_mode = {
     name = 'vi_mode',
     hl_colors = colors_mode,
     text = function()
-        return { { '  ', state.mode[2] } }
+        return { { ' 󰅬  ' .. state.mode[1] .. ' ', state.mode[2] } }
     end,
 }
 basic.square_mode = {
@@ -46,6 +46,7 @@ basic.lsp_diagnos = {
         red = { 'red', 'black' },
         yellow = { 'yellow', 'black' },
         blue = { 'blue', 'black' },
+        magenta = { 'magenta', 'black' },
     },
     width = breakpoint_width,
     text = function(bufnr)
@@ -109,14 +110,16 @@ basic.git = {
         green = { 'green', 'black' },
         red = { 'red', 'black' },
         blue = { 'blue', 'black' },
+        magenta = { 'magenta', 'black' },
     },
     width = breakpoint_width,
     text = function(bufnr)
         if git_comps.is_git(bufnr) then
             return {
+                { '  status',                                                    'magenta' },
                 { git_comps.diff_added({ format = '  %s', show_zero = true }),   'green' },
                 { git_comps.diff_removed({ format = '  %s', show_zero = true }), 'red' },
-                { git_comps.diff_changed({ format = ' 柳%s', show_zero = true }),  'blue' },
+                { git_comps.diff_changed({ format = '  %s', show_zero = true }), 'blue' },
             }
         end
         return ''
@@ -181,10 +184,11 @@ local default = {
         basic.square_mode,
         basic.vi_mode,
         basic.file,
+        basic.divider,
+        basic.lsp_name,
         basic.lsp_diagnos,
         basic.divider,
         basic.file_right,
-        basic.lsp_name,
         basic.git,
         { git_comps.git_branch(), { 'magenta', 'black' }, breakpoint_width },
         { ' ',                    hl_list.Black },

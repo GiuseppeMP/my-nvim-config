@@ -175,7 +175,10 @@ local plugins = {
     },
 
     -- Git buffer symbols
-    { name = 'airblade/vim-gitgutter' },
+    -- { name = 'airblade/vim-gitgutter' },
+    {
+        name = 'lewis6991/gitsigns.nvim',
+    },
 
     -- vim8, neovim async interface
     { name = 'skywind3000/asyncrun.vim' },
@@ -286,8 +289,7 @@ local plugins = {
 
     -- better lsp progress ui
     {
-        name = 'j-hui/fidget.nvim',
-        lazy = { config = function() require 'fidget'.setup {} end },
+        name = 'j-hui/fidget.nvim'
     },
 
     -- better nvim ui
