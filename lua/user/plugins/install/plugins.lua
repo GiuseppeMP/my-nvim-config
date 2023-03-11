@@ -43,6 +43,9 @@ local plugins = {
     -- text objects treesitter
     { name = 'nvim-treesitter/nvim-treesitter-textobjects' },
 
+    -- text objects improved by subjects
+    { name = 'RRethy/nvim-treesitter-textsubjects' },
+
     -- refactor module for tresitter
     { name = 'nvim-treesitter/nvim-treesitter-refactor' },
 
@@ -59,36 +62,18 @@ local plugins = {
     -- Rainbow in Treesitter
     { name = 'p00f/nvim-ts-rainbow' },
 
-    -- bufferline icons
-    -- { name='kyazdani42/nvim-web-devicons'},
 
     -- close buffers without exit vim or messing layouts
-    -- fechar buffers sem perder config de layout ou acabar saindo do nvim sem querer
     { name = 'moll/vim-bbye' },
 
     -- Plugin for buffers as tabs
-    -- Transforma os buffers em abas
     {
         name = 'akinsho/bufferline.nvim',
         spec = { tag = 'v3.5.0' }
     },
-
-    -- Rainbow brackers and parentheses
-    -- Chaves e parenteses arco-iris
-    {
-        name = 'frazrepo/vim-rainbow',
-        lazy = { init = function() vim.g.rainbow_active = 1 end },
-    },
-
-    -- Plugins for beauty status bar
-    -- Status bar personalizada
-    -- { name='vim-airline/vim-airline'},
-    -- { name='vim-airline/vim-airline-themes'},
-    -- { name='itchyny/lightline.vim'},
     { name = 'windwp/windline.nvim',         lazy = { config = function() require('user.plugins.configs.windline') end } },
 
     -- Plugins for VIM :colorscheme collections
-    -- Plugins para temas :colorscheme
     { name = 'rafi/awesome-vim-colorschemes' },
     { name = 'artanikin/vim-synthwave84' },
     { name = 'ryanoasis/vim-devicons' },
