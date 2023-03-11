@@ -52,9 +52,9 @@ basic.lsp_diagnos = {
     text = function(bufnr)
         if lsp_comps.check_lsp(bufnr) then
             return {
-                { lsp_comps.lsp_error({ format = '  %s', show_zero = true }),   'red' },
-                { lsp_comps.lsp_warning({ format = '  %s', show_zero = true }), 'yellow' },
-                { lsp_comps.lsp_hint({ format = '  %s', show_zero = true }),    'blue' },
+                { lsp_comps.lsp_error({ format = ' ' .. conf.signs.error .. ' %s', show_zero = true }),  'red' },
+                { lsp_comps.lsp_warning({ format = ' ' .. conf.signs.warn .. ' %s', show_zero = true }), 'yellow' },
+                { lsp_comps.lsp_hint({ format = ' ' .. conf.signs.hint .. ' %s', show_zero = true }),    'blue' },
             }
         end
         return ''
@@ -72,6 +72,8 @@ basic.file = {
             return {
                 { b_components.cache_file_size(),                      'default' },
                 { ' ',                                                 '' },
+                { b_components.cache_file_icon({ default = '' }),   'magenta' },
+                { ' ',                                                 '' },
                 { b_components.cache_file_name('[No Name]', 'unique'), 'magenta' },
                 { b_components.line_col_lua,                           'white' },
                 { b_components.progress_lua,                           '' },
@@ -82,6 +84,7 @@ basic.file = {
             return {
                 { b_components.cache_file_size(),                      'default' },
                 { ' ',                                                 '' },
+                { b_components.cache_file_icon({ default = '' }),   'default' },
                 { b_components.cache_file_name('[No Name]', 'unique'), 'magenta' },
                 { ' ',                                                 '' },
                 { b_components.file_modified(' '),                  'magenta' },
@@ -111,15 +114,16 @@ basic.git = {
         red = { 'red', 'black' },
         blue = { 'blue', 'black' },
         magenta = { 'magenta', 'black' },
+        yellow = { 'yellow', 'black' },
     },
     width = breakpoint_width,
     text = function(bufnr)
         if git_comps.is_git(bufnr) then
             return {
-                { '  status',                                                    'magenta' },
-                { git_comps.diff_added({ format = '  %s', show_zero = true }),   'green' },
-                { git_comps.diff_removed({ format = '  %s', show_zero = true }), 'red' },
-                { git_comps.diff_changed({ format = '  %s', show_zero = true }), 'blue' },
+                { '  status',                                                                                 'magenta' },
+                { git_comps.diff_removed({ format = ' ' .. conf.icons.git.removed .. ' %s', show_zero = true }), 'red' },
+                { git_comps.diff_changed({ format = ' ' .. conf.icons.git.changed .. ' %s', show_zero = true }), 'yellow' },
+                { git_comps.diff_added({ format = ' ' .. conf.icons.git.added .. ' %s', show_zero = true }),     'blue' },
             }
         end
         return ''

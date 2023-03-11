@@ -171,8 +171,6 @@ local plugins = {
     -- tmux <-> neovim navigation using C-l,k,j,h
     { name = 'christoomey/vim-tmux-navigator' },
 
-    -- { name='arafatamim/trouble.nvim'}, --fixme
-
     -- Markdown preview
     { name = 'toppair/peek.nvim' },
 
@@ -295,11 +293,11 @@ local plugins = {
         lazy = {
             config = function()
                 require 'trouble'.setup { signs = {
-                    error = "",
-                    warning = "",
-                    hint = "",
-                    information = "",
-                    other = ""
+                    error = conf.signs.error,
+                    warning = conf.signs.warn,
+                    hint = conf.signs.hint,
+                    information = conf.signs.info,
+                    other = conf.signs.other
                 }, }
             end,
             dependencies = { 'nvim-tree/nvim-web-devicons' }
