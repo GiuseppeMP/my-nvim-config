@@ -20,6 +20,7 @@ require('mason-tool-installer').setup {
         { 'eslint-lsp',                 auto_update = true },
         { 'yaml-language-server',       auto_update = true },
         { 'ansible-language-server',    auto_update = true },
+        { 'json-lsp',                   auto_update = true },
     },
     auto_update = false,
     run_on_start = true,
