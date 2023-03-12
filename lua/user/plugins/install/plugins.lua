@@ -24,10 +24,6 @@ local plugins = {
     -- Fonts powerline para VIM
     { name = 'powerline/powerline-fonts' },
 
-    -- Powerfull navigation with <Leader><Leader>(Motion)
-    -- Navegacao melhorada atraves de <Leader><Leader>(Motion)
-    { name = 'easymotion/vim-easymotion' },
-
     -- Fast comments using gcc or v(selection) gcc
     -- Comentarios rapidos atraves de gcc ou v(selecao)gcc
     { name = "tpope/vim-commentary" },
@@ -35,7 +31,6 @@ local plugins = {
     -- parser, formatter, better syntax highlight
     {
         name = 'nvim-treesitter/nvim-treesitter',
-        plug = { ['do'] = vim.fn[':TSUpdate'] },
         packer = { run = ':TSUpdate' },
         lazy = { build = ':TSUpdate' }
     },
@@ -58,10 +53,8 @@ local plugins = {
     -- auto close and auto rename xml, htmls tags
     { name = 'windwp/nvim-ts-autotag' },
 
-
     -- Rainbow in Treesitter
     { name = 'HiPhish/nvim-ts-rainbow2' },
-
 
     -- close buffers without exit vim or messing layouts
     { name = 'moll/vim-bbye' },
@@ -79,11 +72,11 @@ local plugins = {
     { name = 'ryanoasis/vim-devicons' },
     { name = 'Mofiqul/dracula.nvim' },
 
+    -- The awesome coconut oil rose-pine
     {
         name = 'rose-pine/neovim',
         lazy = { name = 'rose-pine-neovim' },
         packer = { as = 'rose-pine-neovim' },
-        plug = { as = 'rose-pine-neovim' }
     },
 
     -- Trigger a highlight in the appropriate direction when pressing these keys: f, F, t, T
@@ -91,9 +84,6 @@ local plugins = {
         name = 'unblevable/quick-scope',
         lazy = { lazy = false, init = function() vim.g.qs_highlight_on_keys = { 'f', 'F', 't', 'T' } end }
     },
-
-    -- File Explorer
-    { name = 'scrooloose/nerdtree' },
 
     -- Git commands cli by :G (command)
     -- Interface git atraves de :G (comando)
@@ -105,22 +95,15 @@ local plugins = {
         spec = { tag = '0.1.1' }
     },
 
-    -- -- Integration of telescope with native lsp actions
-    -- {
-    --     name = 'gbrlsnchs/telescope-lsp-handlers.nvim',
-    -- },
-
     -- Markdown Preview
     {
         name = 'iamcco/markdown-preview.nvim',
-        plug = { ['do'] = 'cd app && yarn install' },
         packer = { run = 'cd app && yarn install', cmd = 'MarkdownPreview' },
         lazy = { build = 'cd app && yarn install', cmd = 'MarkdownPreview' }
     },
 
     -- Tagbar outline
     { name = 'preservim/tagbar' },
-
 
     -- Collection of plugins for tests, Debug and TDD
     { name = 'nvim-lua/plenary.nvim' },
@@ -132,21 +115,14 @@ local plugins = {
     { name = 'kana/vim-vspec' },
     -- fix cursor in tests/debug
     { name = 'antoinemadec/FixCursorHold.nvim' },
-    -- go to test file
+    -- go to test file (alernate)
     { name = 'tpope/vim-projectionist' },
-    -- debug
-    -- { name='puremourning/vimspector'},
-
 
     --Plug for mark files and terminals on the fly, to avoid repeat commands like
     --bnext, bprev, or fzf
-    --Plug para marcar arquivos e terminais conforme precisar, para evitar uso
-    --execesssivo de commandos como bnext, bprev e FZF
     { name = 'ThePrimeagen/harpoon' },
 
-
     -- Plug for smoothie ctrl-d and ctrl-up scrolling
-    -- Plugin para tornar ctrl-d e ctrl-u mais coconut oil
     { name = 'psliwka/vim-smoothie' },
 
     -- Plug for float windows like fzf but for anything and vim-test
@@ -164,8 +140,7 @@ local plugins = {
         }
     },
 
-    -- Git buffer symbols
-    -- { name = 'airblade/vim-gitgutter' },
+    -- Git buffersigns
     {
         name = 'lewis6991/gitsigns.nvim',
     },
@@ -179,11 +154,8 @@ local plugins = {
     -- Markdown preview
     { name = 'toppair/peek.nvim' },
 
-    -- toggle custom values
+    -- toggle C-a/x custom values
     { name = 'nat-418/boole.nvim' },
-
-    -- display images in buffer
-    { name = 'edluffy/hologram.nvim' },
 
     -- Mason tools, LSPs, Debug Servers
     { name = 'williamboman/mason.nvim' },
@@ -194,14 +166,12 @@ local plugins = {
     { name = 'mfussenegger/nvim-jdtls' },
     { name = 'jayp0521/mason-nvim-dap.nvim' },
     { name = 'rcarriga/nvim-dap-ui' },
-
     { name = 'jose-elias-alvarez/null-ls.nvim' },
     { name = 'mfussenegger/nvim-dap-python' },
-
     -- lsp kind icons
     { name = 'onsails/lspkind.nvim' },
 
-    -- Debug tests python
+    -- Debug adapter for tests python
     { name = 'nvim-neotest/neotest-python' },
 
     -- File explorer
@@ -230,7 +200,6 @@ local plugins = {
     { name = 'hrsh7th/cmp-path' },     -- path completions
     { name = 'hrsh7th/cmp-cmdline' },  -- cmdline completions
     { name = 'hrsh7th/nvim-cmp' },     -- completion plugin
-
     -- cmp vsnip users
     {
         name = 'hrsh7th/cmp-vsnip',
@@ -248,24 +217,19 @@ local plugins = {
             config = lazy_rtp
         }
     },
-
     -- cmp  luasnip users
     {
         name = 'L3MON4D3/LuaSnip',
         packer = { tag = 'v1.2.*', run = "make install_jsregexp" },
         lazy = { tag = 'v1.2.1', build = "make install_jsregexp" }
     },
-
     { name = 'saadparwaiz1/cmp_luasnip' },
-
     -- cmp ultisnips users
     { name = 'SirVer/ultisnips' },
     { name = 'quangnguyen30192/cmp-nvim-ultisnips' },
-
     -- cmp snippy users
     { name = 'dcampos/nvim-snippy' },
     { name = 'dcampos/cmp-snippy' },
-
     -- cmp snippet collections
     { name = "rafamadriz/friendly-snippets" },
 
@@ -342,18 +306,18 @@ local plugins = {
         },
     },
 
+    -- zoxide (smart cd) integration
     {
         name = 'jvgrootveld/telescope-zoxide',
         lazy = { dependencies = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' } }
     },
 
-
+    -- markdown lint/sintax/hi
     {
         name = 'preservim/vim-markdown',
         lazy = { dependencies = { 'godlygeek/tabular' } }
     },
 }
-
 
 
 return plugins
