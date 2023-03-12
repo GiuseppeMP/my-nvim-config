@@ -58,10 +58,16 @@ _G.conf.signs = {
 
 -- icons used in general like files, statusline, decorators etc.
 _G.conf.icons = {
+    question = '',
+    check = '',
+    skip = '󰒭',
+    check_fa = '',
+    repeat_fa = '',
+    remove_fa = '',
     pencil = '',
-        git = {
-            removed = '',
-            changed = '',
-            added = '',
-   }
+    git = {
+        removed = '',
+        changed = '',
+        added = '',
+    }
 }
