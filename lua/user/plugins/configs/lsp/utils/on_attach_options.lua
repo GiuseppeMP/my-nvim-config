@@ -5,7 +5,7 @@ local builtin = require 'telescope.builtin'
 local format_callback = function(lsp_client, bufnr)
     vim.lsp.buf.format {
         buffer = bufnr,
-        async = false,
+        async = true,
         filter = function(client)
             return client.name == lsp_client
         end

@@ -31,10 +31,10 @@ require("telescope").setup {
         lsp_incoming_calls = {
             theme = "ivy",
         },
-        lsp_outgoing_calls= {
+        lsp_outgoing_calls = {
             theme = "ivy",
         },
-        lsp_type_definitions= {
+        lsp_type_definitions = {
             theme = "ivy",
         },
     }

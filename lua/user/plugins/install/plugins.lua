@@ -317,6 +317,9 @@ local plugins = {
         name = 'preservim/vim-markdown',
         lazy = { dependencies = { 'godlygeek/tabular' } }
     },
+    {
+        name = 'stevearc/overseer.nvim',
+    }
 }
 
 

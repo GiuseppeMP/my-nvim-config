@@ -34,8 +34,8 @@ local conf = {
     },
     hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " },
     icons = {
-        breadcrumb = "»",           -- symbol used in the command line area that shows your active key combo
-        separator = "  ",         -- symbol used between a key and it's label
+        breadcrumb = "»",                  -- symbol used in the command line area that shows your active key combo
+        separator = "  ",                -- symbol used between a key and it's label
         -- group = "+",       -- symbol prepended to a group
         group = conf.icons.git.added .. ' ' -- symbol prepended to a group
     },
@@ -53,7 +53,7 @@ wk.setup(conf)
 -- [<leader>f] - fzf+
 wk.register({
     ["<leader>f"] = {
-        name = "fuzzy finder",
+        name = "fuzzy finder/telescope",
         f = { builtin.find_files, 'Find files' },
         r = { builtin.oldfiles, "Open recent file" },
         n = { "<cmd>enew<cr>", "New file" },
@@ -65,6 +65,8 @@ wk.register({
         m = { function() vim.cmd(":Telescope harpoon marks") end, "Harpoon marks" },
         s = { function() builtin.grep_string({ search = vim.fn.input("Greg > ") }) end, 'Search ...' },
         v = { function() require 'neoclip.fzf' () end, 'Clipboard history' },
+        t = { vim.cmd.OverseerRun, 'Show tasks' },
+        o = { vim.cmd.OverseerOpen, 'Show tasks output' },
     },
 })
 
