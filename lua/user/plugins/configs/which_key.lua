@@ -197,6 +197,8 @@ wk.register({
         name = "folding",
         R = { require('ufo').openAllFolds, 'Open all foldings' },
         M = { require('ufo').closeAllFolds, 'Close all foldings' },
+        r = { require('ufo').openFoldsExecptKinds, 'Open folding except kinds' },
+        m = { require('ufo').closeFoldsWith, 'Close folds with' },
     },
 })
 

@@ -2,10 +2,10 @@ local M = {}
 
 local builtin = require 'telescope.builtin'
 
-local format_callback = function(lsp_client, bufnr)
+local format_callback = function(lsp_client, bufnr, async)
     vim.lsp.buf.format {
         buffer = bufnr,
-        async = true,
+        async = async,
         filter = function(client)
             return client.name == lsp_client
         end
@@ -17,7 +17,7 @@ local create_autocmd_format_on_save = function(client, bufnr, lsp_client)
         vim.api.nvim_create_autocmd({ "FileWritePre", "BufWritePre" }, {
             group = vim.api.nvim_create_augroup("format_lsp_attach", { clear = true }),
             buffer = bufnr,
-            callback = function() format_callback(lsp_client, bufnr) end
+            callback = function() format_callback(lsp_client, bufnr, false) end
         })
     end
 end
@@ -35,7 +35,7 @@ M.get = function(params)
         -- format default true
         if params.format == nil or params.format then
             client.server_capabilities.documentFormattingProvider = true
-            vim.keymap.set('n', '<leader>cf', function() format_callback(params.lsp_client, bufnr) end, buf_opts)
+            vim.keymap.set('n', '<leader>cf', function() format_callback(params.lsp_client, bufnr, true) end, buf_opts)
         end
 
         -- Disable completion triggered by <c-x><c-o>

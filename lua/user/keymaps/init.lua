@@ -1,4 +1,4 @@
-local n,v,x,i = utils.keymap.n, utils.keymap.v,utils.keymap.x, utils.keymap.i
+local n, v, x, i = utils.keymap.n, utils.keymap.v, utils.keymap.x, utils.keymap.i
 
 -- Remap space as leader key --
 n("<SPACE>", "<Nop>")
@@ -49,6 +49,7 @@ n('J', 'mzJ`z')
 n('k', 'kzz')
 n('j', 'jzz')
 
+n('<CR>', 'i<CR><ESC>')
 
 -- Create breakpoints to not lost all the stuff in the undo
 -- Criando breakpoints durante insert mode para n perder textos no undo
