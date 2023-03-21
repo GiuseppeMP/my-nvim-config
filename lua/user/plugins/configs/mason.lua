@@ -24,6 +24,7 @@ require('mason-tool-installer').setup {
         { 'css-lsp',                         auto_update = true },
         { 'docker-compose-language-service', auto_update = true },
         { 'dockerfile-language-server',      auto_update = true },
+        { 'gopls',                           auto_update = true },
     },
     auto_update = false,
     run_on_start = true,
