@@ -1,4 +1,4 @@
-require ("user.plugins.configs.dracula")
+require("user.plugins.configs.dracula")
 -- local g = vim.g
 
 -- vim.cmd[[colorscheme happy_hacking]]
@@ -11,3 +11,9 @@ vim.cmd('colorscheme rose-pine')
 -- vim.cmd[[colorscheme onedark]]
 -- g.onedark_terminal_italics = 1
 -- g.onedark_termcolors = 256
+--
+
+-- fix xml sintax
+vim.cmd [[hi! link Function Label ]]
+vim.cmd [[hi! link Identifier Function ]]
+vim.cmd [[hi! link xmlTagN Function ]]

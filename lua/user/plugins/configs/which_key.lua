@@ -150,6 +150,7 @@ wk.register({
     ["<leader>e"] = { vim.cmd.NvimTreeToggle, 'File explorer' },
     ["<leader>D"] = { 'Type definitions' },
     ["<leader>k"] = { 'Signature help' },
+    ["<leader>xw"] = { "wbdf elp", 'Swap two words separated by space' },
     ["<leader>rn"] = { 'Rename' },
     ["K"] = { 'Lsp hover' },
     ["<leader>q"] = { vim.cmd.Bdelete, 'Buffer delete' }
@@ -210,4 +211,13 @@ wk.register({
     ["<C-j>"] = { vim.cmd.TmuxNavigateDown, 'Tmux navigate down' },
     ["<C-h>"] = { vim.cmd.TmuxNavigateLeft, 'Tmux navigate left' },
     ["<C-l>"] = { vim.cmd.TmuxNavigateRight, 'Tmux navigate right' },
+})
+
+
+
+wk.register({
+    ["<leader>d"] = {
+        h = { vim.cmd(":set statusline=%{synIDattr(synIDtrans(synID(line('.'),col('.'),1)),'name')}"),
+            "Status line highlight cursor debug" }
+    }
 })
