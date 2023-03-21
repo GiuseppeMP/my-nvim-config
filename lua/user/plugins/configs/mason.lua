@@ -21,6 +21,7 @@ require('mason-tool-installer').setup {
         { 'yaml-language-server',       auto_update = true },
         { 'ansible-language-server',    auto_update = true },
         { 'json-lsp',                   auto_update = true },
+        { 'css-lsp',                    auto_update = true },
     },
     auto_update = false,
     run_on_start = true,

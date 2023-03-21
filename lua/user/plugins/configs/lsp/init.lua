@@ -1,6 +1,7 @@
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 -- lsp settings:
 require "user.plugins.configs.lsp.ansiblels"
+require "user.plugins.configs.lsp.cssls"
 require "user.plugins.configs.lsp.eslint"
 require "user.plugins.configs.lsp.html"
 require "user.plugins.configs.lsp.jdtls"
