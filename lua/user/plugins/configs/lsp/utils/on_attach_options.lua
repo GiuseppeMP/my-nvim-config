@@ -2,6 +2,11 @@ local M = {}
 
 local builtin = require 'telescope.builtin'
 
+
+---function format
+---@param lsp_client string the name of the lsp_client, eg: jdtls, lua_ls, etc.
+---@param bufnr number id of the buffer
+---@param async boolean if it'll execute async
 local format_callback = function(lsp_client, bufnr, async)
     vim.lsp.buf.format {
         buffer = bufnr,
@@ -12,6 +17,10 @@ local format_callback = function(lsp_client, bufnr, async)
     }
 end
 
+---autocmd to format on save
+---@param client any
+---@param bufnr number
+---@param lsp_client string
 local create_autocmd_format_on_save = function(client, bufnr, lsp_client)
     if client.server_capabilities.documentFormattingProvider then
         vim.api.nvim_create_autocmd({ "FileWritePre", "BufWritePre" }, {
@@ -22,6 +31,9 @@ local create_autocmd_format_on_save = function(client, bufnr, lsp_client)
     end
 end
 
+---return on_attach_function configured based on @param params
+-- @param params table
+---@return function
 M.get = function(params)
     return function(client, bufnr)
         local buf_opts = { noremap = true, silent = false, buffer = bufnr }

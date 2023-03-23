@@ -11,6 +11,7 @@ require "user.plugins.configs.lsp.jsonls"
 require "user.plugins.configs.lsp.lemminx"
 require "user.plugins.configs.lsp.lua_ls"
 require "user.plugins.configs.lsp.pyright"
+require "user.plugins.configs.lsp.terraformls"
 require "user.plugins.configs.lsp.tsserver"
 require "user.plugins.configs.lsp.yamlls"
 
