@@ -71,3 +71,12 @@ _G.conf.icons = {
         added = '',
     }
 }
+
+_G.utils.table_contains = function(tbl, element)
+    if(tbl == nil) then return false end
+    for _, value in pairs(tbl) do
+        if string.match(value, element) then
+            return true
+        end
+    end
+end

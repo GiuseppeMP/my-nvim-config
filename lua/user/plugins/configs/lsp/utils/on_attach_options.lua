@@ -8,13 +8,20 @@ local builtin = require 'telescope.builtin'
 ---@param bufnr number id of the buffer
 ---@param async boolean if it'll execute async
 local format_callback = function(lsp_client, bufnr, async)
-    vim.lsp.buf.format {
-        buffer = bufnr,
-        async = async,
-        filter = function(client)
-            return client.name == lsp_client
-        end
-    }
+
+    -- add null_ls formatting support
+    local null_ls_formatting_support = { 'pyright' }
+    if (utils.table_contains(null_ls_formatting_support, lsp_client)) then
+        vim.lsp.buf.format()
+    else
+        vim.lsp.buf.format {
+            buffer = bufnr,
+            async = async,
+            filter = function(client)
+                return client.name == lsp_client
+            end
+        }
+    end
 end
 
 ---autocmd to format on save

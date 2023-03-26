@@ -122,6 +122,9 @@ local plugins = {
     --bnext, bprev, or fzf
     { name = 'ThePrimeagen/harpoon' },
 
+    -- Refactoring book by Martin Fowler -- disable due nvimtree width issue
+    -- { name = 'ThePrimeagen/refactoring.nvim' },
+
     -- Plug for smoothie ctrl-d and ctrl-up scrolling
     { name = 'psliwka/vim-smoothie' },
 

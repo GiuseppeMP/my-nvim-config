@@ -10,6 +10,7 @@ require('mason').setup({
 
 require('mason-tool-installer').setup {
     ensure_installed = {
+        -- lsps
         { 'jdtls',                           auto_update = true },
         { 'pyright',                         auto_update = true },
         { 'lua-language-server',             auto_update = true },
@@ -26,8 +27,16 @@ require('mason-tool-installer').setup {
         { 'dockerfile-language-server',      auto_update = true },
         { 'gopls',                           auto_update = true },
         { 'terraform-ls',                    auto_update = true },
+        -- linters
+        { 'proselint',                       auto_update = true },
+        { 'ltex-ls',                         auto_update = true },
+        { 'marksman',                        auto_update = true },
+        { 'flake8',                          auto_update = true },
+        { 'autopep8',                        auto_update = true },
+        { 'pydocstyle',                      auto_update = true },
+        { 'pylint',                          auto_update = true },
     },
-    auto_update = false,
+    auto_update = true,
     run_on_start = true,
     start_delay = 3000, -- 3 second delay
 }
