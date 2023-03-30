@@ -322,6 +322,17 @@ local plugins = {
     },
     {
         name = 'stevearc/overseer.nvim',
+    },
+    {
+        name = "ellisonleao/carbon-now.nvim",
+        lazy = {
+            cmd = "CarbonNow",
+            config = function()
+                require('carbon-now').setup(
+                    { open_cmd = conf.so.is_mac and "open" or "xdg-open" }
+                )
+            end
+        }
     }
 }
 

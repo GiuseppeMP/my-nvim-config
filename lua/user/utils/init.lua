@@ -73,10 +73,21 @@ _G.conf.icons = {
 }
 
 _G.utils.table_contains = function(tbl, element)
-    if(tbl == nil) then return false end
+    if (tbl == nil) then return false end
     for _, value in pairs(tbl) do
         if string.match(value, element) then
             return true
         end
     end
 end
+
+local uname = vim.loop.os_uname()
+local sysname = uname.sysname
+
+_G.conf.so = {
+    sysname = sysname,
+    is_mac = sysname == 'Darwin',
+    is_linux = sysname == 'Linux',
+    is_windows = sysname:find 'Windows' and true or false,
+    is_wsl = uname.release:find 'Microsoft' and true or false
+}

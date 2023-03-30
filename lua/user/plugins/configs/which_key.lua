@@ -98,6 +98,8 @@ wk.register({
     },
 })
 
+wk.register({ ["<leader>uc"] = { function() vim.cmd(":CarbonNow") end, 'Create code snippet image' } }, { mode = 'v' })
+
 -- [<leader>h] - harpoon+
 wk.register({
     ["<leader>h"] = {
