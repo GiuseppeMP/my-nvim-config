@@ -2,25 +2,29 @@ local g = vim.g
 
 g.projectionist_heuristics = {
     -- activation in ruby
-    [ "etc/rbenv.d/|bin/rbenv-*" ] = {
+    ["etc/rbenv.d/|bin/rbenv-*"] = {
         -- projections for ruby
-        [ "bin/rbenv-*" ] = {
-            type= "command",
+        ["bin/rbenv-*"] = {
+            type = "command",
             template = { "#!/usr/bin/env bash" },
         },
-        [ "etc/rbenv.d/*.bash" ] = {type= "hook"}
+        ["etc/rbenv.d/*.bash"] = { type = "hook" }
     },
     -- activation in java projects
-    [ 'pom.xml|build.gradle|settings.gradle'] = {
+    ['pom.xml|build.gradle|settings.gradle'] = {
 
         -- projections for java
-        [ 'src/main/java/*.java' ] = {
-            type= "source",
-            alternate= "src/test/java/{}Test.java"
+        ['src/main/java/*.java'] = {
+            type = "source",
+            alternate = { "src/test/java/{}Test.java", "src/test/java/{}IT.java" },
         },
-        [ 'src/test/java/*Test.java' ] = {
-            type= "source",
-            alternate= "src/main/java/{}.java"
+        ['src/test/java/*Test.java'] = {
+            type = "source",
+            alternate = "src/main/java/{}.java"
+        },
+        ['src/test/java/*IT.java'] = {
+            type = "source",
+            alternate = "src/main/java/{}.java"
         }
     },
     -- activation in javascript/typescript
