@@ -4,5 +4,10 @@ local lspconfig = require 'lspconfig'
 
 lspconfig.ltex.setup {
     on_attach = on_attach_options.get { lsp_client = 'ltex' },
-    capabilities = capabilities_options.default
+    capabilities = capabilities_options.default,
+    settings = {
+        ltex = {
+            language = { 'en-US', 'pt-BR' },
+        }
+    }
 }
