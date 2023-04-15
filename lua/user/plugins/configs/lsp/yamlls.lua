@@ -10,6 +10,9 @@ lspconfig.yamlls.setup {
         redhat = {
             telemetry = {
                 enabled = false
+            },
+            yaml = {
+                keyOrdering = true
             }
         }
     }
