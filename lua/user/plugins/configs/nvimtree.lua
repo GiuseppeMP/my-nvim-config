@@ -1,22 +1,19 @@
-local g = vim.g -- For the globals options
-
--- disable netrw at the very start of your init.lua (strongly advised)
-g.loaded_netrw = 1
-g.loaded_netrwPlugin = 1
-
 local keys_list = {
-    { key = { "l", "<2-LeftMouse>" }, action = "edit"},
-    { key = "<C-\\>", action = "vsplit" },
-    { key = "<C--", action = "split" },
-    { key = "<C-t>", action = "tabnew" },
-    { key = { "<C-]>", "<2-RightMouse>" },    action = "cd" },
+    { key = { "l", "<2-LeftMouse>" },      action = "edit" },
+    { key = "<C-v>",                       action = "vsplit" },
+    { key = "<C-s",                        action = "split" },
+    { key = "<C-t>",                       action = "tabnew" },
+    { key = { "<C-]>", "<2-RightMouse>" }, action = "cd" },
 
 }
 
 -- :help nvim-tree-setup
-require'nvim-tree'.setup {
+require 'nvim-tree'.setup {
     sort_by = "case_sensitive",
     sync_root_with_cwd = true,
+    git = {
+        ignore = false
+    },
     diagnostics = {
         enable = true,
         show_on_dirs = true,
@@ -60,6 +57,16 @@ require'nvim-tree'.setup {
         ignore_list = {},
     },
 }
+
+-- Always open nvimtree
+local function open_nvim_tree()
+    -- open the tree
+    require("nvim-tree.api").tree.open()
+end
+
+--- Open at startup
+vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+
 -- BEGIN_DEFAULT_MAPPINGS for easy access/reminder
 -- { key = { "<CR>", "o", "<2-LeftMouse>" }, action = "edit" },
 -- { key = "<C-e>",                          action = "edit_in_place" },
@@ -111,4 +118,3 @@ require'nvim-tree'.setup {
 -- { key = "m",                              action = "toggle_mark" },
 -- { key = "bmv",                            action = "bulk_move" },
 -- }
-
