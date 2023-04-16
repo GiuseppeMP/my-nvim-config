@@ -42,7 +42,12 @@ local function get_mapping()
             i = cmp.mapping.abort(),
             c = cmp.mapping.close(),
         },
-        ['<CR>'] = cmp.mapping.confirm({ select = false }),
+        -- ['<CR>'] = cmp.mapping.confirm({ select = false }),
+        ["<CR>"] = cmp.mapping.confirm({
+            -- this is the important line
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = false,
+        }),
         ["<Tab>"] = cmp.mapping(function(fallback)
             if luasnip.expand_or_jumpable() then
                 luasnip.expand_or_jump()
@@ -65,6 +70,7 @@ end
 local function get_sources()
     return cmp.config.sources(
         {
+            { name = "copilot",  group_index = 2 },
             { name = 'nvim_lsp' },
             { name = 'vsnip' },     -- For vsnip users.
             { name = 'luasnip' },   -- For luasnip users.
@@ -83,8 +89,9 @@ local function get_format()
     return {
         fields = { "kind", "abbr", "menu" },
         format = lspkind.cmp_format({
+            symbol_map = { Copilot = "" },
             mode = 'symbol',       -- show only symbol annotations
-            maxwidth = 50,         -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+            max_width = 50,        -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
             ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
         }),
     }
@@ -103,5 +110,23 @@ cmp.setup({
     confirm_opts = {
         behavior = cmp.ConfirmBehavior.Replace,
         select = true,
+    },
+    sorting = {
+        priority_weight = 2,
+        comparators = {
+            require("copilot_cmp.comparators").prioritize,
+
+            -- Below is the default comparitor list and order for nvim-cmp
+            cmp.config.compare.offset,
+            -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
+            cmp.config.compare.exact,
+            cmp.config.compare.score,
+            cmp.config.compare.recently_used,
+            cmp.config.compare.locality,
+            cmp.config.compare.kind,
+            cmp.config.compare.sort_text,
+            cmp.config.compare.length,
+            cmp.config.compare.order,
+        },
     },
 })
