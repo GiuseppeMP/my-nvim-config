@@ -12,7 +12,7 @@ lspconfig.yamlls.setup {
                 enabled = false
             },
             yaml = {
-                keyOrdering = true
+                keyOrdering = false
             }
         }
     }
