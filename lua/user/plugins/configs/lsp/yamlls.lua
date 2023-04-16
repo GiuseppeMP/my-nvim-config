@@ -11,9 +11,11 @@ lspconfig.yamlls.setup {
             telemetry = {
                 enabled = false
             },
-            yaml = {
-                keyOrdering = false
-            }
+        },
+        yaml = {
+            keyOrdering = false
         }
-    }
+    },
+    filetypes = { 'yaml', 'yml', 'yaml.docker-compose' }
+
 }
