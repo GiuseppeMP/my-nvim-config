@@ -6,31 +6,37 @@ vim.g.tmux_navigator_save_on_switch = 2
 
 require "user.plugins.install"
 
--- configs modules
-require "user.plugins.configs.boole"
-require "user.plugins.configs.bufferline"
-require "user.plugins.configs.cmp"
-require "user.plugins.configs.dap"
-require "user.plugins.configs.dracula"
-require "user.plugins.configs.dressing"
-require "user.plugins.configs.fidget"
-require "user.plugins.configs.gitsigns"
-require "user.plugins.configs.harpoon"
-require "user.plugins.configs.hop"
-require "user.plugins.configs.mason"
-require "user.plugins.configs.neotest"
-require "user.plugins.configs.null_ls"
-require "user.plugins.configs.nvimtree"
-require "user.plugins.configs.nvterm"
-require "user.plugins.configs.projectionist"
-require "user.plugins.configs.rose_pine"
-require "user.plugins.configs.startup_nvim"
-require "user.plugins.configs.overseer"
-require "user.plugins.configs.telescope"
-require "user.plugins.configs.treesitter"
-require "user.plugins.configs.vim_test"
-require "user.plugins.configs.which_key"
+local configs = {
+    -- configs modules
+    { conf = function() require "user.plugins.configs.boole" end,         name = 'boole' },
+    { conf = function() require "user.plugins.configs.bufferline" end,    name = 'bufferline' },
+    { conf = function() require "user.plugins.configs.cmp" end,           name = 'cmp' },
+    { conf = function() require "user.plugins.configs.dap" end,           name = 'dap' },
+    { conf = function() require "user.plugins.configs.dracula" end,       name = 'dracula' },
+    { conf = function() require "user.plugins.configs.dressing" end,      name = 'dressing' },
+    { conf = function() require "user.plugins.configs.fidget" end,        name = 'fidget' },
+    { conf = function() require "user.plugins.configs.gitsigns" end,      name = 'gitsigns' },
+    { conf = function() require "user.plugins.configs.harpoon" end,       name = 'harpoon' },
+    { conf = function() require "user.plugins.configs.hop" end,           name = 'hop' },
+    { conf = function() require "user.plugins.configs.mason" end,         name = 'mason' },
+    { conf = function() require "user.plugins.configs.neotest" end,       name = 'neotest' },
+    { conf = function() require "user.plugins.configs.null_ls" end,       name = 'null_ls' },
+    { conf = function() require "user.plugins.configs.nvimtree" end,      name = 'nvimtree' },
+    { conf = function() require "user.plugins.configs.nvterm" end,        name = 'nvterm' },
+    { conf = function() require "user.plugins.configs.rose_pine" end,     name = 'rose_pine' },
+    { conf = function() require "user.plugins.configs.startup_nvim" end,  name = 'startup_nvim' },
+    { conf = function() require "user.plugins.configs.overseer" end,      name = 'overseer' },
+    { conf = function() require "user.plugins.configs.telescope" end,     name = 'telescope' },
+    { conf = function() require "user.plugins.configs.treesitter" end,    name = 'treesitter' },
+    { conf = function() require "user.plugins.configs.vim_test" end,      name = 'vim_test' },
+    { conf = function() require "user.plugins.configs.which_key" end,     name = 'which_key' },
+    { conf = function() require "user.plugins.configs.projectionist" end, name = 'projectionist' },
+}
 
+-- err handling setup configs
+for _, conf in pairs(configs) do
+    utils.init_err_handler(conf.name, conf.conf)
+end
 
 -- LSPs, DAPs configs
 require "user.plugins.configs.lsp"

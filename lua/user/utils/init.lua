@@ -27,7 +27,7 @@ end
 _G.utils.keymap = require('user.utils.set_keymaps')
 
 _G.has_non_empty_buffers = function()
-    for _, buf in ipairs(vim.fn.getbufinfo({ listed = true })) do
+    for _, buf in pairs(vim.fn.getbufinfo({ listed = true })) do
         -- skip unloaded and hidden buffers
         if buf.loaded and not buf.hidden then
             -- check if buffer is non-empty
@@ -91,3 +91,15 @@ _G.conf.so = {
     is_windows = sysname:find 'Windows' and true or false,
     is_wsl = uname.release:find 'Microsoft' and true or false
 }
+
+
+-- see: https://www.lua.org/pil/8.4.html
+-- error handler used to setup plugins and avoid that theirs errs bubles and breaks entire init.
+_G.utils.init_err_handler = function(task_name, task)
+    local status_ok, err = pcall(task)
+    if not status_ok then
+        print("task|config|setup - [" .. task_name .. "] failed because of:" .. err)
+        print(debug.traceback())
+        return
+    end
+end

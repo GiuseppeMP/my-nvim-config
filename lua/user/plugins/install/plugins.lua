@@ -108,7 +108,8 @@ local plugins = {
     -- Collection of plugins for tests, Debug and TDD
     { name = 'nvim-lua/plenary.nvim' },
     { name = 'vim-test/vim-test' },
-    { name = 'nvim-neotest/neotest' },
+    -- temporarily using v2.11.0 because of breaking changes in v3.0.0
+    { name = 'nvim-neotest/neotest', lazy = { tag='v2.11.0' } },
     { name = 'nvim-neotest/neotest-vim-test' },
     { name = 'nvim-neotest/neotest-plenary' },
     -- vim tests
@@ -150,6 +151,9 @@ local plugins = {
 
     -- vim8, neovim async interface
     { name = 'skywind3000/asyncrun.vim' },
+
+    -- vim8, neovim async interface
+    { name = 'lewis6991/async.nvim' },
 
     -- tmux <-> neovim navigation using C-l,k,j,h
     { name = 'christoomey/vim-tmux-navigator' },
@@ -276,6 +280,19 @@ local plugins = {
         }
     },
 
+    -- defer diagnostics to avoid insert spamm error of lsp
+
+    -- {
+    --     name = "yorickpeterse/nvim-dd",
+    --     lazy = {
+    --         config = function()
+    --             require 'dd'.setup {
+    --                 timeout = 1000,
+    --             }
+    --         end,
+    --     }
+    -- },
+
     -- better easymotion
     {
         name = "phaazon/hop.nvim",
@@ -331,6 +348,19 @@ local plugins = {
                 require('carbon-now').setup(
                     { open_cmd = conf.so.is_mac and "open" or "xdg-open" }
                 )
+            end
+        }
+    },
+    {
+        name = "zbirenbaum/copilot-cmp",
+        lazy = {
+            dependencies = "zbirenbaum/copilot.lua",
+            config = function()
+                require 'copilot_cmp'.setup()
+                require("copilot").setup({
+                    suggestion = { enabled = true },
+                    panel = { enabled = true },
+                })
             end
         }
     }
