@@ -108,8 +108,7 @@ local plugins = {
     -- Collection of plugins for tests, Debug and TDD
     { name = 'nvim-lua/plenary.nvim' },
     { name = 'vim-test/vim-test' },
-    -- temporarily using v2.11.0 because of breaking changes in v3.0.0
-    { name = 'nvim-neotest/neotest', lazy = { tag='v2.11.0' } },
+    { name = 'nvim-neotest/neotest' },
     { name = 'nvim-neotest/neotest-vim-test' },
     { name = 'nvim-neotest/neotest-plenary' },
     -- vim tests

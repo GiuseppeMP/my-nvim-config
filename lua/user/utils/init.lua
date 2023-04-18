@@ -98,7 +98,9 @@ _G.conf.so = {
 _G.utils.init_err_handler = function(task_name, task)
     local status_ok, err = pcall(task)
     if not status_ok then
-        print("task|config|setup - [" .. task_name .. "] failed because of:" .. err)
+        if not utils.is_empty(task_name) then
+            print("task|config|setup - [" .. task_name .. "] failed because of:" .. err)
+        end
         print(debug.traceback())
         return
     end
