@@ -5,6 +5,7 @@ local builtin = require 'telescope.builtin'
 
 -- nvim/hop
 local hop = require('hop')
+local tsht = require('tsht')
 
 -- chad/nvterm
 local nvterm = {}
@@ -107,6 +108,7 @@ wk.register({
         name = "harpoon, hop",
         a = { harpoon.mark.add_file, 'Harpoon add mark file' },
         h = { hop.hint_words, 'Hop words' },
+        l = { tsht.nodes, 'Hop syntax' },
         m = { harpoon.ui.toggle_quick_menu, 'Harpoon quick menu' },
         ['1'] = { function() harpoon.ui.nav_file(1) end, 'Go to harpoon mark 1' },
         ['2'] = { function() harpoon.ui.nav_file(2) end, 'Go to harpoon mark 2' },
@@ -118,7 +120,15 @@ wk.register({
         ['8'] = { function() harpoon.ui.nav_file(8) end, 'Go to harpoon mark 8' },
         ['9'] = { function() harpoon.ui.nav_file(9) end, 'Go to harpoon mark 9' },
     },
-})
+}, { mode = 'n' })
+
+wk.register({
+    ["<leader>h"] = {
+        name = "harpoon, hop",
+        l = { tsht.nodes, 'Hop syntax' },
+    },
+}, { mode = { 'o', 'v' } })
+
 
 wk.register({
     ["<leader>t"] = {

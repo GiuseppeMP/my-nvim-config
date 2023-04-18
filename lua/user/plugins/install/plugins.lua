@@ -306,6 +306,9 @@ local plugins = {
         }
     },
 
+    -- easymotion by syntax hop+treesitter
+    { name = 'mfussenegger/nvim-treehopper' },
+
     -- better folding (using treesitter, lsp, etc)
     {
         name = "kevinhwang91/nvim-ufo",
