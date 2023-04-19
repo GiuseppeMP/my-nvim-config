@@ -80,6 +80,7 @@ wk.register({
     ["<F1>"] = { dap.toggle_breakpoint, 'Debug toggle breakpoint' },
     ["<F2>"] = { dap.list_breakpoints, 'Debug toggle breakpoint' },
     ["<F3>"] = { dap.repl.open, 'Debug repl open' },
+    -- ["<F3>"] = { vim.diagnostic.open_float, 'Open fulltrace' },
     ["<F5>"] = { dap.continue, 'Debug continue' },
     ["<F6>"] = { dap.step_into, 'Debug step into' },
     ["<F7>"] = { dap.step_out, 'Debug step out' },
