@@ -1,6 +1,16 @@
+-- user custom configs
+
 -- lua global utils
 _G.utils = {}
 _G.conf = {}
+_G.conf.user = {}
+
+local status_ok, user_conf = pcall(require, "user.conf")
+if not status_ok then
+    _G.conf.user = {}
+else
+    _G.conf.user = user_conf
+end
 
 -- utils collection https://github.com/rxi/lume
 _G.lume = require 'user.utils.lume'

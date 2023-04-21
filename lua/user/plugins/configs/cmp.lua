@@ -32,6 +32,17 @@ local has_words_before = function()
 end
 
 local function get_mapping()
+    -- default behavior
+    local cr = cmp.mapping.confirm({ select = false })
+
+    -- copilot behavior
+    if conf.user.copilot.enabled then
+        cr = cmp.mapping.confirm({
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = false,
+        })
+    end
+
     return cmp.mapping.preset.insert({
         ["<C-k>"] = cmp.mapping.select_prev_item(),
         ["<C-j>"] = cmp.mapping.select_next_item(),
@@ -43,11 +54,7 @@ local function get_mapping()
             c = cmp.mapping.close(),
         },
         -- ['<CR>'] = cmp.mapping.confirm({ select = false }),
-        ["<CR>"] = cmp.mapping.confirm({
-            -- this is the important line
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = false,
-        }),
+        ["<CR>"] = cr,
         -- ["<Tab>"] = cmp.mapping(function(fallback)
         --     if luasnip.expand_or_jumpable() then
         --         luasnip.expand_or_jump()
@@ -68,19 +75,26 @@ local function get_mapping()
 end
 
 local function get_sources()
-    return cmp.config.sources(
-        {
-            { name = "copilot",  group_index = 2 },
-            { name = 'nvim_lsp' },
-            { name = 'vsnip' },     -- For vsnip users.
-            { name = 'luasnip' },   -- For luasnip users.
-            { name = 'ultisnips' }, -- For ultisnips users.
-            { name = 'snippy' },    -- For snippy users.
-        }, {
-            { name = 'buffer' },
-            { name = 'path' },
-            { name = 'lsp' },
-        })
+    local snip_sources = {
+        { name = "copilot",  group_index = 2 }, -- For copilot users
+        { name = 'nvim_lsp' },                  -- For nvim lsp users
+        { name = 'vsnip' },                     -- For vsnip users.
+        { name = 'luasnip' },                   -- For luasnip users.
+        { name = 'ultisnips' },                 -- For ultisnips users.
+        { name = 'snippy' },                    -- For snippy users.
+    }
+
+    local other_sources = {
+        { name = 'buffer' },
+        { name = 'path' },
+        { name = 'lsp' },
+    }
+
+    if conf.user.copilot.enabled then
+        table.insert(snip_sources, { name = 'copilot', group_index = 2 })
+    end
+
+    return cmp.config.sources(snip_sources, other_sources)
 end
 
 
@@ -97,36 +111,53 @@ local function get_format()
     }
 end
 
+local function get_sorting()
+    local comparators = {
+        -- Below is the default comparitor list and order for nvim-cmp
+        cmp.config.compare.offset,
+        -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
+        cmp.config.compare.exact,
+        cmp.config.compare.score,
+        cmp.config.compare.recently_used,
+        cmp.config.compare.locality,
+        cmp.config.compare.kind,
+        cmp.config.compare.sort_text,
+        cmp.config.compare.length,
+        cmp.config.compare.order,
+    }
+
+    if conf.user.copilot.enabled then
+        table.insert(comparators, require("copilot_cmp.comparators").prioritize)
+    end
+
+
+    return {
+        priority_weight = 2,
+        comparators = comparators
+    }
+end
+
+
+local function get_confirm_opts()
+    local opts = {
+        select = true,
+    }
+    if conf.user.copilot.enabled then
+        opts.behavior = cmp.ConfirmBehavior.Replace
+    end
+    return opts
+end
+
 
 cmp.setup({
     snippet = get_snippet(),
     mapping = get_mapping(),
     sources = get_sources(),
     formatting = get_format(),
+    sorting = get_sorting(),
+    confirm_opts = get_confirm_opts(),
     window = {
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
-    },
-    confirm_opts = {
-        behavior = cmp.ConfirmBehavior.Replace,
-        select = true,
-    },
-    sorting = {
-        priority_weight = 2,
-        comparators = {
-            require("copilot_cmp.comparators").prioritize,
-
-            -- Below is the default comparitor list and order for nvim-cmp
-            cmp.config.compare.offset,
-            -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
-            cmp.config.compare.exact,
-            cmp.config.compare.score,
-            cmp.config.compare.recently_used,
-            cmp.config.compare.locality,
-            cmp.config.compare.kind,
-            cmp.config.compare.sort_text,
-            cmp.config.compare.length,
-            cmp.config.compare.order,
-        },
     },
 })
