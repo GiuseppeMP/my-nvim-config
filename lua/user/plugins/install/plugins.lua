@@ -353,6 +353,9 @@ local plugins = {
             end
         }
     },
+
+    -- AI supports
+    ---  copilot + cmp
     {
         name = "zbirenbaum/copilot-cmp",
         lazy = {
@@ -367,6 +370,24 @@ local plugins = {
             end
         }
     },
+
+    --- codeium
+    {
+        name = "jcdickinson/codeium.nvim",
+        lazy = {
+            dependencies = {
+                "nvim-lua/plenary.nvim",
+                "hrsh7th/nvim-cmp"
+            },
+            cond = function() return conf.user.codeium.enabled end,
+            config = function()
+                require("codeium").setup({ })
+            end
+        }
+    },
+
+
+    -- GX improvement
     {
         name = "chrishrb/gx.nvim",
         lazy = {

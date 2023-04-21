@@ -76,12 +76,11 @@ end
 
 local function get_sources()
     local snip_sources = {
-        { name = "copilot",  group_index = 2 }, -- For copilot users
-        { name = 'nvim_lsp' },                  -- For nvim lsp users
-        { name = 'vsnip' },                     -- For vsnip users.
-        { name = 'luasnip' },                   -- For luasnip users.
-        { name = 'ultisnips' },                 -- For ultisnips users.
-        { name = 'snippy' },                    -- For snippy users.
+        { name = 'nvim_lsp' },  -- For nvim lsp users
+        { name = 'vsnip' },     -- For vsnip users.
+        { name = 'luasnip' },   -- For luasnip users.
+        { name = 'ultisnips' }, -- For ultisnips users.
+        { name = 'snippy' },    -- For snippy users.
     }
 
     local other_sources = {
@@ -91,22 +90,28 @@ local function get_sources()
     }
 
     if conf.user.copilot.enabled then
-        table.insert(snip_sources, { name = 'copilot', group_index = 2 })
+        table.insert(snip_sources, { name = 'copilot', group_index = 1 })
     end
+    if conf.user.codeium.enabled then
+        table.insert(snip_sources, { name = 'codeium', group_index = 1 })
+    end
+
 
     return cmp.config.sources(snip_sources, other_sources)
 end
 
 
 
+-- vim.api.nvim_set_hl(0, "CmpItemKindSnippet", { fg = "green" })
+
 local function get_format()
     return {
         fields = { "kind", "abbr", "menu" },
         format = lspkind.cmp_format({
-            symbol_map = { Copilot = "" },
-            mode = 'symbol',       -- show only symbol annotations
-            max_width = 50,        -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-            ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+            symbol_map = { Copilot = "", Codeium = "" },
+            mode = 'symbol',
+            max_width = 50,
+            ellipsis_char = '...',
         }),
     }
 end

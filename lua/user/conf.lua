@@ -1,11 +1,11 @@
 local M = {}
 
 M.copilot = {
-    enabled = true
+    enabled = false
 }
 
 M.codeium = {
-    enabled = false
+    enabled = true
 }
 
 
