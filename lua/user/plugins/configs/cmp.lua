@@ -76,24 +76,24 @@ end
 
 local function get_sources()
     local snip_sources = {
-        { name = 'nvim_lsp' },  -- For nvim lsp users
-        { name = 'vsnip' },     -- For vsnip users.
-        { name = 'luasnip' },   -- For luasnip users.
-        { name = 'ultisnips' }, -- For ultisnips users.
-        { name = 'snippy' },    -- For snippy users.
+        { name = 'nvim_lsp', keyword_length = 3 }, -- For nvim lsp users
+        { name = 'vsnip' },                        -- For vsnip users.
+        { name = 'luasnip' },                      -- For luasnip users.
+        { name = 'ultisnips' },                    -- For ultisnips users.
+        { name = 'snippy' },                       -- For snippy users.
     }
 
     local other_sources = {
         { name = 'buffer' },
         { name = 'path' },
-        { name = 'lsp' },
+        { name = 'lsp',   keyword_length = 3 },
     }
 
     if conf.user.copilot.enabled then
-        table.insert(snip_sources, { name = 'copilot', group_index = 1 })
+        table.insert(snip_sources, 1, { name = 'copilot', group_index = 2 })
     end
     if conf.user.codeium.enabled then
-        table.insert(snip_sources, { name = 'codeium', group_index = 1 })
+        table.insert(snip_sources, 1, { name = 'codeium', group_index = 2 })
     end
 
 
