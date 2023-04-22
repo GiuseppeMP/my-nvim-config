@@ -381,7 +381,7 @@ local plugins = {
             },
             cond = function() return conf.user.codeium.enabled end,
             config = function()
-                require("codeium").setup({ })
+                require("codeium").setup({})
             end
         }
     },
@@ -404,6 +404,11 @@ local plugins = {
                 }
             end,
         }
+    }
+    ,
+    {
+        name = 'akinsho/toggleterm.nvim',
+        lazy = { version = "*", config = true }
     }
 
 }

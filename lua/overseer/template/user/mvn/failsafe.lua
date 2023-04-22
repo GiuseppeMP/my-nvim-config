@@ -1,15 +1,15 @@
 local M = {}
 local configs = require 'overseer.template.user.mvn.configs'
 
-M.mvn_package =
+M.mvn_failsafe =
 {
-    name = " mvn package",
+    name = " mvn verify -Pfailsafe",
     builder = function()
         -- Full path to current file (see :help expand())
         -- local file = vim.fn.expand("%:p")
         return {
             cmd = { "mvn" },
-            args = { "package", configs.ignore_ssl, configs.skip_tests },
+            args = { "verify", "-Pfailsafe", configs.ignore_ssl },
             components = { "default" },
         }
     end,
@@ -18,4 +18,4 @@ M.mvn_package =
     },
 }
 
-return M.mvn_package
+return M.mvn_failsafe

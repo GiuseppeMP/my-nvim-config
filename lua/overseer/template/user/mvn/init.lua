@@ -4,4 +4,6 @@ return {
     'user.mvn.install',
     'user.mvn.test',
     'user.mvn.debug_test',
+    'user.mvn.failsafe',
+    'user.mvn.pitest'
 }
