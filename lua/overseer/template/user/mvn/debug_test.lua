@@ -5,12 +5,10 @@ M.clean =
 {
     name = " mvn debug test",
     builder = function()
-        -- Full path to current file (see :help expand())
-        -- local file = vim.fn.expand("%:p")
         return {
             cmd = { "mvn" },
             args = { "test", configs.ignore_ssl, "-Dmaven.surefire.debug" },
-            components = { "default" },
+            components = require 'overseer.template.user.commons'.components,
         }
     end,
     condition = {

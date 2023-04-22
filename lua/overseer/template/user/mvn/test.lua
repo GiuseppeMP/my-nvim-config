@@ -10,7 +10,7 @@ M.clean =
         return {
             cmd = { "mvn" },
             args = { "test", configs.ignore_ssl },
-            components = { "default" },
+            components = require 'overseer.template.user.commons'.components,
         }
     end,
     condition = {

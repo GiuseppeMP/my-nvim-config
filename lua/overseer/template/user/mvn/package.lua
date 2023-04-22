@@ -10,7 +10,7 @@ M.mvn_package =
         return {
             cmd = { "mvn" },
             args = { "package", configs.ignore_ssl, configs.skip_tests },
-            components = { "default" },
+            components = require 'overseer.template.user.commons'.components,
         }
     end,
     condition = {
