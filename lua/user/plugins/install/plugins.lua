@@ -279,19 +279,6 @@ local plugins = {
         }
     },
 
-    -- defer diagnostics to avoid insert spamm error of lsp
-
-    -- {
-    --     name = "yorickpeterse/nvim-dd",
-    --     lazy = {
-    --         config = function()
-    --             require 'dd'.setup {
-    --                 timeout = 1000,
-    --             }
-    --         end,
-    --     }
-    -- },
-
     -- better easymotion
     {
         name = "phaazon/hop.nvim",
@@ -408,7 +395,24 @@ local plugins = {
     ,
     {
         name = 'akinsho/toggleterm.nvim',
-        lazy = { version = "*", config = true }
+        lazy = {
+            version = "*",
+            config = function()
+                require 'toggleterm'.setup {
+                    open_mapping = [[<M-f>]],
+                    direction = 'float',
+                    close_on_exit = false,
+                    float_opts = {
+                        border = 'curved',
+                        winblend = 1,
+                        highlights = {
+                            border = 'Normal',
+                            background = 'Normal'
+                        }
+                    }
+                }
+            end
+        }
     }
 
 }
