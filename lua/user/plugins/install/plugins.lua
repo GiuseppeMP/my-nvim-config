@@ -2,13 +2,16 @@
 -- Modulo que retorna a lista de vim plugins que precisam ser instalados.
 -- You can manage your plugins here, separated from plugin manager.
 
-
 ---equivalent of packer rtp='.'
 ---@param plugin any
 local lazy_rtp = function(plugin)
     vim.opt.rtp:append(plugin.dir)
 end
 
+vim.g.smoothie_enabled = 1
+vim.g.smoothie_speed_linear_factor = 90          -- default 60
+vim.g.smoothie_speed_exponentiation_factor = 0.6 -- default 0.5
+vim.g.smoothie_experimental_mappings = 1
 
 local plugins = {
 
