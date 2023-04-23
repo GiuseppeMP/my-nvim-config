@@ -37,7 +37,7 @@ local create_autocmd_format_on_save = function(client, bufnr, lsp_client)
     end
 end
 
---- return a lua table of the .nvim.json at workspace/project folder
+--- return a lua table of the .nvimrc.json at workspace/project folder
 ---@param client any
 ---@param _ any
 ---@return table
@@ -46,8 +46,8 @@ local get_project_local_settings = function(client, _)
     local path = client.workspace_folders[1].name
     local project_settings = nil
 
-    -- lookup for the .nvim.json
-    local lsp_path_settings = path .. "/.nvim.json"
+    -- lookup for the .nvimrc.json
+    local lsp_path_settings = path .. "/.nvimrc.json"
     if utils.file_exists(lsp_path_settings) then
         -- load json string
         local fileSettings = io.open(lsp_path_settings, "r")
@@ -55,7 +55,7 @@ local get_project_local_settings = function(client, _)
             project_settings = vim.json.decode(fileSettings:read("*a"))
         end
     else
-        print("No .nvim.json found")
+        print("No .nvimrc.json found")
     end
     --- client name settings, for multiple lsps workspace
     return project_settings
@@ -70,7 +70,7 @@ M.get = function(params)
 
         local ok, project_settings = pcall(get_project_local_settings, client, bufnr)
         if not ok then
-            print("error: can't decode .nvim.json, may it's not a valid json " .. project_settings)
+            print("error: can't decode .nvimrc.json, may it's not a valid json " .. project_settings)
         end
 
         -- merge nvim configs params and project settings
