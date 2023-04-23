@@ -413,8 +413,7 @@ local plugins = {
                 }
             end
         }
-    }
-
+    },
 }
 
 

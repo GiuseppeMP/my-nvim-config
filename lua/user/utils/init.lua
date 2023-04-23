@@ -120,3 +120,5 @@ _G.utils.init_err_handler = function(task_name, task)
         return
     end
 end
+
+_G.utils.log = require 'user.utils.log'

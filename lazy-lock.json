@@ -93,6 +93,7 @@
   "vim-tmux-navigator": { "branch": "master", "commit": "cdd66d6a37d991bba7997d593586fc51a5b37aa8" },
   "vim-vsnip": { "branch": "master", "commit": "7753ba9c10429c29d25abfd11b4c60b76718c438" },
   "vim-vspec": { "branch": "master", "commit": "4438b57f85ba25d67143fe2d0c95cfa958fb7b94" },
+  "vlog.nvim": { "branch": "master", "commit": "300e43f1628935aa9fec0560f3c7c483b3d38db2" },
   "which-key.nvim": { "branch": "main", "commit": "94cb020ff33a1e0e22fac1c41663d2c439741f17" },
   "windline.nvim": { "branch": "master", "commit": "66badcb002c91f6d4bfc11726c988441a3aada6c" }
 }

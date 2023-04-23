@@ -55,7 +55,7 @@ local get_project_local_settings = function(client, _)
             project_settings = vim.json.decode(fileSettings:read("*a"))
         end
     else
-        print("No .nvimrc.json found")
+        utils.log.trace(path ..": No .nvimrc.json found")
     end
     --- client name settings, for multiple lsps workspace
     return project_settings
@@ -70,7 +70,9 @@ M.get = function(params)
 
         local ok, project_settings = pcall(get_project_local_settings, client, bufnr)
         if not ok then
-            print("error: can't decode .nvimrc.json, may it's not a valid json " .. project_settings)
+            local error = "error: can't decode .nvimrc.json, may it's not a valid json " .. project_settings
+            print(error)
+            utils.log.error(error)
         end
 
         -- merge nvim configs params and project settings
@@ -78,7 +80,7 @@ M.get = function(params)
             params = utils.table_concat(params, project_settings[client.name])
         end
 
-        -- print("merged settings (lsp and project): " .. vim.inspect(params))
+        utils.log.info("merged settings (lsp{setup} and .nvimrc.json): " .. vim.inspect(params))
 
         -- formatOnSave default true
         if params.format_on_save == nil or params.format_on_save then
