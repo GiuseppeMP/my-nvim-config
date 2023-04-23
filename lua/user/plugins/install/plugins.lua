@@ -327,7 +327,7 @@ local plugins = {
         lazy = { dependencies = { 'godlygeek/tabular' } }
     },
     {
-        name = 'stevearc/overseer.nvim',
+        name = 'GiuseppeMP/overseer.nvim',
     },
     {
         name = "ellisonleao/carbon-now.nvim",

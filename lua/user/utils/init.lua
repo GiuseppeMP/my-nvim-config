@@ -18,6 +18,11 @@ _G.lume = require 'user.utils.lume'
 -- pretty print -- https://github.com/jagt/pprint.lua
 _G.utils.pprint = require 'user.utils.pprint'.pprint
 
+-- table print
+_G.utils.json_print = function(table)
+    print(vim.json.encode(table))
+end
+
 -- print as json
 _G.utils.print_as_json = require 'user.utils.print_as_json'
 
@@ -106,8 +111,8 @@ _G.conf.so = {
 -- see: https://www.lua.org/pil/8.4.html
 -- error handler used to setup plugins and avoid that theirs errs bubles and breaks entire init.
 _G.utils.init_err_handler = function(task_name, task)
-    local status_ok, err = pcall(task)
-    if not status_ok then
+    local ok, err = pcall(task)
+    if not ok then
         if not utils.is_empty(task_name) then
             print("task|config|setup - [" .. task_name .. "] failed because of:" .. err)
         end

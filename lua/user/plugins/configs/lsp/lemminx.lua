@@ -4,5 +4,5 @@ local lspconfig = require 'lspconfig'
 
 lspconfig.lemminx.setup {
     on_attach = on_attach_options.get { lsp_client = 'lemminx' },
-    capabilities = capabilities_options .default
+    capabilities = capabilities_options.default,
 }

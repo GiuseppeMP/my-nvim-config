@@ -8,7 +8,6 @@ local builtin = require 'telescope.builtin'
 ---@param bufnr number id of the buffer
 ---@param async boolean if it'll execute async
 local format_callback = function(lsp_client, bufnr, async)
-
     -- add null_ls formatting support
     local null_ls_formatting_support = { 'pyright' }
     if (utils.table_contains(null_ls_formatting_support, lsp_client)) then
@@ -38,12 +37,48 @@ local create_autocmd_format_on_save = function(client, bufnr, lsp_client)
     end
 end
 
+--- return a lua table of the .nvim.json at workspace/project folder
+---@param client any
+---@param _ any
+---@return table
+local get_project_local_settings = function(client, _)
+    -- get client workspace folder
+    local path = client.workspace_folders[1].name
+    local project_settings = nil
+
+    -- lookup for the .nvim.json
+    local lsp_path_settings = path .. "/.nvim.json"
+    if utils.file_exists(lsp_path_settings) then
+        -- load json string
+        local fileSettings = io.open(lsp_path_settings, "r")
+        if fileSettings ~= nil then
+            project_settings = vim.json.decode(fileSettings:read("*a"))
+        end
+    else
+        print("No .nvim.json found")
+    end
+    --- client name settings, for multiple lsps workspace
+    return project_settings
+end
+
 ---return on_attach_function configured based on @param params
 -- @param params table
 ---@return function
 M.get = function(params)
     return function(client, bufnr)
         local buf_opts = { noremap = true, silent = false, buffer = bufnr }
+
+        local ok, project_settings = pcall(get_project_local_settings, client, bufnr)
+        if not ok then
+            print("error: can't decode .nvim.json, may it's not a valid json " .. project_settings)
+        end
+
+        -- merge nvim configs params and project settings
+        if project_settings ~= nil then
+            params = utils.table_concat(params, project_settings[client.name])
+        end
+
+        -- print("merged settings (lsp and project): " .. vim.inspect(params))
 
         -- formatOnSave default true
         if params.format_on_save == nil or params.format_on_save then
