@@ -8,6 +8,7 @@ local g = vim.g -- For the globals
 o.clipboard = 'unnamedplus'
 o.list = false
 o.autoindent = true
+o.cindent = true
 o.autoread = true
 o.backspace = [[indent,eol,start]]
 
