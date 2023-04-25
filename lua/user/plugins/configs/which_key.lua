@@ -61,6 +61,7 @@ wk.register({
         l = { builtin.live_grep, "Live grep" },
         b = { builtin.buffers, "Buffers" },
         h = { builtin.help_tags, "Help tags" },
+        k = { builtin.keymaps, "Oh Yeah, the awesome Keymaps!" },
         g = { builtin.git_files, "Git files" },
         d = { builtin.diagnostics, "Diagnostics" },
         m = { function() vim.cmd(":Telescope harpoon marks") end, "Harpoon marks" },
@@ -68,6 +69,8 @@ wk.register({
         v = { function() require 'neoclip.fzf' () end, 'Clipboard history' },
         t = { vim.cmd.OverseerRun, 'Show tasks' },
         o = { vim.cmd.OverseerOpen, 'Show tasks output' },
+        c = { builtin.colorscheme, 'Colorschemes' },
+        q = { builtin.quickfix, 'Quickfix' },
     },
 })
 
