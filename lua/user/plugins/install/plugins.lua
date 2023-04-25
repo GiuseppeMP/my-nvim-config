@@ -9,8 +9,8 @@ local lazy_rtp = function(plugin)
 end
 
 vim.g.smoothie_enabled = 1
-vim.g.smoothie_speed_linear_factor = 90          -- default 60
-vim.g.smoothie_speed_exponentiation_factor = 0.6 -- default 0.5
+vim.g.smoothie_speed_linear_factor = 70          -- default 60
+vim.g.smoothie_speed_exponentiation_factor = 0.5 -- default 0.5
 vim.g.smoothie_experimental_mappings = 1
 
 local plugins = {
