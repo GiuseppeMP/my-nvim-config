@@ -16,8 +16,8 @@ local harpoon = {}
 harpoon.mark, harpoon.ui = require 'harpoon.mark', require 'harpoon.ui'
 
 -- dap
----@diagnostic disable-next-line: unused-local
-local dap, dapui, dapp = require 'dap', require 'dapui', require 'persistent-breakpoints.api'
+local dap, dapui = require 'dap', require 'dapui'
+-- local dapp = require 'persistent-breakpoints.api'
 
 -- which_key conf
 local wk = require 'which-key'
