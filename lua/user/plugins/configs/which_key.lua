@@ -16,7 +16,8 @@ local harpoon = {}
 harpoon.mark, harpoon.ui = require 'harpoon.mark', require 'harpoon.ui'
 
 -- dap
-local dap, dapui = require 'dap', require 'dapui'
+---@diagnostic disable-next-line: unused-local
+local dap, dapui, dapp = require 'dap', require 'dapui', require 'persistent-breakpoints.api'
 
 -- which_key conf
 local wk = require 'which-key'
@@ -74,7 +75,6 @@ wk.register({
     },
 })
 
-
 -- debug visual mode
 wk.register({ ["<F4>"] = { dapui.eval, 'Debug eval' } }, { mode = 'v' })
 
@@ -82,8 +82,7 @@ wk.register({ ["<F4>"] = { dapui.eval, 'Debug eval' } }, { mode = 'v' })
 wk.register({
     ["<F1>"] = { dap.toggle_breakpoint, 'Debug toggle breakpoint' },
     ["<F2>"] = { dap.list_breakpoints, 'Debug toggle breakpoint' },
-    ["<F3>"] = { dap.repl.open, 'Debug repl open' },
-    -- ["<F3>"] = { vim.diagnostic.open_float, 'Open fulltrace' },
+    ["<F3>"] = { dap.clear_all_breakpoints, 'Clear all breakpoints' },
     ["<F5>"] = { dap.continue, 'Debug continue' },
     ["<F6>"] = { dap.step_into, 'Debug step into' },
     ["<F7>"] = { dap.step_out, 'Debug step out' },

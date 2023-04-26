@@ -171,14 +171,30 @@ local plugins = {
     { name = 'williamboman/mason-lspconfig.nvim' },
     { name = 'WhoIsSethDaniel/mason-tool-installer.nvim' },
     { name = 'neovim/nvim-lspconfig' },
-    { name = 'mfussenegger/nvim-dap' },
     { name = 'mfussenegger/nvim-jdtls' },
-    { name = 'jayp0521/mason-nvim-dap.nvim' },
-    { name = 'rcarriga/nvim-dap-ui' },
     { name = 'jose-elias-alvarez/null-ls.nvim' },
     { name = 'mfussenegger/nvim-dap-python' },
+
+    -- dap configs
+    { name = 'rcarriga/nvim-dap-ui' },
+    { name = 'mfussenegger/nvim-dap' },
+    {
+        name = 'Weissle/persistent-breakpoints.nvim',
+        lazy = {
+            enabled = false, --wip
+            config = function()
+                require('persistent-breakpoints').setup({
+                    save_dir = vim.fn.stdpath('data') .. '/nvim_checkpoints',
+                    load_breakpoint_event = { "BufReadPost" }
+                })
+            end
+        }
+    },
+    { name = 'jayp0521/mason-nvim-dap.nvim' },
+
     -- lsp kind icons
     { name = 'onsails/lspkind.nvim' },
+
 
     -- Debug adapter for tests python
     { name = 'nvim-neotest/neotest-python' },
