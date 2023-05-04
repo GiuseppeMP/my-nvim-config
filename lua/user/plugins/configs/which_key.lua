@@ -7,10 +7,6 @@ local builtin = require 'telescope.builtin'
 local hop = require('hop')
 local tsht = require('tsht')
 
--- chad/nvterm
-local nvterm = {}
-nvterm.terminal = require 'nvterm.terminal'
-
 -- harpoon
 local harpoon = {}
 harpoon.mark, harpoon.ui = require 'harpoon.mark', require 'harpoon.ui'
@@ -155,8 +151,6 @@ wk.register({
 })
 
 wk.register({
-    ['<M-l>'] = { function() nvterm.terminal.toggle 'vertical' end, 'Toggle vertical terminal' },
-    ['<M-j>'] = { function() nvterm.terminal.toggle 'horizontal' end, 'Toggle horizontal terminal' },
     ['<M-s>'] = { vim.cmd.write, 'Save buffer' },
 }, { mode = { 't', 'n', 'i' } })
 
@@ -167,7 +161,7 @@ wk.register({
     ["<leader>k"] = { 'Signature help' },
     ["<leader>xw"] = { "wbdf elp", 'Swap two words separated by space' },
     ["<leader>rn"] = { 'Rename' },
-    ["K"] = { 'Lsp hover' },
+    ["K"] = { 'Lsp hover hints' },
     ["<leader>q"] = { vim.cmd.Bdelete, 'Buffer delete' }
 })
 

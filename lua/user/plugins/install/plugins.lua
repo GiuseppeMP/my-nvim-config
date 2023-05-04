@@ -261,9 +261,6 @@ local plugins = {
     -- which key
     { name = "folke/which-key.nvim" },
 
-    -- terminal plugin
-    { name = 'NvChad/nvterm' },
-
     -- better lsp progress ui
     {
         name = 'j-hui/fidget.nvim'
@@ -346,7 +343,7 @@ local plugins = {
         lazy = { dependencies = { 'godlygeek/tabular' } }
     },
     {
-        name = 'GiuseppeMP/overseer.nvim',
+        name = 'stevearc/overseer.nvim',
     },
     {
         name = "ellisonleao/carbon-now.nvim",
@@ -418,7 +415,7 @@ local plugins = {
             version = "*",
             config = function()
                 require 'toggleterm'.setup {
-                    open_mapping = [[<M-f>]],
+                    open_mapping = [[<C-\>]],
                     direction = 'float',
                     close_on_exit = false,
                     float_opts = {
