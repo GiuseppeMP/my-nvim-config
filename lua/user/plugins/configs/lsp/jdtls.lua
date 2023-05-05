@@ -32,7 +32,7 @@ local jdtls_path = get_package_install_path('jdtls')
 -- on_attach custom for nvim-jdtls
 local on_attach_jdtls = function(_client, buf_nr)
     -- call default on_attach
-    require("user.plugins.configs.lsp.utils.on_attach_options").get{ lsp_client = 'jdtls'}(_client, buf_nr)
+    require("user.plugins.configs.lsp.utils.on_attach_options").get { lsp_client = 'jdtls' } (_client, buf_nr)
 
     local buf_opts = { noremap = true, silent = false, buffer = buf_nr }
     vim.keymap.set('n', 'df', jdtls.test_class, buf_opts)
@@ -173,7 +173,7 @@ local function get_cmd()
         '-Declipse.product=org.eclipse.jdt.ls.core.product',
         '-Dlog.protocol=true',
         '-Dlog.level=ALL',
-        '-Xms2g',
+        '-Xms256m',
         '-javaagent:' .. lombok_jar,
         '--add-modules=ALL-SYSTEM',
         '--add-opens',

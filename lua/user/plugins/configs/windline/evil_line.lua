@@ -2,12 +2,14 @@ local windline = require('windline')
 local helper = require('windline.helpers')
 local b_components = require('windline.components.basic')
 local state = _G.WindLine.state
+local tokyo_colors = require("tokyonight.colors").setup()
 
 local lsp_comps = require('windline.components.lsp')
 local git_comps = require('windline.components.git')
 
 local hl_list = {
     Black = { 'white', 'black' },
+    -- Black = { tokyo_colors.dark3 },
     White = { 'black', 'white' },
     Inactive = { 'InactiveFg', 'InactiveBg' },
     Active = { 'ActiveFg', 'ActiveBg' },
@@ -19,10 +21,10 @@ basic.divider = { b_components.divider, '' }
 basic.bg = { ' ', 'StatusLine' }
 
 local colors_mode = {
-    Normal = { 'red', 'black' },
+    Normal = { 'blue', 'black' },
     Insert = { 'green', 'black' },
     Visual = { 'yellow', 'black' },
-    Replace = { 'blue_light', 'black' },
+    Replace = { 'red', 'black' },
     Command = { 'magenta', 'black' },
 }
 
@@ -59,6 +61,7 @@ basic.lsp_diagnos = {
         end
         return ''
     end,
+
 }
 basic.file = {
     name = 'file',
@@ -155,8 +158,8 @@ basic.git = {
 local explorer = {
     filetypes = { 'fern', 'NvimTree', 'lir' },
     active = {
-        { '  ',                       { 'black', 'red' } },
-        { helper.separators.slant_right, { 'red', 'NormalBg' } },
+        { '  ',                       { 'blue', 'red' } },
+        { helper.separators.slant_right, { 'blue', 'NormalBg' } },
         { b_components.divider,          '' },
         { b_components.file_name(''), { 'white', 'NormalBg' } },
     },
@@ -210,8 +213,12 @@ local default = {
 
 windline.setup({
     colors_name = function(colors)
-        -- print(vim.inspect(colors))
-        -- ADD MORE COLOR HERE ----
+        colors.black = tokyo_colors.black
+        colors.magenta = tokyo_colors.magenta
+        colors.red = tokyo_colors.red
+        colors.blue = tokyo_colors.blue
+        colors.yellow = tokyo_colors.yellow
+        colors.green = tokyo_colors.green
         return colors
     end,
     statuslines = {

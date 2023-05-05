@@ -81,7 +81,7 @@ local plugins = {
         lazy = { name = 'rose-pine-neovim' },
         packer = { as = 'rose-pine-neovim' },
     },
-
+    { name = "folke/tokyonight.nvim" },
     -- Trigger a highlight in the appropriate direction when pressing these keys: f, F, t, T
     {
         name = 'unblevable/quick-scope',
@@ -415,7 +415,6 @@ local plugins = {
             version = "*",
             config = function()
                 require 'toggleterm'.setup {
-                    open_mapping = [[<C-\>]],
                     direction = 'float',
                     close_on_exit = false,
                     float_opts = {

@@ -55,7 +55,7 @@ local get_project_local_settings = function(client, _)
             project_settings = vim.json.decode(fileSettings:read("*a"))
         end
     else
-        utils.log.trace(path ..": No .nvimrc.json found")
+        utils.log.trace(path .. ": No .nvimrc.json found")
     end
     --- client name settings, for multiple lsps workspace
     return project_settings
@@ -71,7 +71,6 @@ M.get = function(params)
         local ok, project_settings = pcall(get_project_local_settings, client, bufnr)
         if not ok then
             local error = "error: can't decode .nvimrc.json, may it's not a valid json " .. project_settings
-            print(error)
             utils.log.error(error)
         end
 
