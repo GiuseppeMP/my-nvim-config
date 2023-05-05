@@ -1,13 +1,56 @@
 vim.opt.termguicolors = true
 
-require'bufferline'.setup {
+local tokyo_colors = require("tokyonight.colors").setup()
+
+require 'bufferline'.setup {
+    highlights = {
+        close_button_selected = {
+            fg = tokyo_colors.red,
+            bg = tokyo_colors.bg,
+        },
+
+        tab = {
+            fg = tokyo_colors.magenta,
+            bg = tokyo_colors.bg
+        },
+        tab_selected = {
+            fg = tokyo_colors.blue,
+            bg = tokyo_colors.bg
+        },
+        buffer_selected = {
+            fg = tokyo_colors.green,
+            bg = tokyo_colors.bg
+        },
+
+        numbers = {
+            fg = tokyo_colors.magenta,
+            bg = tokyo_colors.bg,
+            bold = true,
+
+        },
+
+        fill = {
+            fg = tokyo_colors.fg,
+            bg = tokyo_colors.bg
+        },
+        buffer_visible = {
+            fg = tokyo_colors.fg,
+            bg = tokyo_colors.bg
+        },
+        background = {
+            fg = tokyo_colors.fg,
+            bg = tokyo_colors.bg
+        }
+    },
     options = {
-        numbers = "none",
+        themable = true,
+        mode = 'buffers',
+        numbers = "ordinal",
         close_command = "Bdelete! %d",
         right_mouse_command = "Bdelete! %d",
         left_mouse_command = "buffer %d",
         middle_mouse_command = nil,
-        indicator = { style = "icon", icon = " │ "},
+        indicator = { style = "icon", icon = " │ " },
         buffer_close_icon = '',
         modified_icon = "●",
         close_icon = "",
@@ -17,7 +60,7 @@ require'bufferline'.setup {
         max_name_length = 30,
         max_prefix_length = 30, -- prefix used when a buffer is de-duplicated
         tab_size = 15,
-        diagnostics = { "coc", "nvim_lsp" },
+        diagnostics = "nvim_lsp",
         offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
         show_buffer_icons = true,
         show_buffer_close_icons = true,
@@ -29,4 +72,3 @@ require'bufferline'.setup {
         always_show_bufferline = true,
     },
 }
-
