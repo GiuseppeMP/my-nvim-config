@@ -382,6 +382,7 @@ local plugins = {
                 "nvim-lua/plenary.nvim",
                 "hrsh7th/nvim-cmp"
             },
+            commit = "2bbc8d10c5baadbbea9d028131cc37a8a31ec5b2",
             cond = function() return conf.user.codeium.enabled end,
             config = function()
                 require("codeium").setup({})

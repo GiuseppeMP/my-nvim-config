@@ -73,7 +73,7 @@ wk.register({
 
 -- debug visual mode
 wk.register({ ["<F4>"] = { dapui.eval, 'Debug eval' } }, { mode = 'v' })
-wk.register({ ["<leader><leader>"] = { vim.cmd.ToggleTerm, 'Toggle Term' } })
+wk.register({ ["<C-t>"] = { vim.cmd.ToggleTerm, 'Toggle Term' } }, { mode = { 't', 'n' } })
 
 -- debug normal mode
 wk.register({
