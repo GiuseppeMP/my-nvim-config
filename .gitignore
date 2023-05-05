@@ -2,3 +2,4 @@ plugged
 .DS_Store
 plugin/packer_compiled.lua
 .lazy-lock.json
+lazy-lock.json
