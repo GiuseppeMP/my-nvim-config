@@ -2,6 +2,8 @@
 -- telescope
 local telescope = require 'telescope'
 local builtin = require 'telescope.builtin'
+local dap_save = require 'user.plugins.configs.dap.save_breakpoints'
+
 
 -- nvim/hop
 local hop = require('hop')
@@ -13,7 +15,6 @@ harpoon.mark, harpoon.ui = require 'harpoon.mark', require 'harpoon.ui'
 
 -- dap
 local dap, dapui = require 'dap', require 'dapui'
--- local dapp = require 'persistent-breakpoints.api'
 
 -- which_key conf
 local wk = require 'which-key'
@@ -77,15 +78,21 @@ wk.register({ ["<C-t>"] = { vim.cmd.ToggleTerm, 'Toggle Term' } }, { mode = { 't
 
 -- debug normal mode
 wk.register({
-    ["<F1>"] = { dap.toggle_breakpoint, 'Debug toggle breakpoint' },
+    ["<F1>"] = { function()
+        dap.toggle_breakpoint()
+        pcall(dap_save.store_breakpoints, false)
+    end, 'Debug toggle breakpoint' },
     ["<F2>"] = { dap.list_breakpoints, 'Debug toggle breakpoint' },
-    ["<F3>"] = { dap.clear_all_breakpoints, 'Clear all breakpoints' },
+    ["<F3>"] = { function()
+        dap.clear_breakpoints()
+        pcall(dap_save.store_breakpoints, true)
+    end, 'Clear all breakpoints' },
     ["<F5>"] = { dap.continue, 'Debug continue' },
     ["<F6>"] = { dap.step_into, 'Debug step into' },
     ["<F7>"] = { dap.step_out, 'Debug step out' },
     ["<F8>"] = { dap.step_over, 'Debug step over' },
     ["<F9>"] = { dap.run_last, 'Debug run last' },
-})
+}, { 'n', 'i', 'v' })
 
 -- [<leader>u] - utils
 wk.register({
