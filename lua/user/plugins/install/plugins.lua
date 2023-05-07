@@ -250,8 +250,8 @@ local plugins = {
     },
     { name = 'saadparwaiz1/cmp_luasnip' },
     -- cmp ultisnips users
-    { name = 'SirVer/ultisnips' },
-    { name = 'quangnguyen30192/cmp-nvim-ultisnips' },
+    -- { name = 'SirVer/ultisnips' },
+    -- { name = 'quangnguyen30192/cmp-nvim-ultisnips' },
     -- cmp snippy users
     { name = 'dcampos/nvim-snippy' },
     { name = 'dcampos/cmp-snippy' },

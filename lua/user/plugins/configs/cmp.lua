@@ -8,8 +8,8 @@ local snip_status_ok, luasnip = pcall(require, "luasnip")
 if not snip_status_ok then
     return
 end
-vim.g.UltiSnipsSnippetDirectories = { "UltiSnips", "snippets/ultisnips" }
-vim.g.UltiSnipsExpandTrigger = "<tab>"
+-- vim.g.UltiSnipsSnippetDirectories = { "UltiSnips", "snippets/ultisnips" }
+-- vim.g.UltiSnipsExpandTrigger = "<tab>"
 
 require("luasnip.loaders.from_vscode").load({ paths = "~/.config/nvim/snippets/vscode" })
 require("luasnip.loaders.from_vscode").lazy_load()
@@ -79,7 +79,7 @@ local function get_sources()
         { name = 'nvim_lsp', keyword_length = 3 }, -- For nvim lsp users
         { name = 'vsnip' },                        -- For vsnip users.
         { name = 'luasnip' },                      -- For luasnip users.
-        { name = 'ultisnips' },                    -- For ultisnips users.
+        -- { name = 'ultisnips' },                    -- For ultisnips users.
         { name = 'snippy' },                       -- For snippy users.
     }
 
