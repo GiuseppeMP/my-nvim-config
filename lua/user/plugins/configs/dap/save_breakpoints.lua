@@ -5,11 +5,18 @@ local HOME = os.getenv "HOME"
 local M = {}
 local CACHE = HOME .. '/.cache/dap/breakpoints.json'
 
-if not utils.file_exists(CACHE) then
-    local fp = io.open(CACHE, 'w')
-    fp:write("{}")
-    fp:close()
+
+M.create_json_data = function()
+    if not utils.file_exists(CACHE) then
+        local fp = io.open(CACHE, 'w')
+        if not fp == nil then
+            fp:write("{}")
+            fp:close()
+        end
+    end
 end
+
+M.create_json_data()
 
 M.store_breakpoints = function(clear)
     local load_bps_raw = io.open(HOME .. '/.cache/dap/breakpoints.json', 'r'):read("*a")
