@@ -13,7 +13,7 @@ M.create_json_data = function()
     end
 end
 
-M.create_json_data()
+pcall(M.create_json_data)
 
 M.store_breakpoints = function(clear)
     local load_bps_raw = io.open(CACHE, 'r'):read("*a")
