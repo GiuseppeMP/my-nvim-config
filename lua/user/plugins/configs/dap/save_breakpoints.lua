@@ -12,7 +12,6 @@ M.create_json_data = function()
         fp:close()
     end
 end
-print(CACHE)
 
 M.create_json_data()
 
