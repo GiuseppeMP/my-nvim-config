@@ -3,23 +3,21 @@ local breakpoints = require('dap.breakpoints')
 
 local HOME = os.getenv "HOME"
 local M = {}
-local CACHE = HOME .. '/.cache/dap/breakpoints.json'
-
+local CACHE = HOME .. '/.cache/nvim/breakpoints.json'
 
 M.create_json_data = function()
     if not utils.file_exists(CACHE) then
-        local fp = io.open(CACHE, 'w')
-        if not fp == nil then
-            fp:write("{}")
-            fp:close()
-        end
+        local fp = io.open(CACHE, 'w+')
+        fp:write("{}")
+        fp:close()
     end
 end
+print(CACHE)
 
 M.create_json_data()
 
 M.store_breakpoints = function(clear)
-    local load_bps_raw = io.open(HOME .. '/.cache/dap/breakpoints.json', 'r'):read("*a")
+    local load_bps_raw = io.open(CACHE, 'r'):read("*a")
     local bps = vim.fn.json_decode(load_bps_raw)
     local breakpoints_by_buf = breakpoints.get()
     if (clear) then
@@ -34,14 +32,14 @@ M.store_breakpoints = function(clear)
             bps[vim.api.nvim_buf_get_name(buf)] = buf_bps
         end
     end
-    local fp = io.open(HOME .. '/.cache/dap/breakpoints.json', 'w')
+    local fp = io.open(CACHE, 'w')
     local final = vim.fn.json_encode(bps)
     fp:write(final)
     fp:close()
 end
 
 M.load_breakpoints = function()
-    local fp = io.open(HOME .. '/.cache/dap/breakpoints.json', 'r')
+    local fp = io.open(CACHE, 'r')
     local content = fp:read('*a')
     local bps = vim.fn.json_decode(content)
     local loaded_buffers = {}
