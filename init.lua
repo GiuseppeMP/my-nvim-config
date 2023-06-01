@@ -14,3 +14,5 @@ require("user.autocmds")
 require('user.wsl')
 
 require("user.keymaps")
+
+require("user.colemak")

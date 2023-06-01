@@ -1,12 +1,15 @@
 -- This module keeps the dap and dapui general
 -- configurations
 local dap, dapui = require("dap"), require("dapui")
+local tokyo_colors = require("tokyonight.colors").setup()
 
 vim.api.nvim_set_hl(0, "blue", { fg = "#3d59a1" })
 vim.api.nvim_set_hl(0, "green", { fg = "#9ece6a" })
 vim.api.nvim_set_hl(0, "yellow", { fg = "#FFFF00" })
 vim.api.nvim_set_hl(0, "orange", { fg = "#f09000" })
 vim.api.nvim_set_hl(0, "red", { fg = "#BD2031" })
+
+vim.api.nvim_set_hl(0, 'DapStopped', { ctermbg = 0, fg = tokyo_colors.yellow, bg = tokyo_colors.black })
 
 -- Dap Icons.
 vim.fn.sign_define('DapBreakpointCondition', {
@@ -23,13 +26,15 @@ vim.fn.sign_define('DapBreakpointRejected', {
     numhl = 'DapBreakpoint'
 })
 
+
 -- vim.fn.sign_define('DapStopped', { text = 'ﴫ', texthl = 'green', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
 -- vim.fn.sign_define('DapLogPoint', { text = '󰀨', texthl = 'yellow', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
 -- vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'red', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
 -- vim.fn.sign_define('DapStopped', { text = '', texthl = 'red', linehl = 'DapStopped', numhl = 'DapStopped' })
 
 
-vim.fn.sign_define('DapStopped', { text = '▶️', texthl = '', linehl = '', numhl = '' })
+vim.fn.sign_define('DapStopped', { text = '▶️', texthl = '', linehl = 'DapStopped', numhl = 'DapStopped' })
+
 vim.fn.sign_define('DapBreakpoint', { text = '🔴', texthl = '', linehl = '', numhl = '' })
 
 vim.cmd [[vnoremap <leader>de <Cmd>lua require("dapui").eval()<CR>]]

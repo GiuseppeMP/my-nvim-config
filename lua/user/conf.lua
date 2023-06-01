@@ -8,5 +8,8 @@ M.codeium = {
     enabled = true
 }
 
+M.colemak = {
+    enabled = false
+}
 
 return M

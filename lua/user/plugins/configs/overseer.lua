@@ -1,4 +1,7 @@
-require("overseer").setup({
+local overseer = require("overseer")
+local spring_boot_tasks = require("user.plugins.configs.overseer_spring_boot")
+
+overseer.setup({
     strategy = {
         "toggleterm",
         -- load your default shell before starting the task
@@ -19,3 +22,8 @@ require("overseer").setup({
     },
     templates = { "builtin", "user.mvn", "user.spring" }
 })
+
+
+for _, v in pairs(spring_boot_tasks) do
+    overseer.register_template(v)
+end

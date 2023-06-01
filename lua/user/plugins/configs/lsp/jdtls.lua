@@ -21,7 +21,7 @@ local root_dir = function() require('jdtls.setup').find_root(root_markers) end
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 
 -- eclipse needs to create workspace settings folder, you can reset it using :JdtWipeDataAndRestart
-local workspace_folder = function() return vim.fn.stdpath "data" .. "/site/java/workspace-root/" .. project_name end
+local workspace_folder = function() return vim.fn.stdpath "data" .. "/jdtls/workspace_root/" .. project_name end
 
 -- lombok jar path
 local lombok_jar = vim.fn.glob(home .. '/.config/nvim/jdtls/lombok-*.jar')
@@ -151,11 +151,11 @@ local function get_settings()
                     {
                         name = "JavaSE-17",
                         path = home .. "/.asdf/installs/java/corretto-17.0.4.9.1",
-                        default = true,
                     },
                     {
                         name = "JavaSE-19",
                         path = home .. "/.asdf/installs/java/openjdk-19.0.2",
+                        default = true,
                     },
                 }
             }
