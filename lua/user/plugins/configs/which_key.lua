@@ -223,6 +223,7 @@ wk.register({
 -- tmux navigator
 vim.g.tmux_navigator_no_mappings = 1
 vim.g.tmux_navigator_save_on_switch = 2
+
 wk.register({
     ["<C-k>"] = { vim.cmd.TmuxNavigateUp, 'Tmux navigate up' },
     ["<C-j>"] = { vim.cmd.TmuxNavigateDown, 'Tmux navigate down' },
@@ -237,4 +238,41 @@ wk.register({
         h = { vim.cmd(":set statusline=%{synIDattr(synIDtrans(synID(line('.'),col('.'),1)),'name')}"),
             "Status line highlight cursor debug" }
     }
+})
+
+
+-- codeium
+wk.register({
+    -- ["<Tab>"] = { function() vim.fn['codeium#Accept']() end, 'Codeium accept suggestion' },
+    ["<c-,>"] = { function() vim.fn['codeium#CycleCompletions'](1) end, 'Codeium next suggestion' },
+    ["<c-.>"] = { function() vim.fn['codeium#CycleCompletions'](-1) end, 'Codeium previous suggestion' },
+    ["<c-x"] = { function() vim.fn['codeium#Clear']() end, 'Codeium cycle completions' },
+}, { mode = { 'i' } })
+
+vim.cmd [[
+    imap <script><silent><nowait><expr> <C-g> codeium#Accept()
+]]
+
+
+local chatgpt = require("chatgpt")
+wk.register({
+    c = {
+        name = "ChatGPT",
+        c = { "<cmd>ChatGPT<CR>", "ChatGPT" },
+        e = { "<cmd>ChatGPTEditWithInstruction<CR>", "Edit with instruction" },
+        g = { "<cmd>ChatGPTRun grammar_correction<CR>", "Grammar Correction" },
+        -- t = { "<cmd>ChatGPTRun translate<CR>", "Translate" },
+        k = { "<cmd>ChatGPTRun keywords<CR>", "Keywords" },
+        d = { "<cmd>ChatGPTRun docstring<CR>", "Docstring" },
+        t = { "<cmd>ChatGPTRun add_tests<CR>", "Add Tests" },
+        o = { "<cmd>ChatGPTRun optimize_code<CR>", "Optimize Code" },
+        s = { "<cmd>ChatGPTRun summarize<CR>", "Summarize" },
+        b = { "<cmd>ChatGPTRun fix_bugs<CR>", "Fix Bugs" },
+        x = { "<cmd>ChatGPTRun explain_code<CR>", "Explain Code" },
+        r = { "<cmd>ChatGPTRun roxygen_edit<CR>", "Roxygen Edit" },
+        l = { "<cmd>ChatGPTRun code_readability_analysis<CR>", "Code Readability Analysis" },
+    },
+}, {
+    prefix = "<leader>",
+    mode = "v",
 })

@@ -263,7 +263,7 @@ local plugins = {
 
     -- better lsp progress ui
     {
-        name = 'j-hui/fidget.nvim'
+        name = 'j-hui/fidget.nvim', lazy = { tag = 'legacy' }
     },
 
     -- better nvim ui
@@ -373,6 +373,7 @@ local plugins = {
             end
         }
     },
+    { name = "Exafunction/codeium.vim" },
 
     --- codeium
     {
@@ -380,9 +381,8 @@ local plugins = {
         lazy = {
             dependencies = {
                 "nvim-lua/plenary.nvim",
-                "hrsh7th/nvim-cmp"
+                "hrsh7th/nvim-cmp",
             },
-            commit = "2bbc8d10c5baadbbea9d028131cc37a8a31ec5b2",
             cond = function() return conf.user.codeium.enabled end,
             config = function()
                 require("codeium").setup({})
@@ -390,6 +390,31 @@ local plugins = {
         }
     },
 
+    -- Lazy
+    {
+        name = "jackMort/ChatGPT.nvim",
+        lazy = {
+            event = "VeryLazy",
+            config = function()
+                require("chatgpt").setup(
+                    {
+                        api_key_cmd = "cat ~/chatgpt/open_ai_key.txt",
+                        openai_edit_params = {
+                            model = "code-davinci-edit-001", -- cheaper
+                            temperature = 0,
+                            top_p = 1,
+                            n = 1,
+                        },
+                    }
+                )
+            end,
+            dependencies = {
+                "MunifTanjim/nui.nvim",
+                "nvim-lua/plenary.nvim",
+                "nvim-telescope/telescope.nvim"
+            }
+        }
+    },
 
     -- GX improvement
     {

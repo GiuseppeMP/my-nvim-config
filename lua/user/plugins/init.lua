@@ -11,6 +11,7 @@ local configs = {
     { conf = function() require "user.plugins.configs.boole" end,         name = 'boole' },
     { conf = function() require "user.plugins.configs.bufferline" end,    name = 'bufferline' },
     { conf = function() require "user.plugins.configs.cmp" end,           name = 'cmp' },
+    { conf = function() require "user.plugins.configs.codeium" end,       name = 'codeium' },
     { conf = function() require "user.plugins.configs.dap" end,           name = 'dap' },
     { conf = function() require "user.plugins.configs.dracula" end,       name = 'dracula' },
     { conf = function() require "user.plugins.configs.dressing" end,      name = 'dressing' },
