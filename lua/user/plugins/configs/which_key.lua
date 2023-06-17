@@ -4,7 +4,6 @@ local telescope = require 'telescope'
 local builtin = require 'telescope.builtin'
 local dap_save = require 'user.plugins.configs.dap.save_breakpoints'
 
-
 -- nvim/hop
 local hop = require('hop')
 local tsht = require('tsht')
@@ -254,14 +253,12 @@ vim.cmd [[
 ]]
 
 
-local chatgpt = require("chatgpt")
 wk.register({
     c = {
         name = "ChatGPT",
-        c = { "<cmd>ChatGPT<CR>", "ChatGPT" },
+        p = { "<cmd>ChatGPT<CR>", "ChatGPT" },
         e = { "<cmd>ChatGPTEditWithInstruction<CR>", "Edit with instruction" },
         g = { "<cmd>ChatGPTRun grammar_correction<CR>", "Grammar Correction" },
-        -- t = { "<cmd>ChatGPTRun translate<CR>", "Translate" },
         k = { "<cmd>ChatGPTRun keywords<CR>", "Keywords" },
         d = { "<cmd>ChatGPTRun docstring<CR>", "Docstring" },
         t = { "<cmd>ChatGPTRun add_tests<CR>", "Add Tests" },
@@ -271,8 +268,9 @@ wk.register({
         x = { "<cmd>ChatGPTRun explain_code<CR>", "Explain Code" },
         r = { "<cmd>ChatGPTRun roxygen_edit<CR>", "Roxygen Edit" },
         l = { "<cmd>ChatGPTRun code_readability_analysis<CR>", "Code Readability Analysis" },
+        -- t = { "<cmd>ChatGPTRun translate<CR>", "Translate" },
     },
 }, {
     prefix = "<leader>",
-    mode = "v",
+    mode = { "v", "n" },
 })
