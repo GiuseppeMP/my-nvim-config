@@ -101,7 +101,7 @@ wk.register({
         u = { vim.cmd.UndotreeToggle, 'Show undotree' },
         l = { vim.cmd.Lazy, 'Lazy plugin manager' },
         d = { vim.cmd.TroubleToggle, 'Show diagnostics panel' },
-        m = { vim.cmd.MarkdownPreview, 'Markdown Preview' },
+        -- m = { vim.cmd.MarkdownPreview, 'Markdown Preview' },
         z = { telescope.extensions.zoxide.list, 'Show zoxide directories' },
     },
 })

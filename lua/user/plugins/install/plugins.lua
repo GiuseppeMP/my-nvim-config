@@ -98,13 +98,6 @@ local plugins = {
         spec = { tag = '0.1.1' }
     },
 
-    -- Markdown Preview
-    {
-        name = 'iamcco/markdown-preview.nvim',
-        packer = { run = 'cd app && yarn install', cmd = 'MarkdownPreview' },
-        lazy = { build = 'cd app && yarn install', cmd = 'MarkdownPreview' }
-    },
-
     -- Tagbar outline
     { name = 'preservim/tagbar' },
 
