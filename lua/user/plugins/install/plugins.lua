@@ -398,9 +398,10 @@ local plugins = {
             config = function()
                 require("chatgpt").setup(
                     {
-                        api_key_cmd = "cat ~/chatgpt/open_ai_key.txt",
+                        -- change for your config
+                        api_key_cmd = "op read op://private/open_ai/api_key --no-newline",
                         openai_edit_params = {
-                            model = "code-davinci-edit-001", -- cheaper
+                            model = "code-davinci-edit-001", -- code model
                             temperature = 0,
                             top_p = 1,
                             n = 1,
@@ -412,6 +413,44 @@ local plugins = {
                 "MunifTanjim/nui.nvim",
                 "nvim-lua/plenary.nvim",
                 "nvim-telescope/telescope.nvim"
+            }
+        }
+    },
+
+    -- lazy.nvim
+    {
+        name = "folke/noice.nvim",
+        lazy = {
+            event = "VeryLazy",
+            opts = {
+                -- add any options here
+            },
+            config = function()
+                require("noice").setup({
+                    lsp = {
+                        override = {
+                            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+                            ["vim.lsp.util.stylize_markdown"] = true,
+                            ["cmp.entry.get_documentation"] = true,
+                        },
+                    },
+                    presets = {
+                        bottom_search = true,
+                        command_palette = true,
+                        long_message_to_split = true,
+                        inc_rename = false,
+                        lsp_doc_border = false,
+                    },
+
+                })
+            end,
+            dependencies = {
+                -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+                "MunifTanjim/nui.nvim",
+                -- OPTIONAL:
+                --   `nvim-notify` is only needed, if you want to use the notification view.
+                --   If not available, we use `mini` as the fallback
+                "rcarriga/nvim-notify",
             }
         }
     },
