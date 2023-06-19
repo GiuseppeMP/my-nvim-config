@@ -12,4 +12,8 @@ M.colemak = {
     enabled = false
 }
 
+M.chatgpt = {
+    enabled = true
+}
+
 return M

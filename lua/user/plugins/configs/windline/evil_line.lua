@@ -57,9 +57,10 @@ basic.lsp_diagnos = {
                 { lsp_comps.lsp_error({ format = ' ' .. conf.signs.error .. ' %s', show_zero = true }),  'red' },
                 { lsp_comps.lsp_warning({ format = ' ' .. conf.signs.warn .. ' %s', show_zero = true }), 'yellow' },
                 { lsp_comps.lsp_hint({ format = ' ' .. conf.signs.hint .. ' %s', show_zero = true }),    'blue' },
+                { ' ',                                                                                   '' },
             }
         end
-        return ''
+        return ' '
     end,
 
 }
@@ -109,6 +110,50 @@ basic.file_right = {
             }
         end
     end,
+}
+basic.genai = {
+    name = 'genai',
+    hl_colors = {
+        green = { 'green', 'black' },
+        red = { 'red', 'black' },
+        blue = { 'blue', 'black' },
+        magenta = { 'magenta', 'black' },
+        yellow = { 'yellow', 'black' },
+    },
+    text = function(_)
+        if conf.user.codeium.enabled then
+            return {
+                { '  copilot ', 'magenta' },
+                { function()
+                    if conf.user.copilot.enabled
+                    then
+                        return 'on'
+                    else
+                        return 'off'
+                    end
+                end, 'magenta' },
+                { ' 󰚩 chat-gpt ', 'yellow' },
+                { function()
+                    if
+                        conf.user.chatgpt.enabled then
+                        return 'on'
+                    else
+                        return 'off'
+                    end
+                end, 'yellow' },
+                { '  codeium ', 'green' },
+                {
+                    function()
+                        local status = vim.fn['codeium#GetStatusString']():lower()
+                        if status:gsub("%s", "") == '' or status == nil or string.len(status) ~= 3 or string.find(status, 'on') ~= nil then
+                            return "on "
+                        else
+                            return status
+                        end
+                    end, 'green' },
+            }
+        end
+    end
 }
 basic.git = {
     name = 'git',
@@ -194,6 +239,8 @@ local default = {
         basic.divider,
         basic.lsp_name,
         basic.lsp_diagnos,
+        basic.square_mode,
+        basic.genai,
         basic.divider,
         basic.file_right,
         basic.git,
