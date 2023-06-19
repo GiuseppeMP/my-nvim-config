@@ -21,7 +21,7 @@ basic.divider = { b_components.divider, '' }
 basic.bg = { ' ', 'StatusLine' }
 
 local colors_mode = {
-    Normal = { 'blue', 'black' },
+    Normal = { 'vgreen', 'black' },
     Insert = { 'green', 'black' },
     Visual = { 'yellow', 'black' },
     Replace = { 'red', 'black' },
@@ -119,38 +119,42 @@ basic.genai = {
         blue = { 'blue', 'black' },
         magenta = { 'magenta', 'black' },
         yellow = { 'yellow', 'black' },
+        cyan = { 'cyan', 'black' },
+        virtual = { 'vgreen', 'black' },
+        virtual_bg = { 'vgreen', 'black' }
     },
     text = function(_)
         if conf.user.codeium.enabled then
             return {
-                { '  copilot ', 'magenta' },
+                { '▊',           'virtual' },
+                { '  copilot ', 'virtual_bg' },
                 { function()
                     if conf.user.copilot.enabled
                     then
-                        return 'on'
+                        return ''
                     else
-                        return 'off'
+                        return ''
                     end
-                end, 'magenta' },
-                { ' 󰚩 chat-gpt ', 'yellow' },
+                end, 'virtual' },
+                { ' 󰚩 chat-gpt ', 'virtual_bg' },
                 { function()
                     if
                         conf.user.chatgpt.enabled then
-                        return 'on'
+                        return ''
                     else
-                        return 'off'
+                        return ''
                     end
-                end, 'yellow' },
-                { '  codeium ', 'green' },
+                end, 'virtual' },
+                { '  codeium ',   'virtual_bg' },
                 {
                     function()
                         local status = vim.fn['codeium#GetStatusString']():lower()
                         if status:gsub("%s", "") == '' or status == nil or string.len(status) ~= 3 or string.find(status, 'on') ~= nil then
-                            return "on "
+                            return ''
                         else
-                            return status
+                            return status:gsub(" ", "")
                         end
-                    end, 'green' },
+                    end, 'virtual' },
             }
         end
     end
@@ -163,6 +167,8 @@ basic.git = {
         blue = { 'blue', 'black' },
         magenta = { 'magenta', 'black' },
         yellow = { 'yellow', 'black' },
+        virtual = { 'vgreen', 'black' },
+        virtual_bg = { 'vgreen', 'black' }
     },
     width = breakpoint_width,
     text = function(bufnr)
@@ -239,12 +245,11 @@ local default = {
         basic.divider,
         basic.lsp_name,
         basic.lsp_diagnos,
-        basic.square_mode,
         basic.genai,
         basic.divider,
         basic.file_right,
         basic.git,
-        { git_comps.git_branch(), { 'magenta', 'black' }, breakpoint_width },
+        { git_comps.git_branch(), { 'vgreen', 'black' }, breakpoint_width },
         { ' ',                    hl_list.Black },
         basic.square_mode,
     },
@@ -266,6 +271,9 @@ windline.setup({
         colors.blue = tokyo_colors.blue
         colors.yellow = tokyo_colors.yellow
         colors.green = tokyo_colors.green
+        colors.vgreen = '#0db9d7'
+        colors.vgreen_bg = '#203346'
+
         return colors
     end,
     statuslines = {
