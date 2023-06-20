@@ -378,6 +378,7 @@ local plugins = {
             },
             cond = function() return conf.user.codeium.enabled end,
             config = function()
+                vim.g.codeium_manual = true
                 require("codeium").setup({})
             end
         }
@@ -426,6 +427,9 @@ local plugins = {
                             ["vim.lsp.util.stylize_markdown"] = true,
                             ["cmp.entry.get_documentation"] = true,
                         },
+                        progress  = {
+                            enabled = false
+                        }
                     },
                     views = {
                         cmdline_popup = {

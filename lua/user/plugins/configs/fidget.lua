@@ -24,6 +24,7 @@ require 'fidget'.setup(
         fmt = {
             leftpad = true,       -- right-justify text in fidget box
             stack_upwards = true, -- list of tasks grows upwards
+            max_messages = 2,
             max_width = 0,        -- maximum width of the fidget box
             fidget =              -- function to format fidget title
                 function(fidget_name, spinner)
@@ -31,7 +32,9 @@ require 'fidget'.setup(
                 end,
             task = -- function to format each task line
                 function(task_name, message, percentage)
-                    if task_name == 'Validate documents' then return nil end
+                    if task_name == nil then return nil end
+                    if string.find(task_name, 'Validate documents') then return nil end
+                    if string.find(task_name, 'Diagnosing') then return nil end
                     return string.format(
                         "%s%s [%s]",
                         message,

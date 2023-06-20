@@ -239,10 +239,9 @@ wk.register({
     }
 })
 
-
 -- codeium
 wk.register({
-    -- ["<Tab>"] = { function() vim.fn['codeium#Accept']() end, 'Codeium accept suggestion' },
+    ["<c-;>"] = { function() vim.fn['codeium#Complete']() end, 'Codeium accept suggestion' },
     ["<c-,>"] = { function() vim.fn['codeium#CycleCompletions'](1) end, 'Codeium next suggestion' },
     ["<c-.>"] = { function() vim.fn['codeium#CycleCompletions'](-1) end, 'Codeium previous suggestion' },
     ["<c-x"] = { function() vim.fn['codeium#Clear']() end, 'Codeium cycle completions' },
