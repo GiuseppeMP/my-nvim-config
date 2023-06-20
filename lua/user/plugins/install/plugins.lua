@@ -35,29 +35,29 @@ local plugins = {
     {
         name = 'nvim-treesitter/nvim-treesitter',
         packer = { run = ':TSUpdate' },
-        lazy = { build = ':TSUpdate' }
+        lazy = { build = ':TSUpdate', event = 'VeryLazy' }
     },
 
     -- text objects treesitter
-    { name = 'nvim-treesitter/nvim-treesitter-textobjects' },
+    { name = 'nvim-treesitter/nvim-treesitter-textobjects', lazy = { event = 'VeryLazy' } },
 
     -- text objects improved by subjects
-    { name = 'RRethy/nvim-treesitter-textsubjects' },
+    { name = 'RRethy/nvim-treesitter-textsubjects', lazy = { event = 'VeryLazy' } },
 
     -- refactor module for tresitter
-    { name = 'nvim-treesitter/nvim-treesitter-refactor' },
+    { name = 'nvim-treesitter/nvim-treesitter-refactor', lazy = { event = 'VeryLazy' } },
 
     -- comment string for multiple languages in the same buffer
-    { name = 'JoosepAlviste/nvim-ts-context-commentstring' },
+    { name = 'JoosepAlviste/nvim-ts-context-commentstring', lazy = { event = 'VeryLazy' } },
 
     -- better context, for long functions
-    { name = 'romgrk/nvim-treesitter-context' },
+    { name = 'romgrk/nvim-treesitter-context', lazy = { event = 'VeryLazy' } },
 
     -- auto close and auto rename xml, htmls tags
-    { name = 'windwp/nvim-ts-autotag' },
+    { name = 'windwp/nvim-ts-autotag', lazy = { event = 'VeryLazy' } },
 
     -- Rainbow in Treesitter
-    { name = 'HiPhish/nvim-ts-rainbow2' },
+    { name = 'HiPhish/nvim-ts-rainbow2', lazy = { event = 'VeryLazy' }},
 
     -- close buffers without exit vim or messing layouts
     { name = 'moll/vim-bbye' },
@@ -102,17 +102,17 @@ local plugins = {
     { name = 'preservim/tagbar' },
 
     -- Collection of plugins for tests, Debug and TDD
-    { name = 'nvim-lua/plenary.nvim' },
-    { name = 'vim-test/vim-test' },
-    { name = 'nvim-neotest/neotest' },
-    { name = 'nvim-neotest/neotest-vim-test' },
-    { name = 'nvim-neotest/neotest-plenary' },
+    { name = 'nvim-lua/plenary.nvim',           lazy = { event = 'VeryLazy' } },
+    { name = 'vim-test/vim-test',               lazy = { event = 'VeryLazy' } },
+    { name = 'nvim-neotest/neotest',            lazy = { event = 'VeryLazy' } },
+    { name = 'nvim-neotest/neotest-vim-test',   lazy = { event = 'VeryLazy' } },
+    { name = 'nvim-neotest/neotest-plenary',    lazy = { event = 'VeryLazy' } },
     -- vim tests
-    { name = 'kana/vim-vspec' },
+    { name = 'kana/vim-vspec',                  lazy = { event = 'VeryLazy' } },
     -- fix cursor in tests/debug
-    { name = 'antoinemadec/FixCursorHold.nvim' },
+    { name = 'antoinemadec/FixCursorHold.nvim', lazy = { event = 'VeryLazy' } },
     -- go to test file (alernate)
-    { name = 'tpope/vim-projectionist' },
+    { name = 'tpope/vim-projectionist',         lazy = { event = 'VeryLazy' } },
 
     --Plug for mark files and terminals on the fly, to avoid repeat commands like
     --bnext, bprev, or fzf
@@ -122,7 +122,7 @@ local plugins = {
     -- { name = 'ThePrimeagen/refactoring.nvim' },
 
     -- Plug for smoothie ctrl-d and ctrl-up scrolling
-    { name = 'psliwka/vim-smoothie' },
+    { name = 'psliwka/vim-smoothie',            lazy = { event = 'VeryLazy' } },
 
     -- Plug for float windows like fzf but for anything and vim-test
     -- Plugin para utilizar janelas flutuantes parecido com fzf, suportar vim-test
@@ -135,6 +135,7 @@ local plugins = {
         packer = { rtp = '.' },
         lazy = {
             lazy = false,
+            event = 'VeryLazy',
             config = lazy_rtp
         }
     },
@@ -161,9 +162,9 @@ local plugins = {
 
     -- Mason tools, LSPs, Debug Servers
     { name = 'williamboman/mason.nvim' },
-    { name = 'williamboman/mason-lspconfig.nvim' },
-    { name = 'WhoIsSethDaniel/mason-tool-installer.nvim' },
-    { name = 'neovim/nvim-lspconfig' },
+    { name = 'williamboman/mason-lspconfig.nvim', lazy = { event = 'VeryLazy' } },
+    { name = 'WhoIsSethDaniel/mason-tool-installer.nvim', lazy = { event = 'VeryLazy' } },
+    { name = 'neovim/nvim-lspconfig', lazy = { event = 'VeryLazy' } },
     { name = 'mfussenegger/nvim-jdtls' },
     { name = 'jose-elias-alvarez/null-ls.nvim' },
     { name = 'mfussenegger/nvim-dap-python' },
@@ -232,6 +233,7 @@ local plugins = {
         packer = { rtp = '.' },
         lazy = {
             lazy = false,
+            event = 'VeryLazy',
             config = lazy_rtp
         }
     },
@@ -275,6 +277,7 @@ local plugins = {
     {
         name = "folke/trouble.nvim",
         lazy = {
+            event = 'VeryLazy',
             config = function()
                 require 'trouble'.setup { signs = {
                     error = conf.signs.error,
@@ -310,6 +313,7 @@ local plugins = {
         name = "kevinhwang91/nvim-ufo",
         lazy = {
             dependencies = { 'kevinhwang91/promise-async' },
+            event = 'VeryLazy',
             config = function()
                 vim.o.foldcolumn = '1' -- '0' is not bad
                 vim.o.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
@@ -372,6 +376,7 @@ local plugins = {
     {
         name = "jcdickinson/codeium.nvim",
         lazy = {
+            event = 'VeryLazy',
             dependencies = {
                 "nvim-lua/plenary.nvim",
                 "hrsh7th/nvim-cmp",
@@ -427,7 +432,7 @@ local plugins = {
                             ["vim.lsp.util.stylize_markdown"] = true,
                             ["cmp.entry.get_documentation"] = true,
                         },
-                        progress  = {
+                        progress = {
                             enabled = false
                         }
                     },
@@ -548,6 +553,7 @@ local plugins = {
         name = 'akinsho/toggleterm.nvim',
         lazy = {
             version = "*",
+            event = 'VeryLazy',
             config = function()
                 require 'toggleterm'.setup {
                     direction = 'float',
