@@ -66,8 +66,8 @@ wk.register({
         v = { function() require 'neoclip.fzf' () end, 'Clipboard history' },
         t = { vim.cmd.OverseerRun, 'Show tasks' },
         o = { vim.cmd.OverseerOpen, 'Show tasks output' },
-        c = { builtin.colorscheme, 'Colorschemes' },
         q = { builtin.quickfix, 'Quickfix' },
+        c = { vim.cmd.Noice, 'Noice console messages' },
     },
 })
 

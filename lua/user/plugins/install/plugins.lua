@@ -42,22 +42,22 @@ local plugins = {
     { name = 'nvim-treesitter/nvim-treesitter-textobjects', lazy = { event = 'VeryLazy' } },
 
     -- text objects improved by subjects
-    { name = 'RRethy/nvim-treesitter-textsubjects', lazy = { event = 'VeryLazy' } },
+    { name = 'RRethy/nvim-treesitter-textsubjects',         lazy = { event = 'VeryLazy' } },
 
     -- refactor module for tresitter
-    { name = 'nvim-treesitter/nvim-treesitter-refactor', lazy = { event = 'VeryLazy' } },
+    { name = 'nvim-treesitter/nvim-treesitter-refactor',    lazy = { event = 'VeryLazy' } },
 
     -- comment string for multiple languages in the same buffer
     { name = 'JoosepAlviste/nvim-ts-context-commentstring', lazy = { event = 'VeryLazy' } },
 
     -- better context, for long functions
-    { name = 'romgrk/nvim-treesitter-context', lazy = { event = 'VeryLazy' } },
+    { name = 'romgrk/nvim-treesitter-context',              lazy = { event = 'VeryLazy' } },
 
     -- auto close and auto rename xml, htmls tags
-    { name = 'windwp/nvim-ts-autotag', lazy = { event = 'VeryLazy' } },
+    { name = 'windwp/nvim-ts-autotag',                      lazy = { event = 'VeryLazy' } },
 
     -- Rainbow in Treesitter
-    { name = 'HiPhish/nvim-ts-rainbow2', lazy = { event = 'VeryLazy' }},
+    { name = 'HiPhish/nvim-ts-rainbow2',                    lazy = { event = 'VeryLazy' } },
 
     -- close buffers without exit vim or messing layouts
     { name = 'moll/vim-bbye' },
@@ -102,13 +102,13 @@ local plugins = {
     { name = 'preservim/tagbar' },
 
     -- Collection of plugins for tests, Debug and TDD
-    { name = 'nvim-lua/plenary.nvim',           lazy = { event = 'VeryLazy' } },
-    { name = 'vim-test/vim-test',               lazy = { event = 'VeryLazy' } },
-    { name = 'nvim-neotest/neotest',            lazy = { event = 'VeryLazy' } },
-    { name = 'nvim-neotest/neotest-vim-test',   lazy = { event = 'VeryLazy' } },
-    { name = 'nvim-neotest/neotest-plenary',    lazy = { event = 'VeryLazy' } },
+    { name = 'nvim-lua/plenary.nvim',           },
+    { name = 'vim-test/vim-test',               },
+    { name = 'nvim-neotest/neotest',            },
+    { name = 'nvim-neotest/neotest-vim-test',   },
+    { name = 'nvim-neotest/neotest-plenary',    },
     -- vim tests
-    { name = 'kana/vim-vspec',                  lazy = { event = 'VeryLazy' } },
+    { name = 'kana/vim-vspec',                  },
     -- fix cursor in tests/debug
     { name = 'antoinemadec/FixCursorHold.nvim', lazy = { event = 'VeryLazy' } },
     -- go to test file (alernate)
@@ -162,9 +162,9 @@ local plugins = {
 
     -- Mason tools, LSPs, Debug Servers
     { name = 'williamboman/mason.nvim' },
-    { name = 'williamboman/mason-lspconfig.nvim', lazy = { event = 'VeryLazy' } },
+    { name = 'williamboman/mason-lspconfig.nvim',         lazy = { event = 'VeryLazy' } },
     { name = 'WhoIsSethDaniel/mason-tool-installer.nvim', lazy = { event = 'VeryLazy' } },
-    { name = 'neovim/nvim-lspconfig', lazy = { event = 'VeryLazy' } },
+    { name = 'neovim/nvim-lspconfig',                     lazy = { event = 'VeryLazy' } },
     { name = 'mfussenegger/nvim-jdtls' },
     { name = 'jose-elias-alvarez/null-ls.nvim' },
     { name = 'mfussenegger/nvim-dap-python' },
@@ -257,9 +257,9 @@ local plugins = {
     { name = "folke/which-key.nvim" },
 
     -- better lsp progress ui
-    {
-        name = 'j-hui/fidget.nvim', lazy = { tag = 'legacy' }
-    },
+    -- {
+    --     name = 'j-hui/fidget.nvim', lazy = { tag = 'legacy' }
+    -- },
 
     -- better nvim ui
     { name = 'stevearc/dressing.nvim' },
@@ -433,7 +433,9 @@ local plugins = {
                             ["cmp.entry.get_documentation"] = true,
                         },
                         progress = {
-                            enabled = false
+                            enabled = true,
+                            throttle = 1000 / 10,  -- frequency to update lsp progress message
+                            view = "mini",
                         }
                     },
                     views = {
