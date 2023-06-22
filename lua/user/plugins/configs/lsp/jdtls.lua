@@ -15,7 +15,7 @@ local home = os.getenv "HOME"
 local root_markers = { 'pom.xml','gradlew', 'mvnw', '.git', 'settings.gradle',  '.lsp_root' }
 
 -- root dir, workspace and project name
-local root_dir = function() require('jdtls.setup').find_root(root_markers) end
+local root_dir = function() return require('jdtls.setup').find_root(root_markers) end
 
 -- project name is assumed by the folder name
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
