@@ -12,7 +12,7 @@ end
 local home = os.getenv "HOME"
 
 -- maybe needs to improve marks because multimodule projects (maven/gradle)
-local root_markers = { 'gradlew', 'mvnw', '.git', 'settings.gradle', 'pom.xml', ".lsp_root" }
+local root_markers = { 'pom.xml','gradlew', 'mvnw', '.git', 'settings.gradle',  '.lsp_root' }
 
 -- root dir, workspace and project name
 local root_dir = function() require('jdtls.setup').find_root(root_markers) end

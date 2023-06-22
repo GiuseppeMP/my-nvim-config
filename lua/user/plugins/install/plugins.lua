@@ -162,9 +162,9 @@ local plugins = {
 
     -- Mason tools, LSPs, Debug Servers
     { name = 'williamboman/mason.nvim' },
-    { name = 'williamboman/mason-lspconfig.nvim',         lazy = { event = 'VeryLazy' } },
-    { name = 'WhoIsSethDaniel/mason-tool-installer.nvim', lazy = { event = 'VeryLazy' } },
-    { name = 'neovim/nvim-lspconfig',                     lazy = { event = 'VeryLazy' } },
+    { name = 'williamboman/mason-lspconfig.nvim',         },
+    { name = 'WhoIsSethDaniel/mason-tool-installer.nvim', },
+    { name = 'neovim/nvim-lspconfig',                     },
     { name = 'mfussenegger/nvim-jdtls' },
     { name = 'jose-elias-alvarez/null-ls.nvim' },
     { name = 'mfussenegger/nvim-dap-python' },
