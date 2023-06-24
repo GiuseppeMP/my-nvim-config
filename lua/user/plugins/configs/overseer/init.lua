@@ -21,15 +21,14 @@ overseer.setup({
         -- being rendered in the toggleable window
         hidden = true,
     },
-    templates = { "builtin", "user.mvn", "user.spring" }
+    templates = { "builtin" }
 })
 
 
-for _, v in pairs(spring_boot_tasks) do
-    overseer.register_template(v)
+for _, spring_boot_task in pairs(spring_boot_tasks) do
+    overseer.register_template(spring_boot_task)
 end
 
-for _, v in pairs(mvn_tasks) do
-    overseer.register_template(v)
+for _, mvn_task in pairs(mvn_tasks) do
+    overseer.register_template(mvn_task)
 end
-
