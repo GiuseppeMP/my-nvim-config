@@ -395,10 +395,10 @@ local plugins = {
         lazy = {
             event = "VeryLazy",
             config = function()
+                local home = os.getenv "HOME"
                 require("chatgpt").setup(
                     {
-                        -- change for your config
-                        api_key_cmd = "op read op://private/open_ai/api_key --no-newline",
+                        api_key_cmd = "gpg --decrypt " .. home .. "/.config/secrets/open_ai_key.txt.gpg",
                         openai_edit_params = {
                             model = "code-davinci-edit-001", -- code model
                             temperature = 0,
