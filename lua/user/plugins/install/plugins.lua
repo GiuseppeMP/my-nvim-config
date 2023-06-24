@@ -445,7 +445,7 @@ local plugins = {
                                 col = "50%",
                             },
                             size = {
-                                width = 60,
+                                width = "auto",
                                 height = "auto",
                             },
                             border = {
@@ -465,7 +465,7 @@ local plugins = {
                             },
                             size = {
                                 width = 60,
-                                height = 10,
+                                height = 60,
                             },
                             border = {
                                 style = "rounded",
