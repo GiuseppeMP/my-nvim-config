@@ -425,6 +425,16 @@ local plugins = {
                 -- add any options here
             },
             config = function()
+                local tokyo_colors = require("tokyonight.colors").setup()
+
+
+
+                vim.cmd('highlight NormalFloat  guibg=' .. tokyo_colors.bg )
+                -- vim.cmd('highlight NoiceCmdlinePrompt guibg=' .. tokyo_colors.bg )
+                -- vim.cmd('highlight Title guibg=' .. tokyo_colors.bg )
+                -- vim.cmd('highlight NoicePrompt guibg=' .. tokyo_colors.bg )
+                -- vim.cmd('highlight NoiceFormatTitle guibg=' .. tokyo_colors.bg )
+
                 require("noice").setup({
                     lsp = {
                         override = {
