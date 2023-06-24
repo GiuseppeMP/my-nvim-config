@@ -102,13 +102,13 @@ local plugins = {
     { name = 'preservim/tagbar' },
 
     -- Collection of plugins for tests, Debug and TDD
-    { name = 'nvim-lua/plenary.nvim',           },
-    { name = 'vim-test/vim-test',               },
-    { name = 'nvim-neotest/neotest',            },
-    { name = 'nvim-neotest/neotest-vim-test',   },
-    { name = 'nvim-neotest/neotest-plenary',    },
+    { name = 'nvim-lua/plenary.nvim', },
+    { name = 'vim-test/vim-test', },
+    { name = 'nvim-neotest/neotest', },
+    { name = 'nvim-neotest/neotest-vim-test', },
+    { name = 'nvim-neotest/neotest-plenary', },
     -- vim tests
-    { name = 'kana/vim-vspec',                  },
+    { name = 'kana/vim-vspec', },
     -- fix cursor in tests/debug
     { name = 'antoinemadec/FixCursorHold.nvim', lazy = { event = 'VeryLazy' } },
     -- go to test file (alernate)
@@ -162,9 +162,9 @@ local plugins = {
 
     -- Mason tools, LSPs, Debug Servers
     { name = 'williamboman/mason.nvim' },
-    { name = 'williamboman/mason-lspconfig.nvim',         },
+    { name = 'williamboman/mason-lspconfig.nvim', },
     { name = 'WhoIsSethDaniel/mason-tool-installer.nvim', },
-    { name = 'neovim/nvim-lspconfig',                     },
+    { name = 'neovim/nvim-lspconfig', },
     { name = 'mfussenegger/nvim-jdtls' },
     { name = 'jose-elias-alvarez/null-ls.nvim' },
     { name = 'mfussenegger/nvim-dap-python' },
@@ -434,7 +434,7 @@ local plugins = {
                         },
                         progress = {
                             enabled = true,
-                            throttle = 1000 / 10,  -- frequency to update lsp progress message
+                            throttle = 1000 / 10, -- frequency to update lsp progress message
                             view = "mini",
                         }
                     },
@@ -485,7 +485,14 @@ local plugins = {
                                 find = "written",
                             },
                             opts = { skip = true }
-                        }
+                        },
+                        {
+                            filter = {
+                                event = "notify",
+                                min_height = 15
+                            },
+                            view = 'split'
+                        },
                     },
                     cmdline = {
                         enabled = true,         -- enables the Noice cmdline UI
@@ -517,6 +524,17 @@ local plugins = {
                         long_message_to_split = true,
                         inc_rename = false,
                         lsp_doc_border = false,
+                    },
+                    notify = {
+                        -- Noice can be used as `vim.notify` so you can route any notification like other messages
+                        -- Notification messages have their level and other properties set.
+                        -- event is always "notify" and kind can be any log level as a string
+                        -- The default routes will forward notifications to nvim-notify
+                        -- Benefit of using Noice for this is the routing and consistent history view
+                        enabled = true,
+                        replace = true,
+                        merge = true,
+                        view = "notify",
                     },
 
                 })

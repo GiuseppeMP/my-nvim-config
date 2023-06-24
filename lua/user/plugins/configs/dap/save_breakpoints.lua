@@ -7,6 +7,7 @@ local CACHE = HOME .. '/.cache/nvim/breakpoints.json'
 
 M.create_json_data = function()
     if not utils.file_exists(CACHE) then
+        os.execute("mkdir -p " .. CACHE:match("(.*/)"))
         local fp = io.open(CACHE, 'w+')
         fp:write("{}")
         fp:close()

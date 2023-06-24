@@ -22,6 +22,8 @@ local wk = require 'which-key'
 local neotest = require 'neotest'
 
 local conf = {
+    show_help = false,
+    show_keys = false,
     ignore_missing = true,
     window = {
         border = "double",   -- none, single, double, shadow
@@ -61,7 +63,7 @@ wk.register({
         k = { builtin.keymaps, "Oh Yeah, the awesome Keymaps!" },
         g = { builtin.git_files, "Git files" },
         d = { builtin.diagnostics, "Diagnostics" },
-        m = { function() vim.cmd(":Telescope harpoon marks") end, "Harpoon marks" },
+        m = { function() vim.cmd(":Noice telescope") end, "Noice messages" },
         s = { function() builtin.grep_string({ search = vim.fn.input("Greg > ") }) end, 'Search ...' },
         v = { function() require 'neoclip.fzf' () end, 'Clipboard history' },
         t = { vim.cmd.OverseerRun, 'Show tasks' },

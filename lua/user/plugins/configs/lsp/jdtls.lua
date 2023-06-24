@@ -12,7 +12,7 @@ end
 local home = os.getenv "HOME"
 
 -- maybe needs to improve marks because multimodule projects (maven/gradle)
-local root_markers = { 'pom.xml','gradlew', 'mvnw', '.git', 'settings.gradle',  '.lsp_root' }
+local root_markers = { 'pom.xml', 'gradlew', 'mvnw', '.git', 'settings.gradle', '.lsp_root' }
 
 -- root dir, workspace and project name
 local root_dir = function() return require('jdtls.setup').find_root(root_markers) end
@@ -154,7 +154,7 @@ local function get_settings()
                     },
                     {
                         name = "JavaSE-19",
-                        path = home .. "/.asdf/installs/java/openjdk-19.0.2",
+                        path = home .. "/.asdf/installs/java/corretto-19.0.2.7.1",
                         default = true,
                     },
                 }
@@ -167,7 +167,8 @@ end
 -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
 local function get_cmd()
     return {
-        home .. '/.asdf/installs/java/corretto-17.0.4.9.1/bin/java', -- jdk used for LSP Server
+        home .. '/.asdf/installs/java/corretto-19.0.2.7.1/bin/java',
+        -- home .. '/.asdf/installs/java/corretto-17.0.4.9.1/bin/java',
         '-Declipse.application=org.eclipse.jdt.ls.core.id1',
         '-Dosgi.bundles.defaultStartLevel=4',
         '-Declipse.product=org.eclipse.jdt.ls.core.product',
@@ -176,10 +177,9 @@ local function get_cmd()
         '-Xms256m',
         '-javaagent:' .. lombok_jar,
         '--add-modules=ALL-SYSTEM',
-        '--add-opens',
-        'java.base/java.util=ALL-UNNAMED',
-        '--add-opens',
-        'java.base/java.lang=ALL-UNNAMED',
+        '--add-opens', 'java.base/java.util=ALL-UNNAMED',
+        '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
+        '--add-exports', 'java.base/jdk.internal.misc=ALL-UNNAMED',
         '-jar', vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar"),
         '-configuration', jdtls_path .. "/config_" .. get_os_string(),
         '-data', workspace_folder(),
