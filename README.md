@@ -23,7 +23,7 @@ asdf install java corretto-8.342.07.1
 asdf install java corretto-11.0.16.9.1
 asdf install java zulu-14.29.23
 asdf install java corretto-17.0.4.9.1
-asdf install java correto-19.0.2.7.1
+asdf install java corretto-19.0.2.7.1
 ```
 
 You can install by yourself, but I recommend using asdf.
