@@ -40,4 +40,3 @@ end
 
 -- LSPs, DAPs configs
 require "user.plugins.configs.lsp"
-require "user.plugins.configs.dap"
