@@ -80,8 +80,14 @@ wk.register({ ["<C-t>"] = { vim.cmd.ToggleTerm, 'Toggle Term' } }, { mode = { 't
 -- debug normal mode
 wk.register({
     ["<F1>"] = { function() dap.toggle_breakpoint() end, 'Debug toggle breakpoint' },
-    ["<F2>"] = { function() dap.list_breakpoints() pcall(dap_save.store_breakpoints, false) end, 'List and save breakpoints' },
-    ["<F3>"] = { function() dap.clear_breakpoints() pcall(dap_save.store_breakpoints, true) end, 'Clear all breakpoints' },
+    ["<F2>"] = { function()
+        dap.list_breakpoints()
+        pcall(dap_save.store_breakpoints, false)
+    end, 'List and save breakpoints' },
+    ["<F3>"] = { function()
+        dap.clear_breakpoints()
+        pcall(dap_save.store_breakpoints, true)
+    end, 'Clear all breakpoints' },
     ["<F5>"] = { dap.continue, 'Debug continue or attach' },
     ["<F6>"] = { dap.step_into, 'Debug step into' },
     ["<F7>"] = { dap.step_out, 'Debug step out' },
@@ -141,7 +147,7 @@ wk.register({
         s = { function() neotest.summary.toggle() end, 'Toggle tests summary' },
         o = { function() neotest.output_panel.toggle() end, 'Toggle tests output window' },
         a = { function() neotest.run.run({ suite = true }) end, 'Run all tests' },
-        -- e = { function() neotest.diagnostic() end, 'Show tests diagnostics' },
+        e = { function() neotest.diagnostic() end, 'Show tests diagnostics' },
     },
 })
 
@@ -224,6 +230,7 @@ wk.register({
     ["<C-j>"] = { vim.cmd.TmuxNavigateDown, 'Tmux navigate down' },
     ["<C-h>"] = { vim.cmd.TmuxNavigateLeft, 'Tmux navigate left' },
     ["<C-l>"] = { vim.cmd.TmuxNavigateRight, 'Tmux navigate right' },
+    ["<C-s>"] = { 'ggVG', 'Select all lines' },
 })
 
 

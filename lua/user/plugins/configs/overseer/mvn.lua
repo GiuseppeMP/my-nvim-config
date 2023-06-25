@@ -14,7 +14,7 @@ M.clean =
         }
     end,
     condition = {
-        filetype = { "java" },
+        filetype = { "java", "xml" },
     },
     -- callback = function(search)
     --   print(vim.inspect(search))
@@ -31,7 +31,7 @@ M.package =
         }
     end,
     condition = {
-        filetype = { "java" },
+        filetype = { "java", "xml" },
     },
 }
 
@@ -45,7 +45,7 @@ M.test =
         }
     end,
     condition = {
-        filetype = { "java" },
+        filetype = { "java", "xml" },
     },
 }
 
@@ -60,7 +60,7 @@ M.debug_test =
         }
     end,
     condition = {
-        filetype = { "java" },
+        filetype = { "java", "xml" },
     },
 }
 
@@ -75,13 +75,13 @@ M.mvn_failsafe =
         }
     end,
     condition = {
-        filetype = { "java" },
+        filetype = { "java", "xml" },
     },
 }
 
 M.install =
 {
-    name = java_icon .." mvn install",
+    name = java_icon .. " mvn install",
     builder = function()
         return {
             cmd = { "mvn" },
@@ -89,7 +89,7 @@ M.install =
         }
     end,
     condition = {
-        filetype = { "java" },
+        filetype = { "java", "xml" },
     },
 }
 
@@ -103,7 +103,7 @@ M.pit =
         }
     end,
     condition = {
-        filetype = { "java" },
+        filetype = { "java", "xml" },
     },
 }
 

@@ -19,11 +19,11 @@ g.projectionist_heuristics = {
             alternate = { "src/test/java/{}Test.java", "src/test/java/{}IT.java" },
         },
         ['src/test/java/*Test.java'] = {
-            type = "source",
+            type = "test",
             alternate = "src/main/java/{}.java"
         },
         ['src/test/java/*IT.java'] = {
-            type = "source",
+            type = "test",
             alternate = "src/main/java/{}.java"
         }
     },

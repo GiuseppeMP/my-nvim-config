@@ -13,7 +13,7 @@ M.run =
         }
     end,
     condition = {
-        filetype = { "java" },
+        filetype = { "java", "xml" },
     },
 }
 
@@ -30,7 +30,7 @@ M.dev =
         }
     end,
     condition = {
-        filetype = { "java" },
+        filetype = { "java", "xml" },
     },
 }
 
@@ -47,7 +47,7 @@ M.test =
         }
     end,
     condition = {
-        filetype = { "java" },
+        filetype = { "java", "xml" },
     },
 }
 
@@ -62,7 +62,7 @@ M.repackage =
         }
     end,
     condition = {
-        filetype = { "java" },
+        filetype = { "java", "xml" },
     },
 }
 

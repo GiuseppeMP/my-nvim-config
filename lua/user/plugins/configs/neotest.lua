@@ -1,7 +1,10 @@
 require("neotest").setup({
     status = {
-        signs = false,
-        virtual_text = true
+        signs = true,
+        virtual_text = false
+    },
+    running = {
+        concurrent = false
     },
     adapters = {
         require("neotest-plenary"),
@@ -12,6 +15,10 @@ require("neotest").setup({
                 args = { "--log-level", "DEBUG" },
             }
         )
+    },
+    output = {
+        enabled = false,
+        open_on_run = "short"
     },
     icons = {
         unknown = conf.icons.question,
