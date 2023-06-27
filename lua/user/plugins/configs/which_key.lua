@@ -200,8 +200,8 @@ wk.register({
         vim.cmd(":w")
         vim.cmd(":A")
     end, 'Go to tests (Alternate)' },
-    ["gs"] = { vim.cmd.G, "Go to references" },
-    ["gc"] = { "Comment.." },
+    ["gs"] = { vim.cmd.G, "Source control" },
+    ["gc"] = { "Comment" },
 })
 
 -- [m] marks+

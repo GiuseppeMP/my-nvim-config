@@ -575,6 +575,9 @@ local plugins = {
                         github = true,       -- open github issues
                         package_json = true, -- open dependencies from package.json
                     },
+                    handler_options = {
+                        search_engine = "google", -- you can select between google, bing and duckduckgo
+                    },
                 }
             end,
         }

@@ -4,12 +4,25 @@
 
 Hello, I'm Giuseppe Matheus (Beppe). 👋
 
-README in progress...
+> README in WIP...
 
+## ✨ Features
 
-## Dependencies
+* File explorer with `nvim-tree/nvim-tree.lua`
+* Intuitive keymaps with `folke/which-key.nvim`
 
-This configuration has plugins like `jdtls` that rely on some external libraries and softwares.
+## ⚡️ Dependencies and Requirements
+
+* Neovim >= 0.9.0
+* macOS (`open`), Linux (`xdg-open`) or Windows (`powershell.exe start explorer.exe`)
+
+This configuration has plugins relies on some external things.
+
+### Homebrew Packages
+
+```
+brew install safe-rm
+```
 
 ### Download and Install asdf
 
