@@ -268,6 +268,7 @@ local plugins = {
     {
         name = 'AckslD/nvim-neoclip.lua',
         lazy = {
+            event = 'VeryLazy',
             config = function() require 'neoclip'.setup {} end,
             dependencies = { 'nvim-telescope/telescope.nvim', 'ibhagwan/fzf-lua' }
         },
@@ -429,7 +430,7 @@ local plugins = {
 
 
 
-                vim.cmd('highlight NormalFloat  guibg=' .. tokyo_colors.bg )
+                vim.cmd('highlight NormalFloat  guibg=' .. tokyo_colors.bg)
                 -- vim.cmd('highlight NoiceCmdlinePrompt guibg=' .. tokyo_colors.bg )
                 -- vim.cmd('highlight Title guibg=' .. tokyo_colors.bg )
                 -- vim.cmd('highlight NoicePrompt guibg=' .. tokyo_colors.bg )
@@ -600,6 +601,19 @@ local plugins = {
             end
         }
     },
+    {
+        name = 'pwntester/octo.nvim',
+        lazy = {
+            dependencies = {
+                'nvim-lua/plenary.nvim',
+                'nvim-telescope/telescope.nvim',
+                'nvim-tree/nvim-web-devicons',
+            },
+            config = function()
+                require "octo".setup()
+            end
+        }
+    }
 }
 
 
