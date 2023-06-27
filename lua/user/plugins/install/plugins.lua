@@ -82,11 +82,6 @@ local plugins = {
         packer = { as = 'rose-pine-neovim' },
     },
     { name = "folke/tokyonight.nvim" },
-    -- Trigger a highlight in the appropriate direction when pressing these keys: f, F, t, T
-    {
-        name = 'unblevable/quick-scope',
-        lazy = { lazy = false, init = function() vim.g.qs_highlight_on_keys = { 'f', 'F', 't', 'T' } end }
-    },
 
     -- Git commands cli by :G (command)
     -- Interface git atraves de :G (comando)
