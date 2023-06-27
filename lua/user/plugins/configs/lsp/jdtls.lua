@@ -187,6 +187,14 @@ local function get_cmd()
     }
 end
 
+-- auto-fix some problems when mason updates the jdtls or nvim-jdtls change something (idk yet)
+function JdtForceWipeDataAndRestart()
+    -- JdtWipeDataAndRestart is dangerous because a misconfiguration of workspace folder
+    -- leads to delete the wrong directory of the user.
+    os.execute("safe-rm -r " .. workspace_folder())
+    vim.cmd.JdtWipeDataAndRestart()
+end
+
 -- jdtls attach function
 local function jdtls_start_or_attach()
     local config = {
@@ -212,6 +220,8 @@ local function jdtls_start_or_attach()
         on_attach = on_attach_jdtls,
     }
     jdtls.start_or_attach(config)
+
+    vim.cmd('command! JdtForceWipeDataAndRestart lua JdtForceWipeDataAndRestart()')
 end
 
 vim.api.nvim_create_autocmd("Filetype", {
