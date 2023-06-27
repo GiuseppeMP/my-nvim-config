@@ -17,6 +17,8 @@ issue](https://github.com/GiuseppeMP/my-nvim-config/issues/new).
 
 ## ✨ Features
 
+You can see all keymaps in `./lua/user/plugins/configs/which_key.lua` file.
+
 * Outstanding colorscheme Tokyonight based with `folke/tokyonight.nvim`
 * File explorer with `nvim-tree/nvim-tree.lua` | `<leader>e`
 * Intuitive keymaps feedback with `folke/which-key.nvim` | `<leader>fk`
@@ -33,10 +35,10 @@ issue](https://github.com/GiuseppeMP/my-nvim-config/issues/new).
 * Nice context always visible with `romgrk/nvim-treesitter-context`
 * Powerful autoclose and rename xml/htmls tags with `windwp/nvim-ts-autotag`
 * Nice rainbow parentheses and more with `HiPhish/nvim-ts-rainbow2`
-* Handful keymaps for close and handle buffers with `moll/vim-bbye`
+* Handful keymaps for close and handle buffers with `moll/vim-bbye` | `<leader>q`
 * Amazing tabs and more with `akinsho/bufferline.nvim`
 * Full customizable statusline with `windwp/windline.nvim`
-* Git integration with `tpope/vim-fugitive`
+* Git integration with `tpope/vim-fugitive` | `gs`
 * Full fuzzy file finder with `nvim-telescope/telescope.nvim`
 
 [wip] continue...
@@ -66,11 +68,13 @@ The list of the LSP's supported by `Mason` is documented at [LSP Configurations]
 
 Depending which LSP you want to use, you can install the language binaries using `asdf`
 
-### Download and Install asdf
+## The Multiple Runtime Version Manager 
+
+Install asdf for setup languages and runtimes needed for LSPs.
 
 [asdf](https://asdf-vm.com/guide/getting-started.html#_2-download-asdf)
 
-### Install asdf java plugin and JDKs for `nvim-jdtls` and `jdtls`
+### Java
 
 ```
 asdf plugin-add java https://github.com/halcyon/asdf-java.git
