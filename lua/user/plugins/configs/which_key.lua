@@ -244,15 +244,21 @@ wk.register({
 
 -- codeium
 wk.register({
-    ["<c-;>"] = { function() vim.fn['codeium#Complete']() end, 'Codeium accept suggestion' },
+    ["<c-;>"] = { function() vim.fn['codeium#Complete']() end, 'Codeium trigger suggestion' },
     ["<c-,>"] = { function() vim.fn['codeium#CycleCompletions'](1) end, 'Codeium next suggestion' },
     ["<c-.>"] = { function() vim.fn['codeium#CycleCompletions'](-1) end, 'Codeium previous suggestion' },
-    ["<c-x"] = { function() vim.fn['codeium#Clear']() end, 'Codeium cycle completions' },
 }, { mode = { 'i' } })
 
+-- codeium
+wk.register({
+    ["<c-y>"] = 'Codeium accept suggestion',
+    ["<c-x>"] = { function() vim.fn['codeium#Clear']() end, 'Codeium cycle completions' },
+}, { mode = { 'i', 'n' } })
+
+
 vim.cmd [[
-    imap <script><silent><nowait><expr> <C-g> codeium#Accept()
-]]
+     imap <script><silent><nowait><expr> <C-y> codeium#Accept()
+ ]]
 
 
 wk.register({

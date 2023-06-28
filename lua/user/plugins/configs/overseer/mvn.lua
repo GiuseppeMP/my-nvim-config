@@ -95,7 +95,7 @@ M.install =
 
 M.pit =
 {
-    name = java_icon .. " Mutation tests with PIT",
+    name = java_icon .. " mvn org.pitest:pitest-maven:mutationCoverage",
     builder = function()
         return {
             cmd = { "mvn" },
@@ -107,6 +107,33 @@ M.pit =
     },
 }
 
+M.jacoco =
+{
+    name = java_icon .. " mvn jacoco:report",
+    builder = function()
+        return {
+            cmd = { "mvn" },
+            args = { "clean", "package", "test", "jacoco:report", configs.ignore_ssl },
+        }
+    end,
+    condition = {
+        filetype = { "java", "xml" },
+    },
+}
+
+M.site =
+{
+    name = java_icon .. " mvn site",
+    builder = function()
+        return {
+            cmd = { "mvn" },
+            args = { "clean", "package", "test", "site", configs.ignore_ssl },
+        }
+    end,
+    condition = {
+        filetype = { "java", "xml" },
+    },
+}
 return {
     M.clean,
     M.package,
@@ -116,5 +143,7 @@ return {
     M.debug_test,
     M.mvn_failsafe,
     M.install,
-    M.pit
+    M.pit,
+    M.jacoco,
+    M.site
 }
