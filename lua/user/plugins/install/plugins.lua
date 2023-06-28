@@ -610,6 +610,40 @@ local plugins = {
                 require "octo".setup()
             end
         }
+    },
+    {
+        name = "lukas-reineke/indent-blankline.nvim",
+        lazy = {
+            version = '*',
+            config = function()
+                vim.opt.termguicolors = true
+                local tokyo_colors = require("tokyonight.colors").setup()
+                -- vim.cmd [[highlight IndentBlanklineIndent1 guibg=tokyo_colors.bg gui=nocombine]]
+                -- vim.cmd [[highlight IndentBlanklineIndent2 guibg=tokyo_colors.bg_dark gui=nocombine]]
+                -- vim.cmd('highlight IndentBlanklineIndent2 guibg=' .. '#222436' .. ' gui=nocombine')
+                -- vim.cmd('highlight IndentBlanklineIndent1 guibg=' .. tokyo_colors.bg .. ' gui=nocombine')
+                -- vim.g.indent_blankline_char = '▎'
+
+                require("indent_blankline").setup {
+                    use_treesitter = true,
+                    -- char = " ",
+                    -- char = "▎",
+                    -- char = "",
+                    -- char_highlight_list = {
+                    --     "IndentBlanklineIndent1",
+                    --     "IndentBlanklineIndent2",
+                    -- },
+                    -- space_char_highlight_list = {
+                    --     "IndentBlanklineIndent1",
+                    --     "IndentBlanklineIndent2",
+                    -- },
+                    -- show_trailing_blankline_indent = true,
+                    space_char_blankline = " ",
+                    -- show_current_context = true,
+                    -- show_current_context_start = true,
+                }
+            end
+        }
     }
 }
 
