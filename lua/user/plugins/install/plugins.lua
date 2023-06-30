@@ -150,7 +150,12 @@ local plugins = {
     { name = 'christoomey/vim-tmux-navigator' },
 
     -- Markdown preview
-    { name = 'toppair/peek.nvim' },
+    {
+        name = 'toppair/peek.nvim',
+        lazy = {
+            config = function() require('peek').setup({}) end
+        }
+    },
 
     -- toggle C-a/x custom values
     { name = 'nat-418/boole.nvim' },
@@ -167,18 +172,6 @@ local plugins = {
     -- dap configs
     { name = 'rcarriga/nvim-dap-ui' },
     { name = 'mfussenegger/nvim-dap' },
-    {
-        name = 'Weissle/persistent-breakpoints.nvim',
-        lazy = {
-            enabled = false, --wip
-            config = function()
-                require('persistent-breakpoints').setup({
-                    save_dir = vim.fn.stdpath('data') .. '/nvim_checkpoints',
-                    load_breakpoint_event = { "BufReadPost" }
-                })
-            end
-        }
-    },
     { name = 'jayp0521/mason-nvim-dap.nvim' },
 
     -- lsp kind icons
@@ -643,6 +636,13 @@ local plugins = {
                     -- show_current_context_start = true,
                 }
             end
+        }
+    },
+    {
+        name = 'kosayoda/nvim-lightbulb',
+        lazy = {
+            requires = 'antoinemadec/FixCursorHold.nvim',
+            config = function() require('nvim-lightbulb').setup({ autocmd = { enabled = true } }) end
         }
     }
 }

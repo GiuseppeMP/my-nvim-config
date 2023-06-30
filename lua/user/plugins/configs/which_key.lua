@@ -252,7 +252,7 @@ wk.register({
 -- codeium
 wk.register({
     ["<c-y>"] = 'Codeium accept suggestion',
-    ["<c-x>"] = { function() vim.fn['codeium#Clear']() end, 'Codeium cycle completions' },
+    ["<c-/>"] = { function() vim.fn['codeium#Clear']() end, 'Codeium clear' },
 }, { mode = { 'i', 'n' } })
 
 
@@ -264,19 +264,20 @@ vim.cmd [[
 wk.register({
     c = {
         name = "ChatGPT",
-        p = { "<cmd>ChatGPT<CR>", "ChatGPT" },
-        e = { "<cmd>ChatGPTEditWithInstruction<CR>", "Edit with instruction" },
-        g = { "<cmd>ChatGPTRun grammar_correction<CR>", "Grammar Correction" },
-        k = { "<cmd>ChatGPTRun keywords<CR>", "Keywords" },
-        d = { "<cmd>ChatGPTRun docstring<CR>", "Docstring" },
-        t = { "<cmd>ChatGPTRun add_tests<CR>", "Add Tests" },
-        o = { "<cmd>ChatGPTRun optimize_code<CR>", "Optimize Code" },
-        s = { "<cmd>ChatGPTRun summarize<CR>", "Summarize" },
-        b = { "<cmd>ChatGPTRun fix_bugs<CR>", "Fix Bugs" },
-        x = { "<cmd>ChatGPTRun explain_code<CR>", "Explain Code" },
-        r = { "<cmd>ChatGPTRun roxygen_edit<CR>", "Roxygen Edit" },
-        l = { "<cmd>ChatGPTRun code_readability_analysis<CR>", "Code Readability Analysis" },
-        -- t = { "<cmd>ChatGPTRun translate<CR>", "Translate" },
+        p = { vim.cmd.ChatGPT, "ChatGPT" },
+        e = { vim.cmd.ChatGPTEditWithInstruction, "Edit with instruction" },
+        g = { function() vim.cmd.ChatGPTRun("grammar_correction") end, "Grammar Correction" },
+        k = { function() vim.cmd.ChatGPTRun("keywords") end, "Keywords" },
+        d = { function() vim.cmd.ChatGPTRun("docstring") end, "Docstring" },
+        o = { function() vim.cmd.ChatGPTRun("optimize_code") end, "Optimize Code" },
+        s = { function() vim.cmd.ChatGPTRun("summarize") end, "Summarize" },
+        b = { function() vim.cmd.ChatGPTRun("fix_bugs") end, "Fix Bugs" },
+        x = { function() vim.cmd.ChatGPTRun("explain_code") end, "Explain Code" },
+        r = { function() vim.cmd.ChatGPTRun("roxygen_edit") end, "Roxygen Edit" },
+        l = { function() vim.cmd.ChatGPTRun("code_readability_analysis") end, "Code Readability Analysis" },
+        t = { function() vim.cmd.ChatGPTRun("translate") end, "Translate" },
+        a = { vim.cmd.ChatGPTActAs, "Act as.." },
+        tt = { function() vim.cmd.ChatGPTRun("add_tests") end, "Add Tests" },
     },
 }, {
     prefix = "<leader>",

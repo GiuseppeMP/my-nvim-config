@@ -39,7 +39,26 @@ You can see all keymaps in `./lua/user/plugins/configs/which_key.lua` file.
 * Amazing tabs and more with `akinsho/bufferline.nvim`
 * Full customizable statusline with `windwp/windline.nvim`
 * Git integration with `tpope/vim-fugitive` | `gs`
-* Full fuzzy file finder with `nvim-telescope/telescope.nvim`
+* Full fuzzy file finder with `nvim-telescope/telescope.nvim` | `<leader>ff`
+* Simple and effective tagbar with `preservim/tagbar`
+* Robust test frameworks with `nvim-neotest/neotest` and `vim-test/vim-test`
+* Breeze navigation between tests and implementations with `vim-projectionist` | `ga`
+* Amazing BLAAAAZING FASTTT markers plugin with `ThePrimeagen/harpoon`
+* Vim smoother than never with `psliwka/vim-smoothie`
+* Floating terminals with `voldikss/vim-floaterm`
+* Collection of snippets powered by `honza/vim-snippets`
+* Track your changes with awesome signs with `lewis6991/gitsigns.nvim`
+* Markdown preview with `peek.nvim`
+* Alternate true <-> false and more using `<c-x><c-a>` with `nat-418/boole.nvim`
+* The best binary installer that nvim has ever seen with `williamboman/mason.nvim`
+* All LSPs in one place with `neovim/nvim-lspconfig`
+* The most famous java LSP `mfussenegger/nvim-jdtls`
+* Amazing bridge to nvim LSP interface with `jose-elias-alvarez/null-ls.nvim`
+* Debug is not a problem in vim anymore with `mfussenegger/nvim-dap`
+* Amazing python DAP with `mfussenegger/nvim-dap-python`
+* Most efficient debugger UI with `rcarriga/nvim-dap-ui`
+
+
 
 [wip] continue...
 
@@ -54,7 +73,7 @@ This configuration has plugins that relies on some external things.
 
 ### 🍺 Homebrew Packages
 
-```
+```sh
 brew install safe-rm
 ```
 
@@ -76,12 +95,33 @@ Install asdf for setup languages and runtimes needed for LSPs.
 
 ### Java
 
-```
+```sh
+# add plugin
 asdf plugin-add java https://github.com/halcyon/asdf-java.git
+
+# install versions
 asdf install java corretto-8.342.07.1
 asdf install java corretto-11.0.16.9.1
 asdf install java zulu-14.29.23
 asdf install java corretto-17.0.4.9.1
 asdf install java corretto-19.0.2.7.1
+
+# activate
+asdf global java corretto-19.0.2.7.1
 ```
 
+### Python
+
+```sh
+# install versions
+asdf install python 2.7.18 3.10.5
+
+# activate
+asdf global python 3.10.5 
+```
+
+I'm personally used `pipenv` check out in [pipenv](https://pipenv.pypa.io/en/latest/)
+
+```sh
+pip install --user pipenv
+```
