@@ -276,7 +276,7 @@ wk.register({
         r = { function() vim.cmd.ChatGPTRun("roxygen_edit") end, "Roxygen Edit" },
         l = { function() vim.cmd.ChatGPTRun("code_readability_analysis") end, "Code Readability Analysis" },
         t = { function() vim.cmd.ChatGPTRun("translate") end, "Translate" },
-        a = { vim.cmd.ChatGPTActAs, "Act as.." },
+        i = { vim.cmd.ChatGPTActAs, "Impersonate, Act as.." },
         tt = { function() vim.cmd.ChatGPTRun("add_tests") end, "Add Tests" },
     },
 }, {

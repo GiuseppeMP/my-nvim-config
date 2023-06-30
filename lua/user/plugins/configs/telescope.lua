@@ -127,8 +127,9 @@ colors.dbg = '#222436'
 
 local TelescopeColor = {
 
-    TelescopeMatching = { fg = colors.yellow },                                      -- matching searching
-    TelescopeSelection = { fg = colors.vgreen, bg = colors.vgreen_bg, bold = true }, --
+    TelescopeMatching = { fg = colors.yellow },                                           -- matching searching
+    TelescopeSelection = { fg = colors.vgreen, bg = colors.vgreen_bg, bold = true },      --
+    TelescopeSelectionCaret = { fg = colors.yellow, bg = colors.vgreen_bg, bold = true }, --
 
     TelescopePreviewBorder = { fg = colors.yellow },
     TelescopePreviewNormal = { bg = colors.dbg },
@@ -141,7 +142,10 @@ local TelescopeColor = {
     TelescopePromptTitle = { fg = colors.red },
     TelescopePromptBorder = { fg = colors.dbg },
     TelescopePromptNormal = { bg = colors.bg, fg = colors.fg },
-    TelescopePromptPrefix = { bg = colors.dbg, fg = colors.yellow },
+    TelescopePromptPrefix = { bg = colors.none, fg = colors.blue },
+    TelescopePromptCounter = { bg = colors.bg, fg = colors.red },
+
+    -- TelescopeMultiselection = { bg = colors.bg, fg = colors.yellow },
 
     TelescopeNormal = { bg = colors.dbg },
 
