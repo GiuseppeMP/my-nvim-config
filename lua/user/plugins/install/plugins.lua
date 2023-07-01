@@ -13,7 +13,9 @@ vim.g.smoothie_speed_linear_factor = 70          -- default 60
 vim.g.smoothie_speed_exponentiation_factor = 0.5 -- default 0.5
 vim.g.smoothie_experimental_mappings = 1
 
-local plugins = {
+local M = {}
+
+M.plugins = {
 
     -- Repeat plugins cmds using dot command
     -- Repetir os cmds dos plugins usando ponto
@@ -648,4 +650,4 @@ local plugins = {
         }
     }
 }
-return plugins
+return M.plugins
