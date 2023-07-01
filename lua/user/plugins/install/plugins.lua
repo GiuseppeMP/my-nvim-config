@@ -373,6 +373,7 @@ local plugins = {
             cond = function() return conf.user.codeium.enabled end,
             config = function()
                 vim.g.codeium_manual = true
+                ---@diagnostic disable-next-line: different-requires
                 require("codeium").setup({})
             end
         }

@@ -82,6 +82,25 @@ end
 --- Open at startup
 vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 
+
+
+local colors = require("tokyonight.colors").setup()
+colors.vgreen = '#0db9d7'
+colors.vgreen_bg = '#203346'
+colors.dbg = '#222436'
+
+local NvimTreeColors = {
+    NvimTreeFolderName = { fg = colors.bright_blue }, -- matching searching
+    NvimTreeOpenedFileName = { fg = colors.yellow },  -- matching searching
+    NvimTreeFileName = { fg = '#ffffff' },            -- matching searching
+}
+
+for hl, col in pairs(NvimTreeColors) do
+    vim.api.nvim_set_hl(0, hl, col)
+end
+
+
+
 -- BEGIN_DEFAULT_MAPPINGS for easy access/reminder
 -- { key = { "<CR>", "o", "<2-LeftMouse>" }, action = "edit" },
 -- { key = "<C-e>",                          action = "edit_in_place" },

@@ -342,7 +342,7 @@ local default = {
         { ' ',                    hl_list.Black },
         -- basic.right,
         basic.logo,
-        { ' ', { 'white', 'dbg' } },
+        { ' ', '' },
     },
     inactive = {
         { b_components.full_file_name, hl_list.Inactive },
@@ -367,7 +367,6 @@ windline.setup({
         colors.bg = tokyo_colors.bg
         colors.dbg = tokyo_colors.bg_dark
         colors.bwhite = '#ffffff'
-
         return colors
     end,
     statuslines = {
