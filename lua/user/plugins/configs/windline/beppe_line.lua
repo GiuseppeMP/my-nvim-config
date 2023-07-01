@@ -257,27 +257,29 @@ basic.git = {
     end,
 }
 
--- local quickfix = {
---     filetypes = { 'qf', 'Trouble' },
---     active = {
---         { '🚦 Quickfix ',              { 'white', 'black' } },
---         { helper.separators.slant_right, { 'black', 'black_light' } },
---         {
---             function()
---                 return vim.fn.getqflist({ title = 0 }).title
---             end,
---             { 'cyan', 'black_light' },
---         },
---         { ' Total : %L ',                { 'cyan', 'black_light' } },
---         { helper.separators.slant_right, { 'black_light', 'InactiveBg' } },
---         { ' ',                           { 'InactiveFg', 'InactiveBg' } },
---         basic.divider,
---         { helper.separators.slant_right, { 'InactiveBg', 'black' } },
---         { '🧛 ',                       { 'white', 'black' } },
---     },
---     always_active = true,
---     show_last_status = true,
--- }
+local quickfix = {
+    filetypes = { 'qf', 'Trouble' },
+    active = {
+        { ' ',              { 'dbg', 'dbg' } },
+        { sep.left_rounded, { 'bwhite', 'bg' } },
+        { '🔥 Quickfix ', { 'bg', 'bwhite' } },
+        {
+            function()
+                return vim.fn.getqflist({ title = 0 }).title
+            end,
+            { 'cyan', 'bg' },
+        },
+        { ' Total: %L ',     { 'bwhite', 'bg' } },
+        basic.divider,
+        { ' ',               { 'dbg', 'bwhite' } },
+        { '%L 󱧖',         { 'dbg', 'bwhite' } },
+        { sep.right_rounded, { 'bwhite', 'dbg' } },
+        { ' ',               { 'dbg', 'dbg' } },
+
+    },
+    always_active = true,
+    show_last_status = true,
+}
 
 local explorer = {
     filetypes = { 'fern', 'NvimTree', 'lir' },
@@ -371,7 +373,7 @@ windline.setup({
     end,
     statuslines = {
         default,
-        -- quickfix,
+        quickfix,
         explorer,
     },
 })
