@@ -139,7 +139,7 @@ basic.file = {
         default = { 'bwhite', 'black_light' },
         virtual = { 'vgreen', 'black' },
         virtual_bg = { 'vgreen', 'black' },
-        bubble_bg = { 'bwhite', 'bg' }
+        bubble_bg = { 'bgreen', 'bg' }
     },
     text = function(bufnr)
         return {
@@ -364,6 +364,7 @@ windline.setup({
         colors.blue = tokyo_colors.blue
         colors.yellow = tokyo_colors.yellow
         colors.green = tokyo_colors.green
+        colors.bgreen = '#69ff94'
         colors.vgreen = '#0db9d7'
         colors.vgreen_bg = '#203346'
         colors.bg = tokyo_colors.bg
