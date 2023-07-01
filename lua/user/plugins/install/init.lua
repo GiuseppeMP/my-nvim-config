@@ -13,20 +13,6 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
--- convert plugins list into plugins table for lazy setup
-local get_plugins = function()
-    local plugins, plugins_lazy = require("user.plugins.install.plugins"), {}
+local plugins = require("user.plugins.install.plugins")
 
-    for i = 1, #plugins do
-        local p = plugins[i]
-
-        if not utils.is_empty(p.name) then
-            -- merge all configs, plugin name, commons specs, and packer configs
-            table.insert(plugins_lazy, utils.table_concat({ p.name }, p.spec or {}, p.lazy or {}))
-        end
-    end
-
-    return plugins_lazy
-end
-
-require("lazy").setup(get_plugins())
+require("lazy").setup(plugins)
