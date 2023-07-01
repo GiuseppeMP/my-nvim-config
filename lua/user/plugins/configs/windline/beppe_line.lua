@@ -58,7 +58,7 @@ local colors_mode = {
 }
 
 basic.vi_mode = {
-    width = breakpoint_width,
+    width = 30,
     hl_colors = {
         Normal = { 'black', 'red' },
         Insert = { 'black', 'green', 'bold' },
@@ -331,12 +331,12 @@ local default = {
         -- { ' ',              { 'magenta', 'bg' } },
         basic.lsp_name,
         basic.lsp_diagnos,
+        basic.genai,
         -- { ' ',               { 'magenta', 'bg' } },
         -- { sep.right_rounded, { 'magenta', 'bg' } },
-        basic.divider,
+        -- basic.divider,
         -- { sep.left_rounded, { 'vgreen', 'bg' } },
         -- { ' ',              { 'vgreen', 'bg' } },
-        basic.genai,
         -- { ' ',               { 'vgreen', 'bg' } },
         -- { sep.right_rounded, { 'vgreen', 'bg' } },
         basic.divider,
