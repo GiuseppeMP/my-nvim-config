@@ -38,7 +38,7 @@ basic.logo = {
     },
     text = function()
         return {
-            { '  ',              state.mode[2] .. 'Before' },
+            { ' ',               state.mode[2] .. 'Before' },
             { ' ',            state.mode[2] .. 'Before' },
             { sep.right_rounded, state.mode[2] },
         }
@@ -58,6 +58,7 @@ local colors_mode = {
 }
 
 basic.vi_mode = {
+    width = breakpoint_width,
     hl_colors = {
         Normal = { 'black', 'red' },
         Insert = { 'black', 'green', 'bold' },
@@ -187,6 +188,7 @@ basic.file_right = {
 }
 basic.genai = {
     name = 'genai',
+    width = breakpoint_width,
     hl_colors = {
         green = { 'green', 'bg' },
         red = { 'red', 'bg' },
@@ -200,30 +202,30 @@ basic.genai = {
     text = function(_)
         if conf.user.codeium.enabled then
             return {
-                { '  copilot ',   'virtual_bg' },
+                { '  ',  'virtual_bg' },
                 { function()
                     if conf.user.copilot.enabled
                     then
-                        return ''
+                        return ' '
                     else
-                        return ''
+                        return ' '
                     end
                 end, 'virtual' },
-                { ' 󰚩 chat-gpt ', 'virtual_bg' },
+                { ' 󰚩 ', 'virtual_bg' },
                 { function()
                     if
                         conf.user.chatgpt.enabled then
-                        return ''
+                        return ' '
                     else
-                        return ''
+                        return ' '
                     end
                 end, 'virtual' },
-                { '  codeium ', 'virtual_bg' },
+                { '  ', 'virtual_bg' },
                 {
                     function()
                         local status = vim.fn['codeium#GetStatusString']():lower()
                         if status:gsub("%s", "") == '' or status == nil or string.len(status) ~= 3 or string.find(status, 'on') ~= nil then
-                            return ''
+                            return ' '
                         else
                             return status:gsub(" ", "")
                         end
@@ -272,7 +274,7 @@ local quickfix = {
         { ' Total: %L ',     { 'bwhite', 'bg' } },
         basic.divider,
         { ' ',               { 'dbg', 'bwhite' } },
-        { '%L 󱧖',         { 'dbg', 'bwhite' } },
+        { '%L 󱧖 ',        { 'dbg', 'bwhite' } },
         { sep.right_rounded, { 'bwhite', 'dbg' } },
         { ' ',               { 'dbg', 'dbg' } },
 

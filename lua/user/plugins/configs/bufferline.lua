@@ -18,15 +18,16 @@ require 'bufferline'.setup {
             bg = tokyo_colors.bg
         },
         buffer_selected = {
-            fg = tokyo_colors.green,
+            fg = '#69ff94',
             bg = tokyo_colors.bg
         },
-
-        numbers = {
-            fg = tokyo_colors.magenta,
-            bg = tokyo_colors.bg,
+        numbers_selected = {
+            fg = '#69ff94',
             bold = true,
-
+            italic = true,
+        },
+        numbers = {
+            bg = tokyo_colors.bg,
         },
 
         fill = {
@@ -50,16 +51,16 @@ require 'bufferline'.setup {
         right_mouse_command = "Bdelete! %d",
         left_mouse_command = "buffer %d",
         middle_mouse_command = nil,
-        indicator = { style = "icon", icon = " │ " },
+        -- indicator = { style = "icon", icon = " │ " },
         buffer_close_icon = '',
         modified_icon = "●",
         close_icon = "",
         -- close_icon = '',
         left_trunc_marker = "",
         right_trunc_marker = "",
-        max_name_length = 30,
-        max_prefix_length = 30, -- prefix used when a buffer is de-duplicated
-        tab_size = 15,
+        max_name_length = 35,
+        max_prefix_length = 35, -- prefix used when a buffer is de-duplicated
+        tab_size = 20,
         diagnostics = "nvim_lsp",
         offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
         show_buffer_icons = true,
@@ -70,5 +71,6 @@ require 'bufferline'.setup {
         separator_style = {},
         enforce_regular_tabs = true,
         always_show_bufferline = true,
+        color_icons = true
     },
 }
