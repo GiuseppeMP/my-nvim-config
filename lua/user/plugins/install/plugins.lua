@@ -610,7 +610,7 @@ local plugins = {
             version = '*',
             config = function()
                 vim.opt.termguicolors = true
-                local tokyo_colors = require("tokyonight.colors").setup()
+                -- local tokyo_colors = require("tokyonight.colors").setup()
                 -- vim.cmd [[highlight IndentBlanklineIndent1 guibg=tokyo_colors.bg gui=nocombine]]
                 -- vim.cmd [[highlight IndentBlanklineIndent2 guibg=tokyo_colors.bg_dark gui=nocombine]]
                 -- vim.cmd('highlight IndentBlanklineIndent2 guibg=' .. '#222436' .. ' gui=nocombine')
@@ -646,6 +646,4 @@ local plugins = {
         }
     }
 }
-
-
 return plugins
