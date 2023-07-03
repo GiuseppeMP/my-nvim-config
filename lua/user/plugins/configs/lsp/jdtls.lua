@@ -175,6 +175,7 @@ local function get_cmd()
         '-Dlog.protocol=true',
         '-Dlog.level=ALL',
         '-Xms64m',
+        '-Xmx512m',
         -- "-XX:+UseSerialGC",
         '-javaagent:' .. lombok_jar,
         '--add-modules=ALL-SYSTEM',

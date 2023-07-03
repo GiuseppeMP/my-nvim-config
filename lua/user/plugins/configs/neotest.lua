@@ -6,6 +6,10 @@ require("neotest").setup({
     running = {
         concurrent = false
     },
+    discovery = {
+        concurrent = 1,
+        enabled = true
+    },
     adapters = {
         require("neotest-plenary"),
         require("neotest-vim-test")({ ignore_filetypes = { "python", "lua" }, allow_file_types = { "java" } }),

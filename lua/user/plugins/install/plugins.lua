@@ -406,7 +406,7 @@ M.plugins = {
                             col = "50%",
                         },
                         size = {
-                            width = 60,
+                            width = "auto",
                             height = "auto",
                         },
                         border = {
@@ -425,7 +425,7 @@ M.plugins = {
                             col = "50%",
                         },
                         size = {
-                            width = 60,
+                            width = "auto",
                             height = 10,
                         },
                         border = {
