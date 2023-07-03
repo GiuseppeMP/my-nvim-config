@@ -21,6 +21,10 @@ local wk = require 'which-key'
 -- neotest
 local neotest = require 'neotest'
 
+-- tmux navigator
+vim.g.tmux_navigator_no_mappings = 1
+vim.g.tmux_navigator_save_on_switch = 2
+
 local conf = {
     show_help = false,
     show_keys = false,
@@ -147,7 +151,6 @@ wk.register({
         s = { function() neotest.summary.toggle() end, 'Toggle tests summary' },
         o = { function() neotest.output_panel.toggle() end, 'Toggle tests output window' },
         a = { function() neotest.run.run({ suite = true }) end, 'Run all tests' },
-        e = { function() neotest.diagnostic() end, 'Show tests diagnostics' },
     },
 })
 
@@ -221,18 +224,6 @@ wk.register({
     },
 })
 
--- tmux navigator
-vim.g.tmux_navigator_no_mappings = 1
-vim.g.tmux_navigator_save_on_switch = 2
-
-wk.register({
-    ["<C-k>"] = { vim.cmd.TmuxNavigateUp, 'Tmux navigate up' },
-    ["<C-j>"] = { vim.cmd.TmuxNavigateDown, 'Tmux navigate down' },
-    ["<C-h>"] = { vim.cmd.TmuxNavigateLeft, 'Tmux navigate left' },
-    ["<C-l>"] = { vim.cmd.TmuxNavigateRight, 'Tmux navigate right' },
-    ["<C-s>"] = { 'ggVG', 'Select all lines' },
-})
-
 
 
 wk.register({
@@ -283,3 +274,22 @@ wk.register({
     prefix = "<leader>",
     mode = { "v", "n" },
 })
+
+wk.register({
+    ["<C-k>"] = { vim.cmd.TmuxNavigateUp, 'Tmux navigate up' },
+    ["<C-j>"] = { vim.cmd.TmuxNavigateDown, 'Tmux navigate down' },
+    ["<C-h>"] = { vim.cmd.TmuxNavigateLeft, 'Tmux navigate left' },
+    ["<C-l>"] = { vim.cmd.TmuxNavigateRight, 'Tmux navigate right' },
+    ["<C-s>"] = { 'ggVG', 'Select all lines' },
+})
+
+wk.register({
+    ["<leader>S"] = { function() require("spectre").open() end, 'Open Spectre' },
+    ["<leader>sw"] = { function() require("spectre").open_visual({ select_word = true }) end, 'Search current word' },
+    ["<leader>sp"] = { function() require("spectre").open_file_search({ select_word = true }) end, 'Search on current file' },
+}, { mode = { "n" }
+})
+
+wk.register({
+    ["<leader>sw"] = { '<esc><cmd>lua require("spectre").open_visual()<CR>', 'Open Spectre' },
+}, { mode = { "v" } })

@@ -21,10 +21,6 @@ M.plugins = {
     -- Repetir os cmds dos plugins usando ponto
     { 'tpope/vim-repeat' },
 
-    -- Fast add, remove, or change word surrounds (cs,ys,ds)[motion][char]
-    -- Atalho para add, alterar ou remover caracteres em volta das palavras.
-    { 'tpope/vim-surround' },
-
     -- Powerline fonts for VIM
     -- Fonts powerline para VIM
     { 'powerline/powerline-fonts' },
@@ -587,10 +583,23 @@ M.plugins = {
             }
         end
     },
+    -- show lightbulb where code actions are possible
     {
         'kosayoda/nvim-lightbulb',
         requires = 'antoinemadec/FixCursorHold.nvim',
         config = function() require('nvim-lightbulb').setup({ autocmd = { enabled = true } }) end
+    },
+    -- new surround plugin use (sa for add surround, sd for delete surround)
+    {
+        'echasnovski/mini.surround',
+        version = '*',
+        config = function() require('mini.surround').setup() end
+    },
+    -- find replace in all files
+    {
+        'nvim-pack/nvim-spectre',
+        config = function() require('spectre').setup() end,
+        dependencies = { 'nvim-lua/plenary.nvim' }
     }
 }
 return M.plugins
