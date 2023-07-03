@@ -1,3 +1,6 @@
+-- #22668 adds lua-loader. A builtin Lua module which byte-compiles and caches Lua files (speeds up load times). To enable, add vim.loader.enable() to your init.lua.
+vim.loader.enable()
+
 -- init vim
 --
 -- utils functions
