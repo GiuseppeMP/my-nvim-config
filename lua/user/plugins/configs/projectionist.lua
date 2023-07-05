@@ -28,8 +28,15 @@ g.projectionist_heuristics = {
         }
     },
     -- activation in javascript/typescript
-    ['settings.json|.nodejs|.angular|.react'] = {
+    ['settings.json|.nodejs|.angular|.react|tsconfig.json'] = {
 
+        -- projections for tsx
+        ['src/*.ts'] = {
+            alternate = "src/{}.test.ts"
+        },
+        ['src/*.test.ts'] = {
+            alternate = "src/{}.ts"
+        },
         -- projections for tsx
         ['src/*.tsx'] = {
             alternate = "src/{}.test.tsx"

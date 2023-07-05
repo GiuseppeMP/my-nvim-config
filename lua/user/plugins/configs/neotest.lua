@@ -11,6 +11,15 @@ require("neotest").setup({
         enabled = true
     },
     adapters = {
+        require('neotest-jest')({
+            -- jestCommand = "npx jest --watch ",
+            jestCommand = "npm test --",
+            -- jestConfigFile = "custom.jest.config.ts",
+            env = { CI = true },
+            cwd = function(_)
+                return vim.fn.getcwd()
+            end,
+        }),
         require("neotest-plenary"),
         require("neotest-vim-test")({ ignore_filetypes = { "python", "lua" }, allow_file_types = { "java" } }),
         require("neotest-python")(
@@ -20,9 +29,12 @@ require("neotest").setup({
             }
         )
     },
+    quickfix = {
+        enabled = false,
+        open = false,
+    },
     output = {
         enabled = false,
-        open_on_run = "short"
     },
     icons = {
         unknown = conf.icons.question,

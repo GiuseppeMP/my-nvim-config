@@ -85,7 +85,7 @@ M.install =
     builder = function()
         return {
             cmd = { "mvn" },
-            args = { "clean", "install", configs.ignore_ssl, configs.skip_tests },
+            args = { "install", configs.ignore_ssl, configs.skip_tests },
         }
     end,
     condition = {

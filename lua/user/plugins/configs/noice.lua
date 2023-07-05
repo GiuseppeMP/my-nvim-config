@@ -1,4 +1,12 @@
 local tokyo_colors = require("tokyonight.colors").setup()
+local notify = require("notify")
+
+notify.setup({
+    level = "WARN",
+    stages = "fade",
+    timeout = 300,
+    max_width = 100,
+})
 
 vim.cmd('highlight NormalFloat  guibg=' .. tokyo_colors.bg)
 -- vim.cmd('highlight NoiceCmdlinePrompt guibg=' .. tokyo_colors.bg )
@@ -76,7 +84,12 @@ require("noice").setup({
         },
         {
             filter = {
-                find = "NvimTree",
+                event = "msg_show",
+                kind = "echo",
+                -- cond = function(message)
+                --     print(vim.inspect(message))
+                --     return true
+                -- end,
             },
             opts = { skip = true },
         },

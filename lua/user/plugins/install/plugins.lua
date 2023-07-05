@@ -86,12 +86,19 @@ M.plugins = {
     },
 
     -- Tagbar outline
-    { 'preservim/tagbar' },
+    {
+        'preservim/tagbar',
+    },
 
     -- Collection of plugins for tests, Debug and TDD
     { 'nvim-lua/plenary.nvim', },
     { 'vim-test/vim-test', },
-    { 'nvim-neotest/neotest', },
+    {
+        'nvim-neotest/neotest',
+        dependencies = {
+            'haydenmeade/neotest-jest'
+        },
+    },
     { 'nvim-neotest/neotest-vim-test', },
     { 'nvim-neotest/neotest-plenary', },
     -- vim tests
