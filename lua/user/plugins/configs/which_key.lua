@@ -240,22 +240,24 @@ wk.register({
     ["<c-.>"] = { function() vim.fn['codeium#CycleCompletions'](-1) end, 'Codeium previous suggestion' },
 }, { mode = { 'i' } })
 
--- codeium
 wk.register({
     ["<c-y>"] = 'Codeium accept suggestion',
     ["<c-/>"] = { function() vim.fn['codeium#Clear']() end, 'Codeium clear' },
 }, { mode = { 'i', 'n' } })
 
-
 vim.cmd [[
      imap <script><silent><nowait><expr> <C-y> codeium#Accept()
  ]]
 
+-- chat-gpt
+wk.register({
+    ["<C-p>"] = { vim.cmd.ChatGPT, 'ChatGPT Prompt' },
+}, { mode = { 'i', 'n', 'v', 't' } })
 
 wk.register({
     c = {
         name = "ChatGPT",
-        p = { vim.cmd.ChatGPT, "ChatGPT" },
+        p = { vim.cmd.ChatGPT, "ChatGPT Prompt" },
         e = { vim.cmd.ChatGPTEditWithInstruction, "Edit with instruction" },
         g = { function() vim.cmd.ChatGPTRun("grammar_correction") end, "Grammar Correction" },
         k = { function() vim.cmd.ChatGPTRun("keywords") end, "Keywords" },
@@ -275,6 +277,7 @@ wk.register({
     mode = { "v", "n" },
 })
 
+-- tmux
 wk.register({
     ["<C-k>"] = { vim.cmd.TmuxNavigateUp, 'Tmux navigate up' },
     ["<C-j>"] = { vim.cmd.TmuxNavigateDown, 'Tmux navigate down' },
@@ -283,10 +286,12 @@ wk.register({
     ["<C-s>"] = { 'ggVG', 'Select all lines' },
 })
 
+-- spectre
 wk.register({
     ["<leader>S"] = { function() require("spectre").open() end, 'Open Spectre' },
     ["<leader>sw"] = { function() require("spectre").open_visual({ select_word = true }) end, 'Search current word' },
-    ["<leader>sp"] = { function() require("spectre").open_file_search({ select_word = true }) end, 'Search on current file' },
+    ["<leader>sp"] = { function() require("spectre").open_file_search({ select_word = true }) end,
+        'Search on current file' },
 }, { mode = { "n" }
 })
 
