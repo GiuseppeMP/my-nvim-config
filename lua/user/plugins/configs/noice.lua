@@ -14,6 +14,10 @@ vim.cmd('highlight NormalFloat  guibg=' .. tokyo_colors.bg)
 -- vim.cmd('highlight NoicePrompt guibg=' .. tokyo_colors.bg )
 -- vim.cmd('highlight NoiceFormatTitle guibg=' .. tokyo_colors.bg )
 
+vim.diagnostic.config({
+    update_in_insert = false
+})
+
 require("noice").setup({
     lsp = {
         override = {

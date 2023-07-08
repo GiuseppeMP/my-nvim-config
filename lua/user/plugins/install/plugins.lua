@@ -92,7 +92,7 @@ M.plugins = {
 
     -- Collection of plugins for tests, Debug and TDD
     { 'nvim-lua/plenary.nvim', },
-    { 'vim-test/vim-test', },
+    { 'GiuseppeMP/vim-test',   branch = 'issue-296' },
     {
         'nvim-neotest/neotest',
         dependencies = {
@@ -469,11 +469,11 @@ M.plugins = {
         end
     },
     -- show lightbulb where code actions are possible
-    {
-        'kosayoda/nvim-lightbulb',
-        requires = 'antoinemadec/FixCursorHold.nvim',
-        config = function() require('nvim-lightbulb').setup({ autocmd = { enabled = true } }) end
-    },
+    -- {
+    --     'kosayoda/nvim-lightbulb',
+    --     requires = 'antoinemadec/FixCursorHold.nvim',
+    --     config = function() require('nvim-lightbulb').setup({ autocmd = { enabled = true } }) end
+    -- },
     -- new surround plugin use (sa for add surround, sd for delete surround)
     {
         'echasnovski/mini.surround',
@@ -485,6 +485,11 @@ M.plugins = {
         'nvim-pack/nvim-spectre',
         config = function() require('spectre').setup() end,
         dependencies = { 'nvim-lua/plenary.nvim' }
+    },
+    {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        config = function() require("todo-comments").setup() end
     }
 }
 return M.plugins
