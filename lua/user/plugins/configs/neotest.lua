@@ -6,10 +6,6 @@ require("neotest").setup({
     running = {
         concurrent = false
     },
-    discovery = {
-        concurrent = 1,
-        enabled = true
-    },
     adapters = {
         require('neotest-jest')({
             -- jestCommand = "npx jest --watch ",

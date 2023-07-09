@@ -73,7 +73,9 @@ M.plugins = {
     { 'ryanoasis/vim-devicons' },
     { 'Mofiqul/dracula.nvim' },
 
-    { "folke/tokyonight.nvim" },
+    {
+        "folke/tokyonight.nvim",
+    },
 
     -- Git commands cli by :G (command)
     -- Interface git atraves de :G (comando)

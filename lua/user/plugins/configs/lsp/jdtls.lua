@@ -38,6 +38,15 @@ local on_attach_jdtls = function(_client, buf_nr)
     vim.keymap.set('n', 'df', jdtls.test_class, buf_opts)
     vim.keymap.set('n', 'dn', jdtls.test_nearest_method, buf_opts)
 
+    vim.cmd [[
+        nnoremap <A-o> <Cmd>lua require'jdtls'.organize_imports()<CR>
+        nnoremap crv <Cmd>lua require('jdtls').extract_variable()<CR>
+        vnoremap crv <Esc><Cmd>lua require('jdtls').extract_variable(true)<CR>
+        nnoremap crc <Cmd>lua require('jdtls').extract_constant()<CR>
+        vnoremap crc <Esc><Cmd>lua require('jdtls').extract_constant(true)<CR>
+        vnoremap crm <Esc><Cmd>lua require('jdtls').extract_method(true)<CR>
+    ]]
+
     -- setup dap
     jdtls.setup_dap({ hotcodereplace = 'auto' })
 end
@@ -175,7 +184,6 @@ local function get_cmd()
         '-Dlog.protocol=true',
         '-Dlog.level=ALL',
         '-Xms64m',
-        '-Xmx512m',
         -- "-XX:+UseSerialGC",
         '-javaagent:' .. lombok_jar,
         '--add-modules=ALL-SYSTEM',
