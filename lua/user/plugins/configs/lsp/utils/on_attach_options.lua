@@ -2,16 +2,6 @@ local M = {}
 
 local builtin = require 'telescope.builtin'
 
-local jdtls_save_actions = function()
-    require 'jdtls'.organize_imports()
-end
-
-local apply_autosave_actions = function(lsp_client, _, _)
-    if (string.find(lsp_client, 'jdtls')) then
-        jdtls_save_actions()
-    end
-end
-
 ---function format
 ---@param lsp_client string the name of the lsp_client, eg: jdtls, lua_ls, etc.
 ---@param bufnr number id of the buffer
@@ -30,8 +20,6 @@ local format_callback = function(lsp_client, bufnr, async)
             end
         }
     end
-
-    apply_autosave_actions(lsp_client, bufnr, async)
 end
 
 
@@ -113,12 +101,12 @@ M.get = function(params)
         -- See `:help vim.lsp.*` for documentation on any of the below functions
         vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, buf_opts)
 
-        vim.keymap.set('n', 'gd', function() builtin.lsp_definitions({ jump_style = 'vsplit'}) end, buf_opts)
+        vim.keymap.set('n', 'gd', function() builtin.lsp_definitions({ jump_style = 'vsplit' }) end, buf_opts)
         --
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, buf_opts)
 
         -- vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, buf_opts)
-        vim.keymap.set('n', 'gi', function () builtin.lsp_implementations({jump_style = 'vsplit'}) end, buf_opts)
+        vim.keymap.set('n', 'gi', function() builtin.lsp_implementations({ jump_style = 'vsplit' }) end, buf_opts)
 
         -- vim.keymap.set('n', 'gr', vim.lsp.buf.references, buf_opts)
         vim.keymap.set('n', 'gr', builtin.lsp_references, buf_opts)
