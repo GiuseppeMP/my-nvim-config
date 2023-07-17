@@ -94,7 +94,7 @@ M.plugins = {
 
     -- Collection of plugins for tests, Debug and TDD
     { 'nvim-lua/plenary.nvim', },
-    { 'GiuseppeMP/vim-test',   branch = 'issue-296' },
+    { 'GiuseppeMP/vim-test',   branch = 'master' },
     {
         'nvim-neotest/neotest',
         dependencies = {

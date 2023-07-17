@@ -33,7 +33,6 @@ o.foldmethod = 'indent'
 o.foldnestmax = 10
 o.foldenable = false
 o.foldlevel = 2
-o.cmdheight = 2
 o.updatetime = 500
 o.shortmess = o.shortmess .. 'c'
 -- o.shortmess:append({'c'})
@@ -51,18 +50,18 @@ o.ignorecase = true
 o.hlsearch = true
 o.showmatch = true
 o.compatible = false
-o.laststatus = 3
 o.timeoutlen = 700
 o.timeout = true
-o.ls = 1 -- hide status line
-o.ch = 0 -- hide command line
+o.cmdheight = 0
+o.ch = 1 -- hide command line
+-- o.winbar = "%f"
 o.spelllang = 'en_us'
 o.spell = false
 o.cursorline = true
+o.laststatus = 3
 o.guifont = 'CaskaydiaCove Nerd Font SemiLight:h12'
 -- o.guifont='Hack Nerd Font Mono Regular:h12'
 -- o.guifont='Fira Code Regular:h12'
-vim.opt.laststatus = 3 -- global last status
 
 -- disable netrw at the very start of your init.lua (strongly advised)
 g.loaded_netrw = 1

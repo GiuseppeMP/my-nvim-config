@@ -26,7 +26,7 @@ require("noice").setup({
             ["cmp.entry.get_documentation"] = true,
         },
         progress = {
-            enabled = true,
+            enabled = false,
             throttle = 1000 / 10, -- frequency to update lsp progress message
             view = "mini",
         }
