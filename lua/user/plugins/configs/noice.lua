@@ -26,7 +26,7 @@ require("noice").setup({
             ["cmp.entry.get_documentation"] = true,
         },
         progress = {
-            enabled = false,
+            enabled = true,
             throttle = 1000 / 10, -- frequency to update lsp progress message
             view = "mini",
         }
@@ -71,32 +71,66 @@ require("noice").setup({
         },
     },
     routes = {
+        -- show @recording msg
+        {
+            view = "notify",
+            filter = {
+                event = "msg_showmode",
+                find = "recording"
+            }
+        },
+        -- hide writen message
         {
             filter = {
                 event = "msg_show",
                 kind = "",
                 find = "written",
             },
-            opts = { skip = true }
+            opts = { skip = true },
         },
-        {
-            filter = {
-                event = "notify",
-                min_height = 15
-            },
-            view = 'split'
-        },
+        -- hide search not found hit BOTTOM|TOP
         {
             filter = {
                 event = "msg_show",
-                kind = "echo",
-                -- cond = function(message)
-                --     print(vim.inspect(message))
-                --     return true
-                -- end,
+                kind = "wmsg",
+                find = "search hit",
             },
             opts = { skip = true },
         },
+        -- hide pattern not found error
+        {
+            filter = {
+                event = "msg_show",
+                kind = "emsg",
+                find = "Pattern not found:",
+            },
+            opts = { skip = true },
+        },
+        -- hide JDTLS echo ServiceReady
+        {
+            filter = {
+                event = "msg_show",
+                find = "ServiceReady",
+            },
+            opts = { skip = true },
+        },
+        -- hide JDTLS echo Starting java...
+        {
+            filter = {
+                event = "msg_show",
+                find = "Starting Java",
+            },
+            opts = { skip = true },
+        },
+        -- hide LSP spam of Validate Documents
+        {
+            filter = {
+                event = "lsp",
+                kind = "progress",
+                find = "Validate"
+            },
+            opts = { skip = true },
+        }
     },
     cmdline = {
         enabled = true,         -- enables the Noice cmdline UI

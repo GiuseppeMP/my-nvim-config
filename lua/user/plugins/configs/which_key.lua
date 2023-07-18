@@ -3,6 +3,7 @@
 local telescope = require 'telescope'
 local builtin = require 'telescope.builtin'
 local dap_save = require 'user.plugins.configs.dap.save_breakpoints'
+local blanket = require 'blanket'
 
 -- nvim/hop
 local hop = require('hop')
@@ -109,6 +110,12 @@ wk.register({
         d = { vim.cmd.TroubleToggle, 'Show diagnostics panel' },
         -- m = { vim.cmd.MarkdownPreview, 'Markdown Preview' },
         z = { telescope.extensions.zoxide.list, 'Show zoxide directories' },
+        j = {
+            name = "Jacoco coverage",
+            t = { blanket.stop, 'Coverage blanket terminate' },
+            s = { blanket.start, 'Coverage blanket start' },
+            r = { blanket.refresh, 'Coverage blanket refresh' },
+        }
     },
 })
 

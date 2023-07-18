@@ -499,7 +499,7 @@ M.plugins = {
         config = function() require("coverage").setup() end
     },
     {
-        "dsych/blanket.nvim",
+        "GiuseppeMP/blanket.nvim",
         config = function()
             require("blanket").setup({
                 -- can use env variables and anything that could be interpreted by expand(), see :h expandcmd()
@@ -527,6 +527,12 @@ M.plugins = {
                 },
 
             })
+        end
+    },
+    {
+        'rmagatti/goto-preview',
+        config = function()
+            require('goto-preview').setup {}
         end
     }
 }
