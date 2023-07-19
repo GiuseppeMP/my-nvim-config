@@ -84,7 +84,7 @@ wk.register({ ["<C-t>"] = { vim.cmd.ToggleTerm, 'Toggle Term' } }, { mode = { 't
 
 -- debug normal mode
 wk.register({
-    ["<F1>"] = { function() dap.toggle_breakpoint() end, 'Debug toggle breakpoint' },
+    ["<F1>"] = { function() dap.togglpreviouse_breakpoint() end, 'Debug toggle breakpoint' },
     ["<F2>"] = { function()
         dap.list_breakpoints()
         pcall(dap_save.store_breakpoints, false)
@@ -232,13 +232,19 @@ wk.register({
 })
 
 
-
 wk.register({
-    ["<leader>d"] = {
-        h = { vim.cmd(":set statusline=%{synIDattr(synIDtrans(synID(line('.'),col('.'),1)),'name')}"),
-            "Status line highlight cursor debug" }
-    }
-})
+    ["<Tab>"] = { vim.diagnostic.goto_prev, "Go to previous lsp diagnostics." },
+    ["<S-Tab>"] = { vim.diagnostic.goto_next, "Go to next lsp diagnostics." }
+}, { mode = { "n" } })
+
+
+
+-- wk.register({
+--     ["<leader>d"] = {
+--         h = { vim.cmd(":set statusline=%{synIDattr(synIDtrans(synID(line('.'),col('.'),1)),'name')}"),
+--             "Status line highlight cursor debug" }
+--     }
+-- })
 
 -- codeium
 wk.register({
@@ -258,7 +264,7 @@ vim.cmd [[
 
 -- chat-gpt
 wk.register({
-    ["<C-p>"] = { vim.cmd.ChatGPT, 'ChatGPT Prompt' },
+    ["<M-p>"] = { vim.cmd.ChatGPT, 'ChatGPT Prompt' },
 }, { mode = { 'i', 'n', 'v', 't' } })
 
 wk.register({

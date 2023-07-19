@@ -4,9 +4,9 @@
 
 ---equivalent of packer rtp='.'
 -----@param plugin any
---local lazy_rtp = function(plugin)
---    vim.opt.rtp:append(plugin.dir)
---end
+local lazy_rtp = function(plugin)
+    vim.opt.rtp:append(plugin.dir)
+end
 
 vim.g.smoothie_enabled = 1
 vim.g.smoothie_speed_linear_factor = 70          -- default 60
@@ -126,11 +126,12 @@ M.plugins = {
 
     -- Plugin for snippets in different languages
     -- Plugin de snipptes (~)
-    -- { 'honza/vim-snippets',
-    --         lazy = false,
-    --         event = 'VeryLazy',
-    --         config = lazy_rtp
-    -- },
+    {
+        'honza/vim-snippets',
+        lazy = true,
+        event = 'VeryLazy',
+        config = lazy_rtp
+    },
 
     -- Git buffersigns
     {
@@ -215,7 +216,7 @@ M.plugins = {
     -- cmp  luasnip users
     {
         'L3MON4D3/LuaSnip',
-        tag = 'v1.2.1',
+        version = "2.*",  -- Replace <CurrentMajor> by the latest released major (first number of latest release)
         build = "make install_jsregexp"
     },
     { 'saadparwaiz1/cmp_luasnip' },

@@ -130,6 +130,14 @@ require("noice").setup({
                 find = "Validate"
             },
             opts = { skip = true },
+        },
+        {
+            filter = {
+                event = "lsp",
+                kind = "progress",
+                find = "Checking"
+            },
+            opts = { skip = true },
         }
     },
     cmdline = {
