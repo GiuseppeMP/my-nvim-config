@@ -81,10 +81,11 @@ wk.register({
 -- debug visual mode
 wk.register({ ["<F4>"] = { dapui.eval, 'Debug eval' } }, { mode = 'v' })
 wk.register({ ["<C-t>"] = { vim.cmd.ToggleTerm, 'Toggle Term' } }, { mode = { 't', 'n' } })
+wk.register({ ["<C-b>"] = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", 'Toggle Term tab' } }, { mode = { 't', 'n' } })
 
 -- debug normal mode
 wk.register({
-    ["<F1>"] = { function() dap.togglpreviouse_breakpoint() end, 'Debug toggle breakpoint' },
+    ["<F1>"] = { function() dap.toggle_breakpoint() end, 'Debug toggle breakpoint' },
     ["<F2>"] = { function()
         dap.list_breakpoints()
         pcall(dap_save.store_breakpoints, false)
