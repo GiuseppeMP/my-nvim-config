@@ -55,7 +55,8 @@ M.plugins = {
     { 'windwp/nvim-ts-autotag',                      event = 'VeryLazy' },
 
     -- Rainbow in Treesitter
-    { 'HiPhish/nvim-ts-rainbow2',                    event = 'VeryLazy' },
+    -- { 'HiPhish/nvim-ts-rainbow2',                    event = 'VeryLazy' },
+    { 'https://gitlab.com/HiPhish/rainbow-delimiters.nvim',                    event = 'VeryLazy' },
 
     -- close buffers without exit vim or messing layouts
     { 'moll/vim-bbye' },

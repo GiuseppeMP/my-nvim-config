@@ -3,61 +3,15 @@ if not status_ok then
     return
 end
 
--- local parsers = {
--- 	"bash",
--- 	"bibtex",
--- 	"c",
--- 	"cmake",
--- 	"comment",
--- 	"cpp",
--- 	"css",
--- 	"diff",
--- 	"dockerfile",
--- 	"fennel",
--- 	"fish",
--- 	"go",
--- 	"graphql",
--- 	"html",
--- 	"http",
--- 	"java",
--- 	"javascript",
--- 	"jsdoc",
--- 	"json",
--- 	"jsonc",
--- 	"latex",
--- 	"lua",
--- 	"make",
--- 	"ninja",
--- 	"nix",
--- 	"norg",
--- 	"org",
--- 	"perl",
--- 	"php",
--- 	"python",
--- 	"r",
--- 	"rasi",
--- 	"regex",
--- 	"ruby",
--- 	"rust",
--- 	"scss",
--- 	"tsx",
--- 	"typescript",
--- 	"vim",
--- 	"vue",
--- 	"xml",
--- 	"yaml",
--- 	"zig",
--- }
-
 local border = {
     { "🭽", "FloatBorder" },
-    { "▔",  "FloatBorder" },
+    { "▔", "FloatBorder" },
     { "🭾", "FloatBorder" },
-    { "▕",  "FloatBorder" },
+    { "▕", "FloatBorder" },
     { "🭿", "FloatBorder" },
-    { "▁",  "FloatBorder" },
+    { "▁", "FloatBorder" },
     { "🭼", "FloatBorder" },
-    { "▏",  "FloatBorder" },
+    { "▏", "FloatBorder" },
 }
 
 require("nvim-treesitter.parsers").list.xml = {
@@ -159,11 +113,6 @@ configs.setup {
             node_decremental = "grm",
         },
     },
-    rainbow = {
-        enable = true,
-        extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-        max_file_lines = nil, -- Do not enable for files with more than n lines, int
-    },
     -- https://github.com/RRethy/nvim-treesitter-textsubjects
     textsubjects = {
         enable = true,
@@ -175,3 +124,72 @@ configs.setup {
         },
     },
 }
+
+
+local rainbow_delimiters = require 'rainbow-delimiters'
+
+vim.g.rainbow_delimiters = {
+    strategy = {
+        [''] = rainbow_delimiters.strategy['global'],
+        vim = rainbow_delimiters.strategy['local'],
+    },
+    query = {
+        [''] = 'rainbow-delimiters',
+        lua = 'rainbow-blocks',
+    },
+    highlight = {
+        'RainbowDelimiterRed',
+        'RainbowDelimiterYellow',
+        'RainbowDelimiterBlue',
+        'RainbowDelimiterOrange',
+        'RainbowDelimiterGreen',
+        'RainbowDelimiterViolet',
+        'RainbowDelimiterCyan',
+    },
+}
+
+-- local parsers = {
+-- 	"bash",
+-- 	"bibtex",
+-- 	"c",
+-- 	"cmake",
+-- 	"comment",
+-- 	"cpp",
+-- 	"css",
+-- 	"diff",
+-- 	"dockerfile",
+-- 	"fennel",
+-- 	"fish",
+-- 	"go",
+-- 	"graphql",
+-- 	"html",
+-- 	"http",
+-- 	"java",
+-- 	"javascript",
+-- 	"jsdoc",
+-- 	"json",
+-- 	"jsonc",
+-- 	"latex",
+-- 	"lua",
+-- 	"make",
+-- 	"ninja",
+-- 	"nix",
+-- 	"norg",
+-- 	"org",
+-- 	"perl",
+-- 	"php",
+-- 	"python",
+-- 	"r",
+-- 	"rasi",
+-- 	"regex",
+-- 	"ruby",
+-- 	"rust",
+-- 	"scss",
+-- 	"tsx",
+-- 	"typescript",
+-- 	"vim",
+-- 	"vue",
+-- 	"xml",
+-- 	"yaml",
+-- 	"zig",
+-- }

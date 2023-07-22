@@ -4,6 +4,10 @@
 _G.utils = {}
 _G.conf = {}
 _G.conf.user = {}
+_G.dapui = {}
+_G.dapui.current_win = nil
+
+
 
 local status_ok, user_conf = pcall(require, "user.conf")
 if not status_ok then

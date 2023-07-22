@@ -1,7 +1,7 @@
--- This module keeps the dap and dapui general
--- configurations
 local dap, dapui = require("dap"), require("dapui")
 local tokyo_colors = require("tokyonight.colors").setup()
+
+tokyo_colors.vgreen = '#0db9d7'
 
 vim.api.nvim_set_hl(0, "blue", { fg = "#3d59a1" })
 vim.api.nvim_set_hl(0, "green", { fg = "#9ece6a" })
@@ -9,7 +9,7 @@ vim.api.nvim_set_hl(0, "yellow", { fg = "#FFFF00" })
 vim.api.nvim_set_hl(0, "orange", { fg = "#f09000" })
 vim.api.nvim_set_hl(0, "red", { fg = "#BD2031" })
 
-vim.api.nvim_set_hl(0, 'DapStopped', { ctermbg = 0, fg = tokyo_colors.yellow, bg = tokyo_colors.black })
+vim.api.nvim_set_hl(0, 'DapStopped', { ctermbg = 0, fg = tokyo_colors.vgreen, bg = "#291c17" })
 
 -- Dap Icons.
 vim.fn.sign_define('DapBreakpointCondition', {
@@ -27,28 +27,28 @@ vim.fn.sign_define('DapBreakpointRejected', {
 })
 
 
--- vim.fn.sign_define('DapStopped', { text = 'ﴫ', texthl = 'green', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
--- vim.fn.sign_define('DapLogPoint', { text = '󰀨', texthl = 'yellow', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
--- vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'red', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
--- vim.fn.sign_define('DapStopped', { text = '', texthl = 'red', linehl = 'DapStopped', numhl = 'DapStopped' })
+vim.fn.sign_define('DapStopped', { text = '', texthl = "DapStopped", linehl = 'DapStopped', numhl = 'DapStopped' })
 
-
-vim.fn.sign_define('DapStopped', { text = '▶️', texthl = '', linehl = 'DapStopped', numhl = 'DapStopped' })
-
-vim.fn.sign_define('DapBreakpoint', { text = '🔴', texthl = '', linehl = '', numhl = '' })
+vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'red', linehl = '', numhl = '' })
 
 vim.cmd [[vnoremap <leader>de <Cmd>lua require("dapui").eval()<CR>]]
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
+    _G.dapui.current_win = vim.api.nvim_get_current_win()
+    vim.cmd.NvimTreeToggle()
     dapui.open()
 end
 
 dap.listeners.before.event_terminated["dapui_config"] = function()
+    vim.cmd.NvimTreeToggle()
     dapui.close()
+    vim.api.nvim_set_current_win(_G.dapui.current_win)
 end
 
 dap.listeners.before.event_exited["dapui_config"] = function()
+    vim.cmd.NvimTreeToggle()
     dapui.close()
+    vim.api.nvim_set_current_win(_G.dapui.current_win)
 end
 
 
