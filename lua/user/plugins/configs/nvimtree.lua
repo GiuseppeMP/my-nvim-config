@@ -1,14 +1,33 @@
-local keys_list = {
-    { key = { "l", "<2-LeftMouse>" },      action = "edit" },
-    { key = "<C-v>",                       action = "vsplit" },
-    { key = "<C-s",                        action = "split" },
-    { key = "<C-t>",                       action = "tabnew" },
-    { key = { "<C-]>", "<2-RightMouse>" }, action = "cd" },
+local function remove_keymap(mode, key, bufnr)
+    -- safe set to avoid errors to del if not exists
+    vim.keymap.set(mode, key, '', { buffer = bufnr })
+    vim.keymap.del(mode, key, { buffer = bufnr })
+end
 
-}
+local function my_on_attach(bufnr)
+    local api = require "nvim-tree.api"
+
+    local function opts(desc)
+        return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+    end
+
+    -- default mappings
+    api.config.mappings.default_on_attach(bufnr)
+
+    -- remove mappings
+    remove_keymap('n', '<c-t>', bufnr)
+
+    -- custom mappings
+    -- vim.keymap.set('n', '<leader>e', api.tree.tabnew, opts('Tab new'))
+    vim.keymap.set('n', '?', api.tree.toggle_help, opts('Help'))
+
+    vim.keymap.set('n', 'l', api.node.open.edit, opts('Open'))
+end
+
 
 -- :help nvim-tree-setup
 require 'nvim-tree'.setup {
+    on_attach = my_on_attach,
     sort_by = "case_sensitive",
     sync_root_with_cwd = true,
     git = {
@@ -41,9 +60,6 @@ require 'nvim-tree'.setup {
             max = 50,
             min = 30
         },
-        mappings = {
-            list = keys_list
-        }
     },
     renderer = {
         group_empty = true,

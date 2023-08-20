@@ -35,6 +35,7 @@ require('mason-tool-installer').setup {
         { 'autopep8',                        auto_update = true },
         { 'pydocstyle',                      auto_update = true },
         { 'pylint',                          auto_update = true },
+        { 'eslint_d',                        auto_update = true },
         -- formatters
         { 'google-java-format',              auto_update = true },
     },

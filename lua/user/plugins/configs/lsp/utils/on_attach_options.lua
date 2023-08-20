@@ -101,12 +101,12 @@ M.get = function(params)
         -- See `:help vim.lsp.*` for documentation on any of the below functions
         vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, buf_opts)
 
-        vim.keymap.set('n', 'gd', function() builtin.lsp_definitions({ jump_style = 'vsplit' }) end, buf_opts)
+        vim.keymap.set('n', 'gd', function() builtin.lsp_definitions({ jump_type = 'vsplit' }) end, buf_opts)
         --
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, buf_opts)
 
         -- vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, buf_opts)
-        vim.keymap.set('n', 'gi', function() builtin.lsp_implementations({ jump_style = 'vsplit' }) end, buf_opts)
+        vim.keymap.set('n', 'gi', function() builtin.lsp_implementations({ jump_type = 'vsplit' }) end, buf_opts)
 
         -- vim.keymap.set('n', 'gr', vim.lsp.buf.references, buf_opts)
         vim.keymap.set('n', 'gr', builtin.lsp_references, buf_opts)

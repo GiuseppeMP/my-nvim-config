@@ -39,8 +39,8 @@ local conf = {
     },
     hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " },
     icons = {
-        breadcrumb = "»",                  -- symbol used in the command line area that shows your active key combo
-        separator = "  ",                -- symbol used between a key and it's label
+        breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
+        separator = "  ", -- symbol used between a key and it's label
         -- group = "+",       -- symbol prepended to a group
         group = conf.icons.git.added .. ' ' -- symbol prepended to a group
     },
@@ -81,7 +81,8 @@ wk.register({
 -- debug visual mode
 wk.register({ ["<F4>"] = { dapui.eval, 'Debug eval' } }, { mode = 'v' })
 wk.register({ ["<C-t>"] = { vim.cmd.ToggleTerm, 'Toggle Term' } }, { mode = { 't', 'n' } })
-wk.register({ ["<C-b>"] = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", 'Toggle Term tab' } }, { mode = { 't', 'n' } })
+wk.register({ ["<C-b>"] = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", 'Toggle Term tab' } },
+    { mode = { 't', 'n' } })
 
 -- debug normal mode
 wk.register({
@@ -109,7 +110,7 @@ wk.register({
         u = { vim.cmd.UndotreeToggle, 'Show undotree' },
         l = { vim.cmd.Lazy, 'Lazy plugin manager' },
         d = { vim.cmd.TroubleToggle, 'Show diagnostics panel' },
-        -- m = { vim.cmd.MarkdownPreview, 'Markdown Preview' },
+        m = { vim.cmd.MarkdownPreview, 'Markdown Preview' },
         z = { telescope.extensions.zoxide.list, 'Show zoxide directories' },
         j = {
             name = "Jacoco coverage",
@@ -130,17 +131,22 @@ wk.register({
         h = { hop.hint_words, 'Hop words' },
         l = { tsht.nodes, 'Hop syntax' },
         m = { harpoon.ui.toggle_quick_menu, 'Harpoon quick menu' },
-        ['1'] = { function() harpoon.ui.nav_file(1) end, 'Go to harpoon mark 1' },
-        ['2'] = { function() harpoon.ui.nav_file(2) end, 'Go to harpoon mark 2' },
-        ['3'] = { function() harpoon.ui.nav_file(3) end, 'Go to harpoon mark 3' },
-        ['4'] = { function() harpoon.ui.nav_file(4) end, 'Go to harpoon mark 4' },
-        ['5'] = { function() harpoon.ui.nav_file(5) end, 'Go to harpoon mark 5' },
-        ['6'] = { function() harpoon.ui.nav_file(6) end, 'Go to harpoon mark 6' },
-        ['7'] = { function() harpoon.ui.nav_file(7) end, 'Go to harpoon mark 7' },
-        ['8'] = { function() harpoon.ui.nav_file(8) end, 'Go to harpoon mark 8' },
-        ['9'] = { function() harpoon.ui.nav_file(9) end, 'Go to harpoon mark 9' },
     },
 }, { mode = 'n' })
+
+-- [<C-x>] - harpoon fast nav
+wk.register({
+    ['<C-m>'] = { harpoon.ui.toggle_quick_menu, 'Harpoon quick menu' },
+    ['<C-1>'] = { function() harpoon.ui.nav_file(1) end, 'Go to harpoon mark 1' },
+    ['<C-2>'] = { function() harpoon.ui.nav_file(2) end, 'Go to harpoon mark 2' },
+    ['<C-3>'] = { function() harpoon.ui.nav_file(3) end, 'Go to harpoon mark 3' },
+    ['<C-4>'] = { function() harpoon.ui.nav_file(4) end, 'Go to harpoon mark 4' },
+    ['<C-5>'] = { function() harpoon.ui.nav_file(5) end, 'Go to harpoon mark 5' },
+    ['<C-6>'] = { function() harpoon.ui.nav_file(6) end, 'Go to harpoon mark 6' },
+    ['<C-7>'] = { function() harpoon.ui.nav_file(7) end, 'Go to harpoon mark 7' },
+    ['<C-8>'] = { function() harpoon.ui.nav_file(8) end, 'Go to harpoon mark 8' },
+    ['<C-9>'] = { function() harpoon.ui.nav_file(9) end, 'Go to harpoon mark 9' },
+}, { mode = 'n', 'i', 'v' })
 
 wk.register({
     ["<leader>h"] = {

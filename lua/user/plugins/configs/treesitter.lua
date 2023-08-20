@@ -14,16 +14,6 @@ local border = {
     { "▏", "FloatBorder" },
 }
 
-require("nvim-treesitter.parsers").list.xml = {
-    install_info = {
-        url = "https://github.com/Trivernis/tree-sitter-xml",
-        files = { "src/parser.c" },
-        generate_requires_npm = true,
-        branch = "main",
-    },
-    filetype = "xml",
-}
-
 configs.setup {
     autotag = {
         enable = true,
@@ -147,49 +137,3 @@ vim.g.rainbow_delimiters = {
         'RainbowDelimiterCyan',
     },
 }
-
--- local parsers = {
--- 	"bash",
--- 	"bibtex",
--- 	"c",
--- 	"cmake",
--- 	"comment",
--- 	"cpp",
--- 	"css",
--- 	"diff",
--- 	"dockerfile",
--- 	"fennel",
--- 	"fish",
--- 	"go",
--- 	"graphql",
--- 	"html",
--- 	"http",
--- 	"java",
--- 	"javascript",
--- 	"jsdoc",
--- 	"json",
--- 	"jsonc",
--- 	"latex",
--- 	"lua",
--- 	"make",
--- 	"ninja",
--- 	"nix",
--- 	"norg",
--- 	"org",
--- 	"perl",
--- 	"php",
--- 	"python",
--- 	"r",
--- 	"rasi",
--- 	"regex",
--- 	"ruby",
--- 	"rust",
--- 	"scss",
--- 	"tsx",
--- 	"typescript",
--- 	"vim",
--- 	"vue",
--- 	"xml",
--- 	"yaml",
--- 	"zig",
--- }

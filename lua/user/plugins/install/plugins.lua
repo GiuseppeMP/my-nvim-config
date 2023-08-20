@@ -5,6 +5,7 @@
 ---equivalent of packer rtp='.'
 -----@param plugin any
 local lazy_rtp = function(plugin)
+    ---@diagnostic disable-next-line: undefined-field
     vim.opt.rtp:append(plugin.dir)
 end
 
@@ -37,26 +38,26 @@ M.plugins = {
     },
 
     -- text objects treesitter
-    { 'nvim-treesitter/nvim-treesitter-textobjects', event = 'VeryLazy' },
+    { 'nvim-treesitter/nvim-treesitter-textobjects',        event = 'VeryLazy' },
 
     -- text objects improved by subjects
-    { 'RRethy/nvim-treesitter-textsubjects',         event = 'VeryLazy' },
+    { 'RRethy/nvim-treesitter-textsubjects',                event = 'VeryLazy' },
 
     -- refactor module for tresitter
-    { 'nvim-treesitter/nvim-treesitter-refactor',    event = 'VeryLazy' },
+    { 'nvim-treesitter/nvim-treesitter-refactor',           event = 'VeryLazy' },
 
     -- comment string for multiple languages in the same buffer
-    { 'JoosepAlviste/nvim-ts-context-commentstring', event = 'VeryLazy' },
+    { 'JoosepAlviste/nvim-ts-context-commentstring',        event = 'VeryLazy' },
 
     -- better context, for long functions
-    { 'romgrk/nvim-treesitter-context',              event = 'VeryLazy' },
+    { 'romgrk/nvim-treesitter-context',                     event = 'VeryLazy' },
 
     -- auto close and auto rename xml, htmls tags
-    { 'windwp/nvim-ts-autotag',                      event = 'VeryLazy' },
+    { 'windwp/nvim-ts-autotag',                             event = 'VeryLazy' },
 
     -- Rainbow in Treesitter
     -- { 'HiPhish/nvim-ts-rainbow2',                    event = 'VeryLazy' },
-    { 'https://gitlab.com/HiPhish/rainbow-delimiters.nvim',                    event = 'VeryLazy' },
+    { 'https://gitlab.com/HiPhish/rainbow-delimiters.nvim', event = 'VeryLazy' },
 
     -- close buffers without exit vim or messing layouts
     { 'moll/vim-bbye' },
@@ -76,6 +77,19 @@ M.plugins = {
 
     {
         "folke/tokyonight.nvim",
+        config = function()
+            require('tokyonight').setup({
+                style = 'moon',
+                transparent = false,
+                transparent_sidebar = false,
+                styles = {
+                    comments = { italic = true },
+                    keywords = { italic = true },
+                    functions = {},
+                    variables = {},
+                },
+            })
+        end
     },
 
     -- Git commands cli by :G (command)
@@ -107,9 +121,9 @@ M.plugins = {
     -- vim tests
     { 'kana/vim-vspec', },
     -- fix cursor in tests/debug
-    { 'antoinemadec/FixCursorHold.nvim', event = 'VeryLazy' },
+    { 'antoinemadec/FixCursorHold.nvim' },
     -- go to test file (alernate)
-    { 'tpope/vim-projectionist',         event = 'VeryLazy' },
+    { 'tpope/vim-projectionist',        event = 'VeryLazy' },
 
     --Plug for mark files and terminals on the fly, to avoid repeat commands like
     --bnext, bprev, or fzf
@@ -119,7 +133,7 @@ M.plugins = {
     -- { 'ThePrimeagen/refactoring.nvim' },
 
     -- Plug for smoothie ctrl-d and ctrl-up scrolling
-    { 'psliwka/vim-smoothie',            event = 'VeryLazy' },
+    { 'psliwka/vim-smoothie',           event = 'VeryLazy' },
 
     -- Plug for float windows like fzf but for anything and vim-test
     -- Plugin para utilizar janelas flutuantes parecido com fzf, suportar vim-test
@@ -147,6 +161,8 @@ M.plugins = {
 
     -- tmux <-> neovim navigation using C-l,k,j,h
     { 'christoomey/vim-tmux-navigator' },
+
+    { 'iamcco/markdown-preview.nvim',  build = 'cd app && yarn install' },
 
     -- Markdown preview
     {
@@ -182,7 +198,8 @@ M.plugins = {
     {
         'nvim-tree/nvim-tree.lua',
         dependencies = { 'nvim-tree/nvim-web-devicons' },
-        tag = 'nightly'
+        version = '*',
+        lazy = false
     },
 
     -- startup screen
@@ -359,11 +376,13 @@ M.plugins = {
     {
         "jackMort/ChatGPT.nvim",
         event = "VeryLazy",
+        commit = "24bcca7",
         config = function()
             local home = os.getenv "HOME"
             require("chatgpt").setup(
                 {
                     api_key_cmd = "gpg --decrypt " .. home .. "/.config/secrets/open_ai_key.txt.gpg",
+                    api_host_cmd = "echo -n 'api.openai.com'",
                     openai_edit_params = {
                         model = "code-davinci-edit-001", -- code model
                         temperature = 0,
@@ -493,7 +512,16 @@ M.plugins = {
     {
         "folke/todo-comments.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
-        config = function() require("todo-comments").setup() end
+        config = function()
+            require("todo-comments").setup({
+                opts = {
+                    merge_keywords = true,
+                    keywords = {
+                        BACKLOG = { color = '#7711FF' }
+                    }
+                }
+            })
+        end
     },
     {
         "andythigpen/nvim-coverage",

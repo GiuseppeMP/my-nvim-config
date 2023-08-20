@@ -5,6 +5,8 @@ local capabilities_options = require("user.plugins.configs.lsp.utils.capabilitie
 lspconfig.eslint.setup {
     on_attach = on_attach_options.get { lsp_client = 'eslint', format_on_save = true, format = true },
     capabilities = capabilities_options.default,
+    -- root_dir = function() return vim.loop.cwd() end,
+    -- cmd = { 'eslint_d', '--stdio' },
     settings = {
         codeActionOnSave = {
             enable = true,
