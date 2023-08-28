@@ -99,19 +99,21 @@ M.get = function(params)
 
         -- Mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions
-        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, buf_opts)
+        -- vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, buf_opts)
 
-        vim.keymap.set('n', 'gd', function() builtin.lsp_definitions({ jump_type = 'vsplit' }) end, buf_opts)
+        vim.keymap.set('n', 'gD', function() builtin.lsp_definitions({ jump_type = 'vsplit' }) end, buf_opts)
+        vim.keymap.set('n', 'gd', builtin.lsp_definitions, buf_opts)
         --
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, buf_opts)
 
         -- vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, buf_opts)
-        vim.keymap.set('n', 'gi', function() builtin.lsp_implementations({ jump_type = 'vsplit' }) end, buf_opts)
+        vim.keymap.set('n', 'gI', function() builtin.lsp_implementations({ jump_type = 'vsplit' }) end, buf_opts)
+        vim.keymap.set('n', 'gi', builtin.lsp_implementations, buf_opts)
 
         -- vim.keymap.set('n', 'gr', vim.lsp.buf.references, buf_opts)
         vim.keymap.set('n', 'gr', builtin.lsp_references, buf_opts)
 
-        vim.keymap.set('n', 'gI', builtin.lsp_incoming_calls, buf_opts)
+        -- vim.keymap.set('n', 'gI', builtin.lsp_incoming_calls, buf_opts)
         vim.keymap.set('n', 'gO', builtin.lsp_outgoing_calls, buf_opts)
 
         --leader

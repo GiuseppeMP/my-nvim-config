@@ -45,8 +45,9 @@ configs.setup {
             enable = true,
             border = border,
             peek_definition_code = {
-                ["<leader>pf"] = "@function.outer",
-                ["<leader>pc"] = "@class.outer"
+                ["gp"] = "@function.outer",
+                -- ["<leader>pf"] = "@function.outer",
+                ["gP"] = "@class.outer"
             }
         },
         select = {
