@@ -64,8 +64,8 @@ local function get_mapping()
             elseif has_words_before() then
                 cmp.complete()
             else
-                vim.diagnostic.goto_next()
-                -- fallback()
+                -- vim.diagnostic.goto_next()
+                fallback()
             end
         end, { "i", "s" }),
 
@@ -73,8 +73,8 @@ local function get_mapping()
             if luasnip.jumpable(-1) then
                 luasnip.jump(-1)
             else
-                vim.diagnostic.goto_prev()
-                -- fallback()
+                -- vim.diagnostic.goto_prev()
+                fallback()
             end
         end, { "i", "s" }),
     })
