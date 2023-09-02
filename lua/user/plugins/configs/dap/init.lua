@@ -35,18 +35,16 @@ vim.cmd [[vnoremap <leader>de <Cmd>lua require("dapui").eval()<CR>]]
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
     _G.dapui.current_win = vim.api.nvim_get_current_win()
-    vim.cmd.NvimTreeToggle()
+    vim.cmd.NvimTreeClose()
     dapui.open()
 end
 
 dap.listeners.before.event_terminated["dapui_config"] = function()
-    vim.cmd.NvimTreeToggle()
     dapui.close()
     vim.api.nvim_set_current_win(_G.dapui.current_win)
 end
 
 dap.listeners.before.event_exited["dapui_config"] = function()
-    vim.cmd.NvimTreeToggle()
     dapui.close()
     vim.api.nvim_set_current_win(_G.dapui.current_win)
 end
@@ -88,14 +86,14 @@ require("dapui").setup({
                 "breakpoints",
                 { id = "scopes", size = 0.25 },
                 "watches",
-                -- "stacks",
+                "stacks",
             },
-            size = 50, -- 40 columns
+            size = 30, -- 40 columns
             position = "left",
         },
         {
             elements = {
-                -- "repl",
+                "repl",
                 "console",
             },
             size = 0.25, -- 25% of total lines

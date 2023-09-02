@@ -55,6 +55,8 @@ o.timeout = true
 o.cmdheight = 0
 o.ch = 1 -- hide command line
 -- o.winbar = "%f"
+-- o.winbar = "%=%m %f"
+o.winbar = "%= %f"
 o.spelllang = 'en_us'
 o.spell = false
 o.cursorline = true

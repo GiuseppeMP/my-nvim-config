@@ -566,6 +566,18 @@ M.plugins = {
             require('goto-preview').setup {}
         end
     },
-    { "folke/neodev.nvim", opts = {} }
+    { "folke/neodev.nvim", opts = {} },
+    {
+        "tiagovla/scope.nvim",
+        config = function()
+            require('scope').setup {}
+        end
+    },
+    {
+        "theHamsta/nvim-dap-virtual-text",
+        config = function()
+            require('nvim-dap-virtual-text').setup {}
+        end
+    }
 }
 return M.plugins

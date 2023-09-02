@@ -99,5 +99,9 @@
         "/Users/giuseppemp/.local/share/nvim/lazy/cmp-snippy/after",
         "${3rd}/luv/library",
         "${3rd}/luassert/library"
+    ],
+    "diagnostics.globals": [
+        "vim",
+        "require"
     ]
 }
