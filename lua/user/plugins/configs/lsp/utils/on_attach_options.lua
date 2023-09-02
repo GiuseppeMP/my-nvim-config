@@ -62,6 +62,15 @@ local get_project_local_settings = function(client, _)
     return project_settings
 end
 
+local go_to_with_options = function(callback)
+    vim.ui.select({ 'never', 'vsplit', 'split', 'tab' }, {
+        prompt = "Select jump style:",
+        telescope = require("telescope.themes").get_cursor(),
+    }, function(selected)
+        callback(selected)
+    end)
+end
+
 ---return on_attach_function configured based on @param params
 -- @param params table
 ---@return function
@@ -97,18 +106,20 @@ M.get = function(params)
         -- Disable completion triggered by <c-x><c-o>
         vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-        -- Mappings.
-        -- See `:help vim.lsp.*` for documentation on any of the below functions
-        -- vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, buf_opts)
-
-        vim.keymap.set('n', 'gD', function() builtin.lsp_definitions({ jump_type = 'vsplit' }) end, buf_opts)
-        vim.keymap.set('n', 'gd', builtin.lsp_definitions, buf_opts)
-        --
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, buf_opts)
 
-        -- vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, buf_opts)
-        vim.keymap.set('n', 'gI', function() builtin.lsp_implementations({ jump_type = 'vsplit' }) end, buf_opts)
+        vim.keymap.set('n', 'gD',
+            function() go_to_with_options(function(selected) builtin.lsp_definitions({ jump_type = selected }) end) end,
+            buf_opts)
+
+        vim.keymap.set('n', 'gd', builtin.lsp_definitions, buf_opts)
+
+
         vim.keymap.set('n', 'gi', builtin.lsp_implementations, buf_opts)
+
+        vim.keymap.set('n', 'gI',
+            function() go_to_with_options(function(selected) builtin.lsp_implementations({ jump_type = selected }) end) end,
+            buf_opts)
 
         -- vim.keymap.set('n', 'gr', vim.lsp.buf.references, buf_opts)
         vim.keymap.set('n', 'gr', builtin.lsp_references, buf_opts)
