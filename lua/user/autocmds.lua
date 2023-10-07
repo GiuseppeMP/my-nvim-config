@@ -4,3 +4,11 @@ augroup highlight_yank
     au TextYankPost * silent! lua vim.highlight.on_yank { higroup='IncSearch', timeout=200 }
 augroup END
 ]])
+
+
+vim.cmd([[
+augroup twig_ft
+  au!
+  autocmd BufNewFile,BufRead *rc  set syntax=sh
+augroup END
+]])

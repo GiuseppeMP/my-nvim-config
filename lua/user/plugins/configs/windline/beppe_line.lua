@@ -18,29 +18,32 @@ local basic = {}
 basic.logo = {
 
     hl_colors = {
-        Normal = { 'red', 'bg', 'bold' },
-        Insert = { 'green', 'bg', 'bold' },
-        Visual = { 'yellow', 'bg', 'bold' },
-        Replace = { 'blue_light', 'bg', 'bold' },
-        Command = { 'magenta', 'bg', 'bold' },
-        NormalBefore = { 'bg', 'red', 'bold' },
-        InsertBefore = { 'bg', 'green', 'bold' },
-        VisualBefore = { 'bg', 'yellow', 'bold' },
-        ReplaceBefore = { 'bg', 'blue_light', 'bold' },
-        CommandBefore = { 'bg', 'magenta', 'bold' },
-        sep_before = { 'blue', 'black' },
-        default = { 'black', 'blue' },
-        virtual = { 'vgreen', 'black' },
-        virtual_bg = { 'vgreen', 'black' },
-        virtual_rev = { 'black', 'vgreen' },
-        black_bg = { 'black', 'black' }
-
+        Normal = { 'red', 'black' },
+        Insert = { 'green', 'black', 'bold' },
+        Visual = { 'yellow', 'black', 'bold' },
+        Replace = { 'blue_light', 'black', 'bold' },
+        Command = { 'magenta', 'black', 'bold' },
+        NormalBefore = { 'black', 'red' },
+        NormalBeforeRound = { 'red', 'bg' },
+        InsertBefore = { 'black', 'green' },
+        InsertBeforeRound = { 'green', 'bg' },
+        VisualBefore = { 'black', 'yellow' },
+        VisualBeforeRound = { 'yellow', 'bg' },
+        ReplaceBefore = { 'black', 'blue_light' },
+        ReplaceBeforeRound = { 'blue_light', 'bg' },
+        CommandBefore = { 'black', 'magenta' },
+        CommandBeforeRound = { 'magenta', 'bg' },
+        NormalAfter = { 'red', 'white' },
+        InsertAfter = { 'green', 'white' },
+        VisualAfter = { 'yellow', 'white' },
+        ReplaceAfter = { 'blue_light', 'white' },
+        CommandAfter = { 'magenta', 'white' },
     },
     text = function()
         return {
-            { ' ',               state.mode[2] .. 'Before' },
-            { ' ',            state.mode[2] .. 'Before' },
-            { sep.right_rounded, state.mode[2] },
+            { ' ', state.mode[2] .. 'Before' },
+            { ' ', state.mode[2] .. 'Before' },
+            { sep.right_rounded, state.mode[2] .. 'BeforeRound' },
         }
     end,
 }
@@ -65,11 +68,11 @@ basic.vi_mode = {
         Visual = { 'black', 'yellow', 'bold' },
         Replace = { 'black', 'blue_light', 'bold' },
         Command = { 'black', 'magenta', 'bold' },
-        NormalBefore = { 'red', 'black' },
-        InsertBefore = { 'green', 'black' },
-        VisualBefore = { 'yellow', 'black' },
-        ReplaceBefore = { 'blue_light', 'black' },
-        CommandBefore = { 'magenta', 'black' },
+        NormalBefore = { 'red', 'bg' },
+        InsertBefore = { 'green', 'bg' },
+        VisualBefore = { 'yellow', 'bg' },
+        ReplaceBefore = { 'blue_light', 'bg' },
+        CommandBefore = { 'magenta', 'bg' },
         NormalAfter = { 'white', 'red' },
         InsertAfter = { 'white', 'green' },
         VisualAfter = { 'white', 'yellow' },
@@ -144,13 +147,13 @@ basic.file = {
     },
     text = function(bufnr)
         return {
-            { ' ',                                           'bubble_bg' },
+            { ' ', 'bubble_bg' },
             icon_comp(bufnr),
-            { ' ',                                           'bubble_bg' },
+            { ' ', 'bubble_bg' },
             { b_components.cache_file_name('[No Name]', ''), '' },
-            { b_components.file_modified(' '),            '' },
-            { b_components.cache_file_size(),                '' },
-            { " ",                                           '' },
+            { b_components.file_modified(' '), '' },
+            { b_components.cache_file_size(), '' },
+            { " ", '' },
         }
     end,
 }
@@ -202,7 +205,7 @@ basic.genai = {
     text = function(_)
         if conf.user.codeium.enabled then
             return {
-                { '  ',  'virtual_bg' },
+                { '  ', 'virtual_bg' },
                 { function()
                     if conf.user.copilot.enabled
                     then
@@ -249,10 +252,10 @@ basic.git = {
     text = function(bufnr)
         if git_comps.is_git(bufnr) then
             return {
-                { '  status',                                                                                 'magenta' },
+                { '  status', 'magenta' },
                 { git_comps.diff_removed({ format = ' ' .. conf.icons.git.removed .. ' %s', show_zero = true }), 'red' },
                 { git_comps.diff_changed({ format = ' ' .. conf.icons.git.changed .. ' %s', show_zero = true }), 'yellow' },
-                { git_comps.diff_added({ format = ' ' .. conf.icons.git.added .. ' %s', show_zero = true }),     'blue' },
+                { git_comps.diff_added({ format = ' ' .. conf.icons.git.added .. ' %s', show_zero = true }), 'blue' },
             }
         end
         return ''
@@ -262,7 +265,7 @@ basic.git = {
 local quickfix = {
     filetypes = { 'qf', 'Trouble' },
     active = {
-        { ' ',              { 'dbg', 'dbg' } },
+        { ' ', { 'dbg', 'dbg' } },
         { sep.left_rounded, { 'bwhite', 'bg' } },
         { '🔥 Quickfix ', { 'bg', 'bwhite' } },
         {
@@ -271,12 +274,12 @@ local quickfix = {
             end,
             { 'cyan', 'bg' },
         },
-        { ' Total: %L ',     { 'bwhite', 'bg' } },
+        { ' Total: %L ', { 'bwhite', 'bg' } },
         basic.divider,
-        { ' ',               { 'dbg', 'bwhite' } },
-        { '%L 󱧖 ',        { 'dbg', 'bwhite' } },
+        { ' ', { 'dbg', 'bwhite' } },
+        { '%L 󱧖 ', { 'dbg', 'bwhite' } },
         { sep.right_rounded, { 'bwhite', 'dbg' } },
-        { ' ',               { 'dbg', 'dbg' } },
+        { ' ', { 'dbg', 'dbg' } },
 
     },
     always_active = true,
@@ -286,9 +289,9 @@ local quickfix = {
 local explorer = {
     filetypes = { 'fern', 'NvimTree', 'lir' },
     active = {
-        { '  ',                       { 'blue', 'red' } },
+        { '  ', { 'blue', 'red' } },
         { helper.separators.slant_right, { 'blue', 'NormalBg' } },
-        { b_components.divider,          '' },
+        { b_components.divider, '' },
         { b_components.file_name(''), { 'white', 'NormalBg' } },
     },
     always_active = true,
@@ -316,7 +319,7 @@ basic.lsp_name = {
 local default = {
     filetypes = { 'default' },
     active = {
-        { ' ',                           'black' },
+        { ' ',                           'none' },
         basic.vi_mode,
         basic.file,
         { vim_components.search_count(), { 'white', 'bg' } },
@@ -372,6 +375,8 @@ windline.setup({
         colors.bg = tokyo_colors.bg
         colors.dbg = tokyo_colors.bg_dark
         colors.bwhite = '#ffffff'
+        colors.bg = 'none'
+        colors.dbg = 'none'
         return colors
     end,
     statuslines = {

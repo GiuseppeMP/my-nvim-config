@@ -42,11 +42,13 @@ end
 dap.listeners.before.event_terminated["dapui_config"] = function()
     dapui.close()
     vim.api.nvim_set_current_win(_G.dapui.current_win)
+    vim.cmd.NvimTreeToggle()
 end
 
 dap.listeners.before.event_exited["dapui_config"] = function()
     dapui.close()
     vim.api.nvim_set_current_win(_G.dapui.current_win)
+    vim.cmd.NvimTreeToggle()
 end
 
 

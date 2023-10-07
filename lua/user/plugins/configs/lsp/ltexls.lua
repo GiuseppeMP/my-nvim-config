@@ -11,10 +11,10 @@ local lspconfig = require 'lspconfig'
 local path = vim.fn.stdpath 'data' .. '/ltex/dictionaries/en.utf-8.add'
 local words = {}
 
-local create_json_data = function(path)
-    if not utils.file_exists(path) then
-        os.execute("mkdir -p " .. path:match("(.*/)"))
-        local fp = io.open(path, 'w+')
+local create_json_data = function(dicio_path)
+    if not utils.file_exists(dicio_path) then
+        os.execute("mkdir -p " .. dicio_path:match("(.*/)"))
+        local fp = io.open(dicio_path, 'w+')
         fp:close()
     end
 end

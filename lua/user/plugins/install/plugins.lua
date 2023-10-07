@@ -65,7 +65,7 @@ M.plugins = {
     -- Plugin for buffers as tabs
     {
         'akinsho/bufferline.nvim',
-        tag = 'v3.5.0'
+        version = '*'
     },
     { 'windwp/windline.nvim',         config = function() require('user.plugins.configs.windline') end },
 
@@ -80,13 +80,16 @@ M.plugins = {
         config = function()
             require('tokyonight').setup({
                 style = 'moon',
-                transparent = false,
-                transparent_sidebar = false,
+                transparent = true,
+                transparent_sidebar = true,
                 styles = {
                     comments = { italic = true },
                     keywords = { italic = true },
                     functions = {},
                     variables = {},
+                    -- Background styles. Can be "dark", "transparent" or "normal"
+                    sidebars = "transparent", -- style for sidebars, see below
+                    floats = "transparent",   -- style for floating windows
                 },
             })
         end
@@ -113,7 +116,8 @@ M.plugins = {
     {
         'nvim-neotest/neotest',
         dependencies = {
-            'haydenmeade/neotest-jest'
+            'haydenmeade/neotest-jest',
+            'andy-bell101/neotest-java'
         },
     },
     { 'nvim-neotest/neotest-vim-test', },
@@ -439,7 +443,7 @@ M.plugins = {
                 close_on_exit = false,
                 float_opts = {
                     border = 'curved',
-                    winblend = 1,
+                    winblend = 0,
                     highlights = {
                         border = 'Normal',
                         background = 'Normal'
@@ -461,7 +465,7 @@ M.plugins = {
     },
     {
         "lukas-reineke/indent-blankline.nvim",
-        version = '*',
+        main = "ibl",
         config = function()
             vim.opt.termguicolors = true
             -- local tokyo_colors = require("tokyonight.colors").setup()
@@ -471,8 +475,8 @@ M.plugins = {
             -- vim.cmd('highlight IndentBlanklineIndent1 guibg=' .. tokyo_colors.bg .. ' gui=nocombine')
             -- vim.g.indent_blankline_char = '▎'
 
-            require("indent_blankline").setup {
-                use_treesitter = true,
+            require("ibl").setup {
+                -- use_treesitter = true,
                 -- char = " ",
                 -- char = "▎",
                 -- char = "",
@@ -485,7 +489,7 @@ M.plugins = {
                 --     "IndentBlanklineIndent2",
                 -- },
                 -- show_trailing_blankline_indent = true,
-                space_char_blankline = " ",
+                -- space_char_blankline = " ",
                 -- show_current_context = true,
                 -- show_current_context_start = true,
             }
@@ -566,7 +570,15 @@ M.plugins = {
             require('goto-preview').setup {}
         end
     },
-    { "folke/neodev.nvim", opts = {} },
+    {
+        "folke/neodev.nvim",
+        opts = {},
+        config = function()
+            require("neodev").setup({
+                library = { plugins = { "nvim-dap-ui" }, types = true },
+            })
+        end
+    },
     {
         "tiagovla/scope.nvim",
         config = function()
@@ -578,6 +590,9 @@ M.plugins = {
         config = function()
             require('nvim-dap-virtual-text').setup {}
         end
+    },
+    {
+        "SmiteshP/nvim-navic"
     }
 }
 return M.plugins

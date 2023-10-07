@@ -36,6 +36,24 @@ g.projectionist_heuristics = {
             alternate = "src/main/java/{}.java"
         }
     },
+
+    -- activation in python
+    ['Pipfile|requirements.txt|main.py'] = {
+        ['test_*.py|*_test.py'] = {
+            type = "test",
+        },
+        ['*.py&!(^test_*)'] = {
+            type = "src",
+            alternate = {
+                "{dirname}/test_{basename}.py",
+                "{}_test.py",
+                "{dirname}/tests/{basename}_test.py",
+                "{dirname}/tests/test_{basename}.py",
+                "tests/{dirname}/test_{basename}.py",
+                "tests/{dirname}/{basename}_test.py",
+            }
+        }
+    },
     -- activation in javascript/typescript
     ['settings.json|.nodejs|.angular|.react|tsconfig.json'] = {
 

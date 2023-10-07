@@ -132,7 +132,10 @@ vim.api.nvim_create_autocmd("WinLeave", {
 local colors = require("tokyonight.colors").setup()
 colors.vgreen = '#0db9d7'
 colors.vgreen_bg = '#203346'
-colors.dbg = '#222436'
+-- colors.dbg = '#222436'
+-- transparent
+colors.bg = 'none'
+colors.dbg = 'none'
 
 local TelescopeColor = {
 

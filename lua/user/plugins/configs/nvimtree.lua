@@ -124,7 +124,6 @@ for hl, col in pairs(NvimTreeColors) do
 end
 
 
-
 -- BEGIN_DEFAULT_MAPPINGS for easy access/reminder
 -- { key = { "<CR>", "o", "<2-LeftMouse>" }, action = "edit" },
 -- { key = "<C-e>",                          action = "edit_in_place" },

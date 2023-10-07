@@ -14,6 +14,8 @@ require("user.colorscheme")
 
 require("user.autocmds")
 
+require('user.winbar')
+
 require('user.wsl')
 
 require("user.keymaps")

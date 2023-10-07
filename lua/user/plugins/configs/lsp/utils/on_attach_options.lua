@@ -71,11 +71,17 @@ local go_to_with_options = function(callback)
     end)
 end
 
+local enable_inlay = function(client, bufnr)
+    vim.lsp.inlay_hint(bufnr, true)
+end
+
 ---return on_attach_function configured based on @param params
 -- @param params table
 ---@return function
 M.get = function(params)
     return function(client, bufnr)
+        enable_inlay(client, bufnr)
+
         local buf_opts = { noremap = true, silent = false, buffer = bufnr }
 
         local ok, project_settings = pcall(get_project_local_settings, client, bufnr)

@@ -2,46 +2,41 @@ vim.opt.termguicolors = true
 
 local tokyo_colors = require("tokyonight.colors").setup()
 
-require 'bufferline'.setup {
-    highlights = {
-        close_button_selected = {
-            fg = tokyo_colors.red,
-            bg = tokyo_colors.bg,
-        },
+local tokyo = { fg = tokyo_colors.fg, bg = 'none', sp = tokyo_colors.sp }
 
-        tab = {
-            fg = tokyo_colors.magenta,
-            bg = tokyo_colors.bg
-        },
-        tab_selected = {
-            fg = tokyo_colors.blue,
-            bg = tokyo_colors.bg
-        },
+require 'bufferline'.setup({
+    highlights = {
+        fill = tokyo,
+        background = tokyo,
+        tab = { fg = tokyo_colors.magenta, bg = tokyo.bg },
+        tab_selected = { fg = tokyo_colors.blue, bg = tokyo.bg },
+        tab_close = tokyo,
+        close_button = tokyo,
+        close_button_visible = tokyo,
+        close_button_selected = tokyo,
+        buffer_visible = tokyo,
         buffer_selected = {
             fg = '#69ff94',
-            bg = tokyo_colors.bg
+            bg = tokyo.bg
         },
+        numbers = tokyo,
+        numbers_visible = tokyo,
         numbers_selected = {
             fg = '#69ff94',
+            bg = tokyo.bg,
             bold = true,
             italic = true,
         },
-        numbers = {
-            bg = tokyo_colors.bg,
-        },
-
-        fill = {
-            fg = tokyo_colors.fg,
-            bg = tokyo_colors.bg
-        },
-        buffer_visible = {
-            fg = tokyo_colors.fg,
-            bg = tokyo_colors.bg
-        },
-        background = {
-            fg = tokyo_colors.fg,
-            bg = tokyo_colors.bg
-        }
+        diagnostic = tokyo,
+        diagnostic_visible = tokyo,
+        diagnostic_selected = tokyo,
+        hint = tokyo,
+        hint_visible = tokyo,
+        hint_selected = tokyo,
+        info = tokyo,
+        info_visible = tokyo,
+        info_selected = tokyo,
+        separator_visible = tokyo,
     },
     options = {
         themable = true,
@@ -55,7 +50,6 @@ require 'bufferline'.setup {
         buffer_close_icon = '',
         modified_icon = "●",
         close_icon = "",
-        -- close_icon = '',
         left_trunc_marker = "",
         right_trunc_marker = "",
         max_name_length = 35,
@@ -73,4 +67,4 @@ require 'bufferline'.setup {
         always_show_bufferline = true,
         color_icons = true
     },
-}
+})
