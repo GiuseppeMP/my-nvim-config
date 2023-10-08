@@ -112,6 +112,7 @@ wk.register({
         d = { vim.cmd.TroubleToggle, 'Show diagnostics panel' },
         m = { vim.cmd.MarkdownPreview, 'Markdown Preview' },
         z = { telescope.extensions.zoxide.list, 'Show zoxide directories' },
+        h = { builtin.highlights, "Highlights" },
         j = {
             name = "Jacoco coverage",
             t = { blanket.stop, 'Coverage blanket terminate' },

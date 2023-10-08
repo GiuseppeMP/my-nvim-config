@@ -7,5 +7,14 @@ end
 require('lspconfig').pyright.setup {
     on_attach = on_attach_pyright,
     capabilities = require 'user.plugins.configs.lsp.utils.capabilities_options'.default,
-    filetypes = { "python" }
+    filetypes = { "python" },
+    settings = {
+        python = {
+            analysis = {
+                autoSearchPaths = true,
+                diagnosticMode = "openFilesOnly",
+                useLibraryCodeForTypes = true
+            }
+        }
+    }
 }

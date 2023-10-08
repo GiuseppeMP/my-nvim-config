@@ -181,7 +181,7 @@ M.plugins = {
     { 'williamboman/mason.nvim' },
     { 'williamboman/mason-lspconfig.nvim', },
     { 'WhoIsSethDaniel/mason-tool-installer.nvim', },
-    { 'neovim/nvim-lspconfig', },
+    { 'neovim/nvim-lspconfig',                     opt = { inlay_hints = { enabled = true } } },
     { 'mfussenegger/nvim-jdtls' },
     { 'jose-elias-alvarez/null-ls.nvim' },
     { 'mfussenegger/nvim-dap-python' },
