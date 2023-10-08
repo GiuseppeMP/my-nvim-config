@@ -67,6 +67,7 @@ require 'nvim-tree'.setup {
             glyphs = {
                 git = {
                     untracked = "󱈸",
+                    ignored = ""
                 }
             }
         }

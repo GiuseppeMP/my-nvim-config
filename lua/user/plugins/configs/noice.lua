@@ -34,6 +34,7 @@ require("noice").setup({
     views = {
         mini = {
             win_options = {
+                -- winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" },
                 winblend = 0
             }
         },
@@ -52,7 +53,8 @@ require("noice").setup({
             },
             filter_options = {},
             win_options = {
-                winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+                -- winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+                winblend = 0
             },
         },
         popupmenu = {
@@ -70,7 +72,8 @@ require("noice").setup({
                 padding = { 0, 1 },
             },
             win_options = {
-                winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" },
+                -- winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" },
+                winblend = 0
             },
         },
     },

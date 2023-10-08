@@ -205,7 +205,7 @@ basic.genai = {
     text = function(_)
         if conf.user.codeium.enabled then
             return {
-                { '  ', 'virtual_bg' },
+                { ' ', 'virtual_bg' },
                 { function()
                     if conf.user.copilot.enabled
                     then
