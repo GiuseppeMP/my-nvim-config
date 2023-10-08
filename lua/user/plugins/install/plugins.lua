@@ -467,40 +467,34 @@ M.plugins = {
         "lukas-reineke/indent-blankline.nvim",
         main = "ibl",
         config = function()
-            vim.opt.termguicolors = true
-            -- local tokyo_colors = require("tokyonight.colors").setup()
-            -- vim.cmd [[highlight IndentBlanklineIndent1 guibg=tokyo_colors.bg gui=nocombine]]
-            -- vim.cmd [[highlight IndentBlanklineIndent2 guibg=tokyo_colors.bg_dark gui=nocombine]]
-            -- vim.cmd('highlight IndentBlanklineIndent2 guibg=' .. '#222436' .. ' gui=nocombine')
-            -- vim.cmd('highlight IndentBlanklineIndent1 guibg=' .. tokyo_colors.bg .. ' gui=nocombine')
-            -- vim.g.indent_blankline_char = '▎'
-
-            require("ibl").setup {
-                -- use_treesitter = true,
-                -- char = " ",
-                -- char = "▎",
-                -- char = "",
-                -- char_highlight_list = {
-                --     "IndentBlanklineIndent1",
-                --     "IndentBlanklineIndent2",
-                -- },
-                -- space_char_highlight_list = {
-                --     "IndentBlanklineIndent1",
-                --     "IndentBlanklineIndent2",
-                -- },
-                -- show_trailing_blankline_indent = true,
-                -- space_char_blankline = " ",
-                -- show_current_context = true,
-                -- show_current_context_start = true,
+            local highlight = {
+                "RainbowRed",
+                "RainbowYellow",
+                "RainbowBlue",
+                "RainbowOrange",
+                "RainbowGreen",
+                "RainbowViolet",
+                "RainbowCyan",
             }
+            local hooks = require "ibl.hooks"
+            -- create the highlight groups in the highlight setup hook, so they are reset
+            -- every time the colorscheme changes
+            hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+                vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
+                vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
+                vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
+                vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
+                vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
+                vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
+                vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+            end)
+
+            vim.g.rainbow_delimiters = { highlight = highlight }
+            require("ibl").setup { scope = { highlight = highlight, enabled = false } }
+
+            hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
         end
     },
-    -- show lightbulb where code actions are possible
-    -- {
-    --     'kosayoda/nvim-lightbulb',
-    --     requires = 'antoinemadec/FixCursorHold.nvim',
-    --     config = function() require('nvim-lightbulb').setup({ autocmd = { enabled = true } }) end
-    -- },
     -- new surround plugin use (sa for add surround, sd for delete surround)
     {
         'echasnovski/mini.surround',
