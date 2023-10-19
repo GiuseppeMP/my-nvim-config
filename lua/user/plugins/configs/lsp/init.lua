@@ -18,37 +18,6 @@ utils.init_err_handler('terraformls', function() require "user.plugins.configs.l
 utils.init_err_handler('tsserver', function() require "user.plugins.configs.lsp.tsserver" end)
 utils.init_err_handler('yamlls', function() require "user.plugins.configs.lsp.yamlls" end)
 
--- borders
-local border = {
-    { "🭽", "FloatBorder" },
-    { "▔",  "FloatBorder" },
-    { "🭾", "FloatBorder" },
-    { "▕",  "FloatBorder" },
-    { "🭿", "FloatBorder" },
-    { "▁",  "FloatBorder" },
-    { "🭼", "FloatBorder" },
-    { "▏",  "FloatBorder" },
-}
-
--- To instead override border globally
-local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-
-function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-    opts = opts or {}
-    opts.border = opts.border or border
-    return orig_util_open_floating_preview(contents, syntax, opts, ...)
-end
-
--- vim.cmd('highlight LspDiagnosticsDefaultWarning guifg=warning guibg=none')
--- vim.cmd('highlight LspDiagnosticsDefaultInformation guifg=information guibg=none')
--- vim.cmd('highlight LspDiagnosticsDefaultHint guifg=hint guibg=none')
-
--- NvimTreePopup  xxx links to Normal
--- NvimTreeLspDiagnosticsError xxx links to DiagnosticError
--- NvimTreeLspDiagnosticsWarning xxx links to DiagnosticWarn
--- NvimTreeLspDiagnosticsInformation xxx links to DiagnosticInfo
--- NvimTreeLspDiagnosticsHint xxx links to DiagnosticHint
-
 
 -- diagnostic signs
 vim.fn.sign_define(

@@ -17,8 +17,8 @@ require("neotest").setup({
             end,
         }),
         require("neotest-plenary"),
-        -- require("neotest-vim-test")({ ignore_filetypes = { "python", "lua" }, allow_file_types = { "java" } }),
-        require("neotest-java"),
+        require("neotest-vim-test")({ ignore_filetypes = { "python", "lua" }, allow_file_types = { "java" } }),
+        -- require("neotest-java"),
         require("neotest-python")(
             {
                 dap = { justMyCode = true },

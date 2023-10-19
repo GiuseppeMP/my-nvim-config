@@ -71,15 +71,21 @@ local go_to_with_options = function(callback)
     end)
 end
 
-local enable_inlay = function(client, bufnr)
+local enable_inlay = function(_, bufnr)
     vim.lsp.inlay_hint(bufnr, true)
 end
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+    border = "rounded",
+})
+
 
 ---return on_attach_function configured based on @param params
 -- @param params table
 ---@return function
 M.get = function(params)
     return function(client, bufnr)
+
         enable_inlay(client, bufnr)
 
         local buf_opts = { noremap = true, silent = false, buffer = bufnr }

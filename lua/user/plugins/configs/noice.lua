@@ -16,9 +16,14 @@ require("noice").setup({
         }
     },
     views = {
+        hover = {
+            border = { style = "rounded" },
+            size = { max_width = 80 },
+            -- relative = "editor",
+        },
         mini = {
             win_options = {
-                -- winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" },
+                winhighlight = { Normal = "Normal", FloatBorder = "FloatBorder" },
                 winblend = 0
             }
         },
@@ -37,7 +42,7 @@ require("noice").setup({
             },
             filter_options = {},
             win_options = {
-                -- winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+                winhighlight = { Normal = "Normal", FloatBorder = "FloatBorder" },
                 winblend = 0
             },
         },
@@ -56,7 +61,7 @@ require("noice").setup({
                 padding = { 0, 1 },
             },
             win_options = {
-                -- winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" },
+                winhighlight = { Normal = "Normal", FloatBorder = "FloatBorder" },
                 winblend = 0
             },
         },
@@ -160,7 +165,7 @@ require("noice").setup({
         command_palette = false,
         long_message_to_split = true,
         inc_rename = false,
-        lsp_doc_border = false,
+        lsp_doc_border = true,
     },
 
 })
