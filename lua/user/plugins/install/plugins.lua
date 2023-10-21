@@ -260,7 +260,7 @@ M.plugins = {
     -- },
 
     -- better nvim ui
-    { 'stevearc/dressing.nvim' },
+    { 'stevearc/dressing.nvim',      enabled = false, lazy = false, },
 
     -- clipboard/yank manager
     {
