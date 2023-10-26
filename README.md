@@ -116,6 +116,9 @@ asdf global java corretto-19.0.2.7.1
 ### Python
 
 ```sh
+# add python plugin
+asdf plugin-add python
+
 # install versions
 asdf install python 2.7.18 3.10.5
 
