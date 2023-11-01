@@ -38,7 +38,7 @@ g.projectionist_heuristics = {
     },
 
     -- activation in python
-    ['Pipfile|requirements.txt|main.py'] = {
+    ['Pipfile|requirements.txt|main.py|setup.py'] = {
         ['tests/test_*.py'] = {
             type = "test",
             alternate = {

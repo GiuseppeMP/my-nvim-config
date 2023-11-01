@@ -7,6 +7,8 @@ vim.g.tmux_navigator_save_on_switch = 2
 require "user.plugins.install"
 
 local configs = {
+    -- ui
+    { conf = function() require "user.plugins.configs.alpha" end,         name = 'alpha' },
     -- configs modules
     { conf = function() require "user.plugins.configs.boole" end,         name = 'boole' },
     { conf = function() require "user.plugins.configs.bufferline" end,    name = 'bufferline' },
@@ -17,7 +19,7 @@ local configs = {
     { conf = function() require "user.plugins.configs.harpoon" end,       name = 'harpoon' },
     { conf = function() require "user.plugins.configs.hop" end,           name = 'hop' },
     { conf = function() require "user.plugins.configs.mason" end,         name = 'mason' },
-    { conf = function() require "user.plugins.configs.navic" end,       name = 'navic' },
+    { conf = function() require "user.plugins.configs.navic" end,         name = 'navic' },
     { conf = function() require "user.plugins.configs.neotest" end,       name = 'neotest' },
     { conf = function() require "user.plugins.configs.noice" end,         name = 'noice' },
     { conf = function() require "user.plugins.configs.null_ls" end,       name = 'null_ls' },

@@ -15,6 +15,7 @@ vim.g.smoothie_speed_exponentiation_factor = 0.5 -- default 0.5
 vim.g.smoothie_experimental_mappings = 1
 
 local M = {}
+local home = os.getenv "HOME"
 
 M.plugins = {
 
@@ -209,9 +210,6 @@ M.plugins = {
     -- startup screen
     {
         'goolord/alpha-nvim',
-        config = function()
-            require("alpha").setup(require 'alpha.themes.startify'.config)
-        end
     },
 
     -- undo history tree
@@ -372,7 +370,9 @@ M.plugins = {
             vim.g.codeium_manual = true
             vim.g.codeium_disable_bindings = 1
             ---@diagnostic disable-next-line: different-requires
-            require("codeium").setup({})
+            require("codeium").setup({
+                config_path = home .. "/.config/secrets/codeium_key.json"
+            })
         end
     },
 
@@ -382,7 +382,6 @@ M.plugins = {
         event = "VeryLazy",
         commit = "24bcca7",
         config = function()
-            local home = os.getenv "HOME"
             require("chatgpt").setup(
                 {
                     api_key_cmd = "gpg --decrypt " .. home .. "/.config/secrets/open_ai_key.txt.gpg",

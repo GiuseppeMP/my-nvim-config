@@ -85,8 +85,7 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 ---@return function
 M.get = function(params)
     return function(client, bufnr)
-
-        enable_inlay(client, bufnr)
+        --enable_inlay(client, bufnr)
 
         local buf_opts = { noremap = true, silent = false, buffer = bufnr }
 
