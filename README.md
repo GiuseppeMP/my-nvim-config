@@ -78,6 +78,7 @@ brew install safe-rm
 brew install gnu-sed
 brew install fd
 brew install fzf
+brew install npm
 ```
 
 ## Language Server, Linters, DAPs and Formatters
