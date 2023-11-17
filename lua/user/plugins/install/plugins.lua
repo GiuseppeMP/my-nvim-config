@@ -258,12 +258,13 @@ M.plugins = {
     -- },
 
     -- better nvim ui
-    { 'stevearc/dressing.nvim',      enabled = false, lazy = false, },
+    { 'stevearc/dressing.nvim',      enabled = true, lazy = false, },
 
     -- clipboard/yank manager
     {
         'AckslD/nvim-neoclip.lua',
         event = 'VeryLazy',
+        enabled = false,
         config = function() require 'neoclip'.setup {} end,
         dependencies = { 'nvim-telescope/telescope.nvim', 'ibhagwan/fzf-lua' }
     },
@@ -371,7 +372,7 @@ M.plugins = {
             vim.g.codeium_disable_bindings = 1
             ---@diagnostic disable-next-line: different-requires
             require("codeium").setup({
-                config_path = home .. "/.config/secrets/codeium_key.json"
+                -- config_path = home .. "/.config/secrets/codeium_key.json"
             })
         end
     },
@@ -586,6 +587,7 @@ M.plugins = {
     },
     {
         "SmiteshP/nvim-navic"
-    }
+    },
+    { "sotte/presenting.vim" }
 }
 return M.plugins

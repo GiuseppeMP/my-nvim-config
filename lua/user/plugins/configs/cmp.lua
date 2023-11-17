@@ -12,7 +12,7 @@ end
 -- vim.g.UltiSnipsExpandTrigger = "<tab>"
 
 require("luasnip.loaders.from_vscode").load({ paths = "~/.config/nvim/snippets/vscode" })
-require("luasnip.loaders.from_vscode").lazy_load()
+require("luasnip.loaders.from_vscode").load()
 
 local has_words_before = function()
     unpack = unpack or table.unpack
@@ -56,7 +56,7 @@ local function get_mapping()
             c = cmp.mapping.close(),
         },
         -- ['<CR>'] = cmp.mapping.confirm({ select = false }),
-        ["<CR>"] = cr,
+        ["<C-CR>"] = cr,
         ["<Tab>"] = cmp.mapping(function(fallback)
             if luasnip.expand_or_locally_jumpable() then
                 luasnip.expand_or_jump()
@@ -163,6 +163,7 @@ end
 cmp.setup({
     completion = {
         completeopt = "menu,menuone,noinsert",
+        -- autocomplete = true
     },
     experimental = {
         ghost_text = {

@@ -4,22 +4,32 @@
 -- vim.cmd.colorscheme("tokyonight-storm")
 vim.cmd.colorscheme("tokyonight-moon")
 
+local green = '#69ff94'
+local bg = '#f0f0f0'
+
 -- fix xml sintax
 vim.cmd [[hi! link Function Label ]]
 vim.cmd [[hi! link Identifier Function ]]
 vim.cmd [[hi! link xmlTagN Function ]]
 
-
--- vim.cmd [[hi NvimTreeNormal guifg=NONE guibg=NONE ctermbg=NONE]]
-
 vim.api.nvim_set_hl(0, "CursorLine", { bg = 'none', blend = 95 })
 
-local green = '#69ff94'
+vim.cmd [[
+highlight Cursor guifg=none guibg=#69ff94
+highlight iCursor guifg=none guibg=#69ff94
+set guicursor=n-v-c:block-Cursor
+set guicursor+=i:hor20-iCursor
+set guicursor+=n-v-c:blinkon0
+set guicursor+=i:blinkwait10
+]]
 
 -- selected winbar
 vim.api.nvim_set_hl(0, 'Winbar', { fg = green, bg = 'none' })
 vim.api.nvim_set_hl(0, 'WinBarNC', { fg = 'white', bg = 'none' })
 vim.api.nvim_set_hl(0, 'WinBarSeparator', { fg = 'white', bg = 'none' })
+vim.api.nvim_set_hl(0, 'WinSeparator', { fg = green, bold = false })
+vim.api.nvim_set_hl(0, 'VertSplit', { fg = green, bold = false })
+vim.api.nvim_set_hl(0, 'NvimTreeWinSeparator', { fg = green, bold = false })
 vim.api.nvim_set_hl(0, 'LspInlayHint', { fg = '#636da6', bg = 'none' })
 vim.api.nvim_set_hl(0, 'FloatBorder', { fg = 'white', bg = 'none' })
 

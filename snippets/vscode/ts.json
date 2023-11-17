@@ -1,0 +1,31 @@
+{
+	"jest_describe": {
+		"prefix": "desc_only",
+		"body": [
+            "describe('${1:name}', () => { ",
+                "${0}",
+            "})"
+		],
+        "description": "Jest describe block"
+	},
+	"jest_desc_its": {
+		"prefix": "desc",
+		"body": [
+            "describe('${1:name}', () => { ",
+                "\tit('${2:description}', () => { ",
+                    "\t\t${0}",
+                "\t})",
+            "})"
+		],
+        "description": "It describe block"
+	},
+	"jest_it": {
+		"prefix": "jit",
+		"body": [
+            "it('${1:name}', () => { ",
+                "${0}",
+            "})"
+		],
+        "description": "It describe block"
+	}
+}

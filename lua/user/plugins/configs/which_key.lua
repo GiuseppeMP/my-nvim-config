@@ -107,6 +107,7 @@ wk.register({
     ["<leader>u"] = {
         name = "utils",
         t = { vim.cmd.TagbarToggle, 'Toggle tagbar' },
+        p = { vim.cmd.PresentingStart, 'Present start' },
         u = { vim.cmd.UndotreeToggle, 'Show undotree' },
         l = { vim.cmd.Lazy, 'Lazy plugin manager' },
         d = { vim.cmd.TroubleToggle, 'Show diagnostics panel' },
@@ -156,10 +157,15 @@ wk.register({
     },
 }, { mode = { 'o', 'v' } })
 
+vim.cmd([[
+    let g:test#preserve_screen = 0
+]])
 
 wk.register({
     ["<leader>t"] = {
         name = "tests",
+        m = { function () vim.cmd(":TestNearest") end, 'Run nearest method with vim-test' },
+        c = { function() vim.cmd(":TestFile -strategy=toggleterm") end, 'Run class/file tests with vim-test' },
         t = { function() neotest.run.run() end, 'Run nearest test' },
         d = { function() neotest.run.run({ strategy = 'dap' }) end, 'Debug nearest test' },
         f = { function() neotest.run.run(vim.fn.expand('%')) end, 'Run all tests in the file' },

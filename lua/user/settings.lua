@@ -68,3 +68,14 @@ o.guifont = 'CaskaydiaCove Nerd Font SemiLight:h12'
 -- disable netrw at the very start of your init.lua (strongly advised)
 g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
+
+
+vim.opt.fillchars = {
+    horiz     = '━',
+    horizup   = '┻',
+    horizdown = '┳',
+    vert      = '┃',
+    vertleft  = '┫',
+    vertright = '┣',
+    verthoriz = '╋',
+}
