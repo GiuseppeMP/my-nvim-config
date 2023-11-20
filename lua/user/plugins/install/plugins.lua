@@ -51,10 +51,10 @@ M.plugins = {
     { 'JoosepAlviste/nvim-ts-context-commentstring',        event = 'VeryLazy' },
 
     -- better context, for long functions
-    { 'romgrk/nvim-treesitter-context',                     event = 'VeryLazy' },
+    { 'romgrk/nvim-treesitter-context' },
 
     -- auto close and auto rename xml, htmls tags
-    { 'windwp/nvim-ts-autotag',                             event = 'VeryLazy' },
+    { 'windwp/nvim-ts-autotag' },
 
     -- Rainbow in Treesitter
     -- { 'HiPhish/nvim-ts-rainbow2',                    event = 'VeryLazy' },

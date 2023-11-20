@@ -84,6 +84,8 @@ wk.register({ ["<C-t>"] = { vim.cmd.ToggleTerm, 'Toggle Term' } }, { mode = { 't
 wk.register({ ["<C-b>"] = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", 'Toggle Term tab' } },
     { mode = { 't', 'n' } })
 
+
+
 -- debug normal mode
 wk.register({
     ["<F1>"] = { function() dap.toggle_breakpoint() end, 'Debug toggle breakpoint' },
@@ -164,7 +166,7 @@ vim.cmd([[
 wk.register({
     ["<leader>t"] = {
         name = "tests",
-        m = { function () vim.cmd(":TestNearest") end, 'Run nearest method with vim-test' },
+        m = { function() vim.cmd(":TestNearest") end, 'Run nearest method with vim-test' },
         c = { function() vim.cmd(":TestFile -strategy=toggleterm") end, 'Run class/file tests with vim-test' },
         t = { function() neotest.run.run() end, 'Run nearest test' },
         d = { function() neotest.run.run({ strategy = 'dap' }) end, 'Debug nearest test' },
@@ -226,6 +228,7 @@ wk.register({
     end, 'Go to tests (Alternate)' },
     ["gs"] = { vim.cmd.G, "Source control" },
     ["gc"] = { "Comment" },
+    ["gC"] = { function() require("treesitter-context").go_to_context() end, 'Go to context' },
 })
 
 -- [m] marks+

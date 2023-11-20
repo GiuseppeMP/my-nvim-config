@@ -20,7 +20,7 @@ configs.setup {
         filetypes = { "html", "xml" }
     },
     enable = true,
-    context_commentstring = { enable = true },
+    context_commentstring = { enable = false },
     -- https://github.com/nvim-treesitter/nvim-treesitter-refactor#highlight-definitions
     refactor = {
         highlight_definitions = {

@@ -21,6 +21,7 @@ set guicursor=n-v-c:block-Cursor
 set guicursor+=i:hor20-iCursor
 set guicursor+=n-v-c:blinkon0
 set guicursor+=i:blinkwait10
+hi TreesitterContextBottom gui=undercurl guisp=#69ff94
 ]]
 
 -- selected winbar
