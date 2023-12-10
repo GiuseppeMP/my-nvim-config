@@ -3,16 +3,16 @@ if not status_ok then
     return
 end
 
-local border = {
-    { "🭽", "FloatBorder" },
-    { "▔", "FloatBorder" },
-    { "🭾", "FloatBorder" },
-    { "▕", "FloatBorder" },
-    { "🭿", "FloatBorder" },
-    { "▁", "FloatBorder" },
-    { "🭼", "FloatBorder" },
-    { "▏", "FloatBorder" },
-}
+-- local border = {
+--     { "🭽", "FloatBorder" },
+--     { "▔", "FloatBorder" },
+--     { "🭾", "FloatBorder" },
+--     { "▕", "FloatBorder" },
+--     { "🭿", "FloatBorder" },
+--     { "▁", "FloatBorder" },
+--     { "🭼", "FloatBorder" },
+--     { "▏", "FloatBorder" },
+-- }
 
 configs.setup {
     autotag = {
@@ -43,7 +43,7 @@ configs.setup {
         },
         lsp_interop = {
             enable = true,
-            border = border,
+            border = "rounded",
             peek_definition_code = {
                 ["gp"] = "@function.outer",
                 -- ["<leader>pf"] = "@function.outer",

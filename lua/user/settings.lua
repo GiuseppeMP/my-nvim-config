@@ -53,7 +53,8 @@ o.compatible = false
 o.timeoutlen = 700
 o.timeout = true
 o.cmdheight = 0
-o.ch = 1 -- hide command line
+o.ch = 0 -- hide command line
+-- o.ch = 1 -- hide command line
 -- o.winbar = "%f"
 -- o.winbar = "%=%m %f"
 -- o.winbar = "%= %f"
