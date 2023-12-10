@@ -356,9 +356,8 @@ M.plugins = {
             })
         end
     },
-    { "Exafunction/codeium.vim" },
-
     --- codeium
+    { "Exafunction/codeium.vim" },
     {
         "jcdickinson/codeium.nvim",
         event = 'VeryLazy',

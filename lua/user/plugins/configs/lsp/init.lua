@@ -44,3 +44,10 @@ vim.cmd('highlight link LspDiagnosticsDefaultError DiagnosticError ')
 vim.cmd('highlight link LspDiagnosticsDefaultWarning DiagnosticWarn ')
 vim.cmd('highlight link LspDiagnosticsDefaultInformation DiagnosticInfo ')
 vim.cmd('highlight link LspDiagnosticsDefaultHint DiagnosticHint ')
+
+
+vim.diagnostic.config {
+    float        = { border = "rounded" },
+    underline    = true,
+    virtual_text = false,
+}

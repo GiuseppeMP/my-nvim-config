@@ -250,10 +250,9 @@ wk.register({
 
 
 wk.register({
-    ["<Tab>"] = { vim.diagnostic.goto_prev, "Go to previous lsp diagnostics." },
-    ["<S-Tab>"] = { vim.diagnostic.goto_next, "Go to next lsp diagnostics." }
+    ["<Tab>"] = { vim.diagnostic.goto_next, "Go to previous lsp diagnostics." },
+    ["<S-Tab>"] = { vim.diagnostic.goto_prev, "Go to next lsp diagnostics." }
 }, { mode = { "n" } })
-
 
 
 -- wk.register({
