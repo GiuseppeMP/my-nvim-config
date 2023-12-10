@@ -1,7 +1,16 @@
+vim.cmd([[
+    let test#python#runner = 'pytest'
+    let test#javascript#runner = 'jest'
+    let test#typescript#runner = 'jest'
+]])
+
 require("neotest").setup({
     status = {
         signs = true,
         virtual_text = false
+    },
+    discovery = {
+        enabled = false,
     },
     running = {
         concurrent = false
@@ -12,19 +21,23 @@ require("neotest").setup({
             jestCommand = "npm test --",
             -- jestConfigFile = "custom.jest.config.ts",
             env = { CI = true },
+            jest_test_discovery = true,
             cwd = function(_)
                 return vim.fn.getcwd()
             end,
         }),
         require("neotest-plenary"),
-        require("neotest-vim-test")({ ignore_filetypes = { "python", "lua" }, allow_file_types = { "java" } }),
+        require("neotest-vim-test")({
+            ignore_filetypes = { "lua", "javascript", "typescript" },
+            allow_file_types = { "java", "python" }
+        }),
         -- require("neotest-java"),
-        require("neotest-python")(
-            {
-                dap = { justMyCode = true },
-                args = { "--log-level", "DEBUG" },
-            }
-        )
+        -- require("neotest-python")(
+        --     {
+        --         dap = { justMyCode = true },
+        --         args = { "--log-level", "DEBUG" },
+        --     }
+        -- )
     },
     quickfix = {
         enabled = false,

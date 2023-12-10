@@ -1,6 +1,7 @@
 local windline = require('windline')
 local helper = require('windline.helpers')
 local b_components = require('windline.components.basic')
+---@diagnostic disable-next-line: undefined-field
 local state = _G.WindLine.state
 local tokyo_colors = require("tokyonight.colors").setup()
 local sep = helper.separators
@@ -267,7 +268,7 @@ local quickfix = {
     active = {
         { ' ', { 'dbg', 'dbg' } },
         { sep.left_rounded, { 'bwhite', 'bg' } },
-        { '🔥 Quickfix ', { 'bg', 'bwhite' } },
+        { '🔥 Quickfix ', { 'black', 'bwhite' } },
         {
             function()
                 return vim.fn.getqflist({ title = 0 }).title
@@ -276,10 +277,10 @@ local quickfix = {
         },
         { ' Total: %L ', { 'bwhite', 'bg' } },
         basic.divider,
-        { ' ', { 'dbg', 'bwhite' } },
-        { '%L 󱧖 ', { 'dbg', 'bwhite' } },
+        { ' ', { 'black', 'bwhite' } },
+        { '%L 󱧖 ', { 'black', 'bwhite' } },
         { sep.right_rounded, { 'bwhite', 'dbg' } },
-        { ' ', { 'dbg', 'dbg' } },
+        { ' ', { 'black', 'dbg' } },
 
     },
     always_active = true,

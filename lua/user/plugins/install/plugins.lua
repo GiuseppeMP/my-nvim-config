@@ -113,12 +113,12 @@ M.plugins = {
 
     -- Collection of plugins for tests, Debug and TDD
     { 'nvim-lua/plenary.nvim', },
-    { 'GiuseppeMP/vim-test',   branch = 'master' },
+    { 'vim-test/vim-test',     branch = 'master' },
     {
         'nvim-neotest/neotest',
         dependencies = {
-            'haydenmeade/neotest-jest',
-            'andy-bell101/neotest-java'
+            'andy-bell101/neotest-java',
+            'nvim-neotest/neotest-jest'
         },
     },
     { 'nvim-neotest/neotest-vim-test', },
@@ -588,6 +588,41 @@ M.plugins = {
     {
         "SmiteshP/nvim-navic"
     },
-    { "sotte/presenting.vim" }
+    { "sotte/presenting.vim" },
+    {
+        'windwp/nvim-autopairs',
+        event = "InsertEnter",
+        opts = {}
+    },
+    {
+        "m4xshen/autoclose.nvim",
+        enabled = false,
+        config = function()
+            require("autoclose").setup({
+                keys = {
+                    ["("] = { escape = true, close = true, pair = "()" },
+                    ["["] = { escape = true, close = true, pair = "[]" },
+                    ["{"] = { escape = true, close = true, pair = "{}" },
+
+                    [">"] = { escape = true, close = false, pair = "<>" },
+                    [")"] = { escape = true, close = false, pair = "()" },
+                    ["]"] = { escape = true, close = false, pair = "[]" },
+                    ["}"] = { escape = true, close = false, pair = "{}" },
+
+                    ['"'] = { escape = true, close = true, pair = '""' },
+                    ["'"] = { escape = true, close = true, pair = "''" },
+                    ["`"] = { escape = true, close = true, pair = "``" },
+                },
+                options = {
+                    disabled_filetypes = { "text" },
+                    disable_when_touch = false,
+                    touch_regex = "[%w(%[{]",
+                    pair_spaces = false,
+                    auto_indent = true,
+                    disable_command_mode = false,
+                }
+            })
+        end
+    },
 }
 return M.plugins

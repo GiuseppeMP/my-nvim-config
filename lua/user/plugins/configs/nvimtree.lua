@@ -63,6 +63,10 @@ require 'nvim-tree'.setup {
     },
     renderer = {
         group_empty = true,
+        indent_markers = {
+            inline_arrows = true,
+            enable = true
+        },
         icons = {
             glyphs = {
                 git = {

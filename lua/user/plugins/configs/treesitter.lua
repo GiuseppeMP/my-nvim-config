@@ -17,7 +17,7 @@ local border = {
 configs.setup {
     autotag = {
         enable = true,
-        filetypes = { "html", "xml" }
+        -- filetypes = { "html", "xml" }
     },
     enable = true,
     context_commentstring = { enable = false },
