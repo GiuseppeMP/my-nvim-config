@@ -162,9 +162,7 @@ local java_package_rename = function(data)
 
     local is_dir = utils.is_dir(new_name)
 
-    local root_dir = get_root_dir() .. "src/"
-
-    print(root_dir)
+    local root_dir = get_root_dir()
 
     if root_dir == nil then
         return
