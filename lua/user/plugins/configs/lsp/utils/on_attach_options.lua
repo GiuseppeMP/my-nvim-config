@@ -130,7 +130,9 @@ M.get = function(params)
             function() go_to_with_options(function(selected) builtin.lsp_definitions({ jump_type = selected }) end) end,
             buf_opts)
 
-        vim.keymap.set('n', 'gd', builtin.lsp_definitions, buf_opts)
+        -- vim.keymap.set('n', 'gd', builtin.lsp_definitions, buf_opts)
+
+        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, buf_opts)
 
 
         vim.keymap.set('n', 'gi', builtin.lsp_implementations, buf_opts)

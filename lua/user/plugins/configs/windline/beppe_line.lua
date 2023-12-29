@@ -9,6 +9,25 @@ local lsp_comps = require('windline.components.lsp')
 local git_comps = require('windline.components.git')
 local vim_components = require('windline.components.vim')
 
+
+local nvim_hl = {
+    Normal = { 'black', 'red' },
+    Insert = { 'black', 'green', 'bold' },
+    Visual = { 'black', 'yellow', 'bold' },
+    Replace = { 'black', 'blue_light', 'bold' },
+    Command = { 'black', 'magenta', 'bold' },
+    NormalBefore = { 'red', 'bg' },
+    InsertBefore = { 'green', 'bg' },
+    VisualBefore = { 'yellow', 'bg' },
+    ReplaceBefore = { 'blue_light', 'bg' },
+    CommandBefore = { 'magenta', 'bg' },
+    NormalAfter = { 'white', 'red' },
+    InsertAfter = { 'white', 'green' },
+    VisualAfter = { 'white', 'yellow' },
+    ReplaceAfter = { 'white', 'blue_light' },
+    CommandAfter = { 'white', 'magenta' },
+}
+
 local hl_list = {
     Black = { 'white', 'bg' },
     White = { 'black', 'white' },
@@ -63,23 +82,7 @@ local colors_mode = {
 
 basic.vi_mode = {
     width = 30,
-    hl_colors = {
-        Normal = { 'black', 'red' },
-        Insert = { 'black', 'green', 'bold' },
-        Visual = { 'black', 'yellow', 'bold' },
-        Replace = { 'black', 'blue_light', 'bold' },
-        Command = { 'black', 'magenta', 'bold' },
-        NormalBefore = { 'red', 'bg' },
-        InsertBefore = { 'green', 'bg' },
-        VisualBefore = { 'yellow', 'bg' },
-        ReplaceBefore = { 'blue_light', 'bg' },
-        CommandBefore = { 'magenta', 'bg' },
-        NormalAfter = { 'white', 'red' },
-        InsertAfter = { 'white', 'green' },
-        VisualAfter = { 'white', 'yellow' },
-        ReplaceAfter = { 'white', 'blue_light' },
-        CommandAfter = { 'white', 'magenta' },
-    },
+    hl_colors = nvim_hl,
     text = function()
         return {
             { sep.left_rounded,     state.mode[2] .. 'Before' },
@@ -317,6 +320,17 @@ basic.lsp_name = {
     end,
 }
 
+basic.battery = {
+    name = 'battery',
+    hl_colors = nvim_hl,
+    width = breakpoint_width,
+    text = function(_)
+        return {
+            { require("battery").get_status_line(), state.mode[2] .. 'Before' },
+        }
+    end,
+}
+
 local default = {
     filetypes = { 'default' },
     active = {
@@ -349,6 +363,8 @@ local default = {
         { git_comps.git_branch(), { 'vgreen', 'bg' }, breakpoint_width },
         { ' ',                    hl_list.Black },
         -- basic.right,
+        basic.battery,
+        { ' ', '' },
         basic.logo,
         { ' ', '' },
     },
@@ -361,6 +377,7 @@ local default = {
         { b_components.progress,       hl_list.Inactive },
     },
 }
+
 
 windline.setup({
     colors_name = function(colors)

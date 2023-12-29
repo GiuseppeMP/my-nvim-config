@@ -26,6 +26,9 @@ local neotest = require 'neotest'
 vim.g.tmux_navigator_no_mappings = 1
 vim.g.tmux_navigator_save_on_switch = 2
 
+-- rest.vim
+local rest = require 'rest-nvim'
+
 local conf = {
     show_help = false,
     show_keys = false,
@@ -75,6 +78,7 @@ wk.register({
         o = { vim.cmd.OverseerOpen, 'Show tasks output' },
         q = { builtin.quickfix, 'Quickfix' },
         c = { vim.cmd.Noice, 'Noice console messages' },
+        w = { ':Telescope lsp_dynamic_workspace_symbols<CR>', 'Search Workspace types' },
     },
 })
 
@@ -116,6 +120,14 @@ wk.register({
         m = { vim.cmd.MarkdownPreview, 'Markdown Preview' },
         z = { telescope.extensions.zoxide.list, 'Show zoxide directories' },
         h = { builtin.highlights, "Highlights" },
+        r = { rest.run, "Execure nvim rest request under cursor" },
+        s = {
+            name = "Swap Buffer",
+            h = { function() require("swap-buffers").swap_buffers("h") end, "Swap left" },
+            l = { function() require("swap-buffers").swap_buffers("l") end, "Swap right" },
+            j = { function() require("swap-buffers").swap_buffers("j") end, "Swap down" },
+            k = { function() require("swap-buffers").swap_buffers("k") end, "Swap up" },
+        },
         j = {
             name = "Jacoco coverage",
             t = { blanket.stop, 'Coverage blanket terminate' },
@@ -140,16 +152,20 @@ wk.register({
 
 -- [<C-x>] - harpoon fast nav
 wk.register({
-    ['<C-m>'] = { harpoon.ui.toggle_quick_menu, 'Harpoon quick menu' },
-    ['<C-1>'] = { function() harpoon.ui.nav_file(1) end, 'Go to harpoon mark 1' },
-    ['<C-2>'] = { function() harpoon.ui.nav_file(2) end, 'Go to harpoon mark 2' },
-    ['<C-3>'] = { function() harpoon.ui.nav_file(3) end, 'Go to harpoon mark 3' },
-    ['<C-4>'] = { function() harpoon.ui.nav_file(4) end, 'Go to harpoon mark 4' },
-    ['<C-5>'] = { function() harpoon.ui.nav_file(5) end, 'Go to harpoon mark 5' },
-    ['<C-6>'] = { function() harpoon.ui.nav_file(6) end, 'Go to harpoon mark 6' },
-    ['<C-7>'] = { function() harpoon.ui.nav_file(7) end, 'Go to harpoon mark 7' },
-    ['<C-8>'] = { function() harpoon.ui.nav_file(8) end, 'Go to harpoon mark 8' },
-    ['<C-9>'] = { function() harpoon.ui.nav_file(9) end, 'Go to harpoon mark 9' },
+    ['<C-m>']     = { harpoon.ui.toggle_quick_menu, 'Harpoon quick menu' },
+    ['<C-1>']     = { function() harpoon.ui.nav_file(1) end, 'Go to harpoon mark 1' },
+    ['<C-2>']     = { function() harpoon.ui.nav_file(2) end, 'Go to harpoon mark 2' },
+    ['<C-3>']     = { function() harpoon.ui.nav_file(3) end, 'Go to harpoon mark 3' },
+    ['<C-4>']     = { function() harpoon.ui.nav_file(4) end, 'Go to harpoon mark 4' },
+    ['<C-5>']     = { function() harpoon.ui.nav_file(5) end, 'Go to harpoon mark 5' },
+    ['<C-6>']     = { function() harpoon.ui.nav_file(6) end, 'Go to harpoon mark 6' },
+    ['<C-7>']     = { function() harpoon.ui.nav_file(7) end, 'Go to harpoon mark 7' },
+    ['<C-8>']     = { function() harpoon.ui.nav_file(8) end, 'Go to harpoon mark 8' },
+    ['<C-9>']     = { function() harpoon.ui.nav_file(9) end, 'Go to harpoon mark 9' },
+    ["<C-Up>"]    = { function() require("swap-buffers").swap_buffers("k") end, "Swap up" },
+    ["<C-Down>"]  = { function() require("swap-buffers").swap_buffers("j") end, "Swap down" },
+    ["<C-Left>"]  = { function() require("swap-buffers").swap_buffers("h") end, "Swap left" },
+    ["<C-Right>"] = { function() require("swap-buffers").swap_buffers("l") end, "Swap right" },
 }, { mode = 'n', 'i', 'v' })
 
 wk.register({
@@ -186,7 +202,7 @@ wk.register({
 })
 
 wk.register({
-    ['<M-s>'] = { vim.cmd.write, 'Save buffer' },
+    ['<C-s>'] = { vim.cmd.write, 'Save buffer' },
 }, { mode = { 't', 'n', 'i' } })
 
 
@@ -301,6 +317,9 @@ wk.register({
         i = { vim.cmd.ChatGPTActAs, "Impersonate, Act as.." },
         tt = { function() vim.cmd.ChatGPTRun("add_tests") end, "Add Tests" },
     },
+    m = {
+        r = { "<cmd>CellularAutomaton make_it_rain<CR>", 'Make it rain! Perf your terminal' }
+    }
 }, {
     prefix = "<leader>",
     mode = { "v", "n" },
@@ -312,7 +331,7 @@ wk.register({
     ["<C-j>"] = { vim.cmd.TmuxNavigateDown, 'Tmux navigate down' },
     ["<C-h>"] = { vim.cmd.TmuxNavigateLeft, 'Tmux navigate left' },
     ["<C-l>"] = { vim.cmd.TmuxNavigateRight, 'Tmux navigate right' },
-    ["<C-s>"] = { 'ggVG', 'Select all lines' },
+    ["<leader>a"] = { 'ggVG', 'Select all lines' },
 })
 
 -- spectre

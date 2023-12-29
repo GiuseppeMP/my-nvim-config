@@ -3,6 +3,7 @@
 -- lsp settings:
 utils.init_err_handler('ansiblels', function() require "user.plugins.configs.lsp.ansiblels" end)
 utils.init_err_handler('cssls', function() require "user.plugins.configs.lsp.cssls" end)
+utils.init_err_handler('dartls', function() require "user.plugins.configs.lsp.dartls" end)
 utils.init_err_handler('docker', function() require "user.plugins.configs.lsp.docker" end)
 utils.init_err_handler('eslint', function() require "user.plugins.configs.lsp.eslint" end)
 utils.init_err_handler('gopls', function() require "user.plugins.configs.lsp.gopls" end)
@@ -17,6 +18,7 @@ utils.init_err_handler('pyright', function() require "user.plugins.configs.lsp.p
 utils.init_err_handler('terraformls', function() require "user.plugins.configs.lsp.terraformls" end)
 utils.init_err_handler('tsserver', function() require "user.plugins.configs.lsp.tsserver" end)
 utils.init_err_handler('yamlls', function() require "user.plugins.configs.lsp.yamlls" end)
+utils.init_err_handler('taplo', function() require "lspconfig".taplo.setup {} end)
 
 
 -- diagnostic signs

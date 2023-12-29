@@ -6,7 +6,7 @@ end
 dressing.setup({
 
     input = {
-        -- enabled = true,
+        enabled = false,
         relative = "cursor",
         -- relative = "editor",
         prefer_width = 100,

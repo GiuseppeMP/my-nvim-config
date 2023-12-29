@@ -22,15 +22,15 @@ t("<C-k>", "<C-w>k")
 t("<C-l>", "<C-w>l")
 
 -- Resize with arrows --
-n("<C-Up>", ":resize -2<CR>")
-n("<C-Down>", ":resize +2<CR>")
-n("<C-Left>", ":vertical resize -2<CR>")
-n("<C-Right>", ":vertical resize +2<CR>")
+n("<S-Up>", ":resize -3<CR>")
+n("<S-Down>", ":resize +3<CR>")
+n("<S-Left>", ":vertical resize -3<CR>")
+n("<S-Right>", ":vertical resize +3<CR>")
 
-t("<C-Up>", ":resize -2<CR>")
-t("<C-Down>", ":resize +2<CR>")
-t("<C-Left>", ":vertical resize -2<CR>")
-t("<C-Right>", ":vertical resize +2<CR>")
+t("<S-Up>", ":resize -3<CR>")
+t("<S-Down>", ":resize +3<CR>")
+t("<S-Left>", ":vertical resize -3<CR>")
+t("<S-Right>", ":vertical resize +3<CR>")
 
 -- Navigate buffers --
 n("<S-l>", ":bnext<CR>")

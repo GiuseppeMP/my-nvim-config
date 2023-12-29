@@ -580,6 +580,7 @@ M.plugins = {
     },
     {
         "theHamsta/nvim-dap-virtual-text",
+        event = 'VeryLazy',
         config = function()
             require('nvim-dap-virtual-text').setup {}
         end
@@ -623,5 +624,52 @@ M.plugins = {
             })
         end
     },
+    {
+        "rest-nvim/rest.nvim",
+        event = 'VeryLazy'
+    },
+    {
+        'justinhj/battery.nvim',
+        config = function()
+            require 'battery'.setup {
+                update_rate_seconds = 30,           -- Number of seconds between checking battery status
+                show_status_when_no_battery = true, -- Don't show any icon or text when no battery found (desktop for example)
+                show_plugged_icon = true,           -- If true show a cable icon alongside the battery icon when plugged in
+                show_unplugged_icon = true,         -- When true show a diconnected cable icon when not plugged in
+                show_percent = true,                -- Whether or not to show the percent charge remaining in digits
+                vertical_icons = true,              -- When true icons are vertical, otherwise shows horizontal battery icon
+                multiple_battery_selection = 1,
+            }
+        end
+    },
+    {
+        'gbrlsnchs/telescope-lsp-handlers.nvim'
+    },
+    {
+        'caenrique/swap-buffers.nvim',
+        event = 'VeryLazy',
+        config = function()
+            require('swap-buffers').setup({
+                ignore_filetypes = { 'NvimTree' }
+            })
+        end
+    },
+    {
+        "simaxme/java.nvim",
+        name = 'simaxmejava',
+        config = function()
+            require("java").setup {
+                rename = {
+                    enable = true,         -- enable the functionality for renaming java files
+                    nvimtree = true,       -- enable nvimtree integration
+                    write_and_close = true -- automatically write and close modified (previously unopened) files after refactoring a java file
+                },
+                snippets = {
+                    enable = false -- enable the functionality for java snippets
+                }
+            }
+        end
+    }
+
 }
 return M.plugins
