@@ -141,39 +141,57 @@ if not status then
     return
 end
 
--- local Event = api.events.Event
+local Event = api.events.Event
+-- maybe needs to improve marks because multimodule projects (maven/gradle)
+local root_markers = { 'pom.xml', 'gradlew', 'mvnw', '.git', 'settings.gradle', '.lsp_root' }
 
--- api.events.subscribe(Event.NodeRenamed, function(data)
---     local regex = "%.java$"
+-- root dir, workspace and project name
+local get_root_dir = function() return require('jdtls.setup').find_root(root_markers) end
 
---     local is_java_file = string.find(data.old_name, regex) ~= nil and string.find(data.new_name, regex) ~= nil
+--[[
+    This function is used to rename java package when rename a folder.
+    It will rename the package name in the java files and dependencies.
+    Only if it is a java project
+]]
+local java_package_rename = function(data)
 
---     if not is_java_file then
---         return
---     end
+    local regex = "%.java$"
 
+    local old_name = data.old_name
+    local new_name = utils.realpath(data.new_name)
 
---     local old_name = data.old_name
---     local new_name = utils.realpath(data.new_name)
+    local is_dir = utils.is_dir(new_name)
 
---     local is_dir = utils.is_dir(new_name)
+    local root_dir = get_root_dir() .. "src/"
 
+    print(root_dir)
 
---     if not is_dir then
---         print("not is dir")
---     else
---         print("is dir")
---         local files = utils.list_folder_contents_recursive(new_name)
+    if root_dir == nil then
+        return
+    end
 
--- for i, file in ipairs(files) do
---     local old_file = old_name .. "/" .. file
---     local new_file = new_name .. "/" .. file
+    if is_dir then
+        local files = utils.list_folder_contents_recursive(new_name)
 
---     java_rename.on_rename_file(old_file, new_file)
--- end
--- end
--- end)
+        for _, file in ipairs(files) do
+            local old_file = old_name .. "/" .. file
+            local new_file = new_name .. "/" .. file
 
+            local is_java_file = string.find(old_file, regex) ~= nil and string.find(new_file, regex) ~= nil
+            local is_java_project = string.find(tostring(new_file), tostring(root_dir), 1, true) ~= nil
+
+            if is_java_file and is_java_project then
+                java_rename.on_rename_file(old_file, new_file)
+            end
+        end
+    end
+
+end
+
+-- [BETA] rename all .java on package folder rename
+api.events.subscribe(Event.NodeRenamed, function(data)
+    java_package_rename(data)
+end)
 
 
 -- BEGIN_DEFAULT_MAPPINGS for easy access/reminder
