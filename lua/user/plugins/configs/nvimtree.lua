@@ -43,6 +43,10 @@ require 'nvim-tree'.setup {
             error = "",
         },
     },
+    notify = {
+        threshold = vim.log.levels.OFF,
+        absolute_path = true,
+    },
     view = {
         float = {
             enable = false,
@@ -82,7 +86,7 @@ require 'nvim-tree'.setup {
     },
     update_focused_file = {
         enable = true,
-        update_root = false,
+        update_root = true,
         ignore_list = {},
     },
 }
@@ -109,7 +113,7 @@ local function open_nvim_tree(data)
 end
 
 --- Open at startup
-vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+-- vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 
 
 
@@ -154,7 +158,6 @@ local get_root_dir = function() return require('jdtls.setup').find_root(root_mar
     Only if it is a java project
 ]]
 local java_package_rename = function(data)
-
     local regex = "%.java$"
 
     local old_name = data.old_name
@@ -170,7 +173,6 @@ local java_package_rename = function(data)
 
     if is_dir then
         local files = utils.list_folder_contents_recursive(new_name)
-
         for _, file in ipairs(files) do
             local old_file = old_name .. "/" .. file
             local new_file = new_name .. "/" .. file
@@ -183,7 +185,6 @@ local java_package_rename = function(data)
             end
         end
     end
-
 end
 
 -- [BETA] rename all .java on package folder rename

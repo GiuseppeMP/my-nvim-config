@@ -331,6 +331,7 @@ wk.register({
     ["<C-j>"] = { vim.cmd.TmuxNavigateDown, 'Tmux navigate down' },
     ["<C-h>"] = { vim.cmd.TmuxNavigateLeft, 'Tmux navigate left' },
     ["<C-l>"] = { vim.cmd.TmuxNavigateRight, 'Tmux navigate right' },
+    ["<C-e>"] = { vim.cmd.NvimTreeFindFile, 'NvimTree Focus file' },
     ["<leader>a"] = { 'ggVG', 'Select all lines' },
 })
 
