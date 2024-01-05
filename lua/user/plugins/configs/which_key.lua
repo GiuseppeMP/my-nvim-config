@@ -1,4 +1,4 @@
--- plugins
+-- pluginswhich
 -- telescope
 local telescope = require 'telescope'
 local builtin = require 'telescope.builtin'
@@ -121,6 +121,10 @@ wk.register({
         z = { telescope.extensions.zoxide.list, 'Show zoxide directories' },
         h = { builtin.highlights, "Highlights" },
         r = { rest.run, "Execure nvim rest request under cursor" },
+        o = {
+            name = "Obsidian",
+            t = { vim.cmd.ObsidianToday, 'Obsidian today note' },
+        },
         s = {
             name = "Swap Buffer",
             h = { function() require("swap-buffers").swap_buffers("h") end, "Swap left" },
@@ -347,3 +351,8 @@ wk.register({
 wk.register({
     ["<leader>sw"] = { '<esc><cmd>lua require("spectre").open_visual()<CR>', 'Open Spectre' },
 }, { mode = { "v" } })
+
+
+local telescope_reload = require 'user.plugins.configs.telescope_reload'
+
+wk.register({ ["<leader>sr"] = { telescope_reload.reload, 'Reload lua modules.' } })

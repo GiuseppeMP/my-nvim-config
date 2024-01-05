@@ -7,8 +7,6 @@ _G.conf.user = {}
 _G.dapui = {}
 _G.dapui.current_win = nil
 
-
-
 local status_ok, user_conf = pcall(require, "user.conf")
 if not status_ok then
     _G.conf.user = {}
@@ -46,11 +44,15 @@ end
 _G.utils.keymap = require('user.utils.set_keymaps')
 
 _G.has_non_empty_buffers = function()
+    ---@diagnostic disable-next-line: param-type-mismatch
     for _, buf in pairs(vim.fn.getbufinfo({ listed = true })) do
         -- skip unloaded and hidden buffers
+        ---@diagnostic disable-next-line: undefined-field
         if buf.loaded and not buf.hidden then
             -- check if buffer is non-empty
+            ---@diagnostic disable-next-line: undefined-field
             if vim.fn.line("$", buf.bufnr) > 1 then
+                ---@diagnostic disable-next-line: undefined-field
                 print("Found non-empty buffer: " .. buf.name)
                 return true
             end

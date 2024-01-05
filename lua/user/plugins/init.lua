@@ -6,6 +6,7 @@ vim.g.tmux_navigator_save_on_switch = 2
 
 require "user.plugins.install"
 
+
 local configs = {
     -- ui
     { conf = function() require "user.plugins.configs.alpha" end,         name = 'alpha' },
@@ -24,6 +25,7 @@ local configs = {
     { conf = function() require "user.plugins.configs.noice" end,         name = 'noice' },
     { conf = function() require "user.plugins.configs.null_ls" end,       name = 'null_ls' },
     { conf = function() require "user.plugins.configs.nvimtree" end,      name = 'nvimtree' },
+    { conf = function() require "user.plugins.configs.obsidian" end,      name = 'obsidian' },
     { conf = function() require "user.plugins.configs.startup_nvim" end,  name = 'startup_nvim' },
     { conf = function() require "user.plugins.configs.overseer" end,      name = 'overseer' },
     { conf = function() require "user.plugins.configs.telescope" end,     name = 'telescope' },
