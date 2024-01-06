@@ -16,6 +16,7 @@ local function my_on_attach(bufnr)
 
     -- remove mappings
     remove_keymap('n', '<c-t>', bufnr)
+    vim.keymap.set('n', '<c-e>', api.node.open.edit, opts('Open'))
 
     -- custom mappings
     -- vim.keymap.set('n', '<leader>e', api.tree.tabnew, opts('Tab new'))

@@ -24,6 +24,7 @@ require 'bufferline'.setup({
         numbers_selected = {
             fg = '#69ff94',
             bg = tokyo.bg,
+            sp = tokyo_colors.sp,
             bold = true,
             italic = true,
         },

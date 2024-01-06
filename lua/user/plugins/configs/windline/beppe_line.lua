@@ -10,6 +10,8 @@ local git_comps = require('windline.components.git')
 local vim_components = require('windline.components.vim')
 
 
+local icon_comp = b_components.cache_file_icon({ default = '', hl_colors = { 'bwhite', 'bg' } })
+
 local nvim_hl = {
     Normal = { 'black', 'red' },
     Insert = { 'black', 'green', 'bold' },
@@ -141,7 +143,7 @@ basic.lsp_diagnos = {
     end,
 
 }
-local icon_comp = b_components.cache_file_icon({ default = '', hl_colors = { 'bwhite', 'bg' } })
+
 basic.file = {
     hl_colors = {
         default = { 'bwhite', 'black_light' },
@@ -154,6 +156,7 @@ basic.file = {
             { ' ', 'bubble_bg' },
             icon_comp(bufnr),
             { ' ', 'bubble_bg' },
+            { " ", '' },
             { b_components.cache_file_name('[No Name]', ''), '' },
             { b_components.file_modified(' '), '' },
             { b_components.cache_file_size(), '' },
@@ -315,7 +318,11 @@ basic.lsp_name = {
             }
         end
         return {
-            { b_components.cache_file_type({ icon = true }), 'magenta' },
+            { ' ',                                            '' },
+            icon_comp(bufnr),
+            { ' ',                                            '' },
+            { " ",                                            '' },
+            { b_components.cache_file_type({ icon = false }), 'magenta' },
         }
     end,
 }

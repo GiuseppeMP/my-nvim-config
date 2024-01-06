@@ -1,3 +1,4 @@
+-- https://joseustra.com/blog/reloading-neovim-config-with-telescope/?source=ustrajunior.com
 local M = {}
 local plenary_reload = require("plenary.reload")
 

@@ -29,6 +29,9 @@ vim.g.tmux_navigator_save_on_switch = 2
 -- rest.vim
 local rest = require 'rest-nvim'
 
+-- nvimtree
+local api = require 'nvim-tree.api'
+
 local conf = {
     show_help = false,
     show_keys = false,
@@ -121,10 +124,6 @@ wk.register({
         z = { telescope.extensions.zoxide.list, 'Show zoxide directories' },
         h = { builtin.highlights, "Highlights" },
         r = { rest.run, "Execure nvim rest request under cursor" },
-        o = {
-            name = "Obsidian",
-            t = { vim.cmd.ObsidianToday, 'Obsidian today note' },
-        },
         s = {
             name = "Swap Buffer",
             h = { function() require("swap-buffers").swap_buffers("h") end, "Swap left" },
@@ -356,3 +355,48 @@ wk.register({
 local telescope_reload = require 'user.plugins.configs.telescope_reload'
 
 wk.register({ ["<leader>sr"] = { telescope_reload.reload, 'Reload lua modules.' } })
+
+local new_note = function()
+    local day_folder = os.date("Journals/%Y/%m-%B/%d-%a/%F-%a-note-")
+    vim.cmd("ObsidianNew " .. day_folder .. vim.fn.input("Name: ") .. '.md')
+    vim.cmd("ObsidianTemplate")
+end
+
+local function escape_magic(pattern)
+    return (pattern:gsub("%W", "%%%1"))
+end
+
+local new_blank_note = function()
+    local path = api.tree.get_node_under_cursor().absolute_path
+
+    if path then
+        -- replace absolute_path for empty
+        path = path:gsub(escape_magic(vim.fn.getcwd() .. "/"), "")
+
+        -- replace filename for empty in case of buffer focusing
+        path = path:gsub(escape_magic(vim.fn.expand "%:t"), "")
+
+        -- create obsidian note in the current nvimtree path
+        vim.cmd("ObsidianNew " .. path .. '/' .. vim.fn.input("Name: ") .. '.md')
+    end
+end
+
+local today_note = function()
+    os.execute('mkdir -p '.. os.date("Journals/%Y/%m-%B/%d-%a"))
+    vim.cmd.ObsidianToday()
+end
+
+wk.register({
+    ['<leader>o'] = {
+        name = 'Obsidian',
+        t = { vim.cmd.ObsidianTomorrow, 'Obsidian tomorrow note' },
+        d = { today_note, 'Obsidian daily note' },
+        y = { vim.cmd.ObsidianYesterday, 'Obsidian yesterday note' },
+        c = { vim.cmd.ObsidianTemplate, 'Complete with template' },
+        o = { vim.cmd.ObsidianOpen, 'Obsidian open note' },
+        f = { vim.cmd.ObsidianQuickSwitch, 'Jump to another note' },
+        s = { vim.cmd.ObsidianSearch, 'Search in notes' },
+        n = { new_note, 'Obsidian new note from template' },
+        b = { new_blank_note, 'Obsidian new blank note' },
+    }
+})
