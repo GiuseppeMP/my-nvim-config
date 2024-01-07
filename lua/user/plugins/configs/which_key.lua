@@ -123,7 +123,8 @@ wk.register({
         m = { vim.cmd.MarkdownPreview, 'Markdown Preview' },
         z = { telescope.extensions.zoxide.list, 'Show zoxide directories' },
         h = { builtin.highlights, "Highlights" },
-        r = { rest.run, "Execure nvim rest request under cursor" },
+        a = { rest.run, "Execure nvim rest request under cursor" },
+        r = { vim.cmd.SnipRun, 'Run code' },
         s = {
             name = "Swap Buffer",
             h = { function() require("swap-buffers").swap_buffers("h") end, "Swap left" },
@@ -140,7 +141,15 @@ wk.register({
     },
 })
 
-wk.register({ ["<leader>uc"] = { function() vim.cmd(":CarbonNow") end, 'Create code snippet image' } }, { mode = 'v' })
+wk.register({
+    ["<leader>uc"] =
+    { function() vim.cmd(":CarbonNow") end, 'Create code snippet image' }
+}, { mode = 'v' })
+
+wk.register({
+    ["<leader>ur"] =
+    { function() require 'sniprun'.run('v') end, 'Run code' }
+}, { mode = 'v' })
 
 -- [<leader>h] - harpoon+
 wk.register({
@@ -382,7 +391,7 @@ local new_blank_note = function()
 end
 
 local today_note = function()
-    os.execute('mkdir -p '.. os.date("Journals/%Y/%m-%B/%d-%a"))
+    os.execute('mkdir -p ' .. os.date("Journals/%Y/%m-%B/%d-%a"))
     vim.cmd.ObsidianToday()
 end
 

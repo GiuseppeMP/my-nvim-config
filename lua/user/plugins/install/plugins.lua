@@ -677,6 +677,18 @@ M.plugins = {
         dependencies = {
             "nvim-lua/plenary.nvim",
         }
+    },
+    {
+        "michaelb/sniprun",
+        build = 'sh install.sh',
+        config = function(plugin)
+            ---@diagnostic disable-next-line: undefined-field
+            require "sniprun".setup {
+                display = {
+                    "TempFloatingWindow", --# display results in a floating window
+                },
+            }
+        end,
     }
 
 }

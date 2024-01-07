@@ -1,8 +1,13 @@
 -- get Workspace from env var NVIM_OBSIDIAN_VAULTS
 -- NVIM_OBSIDIAN_VAULTS is a string with workspaces separated by comma
 -- Ex: NVIM_OBSIDIAN_VAULTS="path/workspace1,path/workspace2"
+local obsidian_vaults = os.getenv "NVIM_OBSIDIAN_VAULTS"
+
+if obsidian_vaults == nil then
+    return
+end
+
 local function getObsidianWorkspaces()
-    local obsidian_vaults = os.getenv "NVIM_OBSIDIAN_VAULTS"
     local vaults = {}
 
     if obsidian_vaults then
