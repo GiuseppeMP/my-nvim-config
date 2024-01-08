@@ -87,7 +87,7 @@ require("telescope").setup {
     },
     pickers = {
         buffers = {
-            theme = "dropdown",
+            theme = "ivy",
             show_all_buffers = true,
             sort_mru = true,
             mappings = {

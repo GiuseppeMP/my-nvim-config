@@ -37,7 +37,7 @@ end
 local create_autocmd_format_on_save = function(client, bufnr, lsp_client)
     if client.server_capabilities.documentFormattingProvider then
         vim.api.nvim_create_autocmd({ "FileWritePre", "BufWritePre" }, {
-            group = vim.api.nvim_create_augroup("format_lsp_attach", { clear = true }),
+            group = vim.api.nvim_create_augroup("format_lsp_attach_" .. client.name, { clear = true }),
             buffer = bufnr,
             callback = function() format_callback(lsp_client, bufnr, false) end
         })
@@ -110,6 +110,11 @@ M.get = function(params)
         if params.inlay ~= nil and params.inlay then
             utils.log.info('Inlay hints enabled: ' .. client.name)
             vim.lsp.inlay_hint.enable(bufnr, true)
+        end
+
+        -- custom shiftwidth
+        if params.shiftwidth ~= nil and params.shiftwidth > 0 then
+            vim.api.nvim_buf_set_option(bufnr, 'shiftwidth', params.shiftwidth)
         end
 
         -- format and format on save, default true

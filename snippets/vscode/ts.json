@@ -1,31 +1,51 @@
 {
-	"jest_describe": {
-		"prefix": "desc_only",
-		"body": [
+    "jest_describe": {
+        "prefix": "desco",
+        "body": [
             "describe('${1:name}', () => { ",
-                "${0}",
+            "${0}",
             "})"
-		],
+        ],
         "description": "Jest describe block"
-	},
-	"jest_desc_its": {
-		"prefix": "desc",
-		"body": [
+    },
+    "jest_desc_its": {
+        "prefix": "desc",
+        "body": [
             "describe('${1:name}', () => { ",
-                "\tit('${2:description}', () => { ",
-                    "\t\t${0}",
-                "\t})",
+            "\tit('${2:description}', () => { ",
+            "\t\t${0}",
+            "\t})",
             "})"
-		],
-        "description": "It describe block"
-	},
-	"jest_it": {
-		"prefix": "jit",
-		"body": [
+        ],
+        "description": "Jest describe block with inner it"
+    },
+    "jest_desc_test": {
+        "prefix": "desct",
+        "body": [
+            "describe('${1:name}', () => { ",
+            "\ttest('${2:description}', () => { ",
+            "\t\t${0}",
+            "\t})",
+            "})"
+        ],
+        "description": "Jest describe block with inner test"
+    },
+    "jest_it": {
+        "prefix": "ji",
+        "body": [
             "it('${1:name}', () => { ",
-                "${0}",
+            "${0}",
             "})"
-		],
-        "description": "It describe block"
-	}
+        ],
+        "description": "Jest It block"
+    },
+    "jest_test": {
+        "prefix": "jt",
+        "body": [
+            "test('${1:name}', () => { ",
+            "${0}",
+            "})"
+        ],
+        "description": "Jest test block"
+    }
 }

@@ -9,11 +9,6 @@ local lazy_rtp = function(plugin)
     vim.opt.rtp:append(plugin.dir)
 end
 
-vim.g.smoothie_enabled = 0
-vim.g.smoothie_speed_linear_factor = 70          -- default 60
-vim.g.smoothie_speed_exponentiation_factor = 0.5 -- default 0.5
-vim.g.smoothie_experimental_mappings = 1
-
 local M = {}
 local home = os.getenv "HOME"
 
@@ -66,6 +61,7 @@ M.plugins = {
     -- Plugin for buffers as tabs
     {
         'akinsho/bufferline.nvim',
+        -- enabled = false,
         version = '*'
     },
     { 'windwp/windline.nvim',         config = function() require('user.plugins.configs.windline') end },
@@ -133,12 +129,6 @@ M.plugins = {
     --Plug for mark files and terminals on the fly, to avoid repeat commands like
     --bnext, bprev, or fzf
     { 'ThePrimeagen/harpoon' },
-
-    -- Refactoring book by Martin Fowler -- disable due nvimtree width issue
-    -- { 'ThePrimeagen/refactoring.nvim' },
-
-    -- Plug for smoothie ctrl-d and ctrl-up scrolling
-    { 'psliwka/vim-smoothie',           event = 'VeryLazy' },
 
     -- Plug for float windows like fzf but for anything and vim-test
     -- Plugin para utilizar janelas flutuantes parecido com fzf, suportar vim-test
@@ -327,7 +317,15 @@ M.plugins = {
     -- markdown lint/sintax/hi
     {
         'preservim/vim-markdown',
-        dependencies = { 'godlygeek/tabular' }
+        enabled = false,
+        dependencies = { 'godlygeek/tabular' },
+        branch = 'master',
+        lazy = false,
+        ft = "markdown",
+        config = function()
+            vim.g.vim_markdown_folding_disabled = 1
+            vim.g.vim_markdown_new_list_item_indent = 1
+        end
     },
     {
         'stevearc/overseer.nvim',
@@ -700,7 +698,97 @@ M.plugins = {
                 },
             }
         end,
+    },
+    {
+        "gaoDean/autolist.nvim",
+        ft = {
+            "markdown",
+            "text",
+            "tex",
+            "plaintex",
+            "norg",
+        },
+        config = function()
+            require("autolist").setup()
+
+            vim.keymap.set("i", "<tab>", "<cmd>AutolistTab<cr>")
+            vim.keymap.set("i", "<s-tab>", "<cmd>AutolistShiftTab<cr>")
+            -- vim.keymap.set("i", "<c-t>", "<c-t><cmd>AutolistRecalculate<cr>") -- an example of using <c-t> to indent
+            vim.keymap.set("i", "<CR>", "<CR><cmd>AutolistNewBullet<cr>")
+            vim.keymap.set("n", "o", "o<cmd>AutolistNewBullet<cr>")
+            vim.keymap.set("n", "O", "O<cmd>AutolistNewBulletBefore<cr>")
+            vim.keymap.set("n", "<CR>", "<cmd>AutolistToggleCheckbox<cr><CR>")
+            vim.keymap.set("n", "<C-r>", "<cmd>AutolistRecalculate<cr>")
+
+            -- cycle list types with dot-repeat
+            vim.keymap.set("n", "<leader>cn", require("autolist").cycle_next_dr, { expr = true })
+            vim.keymap.set("n", "<leader>cp", require("autolist").cycle_prev_dr, { expr = true })
+
+            -- if you don't want dot-repeat
+            -- vim.keymap.set("n", "<leader>cn", "<cmd>AutolistCycleNext<cr>")
+            -- vim.keymap.set("n", "<leader>cp", "<cmd>AutolistCycleNext<cr>")
+
+            -- functions to recalculate list on edit
+            vim.keymap.set("n", ">>", ">><cmd>AutolistRecalculate<cr>")
+            vim.keymap.set("n", "<<", "<<<cmd>AutolistRecalculate<cr>")
+            vim.keymap.set("n", "dd", "dd<cmd>AutolistRecalculate<cr>")
+            vim.keymap.set("v", "d", "d<cmd>AutolistRecalculate<cr>")
+        end,
+    },
+    -- restore session with <leader>sl
+    {
+        "folke/persistence.nvim",
+        event = "BufReadPre",
+        opts = { options = vim.opt.sessionoptions:get() }
+    },
+    -- measure startup time
+    {
+        "dstein64/vim-startuptime",
+        cmd = "StartupTime",
+        config = function()
+            vim.g.startuptime_tries = 10
+        end,
+    },
+    {
+        "echasnovski/mini.animate",
+        event = "VeryLazy",
+        opts = function()
+            -- don't use animate when scrolling with the mouse
+            local mouse_scrolled = false
+            for _, scroll in ipairs({ "Up", "Down" }) do
+                local key = "<ScrollWheel" .. scroll .. ">"
+                vim.keymap.set({ "", "i" }, key, function()
+                    mouse_scrolled = true
+                    return key
+                end, { expr = true })
+            end
+
+            local animate = require("mini.animate")
+            return {
+                resize = { enable = false },
+                open = { enable = false },
+                close = { enable = false },
+                cursor = {
+                    enable = true,
+                    timing = animate.gen_timing.linear({ duration = 150, unit = "total" }),
+                },
+                scroll = {
+                    timing = animate.gen_timing.linear({ duration = 50, unit = "total" }),
+                    subscroll = animate.gen_subscroll.equal({
+                        predicate = function(total_scroll)
+                            if mouse_scrolled then
+                                mouse_scrolled = false
+                                return false
+                            end
+                            return total_scroll > 1
+                        end,
+                    }),
+                },
+            }
+        end,
     }
+    -- Refactoring book by Martin Fowler -- disable due nvimtree width issue
+    -- { 'ThePrimeagen/refactoring.nvim' },
 
 }
 return M.plugins

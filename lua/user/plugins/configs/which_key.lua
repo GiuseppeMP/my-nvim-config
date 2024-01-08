@@ -349,8 +349,11 @@ wk.register({
 
 -- spectre
 wk.register({
-    ["<leader>S"] = { function() require("spectre").open() end, 'Open Spectre' },
     ["<leader>sw"] = { function() require("spectre").open_visual({ select_word = true }) end, 'Search current word' },
+    ["<leader>sP"] = { function() require("spectre").open() end, 'Open Spectre' },
+    ["<leader>sd"] = { function() require("persistence").stop() end, "Don't save current session" },
+    ["<leader>sl"] = { function() require("persistence").load() end, 'Restore Session' },
+    ["<leader>sL"] = { function() require("persistence").load({ last = true }) end, 'Restore last session' },
     ["<leader>sp"] = { function() require("spectre").open_file_search({ select_word = true }) end,
         'Search on current file' },
 }, { mode = { "n" }
@@ -373,6 +376,22 @@ end
 
 local function escape_magic(pattern)
     return (pattern:gsub("%W", "%%%1"))
+end
+
+local get_path_note_under_cursor = function()
+    local path = api.tree.get_node_under_cursor().absolute_path
+
+    if path then
+        -- replace absolute_path for empty
+        path = path:gsub(escape_magic(vim.fn.getcwd() .. "/"), "")
+
+        -- replace filename for empty in case of buffer focusing
+        path = path:gsub(escape_magic(vim.fn.expand "%:t"), "")
+
+        return path
+    end
+
+    return ''
 end
 
 local new_blank_note = function()
@@ -406,6 +425,13 @@ wk.register({
         f = { vim.cmd.ObsidianQuickSwitch, 'Jump to another note' },
         s = { vim.cmd.ObsidianSearch, 'Search in notes' },
         n = { new_note, 'Obsidian new note from template' },
+        p = { function()
+            vim.cmd("ObsidianPasteImg " ..
+                get_path_note_under_cursor() .. '/' .. vim.fn.input("Image Name: "))
+        end, 'Obsidian paste image in folder' },
+        P = { function()
+            vim.cmd("ObsidianPasteImg " .. vim.fn.input("Image Name: "))
+        end, 'Obsidian paste image' },
         b = { new_blank_note, 'Obsidian new blank note' },
     }
 })

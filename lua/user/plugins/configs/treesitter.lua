@@ -94,7 +94,10 @@ configs.setup {
         use_languagetree = true,
         additional_vim_regex_highlighting = false,
     },
-    indent = { enable = true, disable = { "yaml" } },
+    indent = {
+        enable = true,
+        disable = { "yaml", "typescript", "javascript", "ts", "js" }
+    },
     incremental_selection = {
         enable = true,
         keymaps = {
