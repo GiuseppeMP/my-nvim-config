@@ -73,7 +73,7 @@ vim.opt.fillchars = {
 -- g.tagbar_left=1
 
 vim.cmd [[ autocmd FileType latex,tex,md,markdown setlocal spell ]]
--- vim.cmd [[ autocmd FileType latex,tex,md,markdown call tagbar#autoopen(0) ]]
+-- vim.cmd [[ autocmd FileType  * call tagbar#autoopen(0) ]]
 
 
 -- FIX LSP Integration and treesitter

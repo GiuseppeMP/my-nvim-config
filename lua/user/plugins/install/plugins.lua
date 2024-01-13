@@ -12,6 +12,8 @@ end
 local M = {}
 local home = os.getenv "HOME"
 
+vim.g.tagbar_left = 1
+
 M.plugins = {
 
     -- Repeat plugins cmds using dot command
@@ -34,19 +36,36 @@ M.plugins = {
     },
 
     -- text objects treesitter
-    { 'nvim-treesitter/nvim-treesitter-textobjects',        event = 'VeryLazy' },
+    { 'nvim-treesitter/nvim-treesitter-textobjects', event = 'VeryLazy' },
 
     -- text objects improved by subjects
-    { 'RRethy/nvim-treesitter-textsubjects',                event = 'VeryLazy' },
+    { 'RRethy/nvim-treesitter-textsubjects',         event = 'VeryLazy' },
 
     -- refactor module for tresitter
-    { 'nvim-treesitter/nvim-treesitter-refactor',           event = 'VeryLazy' },
+    { 'nvim-treesitter/nvim-treesitter-refactor',    event = 'VeryLazy' },
 
     -- comment string for multiple languages in the same buffer
-    { 'JoosepAlviste/nvim-ts-context-commentstring',        event = 'VeryLazy' },
+    { 'JoosepAlviste/nvim-ts-context-commentstring', event = 'VeryLazy' },
 
     -- better context, for long functions
-    { 'romgrk/nvim-treesitter-context' },
+    {
+        'romgrk/nvim-treesitter-context',
+        config = function()
+            require('treesitter-context').setup({
+                -- enable = true,           -- Enable this plugin (Can be enabled/disabled later via commands)
+                max_lines = 5, -- How many lines the window should span. Values <= 0 mean no limit.
+                -- min_window_height = 0,   -- Minimum editor window height to enable context. Values <= 0 mean no limit.
+                -- line_numbers = true,
+                multiline_threshold = 5, -- Maximum number of lines to show for a single context
+                -- trim_scope = 'outer',    -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
+                -- mode = 'cursor',         -- Line used to calculate context. Choices: 'cursor', 'topline'
+                -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
+                -- separator = nil,
+                -- zindex = 20,     -- The Z-index of the context window
+                -- on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
+            })
+        end
+    },
 
     -- auto close and auto rename xml, htmls tags
     { 'windwp/nvim-ts-autotag' },
@@ -104,7 +123,7 @@ M.plugins = {
 
     -- Tagbar outline
     {
-        'preservim/tagbar',
+        'preservim/tagbar'
     },
 
     -- Collection of plugins for tests, Debug and TDD
@@ -786,6 +805,43 @@ M.plugins = {
                 },
             }
         end,
+    },
+    {
+        "mxsdev/nvim-dap-vscode-js",
+        config = function()
+            require("dap-vscode-js").setup({
+                node_path = "node",
+                debugger_path = home .. '/.config/packages/vscode-js-debug',
+                adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' },
+            })
+
+            for _, language in ipairs({ "typescript", "javascript" }) do
+                require("dap").configurations[language] = {
+                    {
+                        {
+                            type = "pwa-node",
+                            request = "launch",
+                            name = "Debug Jest Tests",
+                            -- trace = true, -- include debugger info
+                            runtimeExecutable = "node",
+                            runtimeArgs = {
+                                "./node_modules/jest/bin/jest.js",
+                                "--runInBand",
+                            },
+                            rootPath = "${workspaceFolder}",
+                            cwd = "${workspaceFolder}",
+                            console = "integratedTerminal",
+                            internalConsoleOptions = "neverOpen",
+                        }
+                    }
+                }
+            end
+        end
+    },
+    {
+        'mrcjkb/rustaceanvim',
+        tag = '3.15.0', -- Recommended
+        -- ft = { 'rust' },
     }
     -- Refactoring book by Martin Fowler -- disable due nvimtree width issue
     -- { 'ThePrimeagen/refactoring.nvim' },

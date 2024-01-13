@@ -1,4 +1,5 @@
 local jdtls = require 'jdtls'
+local jdtls_tests = require 'jdtls.tests'
 
 -- mason installations registry
 local mason_registry = require("mason-registry");
@@ -45,9 +46,10 @@ local on_attach_jdtls = function(_client, buf_nr)
     require("user.plugins.configs.lsp.utils.on_attach_options").get { lsp_client = 'jdtls' } (_client, buf_nr)
 
     local buf_opts = { noremap = true, silent = false, buffer = buf_nr }
-    -- vim.keymap.set('n', 'df', jdtls.test_class, buf_opts)
+    vim.keymap.set('n', 'df', jdtls.test_class, buf_opts)
     vim.keymap.set('n', 'dn', jdtls.test_nearest_method, buf_opts)
-    vim.keymap.set('n', 'df', go_to_with_options, buf_opts)
+    -- vim.keymap.set('n', 'df', go_to_with_options, buf_opts)
+    vim.keymap.set('n', '<leader>gt', jdtls_tests.generate, buf_opts)
 
     vim.cmd [[
         nnoremap <A-o> <Cmd>lua require'jdtls'.organize_imports()<CR>

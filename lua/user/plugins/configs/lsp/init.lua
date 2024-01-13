@@ -15,6 +15,7 @@ utils.init_err_handler('ltexls', function() require "user.plugins.configs.lsp.lt
 utils.init_err_handler('lua_ls', function() require "user.plugins.configs.lsp.lua_ls" end)
 utils.init_err_handler('marksman', function() require "user.plugins.configs.lsp.marksman" end)
 utils.init_err_handler('pyright', function() require "user.plugins.configs.lsp.pyright" end)
+utils.init_err_handler('rust_analyzer', function() require "user.plugins.configs.lsp.rust_analyzer" end)
 utils.init_err_handler('terraformls', function() require "user.plugins.configs.lsp.terraformls" end)
 utils.init_err_handler('tsserver', function() require "user.plugins.configs.lsp.tsserver" end)
 utils.init_err_handler('yamlls', function() require "user.plugins.configs.lsp.yamlls" end)
@@ -49,7 +50,20 @@ vim.cmd('highlight link LspDiagnosticsDefaultHint DiagnosticHint ')
 
 
 vim.diagnostic.config {
-    float        = { border = "rounded" },
-    underline    = true,
-    virtual_text = false,
+    underline        = true,
+    virtual_text     = false,
+    signs            = true,
+    update_in_insert = true,
+    severity_sort    = false,
+    float            = {
+        border = 'rounded',
+        source = 'always',
+        header = '',
+        prefix = '',
+    },
 }
+
+vim.cmd([[
+set signcolumn=yes
+autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
+]])
