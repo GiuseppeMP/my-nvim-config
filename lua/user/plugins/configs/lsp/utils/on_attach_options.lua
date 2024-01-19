@@ -15,12 +15,22 @@ local root_dir = function() return require('jdtls.setup').find_root(root_markers
 local format_callback = function(lsp_client, bufnr, async)
     -- add null_ls formatting support
     local null_ls_formatting_support = { 'pyright' }
+
+
     if (utils.table_contains(null_ls_formatting_support, lsp_client)) then
         vim.lsp.buf.format()
     else
+        -- add missing imports before format
+        if (lsp_client == 'eslint') then
+            vim.cmd.TSToolsAddMissingImports()
+            vim.cmd.TSToolsOrganizeImports()
+            -- -- debounce
+            vim.cmd("sleep 200m")
+        end
         vim.lsp.buf.format {
             buffer = bufnr,
-            async = async,
+            -- async = async,
+            async = true,
             filter = function(client)
                 return client.name == lsp_client
             end

@@ -5,6 +5,11 @@ local capabilities_options = require("user.plugins.configs.lsp.utils.capabilitie
 local on_attach_eslint = function(client, bufnr)
     client.server_capabilities.documentFormattingProvider = true
 
+    vim.cmd [[
+        nnoremap <D-o> <cmd>TSToolsAddMissingImports<CR>
+    ]]
+
+
     -- default on_attach
     on_attach_options.get { format_on_save = true, format = true, lsp_client = 'eslint' } (client, bufnr)
 end

@@ -52,7 +52,7 @@ local on_attach_jdtls = function(_client, buf_nr)
     vim.keymap.set('n', '<leader>gt', jdtls_tests.generate, buf_opts)
 
     vim.cmd [[
-        nnoremap <A-o> <Cmd>lua require'jdtls'.organize_imports()<CR>
+        nnoremap <D-o> <Cmd>lua require'jdtls'.organize_imports()<CR>
         nnoremap crv <Cmd>lua require('jdtls').extract_variable()<CR>
         vnoremap crv <Esc><Cmd>lua require('jdtls').extract_variable(true)<CR>
         nnoremap crc <Cmd>lua require('jdtls').extract_constant()<CR>

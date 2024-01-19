@@ -881,6 +881,11 @@ M.plugins = {
         tag = '3.15.0', -- Recommended
         -- ft = { 'rust' },
     },
+    {
+        "pmizio/typescript-tools.nvim",
+        dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+        opts = {},
+    }
     -- Refactoring book by Martin Fowler -- disable due nvimtree width issue
     -- { 'ThePrimeagen/refactoring.nvim' },
 

@@ -309,7 +309,8 @@ vim.cmd [[
 
 -- chat-gpt
 wk.register({
-    ["<M-p>"] = { vim.cmd.ChatGPT, 'ChatGPT Prompt' },
+    ["<D-p>"] = { vim.cmd.ChatGPT, 'ChatGPT Prompt' },
+    ["<D-s>"] = { vim.cmd.write, 'Write' },
 }, { mode = { 'i', 'n', 'v', 't' } })
 
 wk.register({
