@@ -120,6 +120,7 @@ wk.register({
         u = { vim.cmd.UndotreeToggle, 'Show undotree' },
         l = { vim.cmd.Lazy, 'Lazy plugin manager' },
         d = { vim.cmd.TroubleToggle, 'Show diagnostics panel' },
+        D = { vim.cmd.TodoLocList, 'Show comments diagnostics list' },
         m = { vim.cmd.MarkdownPreview, 'Markdown Preview' },
         z = { telescope.extensions.zoxide.list, 'Show zoxide directories' },
         h = { builtin.highlights, "Highlights" },
@@ -314,7 +315,8 @@ wk.register({
 wk.register({
     c = {
         name = "ChatGPT",
-        p = { vim.cmd.ChatGPT, "ChatGPT Prompt" },
+        -- p = { vim.cmd.ChatGPT, "ChatGPT Prompt" },
+        c = { "<cmd>ChatGPT<CR>", "ChatGPT Prompt" },
         e = { vim.cmd.ChatGPTEditWithInstruction, "Edit with instruction" },
         g = { function() vim.cmd.ChatGPTRun("grammar_correction") end, "Grammar Correction" },
         k = { function() vim.cmd.ChatGPTRun("keywords") end, "Keywords" },

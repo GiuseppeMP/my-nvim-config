@@ -2,6 +2,8 @@ local g = vim.g
 
 g.ultest_use_pty = 1
 
+vim.cmd [[ let  g:test#java#maventest#test_command = "-DunitOnly=true" ]]
+
 g['test#strategy'] = {
     nearest = 'neovim',
     file = 'neovim',

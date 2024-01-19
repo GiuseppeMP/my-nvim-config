@@ -62,6 +62,7 @@ local on_attach_jdtls = function(_client, buf_nr)
 
     -- setup dap
     jdtls.setup_dap({ hotcodereplace = 'auto' })
+    -- require('jdtls.dap').setup_dap_main_class_configs()
 end
 
 -- create bundles table

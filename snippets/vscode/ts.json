@@ -47,5 +47,13 @@
             "})"
         ],
         "description": "Jest test block"
+    },
+    "export_class": {
+        "prefix": "classts",
+        "body": [
+            "export default class $TM_FILENAME_BASE {",
+            "${0}",
+            "}"
+        ]
     }
 }

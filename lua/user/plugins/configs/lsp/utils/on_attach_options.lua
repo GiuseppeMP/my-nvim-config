@@ -28,8 +28,6 @@ local format_callback = function(lsp_client, bufnr, async)
     end
 end
 
-
-
 ---autocmd to format on save
 ---@param client any
 ---@param bufnr number
@@ -37,7 +35,7 @@ end
 local create_autocmd_format_on_save = function(client, bufnr, lsp_client)
     if client.server_capabilities.documentFormattingProvider then
         vim.api.nvim_create_autocmd({ "FileWritePre", "BufWritePre" }, {
-            group = vim.api.nvim_create_augroup("format_lsp_attach_" .. client.name, { clear = true }),
+            group = vim.api.nvim_create_augroup("format_lsp_attach_" .. client.name, { clear = false }),
             buffer = bufnr,
             callback = function() format_callback(lsp_client, bufnr, false) end
         })

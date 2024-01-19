@@ -397,15 +397,28 @@ M.plugins = {
     {
         "jackMort/ChatGPT.nvim",
         event = "VeryLazy",
-        commit = "24bcca7",
         config = function()
             require("chatgpt").setup(
                 {
                     api_key_cmd = "gpg --decrypt " .. home .. "/.config/secrets/open_ai_key.txt.gpg",
-                    api_host_cmd = "echo -n 'api.openai.com'",
-                    openai_edit_params = {
-                        model = "code-davinci-edit-001", -- code model
+                    -- api_host_cmd = "echo -n 'api.openai.com'",
+                    -- model = "code-davinci-edit-001", -- legacy
+                    -- model = "gpt-4", $0.03 / 1K tokens
+                    -- model = "gpt-3.5-turbo", $0.0015 / 1K tokens
+                    -- model = "gpt-3.5-turbo-instruct",
+                    openai_params = {
+                        model = "gpt-3.5-turbo",
+                        frequency_penalty = 0,
+                        presence_penalty = 0,
+                        max_tokens = 600,
                         temperature = 0,
+                        top_p = 1,
+                        n = 1,
+                    },
+                    openai_edit_params = {
+                        model = "gpt-3.5-turbo-instruct",
+                        max_tokens = 600,
+                        temperature = 0.1,
                         top_p = 1,
                         n = 1,
                     },
@@ -530,8 +543,33 @@ M.plugins = {
             require("todo-comments").setup({
                 opts = {
                     merge_keywords = true,
+                    pattern = [[\b(KEYWORDS):]],
                     keywords = {
-                        BACKLOG = { color = '#7711FF' }
+                        BACKLOG = { color = '#7711FF' },
+                        FIX = {
+                            icon = " ", -- icon used for the sign, and in search results
+                            color = "error", -- can be a hex color, or a named color (see below)
+                            alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
+                            -- signs = false, -- configure signs for some keywords individually
+                        },
+                        TODO = { icon = " ", color = "info" },
+                        HACK = { icon = " ", color = "warning" },
+                        WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
+                        PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+                        NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
+                        TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
+                    },
+                    search = {
+                        command = "rg",
+                        args = {
+                            "--color=never",
+                            "--no-heading",
+                            "--with-filename",
+                            "--line-number",
+                            "--column",
+                            "--no-ignore-vcs",
+                        },
+
                     }
                 }
             })
@@ -737,7 +775,7 @@ M.plugins = {
             vim.keymap.set("n", "o", "o<cmd>AutolistNewBullet<cr>")
             vim.keymap.set("n", "O", "O<cmd>AutolistNewBulletBefore<cr>")
             vim.keymap.set("n", "<CR>", "<cmd>AutolistToggleCheckbox<cr><CR>")
-            vim.keymap.set("n", "<C-r>", "<cmd>AutolistRecalculate<cr>")
+            -- vim.keymap.set("n", "<C-r>", "<cmd>AutolistRecalculate<cr>")
 
             -- cycle list types with dot-repeat
             vim.keymap.set("n", "<leader>cn", require("autolist").cycle_next_dr, { expr = true })
@@ -842,7 +880,7 @@ M.plugins = {
         'mrcjkb/rustaceanvim',
         tag = '3.15.0', -- Recommended
         -- ft = { 'rust' },
-    }
+    },
     -- Refactoring book by Martin Fowler -- disable due nvimtree width issue
     -- { 'ThePrimeagen/refactoring.nvim' },
 
