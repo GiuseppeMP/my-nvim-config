@@ -29,8 +29,7 @@ local format_callback = function(lsp_client, bufnr, async)
         end
         vim.lsp.buf.format {
             buffer = bufnr,
-            -- async = async,
-            async = true,
+            async = async,
             filter = function(client)
                 return client.name == lsp_client
             end
