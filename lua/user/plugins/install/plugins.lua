@@ -36,7 +36,7 @@ M.plugins = {
     },
 
     -- text objects treesitter
-    { 'nvim-treesitter/nvim-treesitter-textobjects', event = 'VeryLazy' },
+    { 'nvim-treesitter/nvim-treesitter-textobjects' },
 
     -- text objects improved by subjects
     { 'RRethy/nvim-treesitter-textsubjects',         event = 'VeryLazy' },
@@ -272,10 +272,10 @@ M.plugins = {
     -- clipboard/yank manager
     {
         'AckslD/nvim-neoclip.lua',
-        event = 'VeryLazy',
-        enabled = false,
+        -- event = 'VeryLazy',
+        -- enabled = false,
         config = function() require 'neoclip'.setup {} end,
-        dependencies = { 'nvim-telescope/telescope.nvim', 'ibhagwan/fzf-lua' }
+        dependencies = { 'nvim-telescope/telescope.nvim', 'ibhagwan/fzf-lua', 'kkharji/sqlite.lua' }
     },
 
     -- better ui for diagnostics
@@ -885,9 +885,32 @@ M.plugins = {
         "pmizio/typescript-tools.nvim",
         dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
         opts = {},
-    }
+    },
     -- Refactoring book by Martin Fowler -- disable due nvimtree width issue
     -- { 'ThePrimeagen/refactoring.nvim' },
+    --
+    --  [markdown markmap]
+    --  https://github.com/Zeioth/markmap.nvim
+    {
+        "Zeioth/markmap.nvim",
+        build = "yarn global add markmap-cli",
+        cmd = { "MarkmapOpen", "MarkmapSave", "MarkmapWatch", "MarkmapWatchStop" },
+        opts = {
+            html_output = "/tmp/markmap.html", -- (default) Setting a empty string "" here means: [Current buffer path].html
+            hide_toolbar = false,              -- (default)
+            grace_period = 3600000             -- (default) Stops markmap watch after 60 minutes. Set it to 0 to disable the grace_period.
+        },
+        config = function(_, opts) require("markmap").setup(opts) end
+    },
+    -- Lua
+    {
+        "folke/zen-mode.nvim",
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+        }
+    }
 
 }
 return M.plugins

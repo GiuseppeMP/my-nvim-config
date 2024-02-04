@@ -6,6 +6,8 @@ require("telescope").load_extension('zoxide')
 
 require("telescope").load_extension('lsp_handlers')
 
+require("telescope").load_extension('neoclip')
+
 local actions = require("telescope.actions")
 
 require("telescope").setup {

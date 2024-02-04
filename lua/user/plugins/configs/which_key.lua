@@ -166,6 +166,8 @@ wk.register({
 -- [<C-x>] - harpoon fast nav
 wk.register({
     ['<C-m>']     = { harpoon.ui.toggle_quick_menu, 'Harpoon quick menu' },
+    ['<C-g>']     = { function() harpoon.ui.nav_next() end, 'Go to harpoon next' },
+    ['<C-q>']     = { function() harpoon.ui.nav_prev() end, 'Go to harpoon previous' },
     ['<C-1>']     = { function() harpoon.ui.nav_file(1) end, 'Go to harpoon mark 1' },
     ['<C-2>']     = { function() harpoon.ui.nav_file(2) end, 'Go to harpoon mark 2' },
     ['<C-3>']     = { function() harpoon.ui.nav_file(3) end, 'Go to harpoon mark 3' },

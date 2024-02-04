@@ -11,7 +11,7 @@ g.projectionist_heuristics = {
         ["etc/rbenv.d/*.bash"] = { type = "hook" }
     },
     -- activation in java projects
-    ['pom.xml|build.gradle|settings.gradle'] = {
+    ['pom.xml|build.gradle|settings.gradle|gradle.properties|gradlew'] = {
 
         -- projections for java
         ['src/main/java/*.java'] = {
