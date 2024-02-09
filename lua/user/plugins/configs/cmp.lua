@@ -56,7 +56,7 @@ local function get_mapping()
             c = cmp.mapping.close(),
         },
         -- ['<CR>'] = cmp.mapping.confirm({ select = false }),
-        ["<C-CR>"] = cr,
+        ["<C-e>"] = cr,
         ["<Tab>"] = cmp.mapping(function(fallback)
             if luasnip.expand_or_locally_jumpable() then
                 luasnip.expand_or_jump()

@@ -55,9 +55,9 @@ x("p", '"_dP"')
 -- keep the cursor at center while using n,N,k,j,J
 n('n', 'nzzzv')
 n('N', 'Nzzzv')
-n('J', 'mzJ`z')
-n('k', 'kzz')
-n('j', 'jzz')
+-- n('J', 'mzJ`z')
+-- n('k', 'kzz')
+-- n('j', 'jzz')
 
 n('<CR>', 'i<CR><ESC>')
 

@@ -14,6 +14,9 @@ else
     _G.conf.user = user_conf
 end
 
+local discipline = require 'user.utils.discipline'
+discipline.cowboy()
+
 -- utils collection https://github.com/rxi/lume
 _G.lume = require 'user.utils.lume'
 

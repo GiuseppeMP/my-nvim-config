@@ -172,13 +172,18 @@ local function get_settings()
                         name = "JavaSE-14",
                         path = home .. "/.asdf/installs/java/zulu-14.29.23",
                     },
+                    -- {
+                    --     name = "JavaSE-17",
+                    --     path = home .. "/.asdf/installs/java/corretto-17.0.4.9.1",
+                    -- },
                     {
                         name = "JavaSE-17",
-                        path = home .. "/.asdf/installs/java/corretto-17.0.4.9.1",
+                        path = home .. "/.asdf/installs/java/zulu-17.46.19",
                     },
                     {
                         name = "JavaSE-19",
-                        path = home .. "/.asdf/installs/java/corretto-19.0.2.7.1",
+                        -- path = home .. "/.asdf/installs/java/corretto-19.0.2.7.1",
+                        path = home .. "/.asdf/installs/java/zulu-19.32.13",
                         default = true,
                     },
                 }

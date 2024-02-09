@@ -5,10 +5,14 @@ augroup highlight_yank
 augroup END
 ]])
 
-
 vim.cmd([[
 augroup twig_ft
   au!
   autocmd BufNewFile,BufRead *rc  set syntax=sh
 augroup END
 ]])
+
+vim.api.nvim_create_autocmd("InsertLeave", {
+    pattern = "*",
+    command = "set nopaste"
+})
