@@ -838,6 +838,7 @@ M.plugins = {
     {
         "echasnovski/mini.animate",
         event = "VeryLazy",
+        enabled = false,
         opts = function()
             -- don't use animate when scrolling with the mouse
             local mouse_scrolled = false
@@ -855,7 +856,7 @@ M.plugins = {
                 open = { enable = false },
                 close = { enable = false },
                 cursor = {
-                    enable = true,
+                    enable = false,
                     timing = animate.gen_timing.linear({ duration = 150, unit = "total" }),
                 },
                 scroll = {

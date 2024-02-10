@@ -21,3 +21,5 @@ require("user.keymaps")
 require("user.colemak")
 
 require("user.colorscheme")
+
+require("user.macros")
