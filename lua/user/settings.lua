@@ -1,3 +1,4 @@
+--
 -- General Settings
 --
 local o = vim.o -- For the opt

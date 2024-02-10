@@ -18,12 +18,12 @@ function M.cowboy()
             if (map == 'j' or map == 'k') then
                 map = map .. 'zz'
             end
-            if count >= 10 then
+            if count >= 15 then
                 ok, id = pcall(vim.notify, " ✋ Hold it Cowboy!", vim.log.levels.WARN, {
                     icon = "🤠",
                     replace = id,
                     keep = function()
-                        return count >= 10
+                        return count >= 15
                     end,
                 })
                 if not ok then

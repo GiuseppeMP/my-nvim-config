@@ -5,14 +5,14 @@ augroup highlight_yank
 augroup END
 ]])
 
-vim.cmd([[
-augroup twig_ft
-  au!
-  autocmd BufNewFile,BufRead *rc  set syntax=sh
-augroup END
-]])
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+    pattern = "*rc^",
+    desc = "set syntax=sh to rc files like zshrc and bashrc and etc",
+    command = "set syntax=sh"
+})
 
 vim.api.nvim_create_autocmd("InsertLeave", {
     pattern = "*",
+    desc = "set nopaste when leaving insert mode, to avoid pasting in normal mode",
     command = "set nopaste"
 })
