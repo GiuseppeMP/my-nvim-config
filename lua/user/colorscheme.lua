@@ -10,6 +10,7 @@ local purple = '#9469ff'
 local syellow = '#ff966c'
 local bg = '#f0f0f0'
 local brown = '#291c17'
+local black = '#1a1b26'
 -- local red = '#ff757f'
 local red = tokyo_colors.red
 
@@ -61,7 +62,8 @@ vim.api.nvim_set_hl(0, 'NvimTreeDiagnosticErrorFolderHL', { fg = red, bg = 'none
 vim.api.nvim_set_hl(0, 'NvimTreeOpenedFolderIcon', { fg = bg, bg = 'none' })
 vim.api.nvim_set_hl(0, 'NvimTreeOpenedFolderName', { fg = bg, bg = 'none' })
 vim.api.nvim_set_hl(0, 'NvimTreeFileIcon', { fg = bg, bg = 'none' })
-vim.api.nvim_set_hl(0, 'NvimTreeDirectoryBufferline', { fg = purple, bg = 'none' })
+-- vim.api.nvim_set_hl(0, 'NvimTreeDirectoryBufferline', { fg = purple, bg = 'none' })
+vim.api.nvim_set_hl(0, 'NvimTreeDirectoryBufferline', { bg = purple, fg = black })
 
 vim.api.nvim_set_hl(0, 'BufferLineGroupSeparator', { fg = purple, bg = 'none' })
 vim.api.nvim_set_hl(0, 'BufferLineTabSeparator', { fg = purple, bg = 'none' })

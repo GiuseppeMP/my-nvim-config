@@ -76,7 +76,9 @@ require 'bufferline'.setup({
         offsets = { {
             filetype = "NvimTree",
             text = function()
-                return 'Files'
+                return '  Files'
+                -- return '  '
+                -- return '   Files'
             end,
             highlight = "NvimTreeDirectoryBufferline",
             padding = 0,
