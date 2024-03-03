@@ -142,6 +142,22 @@ wk.register({
     },
 })
 
+-- [<leader>j] - jupyter+
+wk.register({
+    ["<leader>j"] = {
+        name = "Jupyter Notebooks",
+        a = { vim.cmd.JupyniumStartAndAttachToServer, 'Start and attach to Jupynium server' },
+        f = {
+            function()
+                local filename_wo_ext = vim.fn.expand "%:t:r:r"
+                filename_wo_ext = filename_wo_ext .. '.ipynb'
+                vim.cmd.JupyniumStartSync(filename_wo_ext)
+            end,
+            'Open Jupyter Notebook and start to sync'
+        },
+    }
+}, { mode = 'n' })
+
 wk.register({
     ["<leader>uc"] =
     { function() vim.cmd(":CarbonNow") end, 'Create code snippet image' }
@@ -162,6 +178,7 @@ wk.register({
         m = { harpoon.ui.toggle_quick_menu, 'Harpoon quick menu' },
     },
 }, { mode = 'n' })
+
 
 -- [<C-x>] - harpoon fast nav
 wk.register({

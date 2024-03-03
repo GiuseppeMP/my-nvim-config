@@ -450,7 +450,7 @@ M.plugins = {
         event = "VeryLazy",
         dependencies = {
             "MunifTanjim/nui.nvim",
-            "rcarriga/nvim-notify",
+            -- "rcarriga/nvim-notify",
         }
     },
 
@@ -668,9 +668,6 @@ M.plugins = {
         config = function()
             require('nvim-dap-virtual-text').setup {}
         end
-    },
-    {
-        "SmiteshP/nvim-navic"
     },
     { "sotte/presenting.vim" },
     {
@@ -987,6 +984,97 @@ M.plugins = {
         config = function()
             require("better_escape").setup()
         end,
-    }
+    },
+    {
+        "kiyoon/jupynium.nvim",
+        build = "pip3 install --user .",
+        config = function() require("jupynium").setup {} end,
+        -- build = "conda run --no-capture-output -n jupynium pip install .",
+        -- enabled = vim.fn.isdirectory(vim.fn.expand "~/miniconda3/envs/jupynium"),
+
+    },
+    {
+        "NvChad/nvim-colorizer.lua",
+        config = function()
+            require "colorizer".setup(
+
+                {
+                    filetypes = { "*" },
+                    user_default_options = {
+                        RGB = true,           -- #RGB hex codes
+                        RRGGBB = true,        -- #RRGGBB hex codes
+                        names = true,         -- "Name" codes like Blue or blue
+                        RRGGBBAA = true,      -- #RRGGBBAA hex codes
+                        AARRGGBB = false,     -- 0xAARRGGBB hex codes
+                        rgb_fn = false,       -- CSS rgb() and rgba() functions
+                        hsl_fn = false,       -- CSS hsl() and hsla() functions
+                        css = false,          -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+                        css_fn = false,       -- Enable all CSS *functions*: rgb_fn, hsl_fn
+                        -- Available modes for `mode`: foreground, background,  virtualtext
+                        mode = "virtualtext", -- Set the display mode.
+                        -- Available methods are false / true / "normal" / "lsp" / "both"
+                        -- True is same as normal
+                        tailwind = false,                                -- Enable tailwind colors
+                        -- parsers can contain values used in |user_default_options|
+                        sass = { enable = false, parsers = { "css" }, }, -- Enable sass colors
+                        virtualtext = "■",
+                        -- update color values even if buffer is not focused
+                        -- example use: cmp_menu, cmp_docs
+                        always_update = false
+                    },
+                    -- all the sub-options of filetypes apply to buftypes
+                    buftypes = {},
+                }
+
+            )
+        end
+    },
+    {
+        'b0o/incline.nvim',
+        config = function()
+            local helpers = require 'incline.helpers'
+            local navic = require 'nvim-navic'
+            local devicons = require 'nvim-web-devicons'
+            require('incline').setup {
+                window = {
+                    padding = 0,
+                    margin = { horizontal = 0, vertical = 0 },
+                },
+                render = function(props)
+                    local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ':t')
+                    if filename == '' then
+                        filename = '[No Name]'
+                    end
+                    local ft_icon, ft_color = devicons.get_icon_color(filename)
+                    local modified = vim.bo[props.buf].modified
+                    local res = {
+                        ft_icon and { ' ', ft_icon, ' ', guibg = ft_color, guifg = helpers.contrast_color(ft_color) } or
+                        '',
+                        ' ',
+                        { filename, gui = modified and 'bold,italic' or 'bold' },
+                        -- guibg = '#44406e',
+                        guibg = '#1a1b26',
+                    }
+                    if props.focused then
+                        for _, item in ipairs(navic.get_data(props.buf) or {}) do
+                            table.insert(res, {
+                                { ' > ',     group = 'NavicSeparator' },
+                                { item.icon, group = 'NavicIcons' .. item.type },
+                                { item.name, group = 'NavicText' },
+                            })
+                        end
+                    end
+                    table.insert(res, ' ')
+                    return res
+                end,
+            }
+        end,
+        -- Optional: Lazy load Incline
+        event = 'VeryLazy',
+    },
+    {
+        "SmiteshP/nvim-navic"
+    },
+
 }
 return M.plugins

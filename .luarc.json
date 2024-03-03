@@ -102,6 +102,7 @@
     ],
     "diagnostics.globals": [
         "vim",
-        "require"
+        "require",
+        "Jupynium_start_sync"
     ]
 }
