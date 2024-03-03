@@ -23,6 +23,7 @@ configs.setup {
     context_commentstring = { enable = false },
     -- https://github.com/nvim-treesitter/nvim-treesitter-refactor#highlight-definitions
     refactor = {
+        highlight_current_scope = { enable = false },
         highlight_definitions = {
             enable = true,
             -- Set to false if you have an `updatetime` of ~100.

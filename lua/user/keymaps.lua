@@ -54,6 +54,8 @@ x("p", '"_dP"')
 -- Manter o cursor centralizado.
 -- keep the cursor at center while using n,N,k,j,J
 n('n', 'nzzzv')
+n('{', '{zzzv')
+n('}', '}zzzv')
 n('N', 'Nzzzv')
 -- n('J', 'mzJ`z')
 -- n('k', 'kzz')

@@ -26,9 +26,9 @@ require 'bufferline'.setup({
         tab = { fg = tokyo_colors.magenta, bg = tokyo.bg },
         tab_selected = { fg = tokyo_colors.blue, bg = tokyo.bg },
         tab_close = tokyo,
-        close_button = tokyo,
-        close_button_visible = tokyo,
-        close_button_selected = tokyo,
+        close_button = { fg = tokyo_colors.magenta, bg = tokyo.bg },
+        close_button_visible = { fg = tokyo_colors.magenta, bg = tokyo.bg },
+        close_button_selected = { fg = tokyo_colors.red, bg = tokyo.bg },
         buffer_visible = tokyo,
         buffer_selected = {
             fg = '#69ff94',
