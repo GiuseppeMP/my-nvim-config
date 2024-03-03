@@ -8,8 +8,7 @@ local sep = helper.separators
 local lsp_comps = require('windline.components.lsp')
 local git_comps = require('windline.components.git')
 local vim_components = require('windline.components.vim')
-
-
+local hostname = vim.fn.hostname()
 local icon_comp = b_components.cache_file_icon({ default = '', hl_colors = { 'bwhite', 'bg' } })
 
 local nvim_hl = {
@@ -36,7 +35,12 @@ local hl_list = {
     Inactive = { 'InactiveFg', 'InactiveBg' },
     Active = { 'ActiveFg', 'ActiveBg' },
 }
+
 local basic = {}
+basic.hostname = {
+    text = hostname
+}
+
 basic.logo = {
 
     hl_colors = {
@@ -87,8 +91,9 @@ basic.vi_mode = {
     hl_colors = nvim_hl,
     text = function()
         return {
-            { sep.left_rounded,     state.mode[2] .. 'Before' },
+            { sep.left_rounded, state.mode[2] .. 'Before' },
             { state.mode[1] .. ' ', state.mode[2] },
+            { ' 󰢩 ' .. hostname .. ' ', state.mode[2] .. 'Before' },
         }
     end,
 }
