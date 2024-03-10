@@ -79,6 +79,8 @@ vim.api.nvim_set_hl(0, 'BufferLineSeparatorSelected', { fg = colors.purple, bg =
 vim.api.nvim_set_hl(0, 'BufferLineOffsetSeparator', { fg = colors.purple, bg = 'none' })
 vim.api.nvim_set_hl(0, 'BufferLine', { fg = colors.purple, bg = 'none' })
 vim.api.nvim_set_hl(0, 'BufferLineModifiedVisible', { fg = colors.purple, bg = 'none' })
+vim.api.nvim_set_hl(0, 'BufferLineModifiedSelected', { fg = colors.purple, bg = 'none' })
+vim.api.nvim_set_hl(0, 'BufferLineModified', { fg = colors.purple, bg = 'none' })
 vim.api.nvim_set_hl(0, 'BufferLineIndicatorVisible', { fg = colors.purple, bg = 'none' })
 vim.api.nvim_set_hl(0, 'BufferLineIndicatorSelected', { fg = colors.green, bg = 'none', sp = colors.green })
 vim.api.nvim_set_hl(0, 'BufferLineTabSeparatorSelected', { fg = colors.purple, bg = 'none' })
@@ -97,7 +99,8 @@ vim.api.nvim_set_hl(0, 'BufferLineWarningSelected',
     { fg = colors.green, bg = 'none', sp = tokyo_colors.yellow, undercurl = true })
 -- vim.api.nvim_set_hl(0, 'NoiceCmdlinePopupBorderCmdline', { fg = colors.purple, bg = 'none' })
 
-vim.api.nvim_set_hl(0, 'Visual', { fg = colors.syellow, bg = colors.none, underline = false })
+-- vim.api.nvim_set_hl(0, 'Visual', { fg = colors.syellow, bg = colors.none, underline = false })
+vim.api.nvim_set_hl(0, 'Visual', { fg = colors.green, bg = '#2F3D44', underline = false })
 vim.api.nvim_set_hl(0, 'NoiceFormatProgressDone', { link = 'NonText' })
 vim.api.nvim_set_hl(0, 'NoiceFormatProgressTodo', { link = 'NonText' })
 vim.api.nvim_set_hl(0, 'NoiceLspProgressTitle', { fg = colors.green, bg = 'none', underline = false })

@@ -1,9 +1,15 @@
 local M = {}
 
+local nvimrc = require 'user.utils.vimrc_json'.load()
+
 -- n('J', 'mzJ`z')
 -- n('k', 'kzz')
 -- n('j', 'jzz')
 function M.cowboy()
+    if (nvimrc.global ~= nil and nvimrc.global.cowboy == false) then
+        return
+    end
+
     ---@type table?
     local id
     local ok = true

@@ -1,5 +1,3 @@
--- user custom configs
-
 -- lua global utils
 _G.utils = {}
 _G.conf = {}
@@ -14,8 +12,6 @@ else
     _G.conf.user = user_conf
 end
 
-local discipline = require 'user.utils.discipline'
-discipline.cowboy()
 
 -- utils collection https://github.com/rxi/lume
 _G.lume = require 'user.utils.lume'
@@ -36,6 +32,9 @@ _G.utils.file_exists = function(path)
     local f = io.open(path, 'r')
     return f ~= nil and io.close(f)
 end
+
+-- user custom configs
+require 'user.utils.discipline'.cowboy()
 
 -- concat tables
 _G.utils.table_concat = function(...) return lume.merge(...) end

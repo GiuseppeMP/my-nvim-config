@@ -5,6 +5,7 @@ local tokyo_colors = require("tokyonight.colors").setup()
 local tokyo = { fg = tokyo_colors.fg, bg = 'none', sp = tokyo_colors.sp }
 
 local offsets = {}
+
 for _, win in ipairs(vim.fn.getwininfo()) do
     if win.winrow == 2 and (wincol == 1 or wincol == max) then
         table.insert(offsets, win.id)
