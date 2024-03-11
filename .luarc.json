@@ -104,6 +104,7 @@
         "vim",
         "require",
         "Jupynium_start_sync",
-        "utils"
+        "utils",
+        "conf"
     ]
 }
