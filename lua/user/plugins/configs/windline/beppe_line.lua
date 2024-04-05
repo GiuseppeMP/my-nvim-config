@@ -37,8 +37,15 @@ local hl_list = {
 }
 
 local basic = {}
+
+local text_hostname = hostname
+
+if string.len(hostname) > 20 then
+    text_hostname = string.sub(hostname, -20)
+end
+
 basic.hostname = {
-    text = hostname
+    text = text_hostname,
 }
 
 basic.logo = {
@@ -93,7 +100,7 @@ basic.vi_mode = {
         return {
             { sep.left_rounded, state.mode[2] .. 'Before' },
             { state.mode[1] .. ' ', state.mode[2] },
-            { ' 󰢩 ' .. hostname .. ' ', state.mode[2] .. 'Before' },
+            { ' 󰢩 ' .. text_hostname .. ' ', state.mode[2] .. 'Before' },
         }
     end,
 }

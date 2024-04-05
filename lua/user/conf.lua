@@ -1,7 +1,7 @@
 local M = {}
 
 M.copilot = {
-    enabled = false
+    enabled = true
 }
 
 M.codeium = {

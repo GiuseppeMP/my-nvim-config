@@ -27,7 +27,7 @@ vim.g.tmux_navigator_no_mappings = 1
 vim.g.tmux_navigator_save_on_switch = 2
 
 -- rest.vim
-local rest = require 'rest-nvim'
+-- local rest = require 'rest-nvim'
 
 -- nvimtree
 local api = require 'nvim-tree.api'
@@ -124,8 +124,9 @@ wk.register({
         m = { vim.cmd.MarkdownPreview, 'Markdown Preview' },
         z = { telescope.extensions.zoxide.list, 'Show zoxide directories' },
         h = { builtin.highlights, "Highlights" },
-        a = { rest.run, "Execure nvim rest request under cursor" },
+        -- a = { rest.run, "Execure nvim rest request under cursor" },
         r = { vim.cmd.SnipRun, 'Run code' },
+        v = { vim.cmd.Pastify, 'Paste img' },
         s = {
             name = "Swap Buffer",
             h = { function() require("swap-buffers").swap_buffers("h") end, "Swap left" },

@@ -385,8 +385,8 @@ M.plugins = {
         config = function()
             require 'copilot_cmp'.setup()
             require("copilot").setup({
-                suggestion = { enabled = true },
-                panel = { enabled = true },
+                suggestion = { enabled = false },
+                panel = { enabled = false },
             })
         end
     },
@@ -424,7 +424,7 @@ M.plugins = {
                     -- model = "gpt-3.5-turbo", $0.0015 / 1K tokens
                     -- model = "gpt-3.5-turbo-instruct",
                     openai_params = {
-                        model = "gpt-3.5-turbo",
+                        -- model = "gpt-3.5-turbo",
                         frequency_penalty = 0,
                         presence_penalty = 0,
                         max_tokens = 600,
@@ -433,7 +433,7 @@ M.plugins = {
                         n = 1,
                     },
                     openai_edit_params = {
-                        model = "gpt-3.5-turbo-instruct",
+                        -- model = "gpt-3.5-turbo-instruct",
                         max_tokens = 600,
                         temperature = 0.1,
                         top_p = 1,
@@ -712,7 +712,11 @@ M.plugins = {
     },
     {
         "rest-nvim/rest.nvim",
-        event = 'VeryLazy'
+        event = 'VeryLazy',
+        enabled = false
+    },
+    {
+        "nvim-neotest/nvim-nio"
     },
     {
         'justinhj/battery.nvim',
@@ -786,6 +790,13 @@ M.plugins = {
                 },
             }
         end,
+    },
+    {
+        'dhruvasagar/vim-table-mode',
+        ft = { 'markdown', 'text', 'tex', 'plaintex', 'norg' },
+        config = function()
+            -- require('tablemode').setup()
+        end
     },
     {
         "gaoDean/autolist.nvim",
@@ -1099,6 +1110,19 @@ M.plugins = {
                     markdown = '![]($IMG$)',
                     tex = [[\includegraphics[width=\linewidth]{$IMG$}]],
                 }, }
+        end
+    },
+    {
+        'echasnovski/mini.align',
+        version = '*',
+        ft = { 'markdown', 'text', 'tex', 'plaintex', 'norg' },
+        config = function()
+            require('mini.align').setup({
+                mappings = {
+                    start = 'ga',
+                    start_with_preview = 'gA',
+                },
+            })
         end
     }
 }
