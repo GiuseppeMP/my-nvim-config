@@ -8,6 +8,9 @@ require('lspconfig').pyright.setup {
     on_attach = on_attach_pyright,
     capabilities = require 'user.plugins.configs.lsp.utils.capabilities_options'.default,
     filetypes = { "python" },
+    root_dir = function()
+        return vim.fn.getcwd()
+    end,
     settings = {
         python = {
             analysis = {

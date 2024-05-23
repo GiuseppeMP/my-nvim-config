@@ -12,12 +12,18 @@ end
 -- vim.g.UltiSnipsExpandTrigger = "<tab>"
 
 require("luasnip.loaders.from_vscode").load({ paths = "~/.config/nvim/snippets/vscode" })
-require("luasnip.loaders.from_vscode").lazy_load()
+require("luasnip.loaders.from_vscode").load()
 
 local has_words_before = function()
     unpack = unpack or table.unpack
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+
+local has_words_before_new = function()
+    if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
 end
 
 local lspkind = require 'lspkind'
@@ -51,18 +57,19 @@ local function get_mapping()
         ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-2), { "i", "c" }),
         ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(2), { "i", "c" }),
         ["<C-Space>"] = cmp.mapping(cmp.mapping.complete()),
-        ["<C-e>"] = cmp.mapping {
+        ["<C-d>"] = cmp.mapping {
             i = cmp.mapping.abort(),
             c = cmp.mapping.close(),
         },
         -- ['<CR>'] = cmp.mapping.confirm({ select = false }),
-        ["<CR>"] = cr,
+        ["<C-e>"] = cr,
         ["<Tab>"] = cmp.mapping(function(fallback)
             if luasnip.expand_or_locally_jumpable() then
                 luasnip.expand_or_jump()
                 vim.cmd('startinsert')
-            elseif has_words_before() then
-                cmp.complete()
+            elseif cmp.visible() and has_words_before_new() then
+                cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+                -- cmp.complete()
             else
                 -- vim.diagnostic.goto_next()
                 fallback()
@@ -116,7 +123,7 @@ local function get_format()
         format = lspkind.cmp_format({
             symbol_map = { Copilot = "", Codeium = "" },
             mode = 'symbol',
-            max_width = 50,
+            max_width = 80,
             ellipsis_char = '...',
         }),
     }
@@ -163,6 +170,7 @@ end
 cmp.setup({
     completion = {
         completeopt = "menu,menuone,noinsert",
+        -- autocomplete = true
     },
     experimental = {
         ghost_text = {

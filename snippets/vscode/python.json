@@ -1,0 +1,21 @@
+{
+    "testpi" : {
+        "prefix" : "testpi",
+        "body" : [
+            "@pytest.mark.parametrize(\"${1:params}\", ${2:source})",
+            "def ${3:func}(${1:params}):",
+            "\t assert ${0}"
+        ],
+        "description": "Pytest parametrized with variable source."
+    },
+    "testp" : {
+        "prefix" : "testp",
+        "body" : [
+            "@pytest.mark.parametrize(\"${1:params}\", [\"${2:source}\"])",
+            "def ${3:func}(${1:params}):",
+            "\t assert ${0}"
+        ],
+        "description": "Pytest parametrized with input list"
+    }
+
+}

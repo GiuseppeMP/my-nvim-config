@@ -30,6 +30,7 @@ require('mason-tool-installer').setup {
         -- linters
         { 'proselint',                       auto_update = false },
         { 'ltex-ls',                         auto_update = false },
+        { 'taplo',                           auto_update = false },
         { 'marksman',                        auto_update = false },
         { 'flake8',                          auto_update = false },
         { 'autopep8',                        auto_update = false },

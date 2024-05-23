@@ -1,0 +1,59 @@
+{
+    "jest_describe": {
+        "prefix": "desco",
+        "body": [
+            "describe('${1:name}', () => { ",
+            "${0}",
+            "})"
+        ],
+        "description": "Jest describe block"
+    },
+    "jest_desc_its": {
+        "prefix": "desc",
+        "body": [
+            "describe('${1:name}', () => { ",
+            "\tit('${2:description}', () => { ",
+            "\t\t${0}",
+            "\t})",
+            "})"
+        ],
+        "description": "Jest describe block with inner it"
+    },
+    "jest_desc_test": {
+        "prefix": "desct",
+        "body": [
+            "describe('${1:name}', () => { ",
+            "\ttest('${2:description}', () => { ",
+            "\t\t${0}",
+            "\t})",
+            "})"
+        ],
+        "description": "Jest describe block with inner test"
+    },
+    "jest_it": {
+        "prefix": "ji",
+        "body": [
+            "it('${1:name}', () => { ",
+            "${0}",
+            "})"
+        ],
+        "description": "Jest It block"
+    },
+    "jest_test": {
+        "prefix": "jt",
+        "body": [
+            "test('${1:name}', () => { ",
+            "${0}",
+            "})"
+        ],
+        "description": "Jest test block"
+    },
+    "export_class": {
+        "prefix": "classts",
+        "body": [
+            "export default class $TM_FILENAME_BASE {",
+            "${0}",
+            "}"
+        ]
+    }
+}

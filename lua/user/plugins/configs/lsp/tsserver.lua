@@ -4,7 +4,12 @@ local lspconfig = require 'lspconfig'
 
 lspconfig.tsserver.setup {
     -- format options delegated to eslint lsp
-    on_attach = on_attach_options.get({ format_on_save = true, format = true, lsp_client = 'tsserver' }),
+    on_attach = on_attach_options.get({
+        inlay = true,
+        format_on_save = true,
+        format = true,
+        lsp_client = 'tsserver'
+    }),
     init_options = {
         hostInfo = "neovim",
         preferences = {

@@ -16,6 +16,7 @@ local function my_on_attach(bufnr)
 
     -- remove mappings
     remove_keymap('n', '<c-t>', bufnr)
+    vim.keymap.set('n', '<c-e>', api.node.open.edit, opts('Open'))
 
     -- custom mappings
     -- vim.keymap.set('n', '<leader>e', api.tree.tabnew, opts('Tab new'))
@@ -23,7 +24,8 @@ local function my_on_attach(bufnr)
 
     vim.keymap.set('n', 'l', api.node.open.edit, opts('Open'))
 end
-
+local HEIGHT_RATIO = 0.9 -- You can change this
+local WIDTH_RATIO = 0.9  -- You can change this too
 
 -- :help nvim-tree-setup
 require 'nvim-tree'.setup {
@@ -43,26 +45,56 @@ require 'nvim-tree'.setup {
             error = "",
         },
     },
+    notify = {
+        threshold = vim.log.levels.OFF,
+        absolute_path = true,
+    },
     view = {
         float = {
             enable = false,
             quit_on_focus_loss = true,
-            open_win_config = {
-                relative = "editor",
-                border = "rounded",
-                width = 50,
-                height = 50,
-                row = 1,
-                col = 1,
-            },
+            -- open_win_config = {
+            --     relative = "editor",
+            --     border = "rounded",
+            --     width = 250,
+            --     height = 50,
+            --     row = 1,
+            --     col = 1,
+            -- },
+            open_win_config = function()
+                local screen_w = vim.opt.columns:get()
+                local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
+                local window_w = screen_w * WIDTH_RATIO
+                local window_h = screen_h * HEIGHT_RATIO
+                local window_w_int = math.floor(window_w)
+                local window_h_int = math.floor(window_h)
+                local center_x = (screen_w - window_w) / 2
+                local center_y = ((vim.opt.lines:get() - window_h) / 2)
+                    - vim.opt.cmdheight:get()
+                return {
+                    border = "rounded",
+                    relative = "editor",
+                    row = center_y,
+                    col = center_x,
+                    width = window_w_int,
+                    height = window_h_int,
+                }
+            end,
         },
         width = {
             max = 50,
             min = 30
         },
+        -- width = function()
+        --     return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
+        -- end,
     },
     renderer = {
         group_empty = true,
+        indent_markers = {
+            inline_arrows = true,
+            enable = true
+        },
         icons = {
             glyphs = {
                 git = {
@@ -78,7 +110,7 @@ require 'nvim-tree'.setup {
     },
     update_focused_file = {
         enable = true,
-        update_root = false,
+        update_root = true,
         ignore_list = {},
     },
 }
@@ -123,6 +155,66 @@ local NvimTreeColors = {
 for hl, col in pairs(NvimTreeColors) do
     vim.api.nvim_set_hl(0, hl, col)
 end
+
+
+-- Events
+
+
+local java_rename = require("java.rename")
+local utils = require("java.rename.utils")
+
+local status, api = pcall(require, "nvim-tree.api")
+
+if not status then
+    return
+end
+
+local Event = api.events.Event
+-- maybe needs to improve marks because multimodule projects (maven/gradle)
+local root_markers = { 'pom.xml', 'gradlew', 'mvnw', '.git', 'settings.gradle', '.lsp_root' }
+
+-- root dir, workspace and project name
+local get_root_dir = function() return require('jdtls.setup').find_root(root_markers) end
+
+--[[
+    This function is used to rename java package when rename a folder.
+    It will rename the package name in the java files and dependencies.
+    Only if it is a java project
+]]
+local java_package_rename = function(data)
+    local regex = "%.java$"
+
+    local old_name = data.old_name
+    local new_name = utils.realpath(data.new_name)
+
+    local is_dir = utils.is_dir(new_name)
+
+    local root_dir = get_root_dir()
+
+    if root_dir == nil then
+        return
+    end
+
+    if is_dir then
+        local files = utils.list_folder_contents_recursive(new_name)
+        for _, file in ipairs(files) do
+            local old_file = old_name .. "/" .. file
+            local new_file = new_name .. "/" .. file
+
+            local is_java_file = string.find(old_file, regex) ~= nil and string.find(new_file, regex) ~= nil
+            local is_java_project = string.find(tostring(new_file), tostring(root_dir), 1, true) ~= nil
+
+            if is_java_file and is_java_project then
+                java_rename.on_rename_file(old_file, new_file)
+            end
+        end
+    end
+end
+
+-- [BETA] rename all .java on package folder rename
+api.events.subscribe(Event.NodeRenamed, function(data)
+    java_package_rename(data)
+end)
 
 
 -- BEGIN_DEFAULT_MAPPINGS for easy access/reminder
@@ -176,3 +268,4 @@ end
 -- { key = "m",                              action = "toggle_mark" },
 -- { key = "bmv",                            action = "bulk_move" },
 -- }
+--

@@ -1,12 +1,33 @@
 local windline = require('windline')
 local helper = require('windline.helpers')
 local b_components = require('windline.components.basic')
+---@diagnostic disable-next-line: undefined-field
 local state = _G.WindLine.state
 local tokyo_colors = require("tokyonight.colors").setup()
 local sep = helper.separators
 local lsp_comps = require('windline.components.lsp')
 local git_comps = require('windline.components.git')
 local vim_components = require('windline.components.vim')
+local hostname = vim.fn.hostname()
+local icon_comp = b_components.cache_file_icon({ default = '', hl_colors = { 'bwhite', 'bg' } })
+
+local nvim_hl = {
+    Normal = { 'black', 'red' },
+    Insert = { 'black', 'green', 'bold' },
+    Visual = { 'black', 'yellow', 'bold' },
+    Replace = { 'black', 'blue_light', 'bold' },
+    Command = { 'black', 'magenta', 'bold' },
+    NormalBefore = { 'red', 'bg' },
+    InsertBefore = { 'green', 'bg' },
+    VisualBefore = { 'yellow', 'bg' },
+    ReplaceBefore = { 'blue_light', 'bg' },
+    CommandBefore = { 'magenta', 'bg' },
+    NormalAfter = { 'white', 'red' },
+    InsertAfter = { 'white', 'green' },
+    VisualAfter = { 'white', 'yellow' },
+    ReplaceAfter = { 'white', 'blue_light' },
+    CommandAfter = { 'white', 'magenta' },
+}
 
 local hl_list = {
     Black = { 'white', 'bg' },
@@ -14,7 +35,19 @@ local hl_list = {
     Inactive = { 'InactiveFg', 'InactiveBg' },
     Active = { 'ActiveFg', 'ActiveBg' },
 }
+
 local basic = {}
+
+local text_hostname = hostname
+
+if string.len(hostname) > 20 then
+    text_hostname = string.sub(hostname, -20)
+end
+
+basic.hostname = {
+    text = text_hostname,
+}
+
 basic.logo = {
 
     hl_colors = {
@@ -62,27 +95,12 @@ local colors_mode = {
 
 basic.vi_mode = {
     width = 30,
-    hl_colors = {
-        Normal = { 'black', 'red' },
-        Insert = { 'black', 'green', 'bold' },
-        Visual = { 'black', 'yellow', 'bold' },
-        Replace = { 'black', 'blue_light', 'bold' },
-        Command = { 'black', 'magenta', 'bold' },
-        NormalBefore = { 'red', 'bg' },
-        InsertBefore = { 'green', 'bg' },
-        VisualBefore = { 'yellow', 'bg' },
-        ReplaceBefore = { 'blue_light', 'bg' },
-        CommandBefore = { 'magenta', 'bg' },
-        NormalAfter = { 'white', 'red' },
-        InsertAfter = { 'white', 'green' },
-        VisualAfter = { 'white', 'yellow' },
-        ReplaceAfter = { 'white', 'blue_light' },
-        CommandAfter = { 'white', 'magenta' },
-    },
+    hl_colors = nvim_hl,
     text = function()
         return {
-            { sep.left_rounded,     state.mode[2] .. 'Before' },
+            { sep.left_rounded, state.mode[2] .. 'Before' },
             { state.mode[1] .. ' ', state.mode[2] },
+            { ' 󰢩 ' .. text_hostname .. ' ', state.mode[2] .. 'Before' },
         }
     end,
 }
@@ -137,7 +155,7 @@ basic.lsp_diagnos = {
     end,
 
 }
-local icon_comp = b_components.cache_file_icon({ default = '', hl_colors = { 'bwhite', 'bg' } })
+
 basic.file = {
     hl_colors = {
         default = { 'bwhite', 'black_light' },
@@ -150,6 +168,7 @@ basic.file = {
             { ' ', 'bubble_bg' },
             icon_comp(bufnr),
             { ' ', 'bubble_bg' },
+            { " ", '' },
             { b_components.cache_file_name('[No Name]', ''), '' },
             { b_components.file_modified(' '), '' },
             { b_components.cache_file_size(), '' },
@@ -267,7 +286,7 @@ local quickfix = {
     active = {
         { ' ', { 'dbg', 'dbg' } },
         { sep.left_rounded, { 'bwhite', 'bg' } },
-        { '🔥 Quickfix ', { 'bg', 'bwhite' } },
+        { '🔥 Quickfix ', { 'black', 'bwhite' } },
         {
             function()
                 return vim.fn.getqflist({ title = 0 }).title
@@ -276,10 +295,10 @@ local quickfix = {
         },
         { ' Total: %L ', { 'bwhite', 'bg' } },
         basic.divider,
-        { ' ', { 'dbg', 'bwhite' } },
-        { '%L 󱧖 ', { 'dbg', 'bwhite' } },
+        { ' ', { 'black', 'bwhite' } },
+        { '%L 󱧖 ', { 'black', 'bwhite' } },
         { sep.right_rounded, { 'bwhite', 'dbg' } },
-        { ' ', { 'dbg', 'dbg' } },
+        { ' ', { 'black', 'dbg' } },
 
     },
     always_active = true,
@@ -311,7 +330,22 @@ basic.lsp_name = {
             }
         end
         return {
-            { b_components.cache_file_type({ icon = true }), 'magenta' },
+            { ' ',                                            '' },
+            icon_comp(bufnr),
+            { ' ',                                            '' },
+            { " ",                                            '' },
+            { b_components.cache_file_type({ icon = false }), 'magenta' },
+        }
+    end,
+}
+
+basic.battery = {
+    name = 'battery',
+    hl_colors = nvim_hl,
+    width = breakpoint_width,
+    text = function(_)
+        return {
+            { require("battery").get_status_line(), state.mode[2] .. 'Before' },
         }
     end,
 }
@@ -348,6 +382,8 @@ local default = {
         { git_comps.git_branch(), { 'vgreen', 'bg' }, breakpoint_width },
         { ' ',                    hl_list.Black },
         -- basic.right,
+        basic.battery,
+        { ' ', '' },
         basic.logo,
         { ' ', '' },
     },
@@ -360,6 +396,7 @@ local default = {
         { b_components.progress,       hl_list.Inactive },
     },
 }
+
 
 windline.setup({
     colors_name = function(colors)

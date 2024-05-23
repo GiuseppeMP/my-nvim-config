@@ -3,26 +3,27 @@ if not status_ok then
     return
 end
 
-local border = {
-    { "🭽", "FloatBorder" },
-    { "▔", "FloatBorder" },
-    { "🭾", "FloatBorder" },
-    { "▕", "FloatBorder" },
-    { "🭿", "FloatBorder" },
-    { "▁", "FloatBorder" },
-    { "🭼", "FloatBorder" },
-    { "▏", "FloatBorder" },
-}
+-- local border = {
+--     { "🭽", "FloatBorder" },
+--     { "▔", "FloatBorder" },
+--     { "🭾", "FloatBorder" },
+--     { "▕", "FloatBorder" },
+--     { "🭿", "FloatBorder" },
+--     { "▁", "FloatBorder" },
+--     { "🭼", "FloatBorder" },
+--     { "▏", "FloatBorder" },
+-- }
 
 configs.setup {
     autotag = {
         enable = true,
-        filetypes = { "html", "xml" }
+        -- filetypes = { "html", "xml" }
     },
     enable = true,
-    context_commentstring = { enable = true },
+    context_commentstring = { enable = false },
     -- https://github.com/nvim-treesitter/nvim-treesitter-refactor#highlight-definitions
     refactor = {
+        highlight_current_scope = { enable = false },
         highlight_definitions = {
             enable = true,
             -- Set to false if you have an `updatetime` of ~100.
@@ -43,7 +44,7 @@ configs.setup {
         },
         lsp_interop = {
             enable = true,
-            border = border,
+            border = "rounded",
             peek_definition_code = {
                 ["gp"] = "@function.outer",
                 -- ["<leader>pf"] = "@function.outer",
@@ -94,7 +95,10 @@ configs.setup {
         use_languagetree = true,
         additional_vim_regex_highlighting = false,
     },
-    indent = { enable = true, disable = { "yaml" } },
+    indent = {
+        enable = true,
+        disable = { "yaml", "typescript", "javascript", "ts", "js" }
+    },
     incremental_selection = {
         enable = true,
         keymaps = {
