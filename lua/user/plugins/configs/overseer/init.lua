@@ -1,6 +1,7 @@
 local overseer = require("overseer")
 local spring_boot_tasks = require("user.plugins.configs.overseer.spring_boot")
 local mvn_tasks = require("user.plugins.configs.overseer.mvn")
+local robot_tasks = require("user.plugins.configs.overseer.robot_framework")
 
 overseer.setup({
     strategy = {
@@ -31,4 +32,8 @@ end
 
 for _, mvn_task in pairs(mvn_tasks) do
     overseer.register_template(mvn_task)
+end
+
+for _, robot_task in pairs(robot_tasks) do
+    overseer.register_template(robot_task)
 end
