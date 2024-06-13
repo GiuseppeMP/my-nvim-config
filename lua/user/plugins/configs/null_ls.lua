@@ -7,6 +7,7 @@ local formatting = null_ls.builtins.formatting
 null_ls.setup({
     sources = {
         formatting.autopep8,
+        formatting.npm_groovy_lint
         -- diagnostics.pycodestyle,
         -- diagnostics.pydocstyle,
         -- diagnostics.pylint,

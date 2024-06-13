@@ -23,8 +23,8 @@ local wk = require 'which-key'
 local neotest = require 'neotest'
 
 -- tmux navigator
-vim.g.tmux_navigator_no_mappings = 1
-vim.g.tmux_navigator_save_on_switch = 2
+-- vim.g.tmux_navigator_no_mappings = 1
+-- vim.g.tmux_navigator_save_on_switch = 2
 
 -- rest.vim
 -- local rest = require 'rest-nvim'
@@ -122,6 +122,7 @@ wk.register({
         d = { vim.cmd.TroubleToggle, 'Show diagnostics panel' },
         D = { vim.cmd.TodoLocList, 'Show comments diagnostics list' },
         m = { vim.cmd.MarkdownPreview, 'Markdown Preview' },
+        a = { function() vim.cmd(":CellularAutomaton make_it_rain") end, 'AFK' },
         z = { telescope.extensions.zoxide.list, 'Show zoxide directories' },
         h = { builtin.highlights, "Highlights" },
         -- a = { rest.run, "Execure nvim rest request under cursor" },
@@ -139,7 +140,33 @@ wk.register({
             t = { blanket.stop, 'Coverage blanket terminate' },
             s = { blanket.start, 'Coverage blanket start' },
             r = { blanket.refresh, 'Coverage blanket refresh' },
-        }
+        },
+        g = {
+            name = "Git",
+            j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
+            k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
+            b = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
+            p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
+            r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
+            R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
+            s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
+            u = {
+                "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
+                "Undo Stage Hunk",
+            },
+            o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
+            -- b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
+            c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
+            h = {
+                "<cmd>DiffviewFileHistory % <cr>", "File history",
+            },
+            l = {
+                "<cmd>DiffviewFileHistory <cr>", "Git history",
+            },
+            d = {
+                "<cmd>Gitsigns diffthis HEAD<cr>", "Diff",
+            },
+        },
     },
 })
 
@@ -183,7 +210,7 @@ wk.register({
 
 -- [<C-x>] - harpoon fast nav
 wk.register({
-    ['<C-m>']     = { harpoon.ui.toggle_quick_menu, 'Harpoon quick menu' },
+    ['<C-f>']     = { harpoon.ui.toggle_quick_menu, 'Harpoon quick menu' },
     ['<C-g>']     = { function() harpoon.ui.nav_next() end, 'Go to harpoon next' },
     ['<C-q>']     = { function() harpoon.ui.nav_prev() end, 'Go to harpoon previous' },
     ['<C-1>']     = { function() harpoon.ui.nav_file(1) end, 'Go to harpoon mark 1' },
@@ -243,7 +270,7 @@ wk.register({
     ["<leader>e"] = { vim.cmd.NvimTreeToggle, 'File explorer' },
     ["<leader>D"] = { 'Type definitions' },
     ["<leader>k"] = { 'Signature help' },
-    ["<leader>xw"] = { "wbdf elp", 'Swap two words separated by space' },
+    ["<leader>xw"] = { "SWAP help", 'Swap two words separated by space' },
     ["<leader>rn"] = { 'Rename' },
     ["K"] = { 'Lsp hover hints' },
     ["<leader>q"] = { vim.cmd.Bdelete, 'Buffer delete' }
@@ -360,15 +387,15 @@ wk.register({
     mode = { "v", "n" },
 })
 
--- tmux
-wk.register({
-    ["<C-k>"] = { vim.cmd.TmuxNavigateUp, 'Tmux navigate up' },
-    ["<C-j>"] = { vim.cmd.TmuxNavigateDown, 'Tmux navigate down' },
-    ["<C-h>"] = { vim.cmd.TmuxNavigateLeft, 'Tmux navigate left' },
-    ["<C-l>"] = { vim.cmd.TmuxNavigateRight, 'Tmux navigate right' },
-    ["<C-e>"] = { vim.cmd.NvimTreeFindFile, 'NvimTree Focus file' },
-    ["<leader>a"] = { 'ggVG', 'Select all lines' },
-})
+-- -- tmux
+-- wk.register({
+--     ["<C-k>"] = { vim.cmd.TmuxNavigateUp, 'Tmux navigate up' },
+--     ["<C-j>"] = { vim.cmd.TmuxNavigateDown, 'Tmux navigate down' },
+--     ["<C-h>"] = { vim.cmd.TmuxNavigateLeft, 'Tmux navigate left' },
+--     ["<C-l>"] = { vim.cmd.TmuxNavigateRight, 'Tmux navigate right' },
+--     ["<C-e>"] = { vim.cmd.NvimTreeFindFile, 'NvimTree Focus file' },
+--     ["<leader>a"] = { 'ggVG', 'Select all lines' },
+-- })
 
 -- spectre
 wk.register({

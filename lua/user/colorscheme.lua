@@ -24,6 +24,7 @@ colors.black = '#1a1b26'
 vim.cmd [[hi! link Function Label ]]
 vim.cmd [[hi! link Identifier Function ]]
 vim.cmd [[hi! link xmlTagN Function ]]
+vim.cmd [[hi! link @markup.raw.markdown_inline CodeBlock ]]
 
 vim.api.nvim_set_hl(0, "CursorLine", { bg = 'none', blend = 95 })
 vim.api.nvim_set_hl(0, "CursorLineNr", { fg = colors.green, bg = 'none', blend = 95 })
@@ -36,6 +37,9 @@ vim.cmd [[
     set guicursor+=n-v-c:blinkon0
     set guicursor+=i:blinkwait10
     hi TreesitterContextBottom gui=undercurl guisp=#69ff94
+    hi Comment guifg='#1f96e0'
+    hi DiagnosticUnnecessary guifg='#e04b1f'
+
 ]]
 
 -- selected winbar
@@ -106,8 +110,21 @@ vim.api.nvim_set_hl(0, 'NoiceFormatProgressTodo', { link = 'NonText' })
 vim.api.nvim_set_hl(0, 'NoiceLspProgressTitle', { fg = colors.green, bg = 'none', underline = false })
 vim.api.nvim_set_hl(0, 'NoiceLspProgressClient', { fg = colors.magenta, bg = 'none', underline = false })
 
+vim.api.nvim_set_hl(0, 'MiniAnimateCursor', { fg = colors.green, bg = colors.green, underline = false })
+
+vim.api.nvim_set_hl(0, 'GitSignsAdd', { fg = colors.green, bg = 'none', underline = false })
+vim.api.nvim_set_hl(0, 'GitSignsAddnr', { fg = colors.green, bg = 'none', underline = false })
+
+vim.api.nvim_set_hl(0, 'GitSignsDelete', { fg = colors.red, bg = 'none', underline = false })
+vim.api.nvim_set_hl(0, 'GitSignsDeleteNr', { fg = colors.red, bg = 'none', underline = false })
+
+vim.api.nvim_set_hl(0, 'GitSignsChange', { fg = colors.magenta, bg = 'none', underline = false })
+vim.api.nvim_set_hl(0, 'GitSignsChangeNr', { fg = colors.magenta, bg = 'none', underline = false })
 
 -- vim.api.nvim_set_hl(0, 'FloatShadow', { fg = '#636da6', bg = 'none' })
 -- vim.api.nvim_set_hl(0, 'FloatShadowThrough', { fg = '#636da6', bg = 'none' })
 
 -- vim.cmd [[hi NoiceVirtualText guibg=NONE ]]
+
+vim.api.nvim_set_hl(0, 'Commments', { fg = colors.bg, bg = 'none', underline = false })
+vim.api.nvim_set_hl(0, 'Commment', { fg = colors.bg, bg = 'none', underline = false })

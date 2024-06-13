@@ -14,15 +14,18 @@ local function my_on_attach(bufnr)
     -- default mappings
     api.config.mappings.default_on_attach(bufnr)
 
+
     -- remove mappings
-    remove_keymap('n', '<c-t>', bufnr)
-    vim.keymap.set('n', '<c-e>', api.node.open.edit, opts('Open'))
+    -- remove_keymap('n', '<c-t>', bufnr)
 
     -- custom mappings
+    -- vim.keymap.set('n', '<leader-e>', api.node.open.edit, opts('Open'))
     -- vim.keymap.set('n', '<leader>e', api.tree.tabnew, opts('Tab new'))
     vim.keymap.set('n', '?', api.tree.toggle_help, opts('Help'))
 
     vim.keymap.set('n', 'l', api.node.open.edit, opts('Open'))
+
+    print('nvim-tree my_on_attach')
 end
 local HEIGHT_RATIO = 0.9 -- You can change this
 local WIDTH_RATIO = 0.9  -- You can change this too

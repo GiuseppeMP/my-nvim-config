@@ -10,6 +10,8 @@ function M.cowboy()
         return
     end
 
+    do return end
+
     ---@type table?
     local id
     local ok = true

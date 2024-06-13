@@ -12,6 +12,8 @@ require('mason-tool-installer').setup {
     ensure_installed = {
         -- lsps
         { 'jdtls',                           auto_update = false },
+        { 'groovyls',                        auto_update = false },
+        { 'npm-groovy-lint',                 auto_update = false },
         { 'pyright',                         auto_update = false },
         { 'lua-language-server',             auto_update = false },
         { 'stylua',                          auto_update = false },

@@ -35,6 +35,7 @@ o.foldlevel = 2
 o.updatetime = 500
 o.shortmess = o.shortmess .. 'c'
 o.signcolumn = 'auto'
+-- o.signcolumn = 'auto:1-2'
 o.encoding = 'UTF-8'
 o.wm = 5
 o.scrolloff = 5
@@ -56,7 +57,8 @@ o.spelllang = 'en_us,pt'
 o.spell = false
 o.cursorline = true
 o.laststatus = 3
-o.guifont = 'CaskaydiaCove Nerd Font SemiLight:h12'
+-- o.guifont = 'CaskaydiaCove Nerd Font SemiLight:h12'
+o.guifont = 'FiraCode Nerd Font'
 g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
 

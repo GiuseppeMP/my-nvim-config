@@ -14,7 +14,7 @@ local root_dir = function() return require('jdtls.setup').find_root(root_markers
 ---@param async boolean if it'll execute async
 local format_callback = function(lsp_client, bufnr, async)
     -- add null_ls formatting support
-    local null_ls_formatting_support = { 'pyright' }
+    local null_ls_formatting_support = { 'pyright', 'groovyls' }
 
 
     if (utils.table_contains(null_ls_formatting_support, lsp_client)) then
