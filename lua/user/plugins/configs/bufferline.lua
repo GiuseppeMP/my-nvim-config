@@ -6,11 +6,11 @@ local tokyo = { fg = tokyo_colors.fg, bg = 'none', sp = tokyo_colors.sp }
 
 local offsets = {}
 
-for _, win in ipairs(vim.fn.getwininfo()) do
-    if win.winrow == 2 and (wincol == 1 or wincol == max) then
-        table.insert(offsets, win.id)
-    end
-end
+-- for _, win in ipairs(vim.fn.getwininfo()) do
+--     if win.winrow == 2 and (wincol == 1 or wincol == max) then
+--         table.insert(offsets, win.id)
+--     end
+-- end
 
 diagnostics_indicator = function(count, level, diagnostics_dict, context)
     if context.buffer:current() then

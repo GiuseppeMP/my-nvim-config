@@ -16,10 +16,11 @@ require("neotest").setup({
         concurrent = false
     },
     adapters = {
+        require("neotest-vitest"),
         require('neotest-jest')({
             -- jestCommand = "npx jest --watch ",
             jestCommand = "npm test --",
-            -- jestConfigFile = "custom.jest.config.ts",
+            jestConfigFile = "jest.config.mjs",
             env = { CI = true },
             jest_test_discovery = true,
             cwd = function(_)

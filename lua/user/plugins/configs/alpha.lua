@@ -22,6 +22,6 @@ local logo = {
 }
 
 
-dash.section.header.val = logo;
+-- dash.section.header.val = logo;
 
 alpha.setup(dash.opts)

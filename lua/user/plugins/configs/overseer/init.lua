@@ -32,3 +32,20 @@ end
 for _, mvn_task in pairs(mvn_tasks) do
     overseer.register_template(mvn_task)
 end
+
+
+local overseer = require("overseer")
+
+local micci_task = {
+    name = " Micci Task",
+    builder = function()
+        return {
+            cmd = { "mvn" },
+            args = { "clean", "package" },
+        }
+    end,
+    -- condition = {
+    --     filetype = { "java", "xml" },
+    -- },
+}
+overseer.register_template(micci_task)

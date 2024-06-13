@@ -10,6 +10,7 @@ utils.init_err_handler('gopls', function() require "user.plugins.configs.lsp.gop
 utils.init_err_handler('html', function() require "user.plugins.configs.lsp.html" end)
 utils.init_err_handler('jdtls', function() require "user.plugins.configs.lsp.jdtls" end)
 utils.init_err_handler('jsonls', function() require "user.plugins.configs.lsp.jsonls" end)
+utils.init_err_handler('groovyls', function() require "user.plugins.configs.lsp.groovyls" end)
 utils.init_err_handler('lemminx', function() require "user.plugins.configs.lsp.lemminx" end)
 utils.init_err_handler('ltexls', function() require "user.plugins.configs.lsp.ltexls" end)
 utils.init_err_handler('lua_ls', function() require "user.plugins.configs.lsp.lua_ls" end)

@@ -9,7 +9,6 @@ local on_attach_eslint = function(client, bufnr)
         nnoremap <D-o> <cmd>TSToolsAddMissingImports<CR>
     ]]
 
-
     -- default on_attach
     on_attach_options.get { format_on_save = true, format = true, lsp_client = 'eslint' } (client, bufnr)
 end

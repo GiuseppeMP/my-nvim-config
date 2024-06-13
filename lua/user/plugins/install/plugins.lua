@@ -128,14 +128,16 @@ M.plugins = {
 
     -- Collection of plugins for tests, Debug and TDD
     { 'nvim-lua/plenary.nvim', },
-    { 'vim-test/vim-test',     branch = 'master' },
+    { 'vim-test/vim-test' },
     {
         'nvim-neotest/neotest',
-        dependencies = {
-            'andy-bell101/neotest-java',
-            'nvim-neotest/neotest-jest'
-        },
+        dependencies = { 'andy-bell101/neotest-java' },
     },
+    {
+        'nvim-neotest/neotest-jest',
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+    },
+
     { 'nvim-neotest/neotest-vim-test', },
     { 'nvim-neotest/neotest-plenary', },
     -- vim tests
@@ -158,10 +160,11 @@ M.plugins = {
     {
         'honza/vim-snippets',
         lazy = true,
-        event = 'VeryLazy',
         config = lazy_rtp
     },
-
+    {
+        'stevearc/vim-vscode-snippets'
+    },
     -- Git buffersigns
     {
         'lewis6991/gitsigns.nvim',
@@ -174,8 +177,20 @@ M.plugins = {
     { 'lewis6991/async.nvim' },
 
     -- tmux <-> neovim navigation using C-l,k,j,h
-    { 'christoomey/vim-tmux-navigator' },
-
+    -- { 'christoomey/vim-tmux-navigator' },
+    {
+        "https://git.sr.ht/~swaits/zellij-nav.nvim",
+        lazy = true,
+        event = "VeryLazy",
+        enable = true,
+        keys = {
+            { "<m-h>", "<cmd>ZellijNavigateLeft<cr>",  { silent = true, desc = "navigate left" } },
+            { "<m-j>", "<cmd>ZellijNavigateDown<cr>",  { silent = true, desc = "navigate down" } },
+            { "<m-k>", "<cmd>ZellijNavigateUp<cr>",    { silent = true, desc = "navigate up" } },
+            { "<m-l>", "<cmd>ZellijNavigateRight<cr>", { silent = true, desc = "navigate right" } },
+        },
+        opts = {},
+    },
     {
         'iamcco/markdown-preview.nvim',
         cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
@@ -565,7 +580,7 @@ M.plugins = {
                     FIX = {
                         icon = " ", -- icon used for the sign, and in search results
                         color = "error", -- can be a hex color, or a named color (see below)
-                        alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
+                        alt = { "VERO", "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
                         -- signs = false, -- configure signs for some keywords individually
                     },
                     TODO = { icon = " ", color = "info" },
@@ -869,10 +884,11 @@ M.plugins = {
                 open = { enable = false },
                 close = { enable = false },
                 cursor = {
-                    enable = false,
-                    timing = animate.gen_timing.linear({ duration = 150, unit = "total" }),
+                    enable = true,
+                    timing = animate.gen_timing.linear({ duration = 200, unit = "total" }),
                 },
                 scroll = {
+                    enable = false,
                     timing = animate.gen_timing.linear({ duration = 50, unit = "total" }),
                     subscroll = animate.gen_subscroll.equal({
                         predicate = function(total_scroll)
@@ -1124,6 +1140,15 @@ M.plugins = {
                 },
             })
         end
+    },
+    {
+        'Eandrju/cellular-automaton.nvim'
+    },
+    {
+        'sindrets/diffview.nvim'
+    },
+    {
+        'marilari88/neotest-vitest'
     }
 }
 return M.plugins

@@ -162,11 +162,11 @@ local function get_settings()
                 runtimes = {
                     {
                         name = "JavaSE-1.8",
-                        path = home .. "/.asdf/installs/java/corretto-8.342.07.1"
+                        path = home .. "/.asdf/installs/java/corretto-8.412.08.1"
                     },
                     {
                         name = "JavaSE-11",
-                        path = home .. "/.asdf/installs/java/corretto-11.0.16.9.1",
+                        path = home .. "/.asdf/installs/java/corretto-11.0.23.9.1",
                     },
                     {
                         name = "JavaSE-14",
@@ -174,14 +174,21 @@ local function get_settings()
                     },
                     {
                         name = "JavaSE-17",
-                        path = home .. "/.asdf/installs/java/zulu-17.46.19",
+                        path = home .. "/.asdf/installs/java/zulu-17.50.19",
                     },
                     {
                         name = "JavaSE-19",
-                        -- path = home .. "/.asdf/installs/java/corretto-19.0.2.7.1",
                         path = home .. "/.asdf/installs/java/zulu-19.32.13",
+                    },
+                    {
+                        name = "JavaSE-21",
+                        path = home .. "/.asdf/installs/java/corretto-21.0.3.9.1",
                         default = true,
                     },
+                    -- {
+                    --     name = "JavaSE-22",
+                    --     path = home .. "/.asdf/installs/java/corretto-22.0.1.8.1",
+                    -- },
                 }
             }
         }
@@ -192,7 +199,8 @@ end
 -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
 local function get_cmd()
     return {
-        home .. "/.asdf/installs/java/zulu-19.32.13/bin/java",
+        home .. "/.asdf/installs/java/corretto-21.0.3.9.1/bin/java",
+        -- home .. "/.asdf/installs/java/corretto-22.0.0.36.2/bin/java",
         -- home .. '/.asdf/installs/java/corretto-19.0.2.7.1/bin/java',
         -- home .. '/.asdf/installs/java/corretto-17.0.4.9.1/bin/java',
         '-Declipse.application=org.eclipse.jdt.ls.core.id1',

@@ -32,7 +32,7 @@ require 'obsidian'.setup {
         -- Ex: Journals/2024/01-January/2024-January-01-Sunday.md
         -- https://linux.die.net/man/3/strftime
         -- For use in Obsidian App format = Y/MM-MMMM/WW-\w\e\e\k/Y-MM-DD-ddd
-        date_format = "%Y/%m-%B/%V-week/%F-%a",
+        date_format = "%Y/%m-%B/%F-%a",
         -- Optional, if you want to change the date format of the default alias of daily notes.
         alias_format = "%B %-d, %Y",
         template = "DailyNvim.md"
@@ -44,10 +44,10 @@ require 'obsidian'.setup {
         -- A map for custom variables, the key should be the variable and the value a function
         substitutions = {
             yesterday_note = function()
-                return os.date("%Y/%m-%B/week-%V/%F-%a", os.time() - 86400)
+                return os.date("%Y/%m-%B/F-%a", os.time() - 86400)
             end,
             today_note = function()
-                return os.date("%Y/%m-%B/week-%V/%F-%a")
+                return os.date("%Y/%m-%B/F-%a")
             end,
             -- Get Things Done note of the month
             gtd = function()
