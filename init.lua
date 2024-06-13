@@ -10,8 +10,6 @@ require("user.settings")
 
 require("user.plugins")
 
-require("user.colorscheme")
-
 require("user.autocmds")
 
 require('user.winbar')
@@ -21,3 +19,7 @@ require('user.wsl')
 require("user.keymaps")
 
 require("user.colemak")
+
+require("user.colorscheme")
+
+require("user.macros")

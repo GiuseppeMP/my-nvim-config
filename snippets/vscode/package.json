@@ -7,6 +7,18 @@
 					"java"
 				],
 				"path": "./java.json"
+			},
+			{
+				"language": [
+					"typescript"
+				],
+				"path": "./ts.json"
+			},
+			{
+				"language": [
+					"python"
+				],
+				"path": "./python.json"
 			}
 		]
 	}

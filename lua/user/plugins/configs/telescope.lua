@@ -1,12 +1,24 @@
-require("telescope").load_extension('harpoon')
+require('telescope').load_extension('harpoon')
 
 require("telescope").load_extension('scope')
 
 require("telescope").load_extension('zoxide')
 
-local actions = require "telescope.actions"
+require("telescope").load_extension('lsp_handlers')
+
+require("telescope").load_extension('neoclip')
+
+local actions = require("telescope.actions")
 
 require("telescope").setup {
+    extensions = {
+        lsp_handlers = {
+            code_action = {
+                telescope = require('telescope.themes').get_dropdown({}),
+                no_results_message = 'No code actions available',
+            },
+        },
+    },
     defaults = {
         prompt_prefix = "  ",
         selection_caret = " ",
@@ -77,7 +89,7 @@ require("telescope").setup {
     },
     pickers = {
         buffers = {
-            theme = "dropdown",
+            theme = "ivy",
             show_all_buffers = true,
             sort_mru = true,
             mappings = {

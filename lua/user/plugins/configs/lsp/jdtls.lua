@@ -1,4 +1,5 @@
 local jdtls = require 'jdtls'
+local jdtls_tests = require 'jdtls.tests'
 
 -- mason installations registry
 local mason_registry = require("mason-registry");
@@ -45,12 +46,13 @@ local on_attach_jdtls = function(_client, buf_nr)
     require("user.plugins.configs.lsp.utils.on_attach_options").get { lsp_client = 'jdtls' } (_client, buf_nr)
 
     local buf_opts = { noremap = true, silent = false, buffer = buf_nr }
-    -- vim.keymap.set('n', 'df', jdtls.test_class, buf_opts)
+    vim.keymap.set('n', 'df', jdtls.test_class, buf_opts)
     vim.keymap.set('n', 'dn', jdtls.test_nearest_method, buf_opts)
-    vim.keymap.set('n', 'df', go_to_with_options, buf_opts)
+    -- vim.keymap.set('n', 'df', go_to_with_options, buf_opts)
+    vim.keymap.set('n', '<leader>gt', jdtls_tests.generate, buf_opts)
 
     vim.cmd [[
-        nnoremap <A-o> <Cmd>lua require'jdtls'.organize_imports()<CR>
+        nnoremap <D-o> <Cmd>lua require'jdtls'.organize_imports()<CR>
         nnoremap crv <Cmd>lua require('jdtls').extract_variable()<CR>
         vnoremap crv <Esc><Cmd>lua require('jdtls').extract_variable(true)<CR>
         nnoremap crc <Cmd>lua require('jdtls').extract_constant()<CR>
@@ -60,6 +62,7 @@ local on_attach_jdtls = function(_client, buf_nr)
 
     -- setup dap
     jdtls.setup_dap({ hotcodereplace = 'auto' })
+    -- require('jdtls.dap').setup_dap_main_class_configs()
 end
 
 -- create bundles table
@@ -159,11 +162,11 @@ local function get_settings()
                 runtimes = {
                     {
                         name = "JavaSE-1.8",
-                        path = home .. "/.asdf/installs/java/corretto-8.342.07.1"
+                        path = home .. "/.asdf/installs/java/corretto-8.412.08.1"
                     },
                     {
                         name = "JavaSE-11",
-                        path = home .. "/.asdf/installs/java/corretto-11.0.16.9.1",
+                        path = home .. "/.asdf/installs/java/corretto-11.0.23.9.1",
                     },
                     {
                         name = "JavaSE-14",
@@ -171,13 +174,21 @@ local function get_settings()
                     },
                     {
                         name = "JavaSE-17",
-                        path = home .. "/.asdf/installs/java/corretto-17.0.4.9.1",
+                        path = home .. "/.asdf/installs/java/zulu-17.50.19",
                     },
                     {
                         name = "JavaSE-19",
-                        path = home .. "/.asdf/installs/java/corretto-19.0.2.7.1",
+                        path = home .. "/.asdf/installs/java/zulu-19.32.13",
+                    },
+                    {
+                        name = "JavaSE-21",
+                        path = home .. "/.asdf/installs/java/corretto-21.0.3.9.1",
                         default = true,
                     },
+                    -- {
+                    --     name = "JavaSE-22",
+                    --     path = home .. "/.asdf/installs/java/corretto-22.0.1.8.1",
+                    -- },
                 }
             }
         }
@@ -188,7 +199,9 @@ end
 -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
 local function get_cmd()
     return {
-        home .. '/.asdf/installs/java/corretto-19.0.2.7.1/bin/java',
+        home .. "/.asdf/installs/java/corretto-21.0.3.9.1/bin/java",
+        -- home .. "/.asdf/installs/java/corretto-22.0.0.36.2/bin/java",
+        -- home .. '/.asdf/installs/java/corretto-19.0.2.7.1/bin/java',
         -- home .. '/.asdf/installs/java/corretto-17.0.4.9.1/bin/java',
         '-Declipse.application=org.eclipse.jdt.ls.core.id1',
         '-Dosgi.bundles.defaultStartLevel=4',

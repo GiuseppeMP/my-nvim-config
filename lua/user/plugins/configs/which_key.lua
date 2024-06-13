@@ -1,4 +1,4 @@
--- plugins
+-- pluginswhich
 -- telescope
 local telescope = require 'telescope'
 local builtin = require 'telescope.builtin'
@@ -23,8 +23,14 @@ local wk = require 'which-key'
 local neotest = require 'neotest'
 
 -- tmux navigator
-vim.g.tmux_navigator_no_mappings = 1
-vim.g.tmux_navigator_save_on_switch = 2
+-- vim.g.tmux_navigator_no_mappings = 1
+-- vim.g.tmux_navigator_save_on_switch = 2
+
+-- rest.vim
+-- local rest = require 'rest-nvim'
+
+-- nvimtree
+local api = require 'nvim-tree.api'
 
 local conf = {
     show_help = false,
@@ -75,6 +81,7 @@ wk.register({
         o = { vim.cmd.OverseerOpen, 'Show tasks output' },
         q = { builtin.quickfix, 'Quickfix' },
         c = { vim.cmd.Noice, 'Noice console messages' },
+        w = { ':Telescope lsp_dynamic_workspace_symbols<CR>', 'Search Workspace types' },
     },
 })
 
@@ -83,6 +90,8 @@ wk.register({ ["<F4>"] = { dapui.eval, 'Debug eval' } }, { mode = 'v' })
 wk.register({ ["<C-t>"] = { vim.cmd.ToggleTerm, 'Toggle Term' } }, { mode = { 't', 'n' } })
 wk.register({ ["<C-b>"] = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", 'Toggle Term tab' } },
     { mode = { 't', 'n' } })
+
+
 
 -- debug normal mode
 wk.register({
@@ -107,22 +116,85 @@ wk.register({
     ["<leader>u"] = {
         name = "utils",
         t = { vim.cmd.TagbarToggle, 'Toggle tagbar' },
+        p = { vim.cmd.PresentingStart, 'Present start' },
         u = { vim.cmd.UndotreeToggle, 'Show undotree' },
         l = { vim.cmd.Lazy, 'Lazy plugin manager' },
         d = { vim.cmd.TroubleToggle, 'Show diagnostics panel' },
+        D = { vim.cmd.TodoLocList, 'Show comments diagnostics list' },
         m = { vim.cmd.MarkdownPreview, 'Markdown Preview' },
+        a = { function() vim.cmd(":CellularAutomaton make_it_rain") end, 'AFK' },
         z = { telescope.extensions.zoxide.list, 'Show zoxide directories' },
         h = { builtin.highlights, "Highlights" },
+        -- a = { rest.run, "Execure nvim rest request under cursor" },
+        r = { vim.cmd.SnipRun, 'Run code' },
+        v = { vim.cmd.Pastify, 'Paste img' },
+        s = {
+            name = "Swap Buffer",
+            h = { function() require("swap-buffers").swap_buffers("h") end, "Swap left" },
+            l = { function() require("swap-buffers").swap_buffers("l") end, "Swap right" },
+            j = { function() require("swap-buffers").swap_buffers("j") end, "Swap down" },
+            k = { function() require("swap-buffers").swap_buffers("k") end, "Swap up" },
+        },
         j = {
             name = "Jacoco coverage",
             t = { blanket.stop, 'Coverage blanket terminate' },
             s = { blanket.start, 'Coverage blanket start' },
             r = { blanket.refresh, 'Coverage blanket refresh' },
-        }
+        },
+        g = {
+            name = "Git",
+            j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
+            k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
+            b = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
+            p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
+            r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
+            R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
+            s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
+            u = {
+                "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
+                "Undo Stage Hunk",
+            },
+            o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
+            -- b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
+            c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
+            h = {
+                "<cmd>DiffviewFileHistory % <cr>", "File history",
+            },
+            l = {
+                "<cmd>DiffviewFileHistory <cr>", "Git history",
+            },
+            d = {
+                "<cmd>Gitsigns diffthis HEAD<cr>", "Diff",
+            },
+        },
     },
 })
 
-wk.register({ ["<leader>uc"] = { function() vim.cmd(":CarbonNow") end, 'Create code snippet image' } }, { mode = 'v' })
+-- [<leader>j] - jupyter+
+wk.register({
+    ["<leader>j"] = {
+        name = "Jupyter Notebooks",
+        a = { vim.cmd.JupyniumStartAndAttachToServer, 'Start and attach to Jupynium server' },
+        f = {
+            function()
+                local filename_wo_ext = vim.fn.expand "%:t:r:r"
+                filename_wo_ext = filename_wo_ext .. '.ipynb'
+                vim.cmd.JupyniumStartSync(filename_wo_ext)
+            end,
+            'Open Jupyter Notebook and start to sync'
+        },
+    }
+}, { mode = 'n' })
+
+wk.register({
+    ["<leader>uc"] =
+    { function() vim.cmd(":CarbonNow") end, 'Create code snippet image' }
+}, { mode = 'v' })
+
+wk.register({
+    ["<leader>ur"] =
+    { function() require 'sniprun'.run('v') end, 'Run code' }
+}, { mode = 'v' })
 
 -- [<leader>h] - harpoon+
 wk.register({
@@ -135,18 +207,25 @@ wk.register({
     },
 }, { mode = 'n' })
 
+
 -- [<C-x>] - harpoon fast nav
 wk.register({
-    ['<C-m>'] = { harpoon.ui.toggle_quick_menu, 'Harpoon quick menu' },
-    ['<C-1>'] = { function() harpoon.ui.nav_file(1) end, 'Go to harpoon mark 1' },
-    ['<C-2>'] = { function() harpoon.ui.nav_file(2) end, 'Go to harpoon mark 2' },
-    ['<C-3>'] = { function() harpoon.ui.nav_file(3) end, 'Go to harpoon mark 3' },
-    ['<C-4>'] = { function() harpoon.ui.nav_file(4) end, 'Go to harpoon mark 4' },
-    ['<C-5>'] = { function() harpoon.ui.nav_file(5) end, 'Go to harpoon mark 5' },
-    ['<C-6>'] = { function() harpoon.ui.nav_file(6) end, 'Go to harpoon mark 6' },
-    ['<C-7>'] = { function() harpoon.ui.nav_file(7) end, 'Go to harpoon mark 7' },
-    ['<C-8>'] = { function() harpoon.ui.nav_file(8) end, 'Go to harpoon mark 8' },
-    ['<C-9>'] = { function() harpoon.ui.nav_file(9) end, 'Go to harpoon mark 9' },
+    ['<C-f>']     = { harpoon.ui.toggle_quick_menu, 'Harpoon quick menu' },
+    ['<C-g>']     = { function() harpoon.ui.nav_next() end, 'Go to harpoon next' },
+    ['<C-q>']     = { function() harpoon.ui.nav_prev() end, 'Go to harpoon previous' },
+    ['<C-1>']     = { function() harpoon.ui.nav_file(1) end, 'Go to harpoon mark 1' },
+    ['<C-2>']     = { function() harpoon.ui.nav_file(2) end, 'Go to harpoon mark 2' },
+    ['<C-3>']     = { function() harpoon.ui.nav_file(3) end, 'Go to harpoon mark 3' },
+    ['<C-4>']     = { function() harpoon.ui.nav_file(4) end, 'Go to harpoon mark 4' },
+    ['<C-5>']     = { function() harpoon.ui.nav_file(5) end, 'Go to harpoon mark 5' },
+    ['<C-6>']     = { function() harpoon.ui.nav_file(6) end, 'Go to harpoon mark 6' },
+    ['<C-7>']     = { function() harpoon.ui.nav_file(7) end, 'Go to harpoon mark 7' },
+    ['<C-8>']     = { function() harpoon.ui.nav_file(8) end, 'Go to harpoon mark 8' },
+    ['<C-9>']     = { function() harpoon.ui.nav_file(9) end, 'Go to harpoon mark 9' },
+    ["<C-Up>"]    = { function() require("swap-buffers").swap_buffers("k") end, "Swap up" },
+    ["<C-Down>"]  = { function() require("swap-buffers").swap_buffers("j") end, "Swap down" },
+    ["<C-Left>"]  = { function() require("swap-buffers").swap_buffers("h") end, "Swap left" },
+    ["<C-Right>"] = { function() require("swap-buffers").swap_buffers("l") end, "Swap right" },
 }, { mode = 'n', 'i', 'v' })
 
 wk.register({
@@ -156,10 +235,15 @@ wk.register({
     },
 }, { mode = { 'o', 'v' } })
 
+vim.cmd([[
+    let g:test#preserve_screen = 0
+]])
 
 wk.register({
     ["<leader>t"] = {
         name = "tests",
+        m = { function() vim.cmd(":TestNearest") end, 'Run nearest method with vim-test' },
+        c = { function() vim.cmd(":TestFile -strategy=toggleterm") end, 'Run class/file tests with vim-test' },
         t = { function() neotest.run.run() end, 'Run nearest test' },
         d = { function() neotest.run.run({ strategy = 'dap' }) end, 'Debug nearest test' },
         f = { function() neotest.run.run(vim.fn.expand('%')) end, 'Run all tests in the file' },
@@ -178,7 +262,7 @@ wk.register({
 })
 
 wk.register({
-    ['<M-s>'] = { vim.cmd.write, 'Save buffer' },
+    ['<C-s>'] = { vim.cmd.write, 'Save buffer' },
 }, { mode = { 't', 'n', 'i' } })
 
 
@@ -186,7 +270,7 @@ wk.register({
     ["<leader>e"] = { vim.cmd.NvimTreeToggle, 'File explorer' },
     ["<leader>D"] = { 'Type definitions' },
     ["<leader>k"] = { 'Signature help' },
-    ["<leader>xw"] = { "wbdf elp", 'Swap two words separated by space' },
+    ["<leader>xw"] = { "SWAP help", 'Swap two words separated by space' },
     ["<leader>rn"] = { 'Rename' },
     ["K"] = { 'Lsp hover hints' },
     ["<leader>q"] = { vim.cmd.Bdelete, 'Buffer delete' }
@@ -220,6 +304,7 @@ wk.register({
     end, 'Go to tests (Alternate)' },
     ["gs"] = { vim.cmd.G, "Source control" },
     ["gc"] = { "Comment" },
+    ["gC"] = { function() require("treesitter-context").go_to_context() end, 'Go to context' },
 })
 
 -- [m] marks+
@@ -241,10 +326,9 @@ wk.register({
 
 
 wk.register({
-    ["<Tab>"] = { vim.diagnostic.goto_prev, "Go to previous lsp diagnostics." },
-    ["<S-Tab>"] = { vim.diagnostic.goto_next, "Go to next lsp diagnostics." }
+    ["<Tab>"] = { vim.diagnostic.goto_next, "Go to previous lsp diagnostics." },
+    ["<S-Tab>"] = { vim.diagnostic.goto_prev, "Go to next lsp diagnostics." }
 }, { mode = { "n" } })
-
 
 
 -- wk.register({
@@ -272,13 +356,15 @@ vim.cmd [[
 
 -- chat-gpt
 wk.register({
-    ["<M-p>"] = { vim.cmd.ChatGPT, 'ChatGPT Prompt' },
+    ["<D-p>"] = { vim.cmd.ChatGPT, 'ChatGPT Prompt' },
+    ["<D-s>"] = { vim.cmd.write, 'Write' },
 }, { mode = { 'i', 'n', 'v', 't' } })
 
 wk.register({
     c = {
         name = "ChatGPT",
-        p = { vim.cmd.ChatGPT, "ChatGPT Prompt" },
+        -- p = { vim.cmd.ChatGPT, "ChatGPT Prompt" },
+        c = { "<cmd>ChatGPT<CR>", "ChatGPT Prompt" },
         e = { vim.cmd.ChatGPTEditWithInstruction, "Edit with instruction" },
         g = { function() vim.cmd.ChatGPTRun("grammar_correction") end, "Grammar Correction" },
         k = { function() vim.cmd.ChatGPTRun("keywords") end, "Keywords" },
@@ -293,24 +379,31 @@ wk.register({
         i = { vim.cmd.ChatGPTActAs, "Impersonate, Act as.." },
         tt = { function() vim.cmd.ChatGPTRun("add_tests") end, "Add Tests" },
     },
+    m = {
+        r = { "<cmd>CellularAutomaton make_it_rain<CR>", 'Make it rain! Perf your terminal' }
+    }
 }, {
     prefix = "<leader>",
     mode = { "v", "n" },
 })
 
--- tmux
-wk.register({
-    ["<C-k>"] = { vim.cmd.TmuxNavigateUp, 'Tmux navigate up' },
-    ["<C-j>"] = { vim.cmd.TmuxNavigateDown, 'Tmux navigate down' },
-    ["<C-h>"] = { vim.cmd.TmuxNavigateLeft, 'Tmux navigate left' },
-    ["<C-l>"] = { vim.cmd.TmuxNavigateRight, 'Tmux navigate right' },
-    ["<C-s>"] = { 'ggVG', 'Select all lines' },
-})
+-- -- tmux
+-- wk.register({
+--     ["<C-k>"] = { vim.cmd.TmuxNavigateUp, 'Tmux navigate up' },
+--     ["<C-j>"] = { vim.cmd.TmuxNavigateDown, 'Tmux navigate down' },
+--     ["<C-h>"] = { vim.cmd.TmuxNavigateLeft, 'Tmux navigate left' },
+--     ["<C-l>"] = { vim.cmd.TmuxNavigateRight, 'Tmux navigate right' },
+--     ["<C-e>"] = { vim.cmd.NvimTreeFindFile, 'NvimTree Focus file' },
+--     ["<leader>a"] = { 'ggVG', 'Select all lines' },
+-- })
 
 -- spectre
 wk.register({
-    ["<leader>S"] = { function() require("spectre").open() end, 'Open Spectre' },
     ["<leader>sw"] = { function() require("spectre").open_visual({ select_word = true }) end, 'Search current word' },
+    ["<leader>sP"] = { function() require("spectre").open() end, 'Open Spectre' },
+    ["<leader>sd"] = { function() require("persistence").stop() end, "Don't save current session" },
+    ["<leader>sl"] = { function() require("persistence").load() end, 'Restore Session' },
+    ["<leader>sL"] = { function() require("persistence").load({ last = true }) end, 'Restore last session' },
     ["<leader>sp"] = { function() require("spectre").open_file_search({ select_word = true }) end,
         'Search on current file' },
 }, { mode = { "n" }
@@ -319,3 +412,76 @@ wk.register({
 wk.register({
     ["<leader>sw"] = { '<esc><cmd>lua require("spectre").open_visual()<CR>', 'Open Spectre' },
 }, { mode = { "v" } })
+
+
+local telescope_reload = require 'user.plugins.configs.telescope_reload'
+
+wk.register({ ["<leader>sr"] = { telescope_reload.reload, 'Reload lua modules.' } })
+
+local new_note = function()
+    local day_folder = os.date("Journals/%Y/%m-%B/%d-%a/%F-%a-note-")
+    vim.cmd("ObsidianNew " .. day_folder .. vim.fn.input("Name: ") .. '.md')
+    vim.cmd("ObsidianTemplate")
+end
+
+local function escape_magic(pattern)
+    return (pattern:gsub("%W", "%%%1"))
+end
+
+local get_path_note_under_cursor = function()
+    local path = api.tree.get_node_under_cursor().absolute_path
+
+    if path then
+        -- replace absolute_path for empty
+        path = path:gsub(escape_magic(vim.fn.getcwd() .. "/"), "")
+
+        -- replace filename for empty in case of buffer focusing
+        path = path:gsub(escape_magic(vim.fn.expand "%:t"), "")
+
+        return path
+    end
+
+    return ''
+end
+
+local new_blank_note = function()
+    local path = api.tree.get_node_under_cursor().absolute_path
+
+    if path then
+        -- replace absolute_path for empty
+        path = path:gsub(escape_magic(vim.fn.getcwd() .. "/"), "")
+
+        -- replace filename for empty in case of buffer focusing
+        path = path:gsub(escape_magic(vim.fn.expand "%:t"), "")
+
+        -- create obsidian note in the current nvimtree path
+        vim.cmd("ObsidianNew " .. path .. '/' .. vim.fn.input("Name: ") .. '.md')
+    end
+end
+
+local today_note = function()
+    os.execute('mkdir -p ' .. os.date("Journals/%Y/%m-%B/%d-%a"))
+    vim.cmd.ObsidianToday()
+end
+
+wk.register({
+    ['<leader>o'] = {
+        name = 'Obsidian',
+        t = { vim.cmd.ObsidianTomorrow, 'Obsidian tomorrow note' },
+        d = { today_note, 'Obsidian daily note' },
+        y = { vim.cmd.ObsidianYesterday, 'Obsidian yesterday note' },
+        c = { vim.cmd.ObsidianTemplate, 'Complete with template' },
+        o = { vim.cmd.ObsidianOpen, 'Obsidian open note' },
+        f = { vim.cmd.ObsidianQuickSwitch, 'Jump to another note' },
+        s = { vim.cmd.ObsidianSearch, 'Search in notes' },
+        n = { new_note, 'Obsidian new note from template' },
+        p = { function()
+            vim.cmd("ObsidianPasteImg " ..
+                get_path_note_under_cursor() .. '/' .. vim.fn.input("Image Name: "))
+        end, 'Obsidian paste image in folder' },
+        P = { function()
+            vim.cmd("ObsidianPasteImg " .. vim.fn.input("Image Name: "))
+        end, 'Obsidian paste image' },
+        b = { new_blank_note, 'Obsidian new blank note' },
+    }
+})

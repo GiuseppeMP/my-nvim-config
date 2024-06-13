@@ -1,0 +1,9 @@
+{
+    "assertj_that": {
+        "prefix": "spocktest",
+        "body": [
+            "class ${} extends spock.lang.Specification { }"
+        ],
+        "description": "Create spock test class"
+    }
+}

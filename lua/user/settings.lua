@@ -1,3 +1,4 @@
+--
 -- General Settings
 --
 local o = vim.o -- For the opt
@@ -11,13 +12,11 @@ o.autoindent = true
 o.cindent = true
 o.autoread = true
 o.backspace = [[indent,eol,start]]
-
 o.mouse = 'a'
 o.termguicolors = true
 o.background = 'dark'
 o.showmode = true
 o.hidden = true
--- o.title = false
 o.number = true
 o.relativenumber = true
 o.showcmd = true
@@ -35,8 +34,8 @@ o.foldenable = false
 o.foldlevel = 2
 o.updatetime = 500
 o.shortmess = o.shortmess .. 'c'
--- o.shortmess:append({'c'})
 o.signcolumn = 'auto'
+-- o.signcolumn = 'auto:1-2'
 o.encoding = 'UTF-8'
 o.wm = 5
 o.scrolloff = 5
@@ -53,18 +52,32 @@ o.compatible = false
 o.timeoutlen = 700
 o.timeout = true
 o.cmdheight = 0
-o.ch = 1 -- hide command line
--- o.winbar = "%f"
--- o.winbar = "%=%m %f"
--- o.winbar = "%= %f"
-o.spelllang = 'en_us'
+o.ch = 0 -- hide command line
+o.spelllang = 'en_us,pt'
 o.spell = false
 o.cursorline = true
 o.laststatus = 3
-o.guifont = 'CaskaydiaCove Nerd Font SemiLight:h12'
--- o.guifont='Hack Nerd Font Mono Regular:h12'
--- o.guifont='Fira Code Regular:h12'
-
--- disable netrw at the very start of your init.lua (strongly advised)
+-- o.guifont = 'CaskaydiaCove Nerd Font SemiLight:h12'
+o.guifont = 'FiraCode Nerd Font'
 g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
+
+
+vim.opt.fillchars = {
+    horiz     = '━',
+    horizup   = '┻',
+    horizdown = '┳',
+    vert      = '┃',
+    vertleft  = '┫',
+    vertright = '┣',
+    verthoriz = '╋',
+}
+
+-- g.tagbar_left=1
+
+vim.cmd [[ autocmd FileType latex,tex,md,markdown setlocal spell ]]
+-- vim.cmd [[ autocmd FileType  * call tagbar#autoopen(0) ]]
+
+
+-- FIX LSP Integration and treesitter
+-- vim.cmd [[ autocmd FileType javascript,typescript setlocal shiftwidth=2 ]]

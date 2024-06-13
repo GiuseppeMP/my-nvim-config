@@ -1,5 +1,6 @@
 # My nvim configs
 
+
 > README in WIP...
 
 *Read this in other languages: 🇺🇸[English](README.md), 🇧🇷[Portuguese](README.pt-br.md).*
@@ -15,61 +16,17 @@ I work daily with Python, Java, Lua, Golang, Javascript, Typescript, HTML/YAML/J
 Let me know if you have any questions, other lsp help, or suggestions, free to [open an
 issue](https://github.com/GiuseppeMP/my-nvim-config/issues/new).
 
-## ✨ Features
+## Demo
 
-You can see all keymaps in `./lua/user/plugins/configs/which_key.lua` file.
-
-* Outstanding colorscheme Tokyonight based with `folke/tokyonight.nvim`
-* File explorer with `nvim-tree/nvim-tree.lua` | `<leader>e`
-* Intuitive keymaps feedback with `folke/which-key.nvim` | `<leader>fk`
-* Repeat commands and plugins with `tpope/vim-repeat` | `.`
-* Open what is cursor with system default with `chrishrb/gx.nvim` | `gx`
-* Fast surround tasks with `tpope/vim-surround` | `ys, cs, ds [motion]`
-* Powerline fonts with `powerline/fonts`
-* Awesome commentary engine with `tpope/vim-commentary` | `gcc`
-* Powerful Parser and Syntax Highlighting with `nvim-treesitter/nvim-treesitter`
-* Extended text object with `nvim-treesitter/nvim-treesitter-textobjects`
-* Improved text objects by context with `nvim-treesitter/nvim-treesitter-textsubjects`
-* Highlighting under cursor and smart renames with `nvim-treesitter/nvim-treesitter-refactor`
-* Awesome commentary improved able to change the comment type based on cursor position with `JoosepAlviste/nvim-ts-context-commentstring`
-* Nice context always visible with `romgrk/nvim-treesitter-context`
-* Powerful autoclose and rename xml/htmls tags with `windwp/nvim-ts-autotag`
-* Nice rainbow parentheses and more with `HiPhish/nvim-ts-rainbow2`
-* Handful keymaps for close and handle buffers with `moll/vim-bbye` | `<leader>q`
-* Amazing tabs and more with `akinsho/bufferline.nvim`
-* Full customizable statusline with `windwp/windline.nvim`
-* Git integration with `tpope/vim-fugitive` | `gs`
-* Full fuzzy file finder with `nvim-telescope/telescope.nvim` | `<leader>ff`
-* Simple and effective tagbar with `preservim/tagbar`
-* Robust test frameworks with `nvim-neotest/neotest` and `vim-test/vim-test`
-* Breeze navigation between tests and implementations with `vim-projectionist` | `ga`
-* Amazing BLAAAAZING FASTTT markers plugin with `ThePrimeagen/harpoon`
-* Vim smoother than never with `psliwka/vim-smoothie`
-* Floating terminals with `voldikss/vim-floaterm`
-* Collection of snippets powered by `honza/vim-snippets`
-* Track your changes with awesome signs with `lewis6991/gitsigns.nvim`
-* Markdown preview with `peek.nvim`
-* Alternate true <-> false and more using `<c-x><c-a>` with `nat-418/boole.nvim`
-* The best binary installer that nvim has ever seen with `williamboman/mason.nvim`
-* All LSPs in one place with `neovim/nvim-lspconfig`
-* The most famous java LSP `mfussenegger/nvim-jdtls`
-* Amazing bridge to nvim LSP interface with `jose-elias-alvarez/null-ls.nvim`
-* Debug is not a problem in vim anymore with `mfussenegger/nvim-dap`
-* Amazing python DAP with `mfussenegger/nvim-dap-python`
-* Most efficient debugger UI with `rcarriga/nvim-dap-ui`
-
-
-
-[wip] continue...
-
+![Demo](./docs/images/04-03-24-ss.png)
 
 ## ⚡️ Dependencies and Requirements
 
-* Neovim >= 0.9.0
+* Neovim >= 0.9.0 or Nightly
 * macOS (`homebrew`)
 * macOS (`open`), Linux (`xdg-open`) or Windows (`powershell.exe start explorer.exe`)
 
-This configuration has plugins that relies on some external things.
+This configuration has plugins that relies on some external thiNithlyngs.
 
 ### 🍺 Homebrew Packages
 
@@ -79,6 +36,7 @@ brew install gnu-sed
 brew install fd
 brew install fzf
 brew install gpg
+brew install go
 ```
 
 ## Language Server, Linters, DAPs and Formatters

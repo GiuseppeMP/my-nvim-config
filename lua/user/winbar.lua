@@ -30,13 +30,11 @@ M.winbar_filetype_exclude = {
 }
 
 M.get_filename = function()
-
     local filename = vim.fn.expand "%:t"
     local extension = vim.fn.expand "%:e"
     local f = require "user.functions"
 
     if not f.isempty(filename) then
-
         local file_icon, file_icon_color =
             require("nvim-web-devicons").get_icon_color(filename, extension, { default = true })
 
@@ -49,7 +47,8 @@ M.get_filename = function()
             file_icon_color = ""
         end
 
-        return " " .. "%=%#" .. hl_group .. "#" .. file_icon .. "%*" .. " " .. "%#Winbar#" .. filename .. "%*" .. " "
+        -- return " " .. "%=%#" .. hl_group .. "#" .. file_icon .. "%*" .. " " .. "%#Winbar#" .. filename .. "%*" .. " "
+        return " " .. "%#" .. hl_group .. "#" .. file_icon .. " %*" .. " " .. "%#Winbar#" .. filename .. "%*" .. " "
     end
 end
 
@@ -83,6 +82,7 @@ M.create_winbar = function()
     )
 end
 
-M.create_winbar()
+--disabled temporarily because of incline.nvim
+-- M.create_winbar()
 
 return M

@@ -36,5 +36,9 @@ lspconfig.ltex.setup {
                 ['en-GB'] = words,
             },
         }
-    }
+    },
+    filetypes = {
+        "ltex",
+    },
+
 }
