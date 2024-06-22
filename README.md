@@ -35,6 +35,9 @@ brew install safe-rm
 brew install gnu-sed
 brew install fd
 brew install fzf
+brew install npm
+brew install gpg
+brew install go
 ```
 
 ## Language Server, Linters, DAPs and Formatters
