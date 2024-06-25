@@ -11,6 +11,8 @@ local vim_components = require('windline.components.vim')
 local hostname = vim.fn.hostname()
 local icon_comp = b_components.cache_file_icon({ default = '', hl_colors = { 'bwhite', 'bg' } })
 
+tokyo_colors.green = '#98f3a1'
+
 local nvim_hl = {
     Normal = { 'black', 'red' },
     Insert = { 'black', 'green', 'bold' },
@@ -406,7 +408,7 @@ windline.setup({
         colors.blue = tokyo_colors.blue
         colors.yellow = tokyo_colors.yellow
         colors.green = tokyo_colors.green
-        colors.bgreen = '#69ff94'
+        colors.bgreen = '#98f3a1'
         colors.vgreen = '#0db9d7'
         colors.vgreen_bg = '#203346'
         colors.bg = tokyo_colors.bg

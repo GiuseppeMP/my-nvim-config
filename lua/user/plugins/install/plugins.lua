@@ -118,7 +118,7 @@ M.plugins = {
     -- Fuzzy finder written in lua
     {
         'nvim-telescope/telescope.nvim',
-        tag = '0.1.2'
+        tag = '0.1.8'
     },
 
     -- Tagbar outline
@@ -328,14 +328,13 @@ M.plugins = {
 
     -- better easymotion
     {
-        "phaazon/hop.nvim",
+        "smoka7/hop.nvim",
         config = function()
-            -- using homerow hopping is much confortable and faster
             local querty_home_row = 'asdfghjkl;';
             -- local colemak_dh_home_row = 'arstgmneio';
             require 'hop'.setup({ keys = querty_home_row .. 'woei' })
         end,
-        tag = "v2.0.3"
+        version = "*"
     },
 
     -- easymotion by syntax hop+treesitter

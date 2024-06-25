@@ -4,6 +4,8 @@ local tokyo_colors = require("tokyonight.colors").setup()
 
 local tokyo = { fg = tokyo_colors.fg, bg = 'none', sp = tokyo_colors.sp }
 
+tokyo.green = '#98f3a1'
+
 local offsets = {}
 
 -- for _, win in ipairs(vim.fn.getwininfo()) do
@@ -32,13 +34,13 @@ require 'bufferline'.setup({
         close_button_selected = { fg = tokyo_colors.red, bg = tokyo.bg },
         buffer_visible = tokyo,
         buffer_selected = {
-            fg = '#69ff94',
+            fg = '#98f3a1',
             bg = tokyo.bg
         },
         numbers = tokyo,
         numbers_visible = tokyo,
         numbers_selected = {
-            fg = '#69ff94',
+            fg = '#98f3a1',
             bg = tokyo.bg,
             sp = tokyo_colors.sp,
             bold = true,

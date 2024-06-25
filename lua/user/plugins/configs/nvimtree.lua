@@ -163,8 +163,8 @@ end
 -- Events
 
 
-local java_rename = require("java.rename")
-local utils = require("java.rename.utils")
+local java_rename = require("simaxme-java.rename")
+local utils = require("simaxme-java.rename.utils")
 
 local status, api = pcall(require, "nvim-tree.api")
 

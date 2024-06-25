@@ -3,23 +3,51 @@
 -- Ex: NVIM_OBSIDIAN_VAULTS="path/workspace1,path/workspace2"
 local obsidian_vaults = os.getenv "NVIM_OBSIDIAN_VAULTS"
 
+local templateFolder = "Templates/Neovim"
+
+local path = require "plenary.path"
+
+local function file_exists(file)
+    -- some error codes:
+    -- 13 : EACCES - Permission denied
+    -- 17 : EEXIST - File exists
+    -- 20	: ENOTDIR - Not a directory
+    -- 21	: EISDIR - Is a directory
+    local isok, errstr, errcode = os.rename(file, file)
+    if isok == nil then
+        if errcode == 13 then
+            -- Permission denied, but it exists
+            return true
+        end
+        return false
+    end
+    return true
+end
+
+local function dir_exists(path)
+    return file_exists(path .. "/")
+end
+
 if obsidian_vaults == nil then
+    return
+end
+
+local templateDir = (obsidian_vaults .. "/" .. templateFolder)
+
+if dir_exists(templateDir) == false then
     return
 end
 
 local function getObsidianWorkspaces()
     local vaults = {}
-
     if obsidian_vaults then
         for vault in obsidian_vaults:gmatch('[^,%s]+') do
             local w = { name = vault, path = vault }
             table.insert(vaults, w)
         end
     end
-
     return vaults
 end
-
 
 -- This is how I use Obsidian
 -- You can customize as you wish
@@ -38,7 +66,7 @@ require 'obsidian'.setup {
         template = "DailyNvim.md"
     },
     templates = {
-        subdir = "Templates/Neovim",
+        subdir = templateFolder,
         date_format = "%F-%a-note",
         time_format = "%H:%M",
         -- A map for custom variables, the key should be the variable and the value a function
