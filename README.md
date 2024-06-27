@@ -25,6 +25,7 @@ issue](https://github.com/GiuseppeMP/my-nvim-config/issues/new).
 * Neovim >= 0.9.0 or Nightly
 * macOS (`homebrew`)
 * macOS (`open`), Linux (`xdg-open`) or Windows (`powershell.exe start explorer.exe`)
+* Deno
 
 This configuration has plugins that relies on some external thiNithlyngs.
 

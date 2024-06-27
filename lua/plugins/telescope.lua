@@ -177,9 +177,17 @@ local config = function()
     end
 end
 return
-
 {
-    'nvim-telescope/telescope.nvim',
-    tag = '0.1.8',
-    config = config
+    {
+        'nvim-telescope/telescope.nvim',
+        tag = '0.1.8',
+        config = config
+    },
+    {
+        'gbrlsnchs/telescope-lsp-handlers.nvim'
+    },
+    {
+        'jvgrootveld/telescope-zoxide',
+        dependencies = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' }
+    },
 }
