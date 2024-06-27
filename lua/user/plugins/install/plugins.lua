@@ -230,11 +230,6 @@ M.plugins = {
         lazy = false
     },
 
-    -- startup screen
-    {
-        'goolord/alpha-nvim',
-    },
-
     -- undo history tree
     { 'mbbill/undotree' },
 
