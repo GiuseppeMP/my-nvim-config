@@ -115,12 +115,6 @@ M.plugins = {
     -- Interface git atraves de :G (comando)
     { 'tpope/vim-fugitive' },
 
-    -- Fuzzy finder written in lua
-    {
-        'nvim-telescope/telescope.nvim',
-        tag = '0.1.8'
-    },
-
     -- Tagbar outline
     {
         'preservim/tagbar'
@@ -1148,6 +1142,9 @@ M.plugins = {
     },
     {
         'marilari88/neotest-vitest'
+    },
+    {
+        import = "plugins"
     }
 }
 return M.plugins

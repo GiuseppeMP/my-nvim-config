@@ -18,7 +18,7 @@ local plugins = require("user.plugins.install.plugins")
 
 
 require("lazy").setup({
-    spec = plugins,
+    spec = { plugins },
     ui = {
         border = "rounded"
     }
