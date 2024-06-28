@@ -14,11 +14,8 @@ end
 ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
-local plugins = require("user.plugins.install.plugins")
-
-
 require("lazy").setup({
-    spec = { plugins },
+    spec = { { import = "plugins" } },
     ui = {
         border = "rounded"
     }
