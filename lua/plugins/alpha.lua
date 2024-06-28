@@ -3,6 +3,7 @@ local function config()
     local dash = require 'alpha.themes.startify'
     --https://patorjk.com/software/taag/#p=display&v=0&f=ANSI%20Shadow&t=Hack%20time!%0A
     -- Create your logo at /\
+    ---@diagnostic disable-next-line: unused-local
     local logo = {
 
         [[ ███████╗ ██████╗ ██╗     ██╗      ██████╗ ██╗    ██╗    ████████╗██╗  ██╗███████╗      ]],

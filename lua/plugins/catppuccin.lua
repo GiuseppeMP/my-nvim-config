@@ -48,6 +48,7 @@ local config = function()
         },
     })
     -- setup must be called before loading
+    ---@diagnostic disable-next-line: undefined-field
     vim.cmd.colorscheme "catppuccin"
 end
 
