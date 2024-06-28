@@ -42,7 +42,24 @@ return {
         config = function() require('spectre').setup() end,
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
+    { 'tpope/vim-fugitive' },
+    { 'nvim-lua/plenary.nvim', },
+    -- vim tests
+    { 'kana/vim-vspec', },
+    -- fix cursor in tests/debug
+    { 'antoinemadec/FixCursorHold.nvim' },
+    { 'voldikss/vim-floaterm' },
+    { "SmiteshP/nvim-navic" },
+    { 'kmonad/kmonad-vim' },
+    { 'Eandrju/cellular-automaton.nvim' },
+    { 'sindrets/diffview.nvim' },
+    { "sotte/presenting.vim" },
     {
-        "nvim-neotest/nvim-nio"
+        'windwp/nvim-autopairs',
+        event = "InsertEnter",
+        opts = {}
     },
+    -- lsp kind icons
+    { 'onsails/lspkind.nvim' },
+    { 'skywind3000/asyncrun.vim' },
 }
