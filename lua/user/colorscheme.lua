@@ -72,8 +72,8 @@ vim.api.nvim_set_hl(0, 'NvimTreeFolderIcon', { fg = colors.purple, bg = 'none' }
 vim.api.nvim_set_hl(0, 'NvimTreeDiagnosticErrorFileHL', { fg = colors.red, bg = 'none', undercurl = true })
 vim.api.nvim_set_hl(0, 'NvimTreeDiagnosticErrorFolderHL', { fg = colors.red, bg = 'none', undercurl = true })
 
-vim.api.nvim_set_hl(0, 'NvimTreeOpenedFolderIcon', { fg = colors.bg, bg = 'none' })
-vim.api.nvim_set_hl(0, 'NvimTreeOpenedFolderName', { fg = colors.bg, bg = 'none' })
+vim.api.nvim_set_hl(0, 'NvimTreeOpenedFolderIcon', { fg = colors.green, bg = 'none' })
+vim.api.nvim_set_hl(0, 'NvimTreeOpenedFolderName', { fg = colors.green, bg = 'none' })
 vim.api.nvim_set_hl(0, 'NvimTreeFileIcon', { fg = colors.bg, bg = 'none' })
 -- vim.api.nvim_set_hl(0, 'NvimTreeDirectoryBufferline', { fg = colors.purple, bg = 'none' })
 vim.api.nvim_set_hl(0, 'NvimTreeDirectoryBufferline', { bg = colors.purple, fg = colors.black })
