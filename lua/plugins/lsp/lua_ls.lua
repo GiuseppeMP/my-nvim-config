@@ -2,7 +2,7 @@ local root_pattern = require 'lspconfig.util'.root_pattern
 
 require("lspconfig").lua_ls.setup {
 
-    on_attach = require("user.plugins.configs.lsp.utils.on_attach_options").get({ lsp_client = 'lua_ls' }),
+    on_attach = require("plugins.lsp.utils.on_attach_options").get({ lsp_client = 'lua_ls' }),
 
     root_dir = root_pattern(".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml", "stylua.toml", "selene.toml",
         "selene.yml", ".git"),

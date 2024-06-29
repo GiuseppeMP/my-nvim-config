@@ -1,6 +1,6 @@
 local lspconfig = require 'lspconfig'
-local on_attach_options = require("user.plugins.configs.lsp.utils.on_attach_options")
-local capabilities_options = require("user.plugins.configs.lsp.utils.capabilities_options")
+local on_attach_options = require("plugins.lsp.utils.on_attach_options")
+local capabilities_options = require("plugins.lsp.utils.capabilities_options")
 
 local on_attach_eslint = function(client, bufnr)
     client.server_capabilities.documentFormattingProvider = true

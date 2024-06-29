@@ -67,6 +67,6 @@ M.load_breakpoints = function()
     end
 end
 
-vim.cmd [[ autocmd BufRead * :lua require'user.plugins.configs.dap.save_breakpoints'.load_breakpoints() ]]
+vim.cmd [[ autocmd BufRead * :lua require'plugins.dap.save_breakpoints'.load_breakpoints() ]]
 
 return M

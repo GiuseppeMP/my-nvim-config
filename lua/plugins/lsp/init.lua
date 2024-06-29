@@ -1,5 +1,13 @@
+local function config()
+    require 'plugins.lsp.setup'
+end
 return {
-    { 'neovim/nvim-lspconfig',  opt = { inlay_hints = { enabled = true } } },
+    {
+        'neovim/nvim-lspconfig',
+        config = config,
+        opt = { inlay_hints = { enabled = true } },
+        dependencies = { 'mfussenegger/nvim-jdtls' }
+    },
     { 'mfussenegger/nvim-jdtls' },
     {
         'mrcjkb/rustaceanvim',

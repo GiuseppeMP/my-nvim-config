@@ -34,20 +34,26 @@ vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'red', linehl = '',
 vim.cmd [[vnoremap <leader>de <Cmd>lua require("dapui").eval()<CR>]]
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
+    ---@diagnostic disable-next-line: undefined-field
     _G.dapui.current_win = vim.api.nvim_get_current_win()
+    ---@diagnostic disable-next-line: undefined-field
     vim.cmd.NvimTreeClose()
     dapui.open()
 end
 
 dap.listeners.before.event_terminated["dapui_config"] = function()
     dapui.close()
+    ---@diagnostic disable-next-line: undefined-field
     vim.api.nvim_set_current_win(_G.dapui.current_win)
+    ---@diagnostic disable-next-line: undefined-field
     vim.cmd.NvimTreeToggle()
 end
 
 dap.listeners.before.event_exited["dapui_config"] = function()
     dapui.close()
+    ---@diagnostic disable-next-line: undefined-field
     vim.api.nvim_set_current_win(_G.dapui.current_win)
+    ---@diagnostic disable-next-line: undefined-field
     vim.cmd.NvimTreeToggle()
 end
 
@@ -133,6 +139,6 @@ require("dapui").setup({
     }
 })
 
-require 'user.plugins.configs.dap.java'
-require 'user.plugins.configs.dap.python'
-require 'user.plugins.configs.dap.js'
+require 'plugins.dap.java'
+require 'plugins.dap.python'
+require 'plugins.dap.js'

@@ -1,9 +1,11 @@
 local home = os.getenv "HOME"
+local function config()
+    require 'plugins.dap.setup'
+end
 
 return {
     { 'rcarriga/nvim-dap-ui' },
     { 'mfussenegger/nvim-dap-python' },
-    { 'mfussenegger/nvim-dap' },
     { 'jayp0521/mason-nvim-dap.nvim' },
     {
         "theHamsta/nvim-dap-virtual-text",
@@ -44,4 +46,5 @@ return {
             end
         end
     },
+    { 'mfussenegger/nvim-dap', config = config },
 }

@@ -1,6 +1,6 @@
 local lspconfig = require 'lspconfig'
-local on_attach_options = require("user.plugins.configs.lsp.utils.on_attach_options")
-local capabilities_options = require("user.plugins.configs.lsp.utils.capabilities_options")
+local on_attach_options = require("plugins.lsp.utils.on_attach_options")
+local capabilities_options = require("plugins.lsp.utils.capabilities_options")
 
 local on_attach_rust_analyzer = function(client, bufnr)
     vim.keymap.set("n", "<leader>ca", function() vim.cmd.RustLsp('codeAction') end, { silent = true, buffer = bufnr })

@@ -3,7 +3,7 @@ local function config()
     -- telescope
     local telescope = require 'telescope'
     local builtin = require 'telescope.builtin'
-    local dap_save = require 'user.plugins.configs.dap.save_breakpoints'
+    local dap_save = require 'plugins.dap.save_breakpoints'
     local blanket = require 'blanket'
 
     -- nvim/hop
@@ -415,7 +415,7 @@ local function config()
     }, { mode = { "v" } })
 
 
-    local telescope_reload = require 'user.modules.telescope_reload'
+    local telescope_reload = require 'user.utils.telescope_reload'
 
     wk.register({ ["<leader>sr"] = { telescope_reload.reload, 'Reload lua modules.' } })
 

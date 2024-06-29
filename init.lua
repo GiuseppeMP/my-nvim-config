@@ -7,8 +7,6 @@ require("user.settings")
 
 require("user.lazy")
 
-require("user.plugins")
-
 require("user.autocmds")
 
 require('user.winbar')
