@@ -3,3 +3,6 @@ plugged
 plugin/packer_compiled.lua
 .lazy-lock.json
 lazy-lock.json
+spell/**.add.**
+spell/**.add
+spell/*.add

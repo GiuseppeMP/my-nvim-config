@@ -8,7 +8,6 @@ local lspconfig = require 'lspconfig'
 --  Resolve problem of not saving new works.
 --  * en.utf-8.add must be created using `zg` when set spell is on
 -- ===========================================
-local path = vim.fn.stdpath 'data' .. '/ltex/dictionaries/en.utf-8.add'
 local words = {}
 
 local create_json_data = function(dicio_path)
@@ -19,11 +18,20 @@ local create_json_data = function(dicio_path)
     end
 end
 
-create_json_data(path)
+local path_en = vim.fn.stdpath 'data' .. '/ltex/dictionaries/en.utf-8.add'
+local path_pt = vim.fn.stdpath 'data' .. '/ltex/dictionaries/pt.utf-8.add'
 
-for word in io.open(path, 'r'):lines() do
-    table.insert(words, word)
+create_json_data(path_en)
+create_json_data(path_pt)
+
+local function add_new_words(add_path)
+    for word in io.open(add_path, 'r'):lines() do
+        table.insert(words, word)
+    end
 end
+
+add_new_words(path_en)
+add_new_words(path_pt)
 
 lspconfig.ltex.setup {
     on_attach = on_attach_options.get { lsp_client = 'ltex' },
