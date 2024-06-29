@@ -26,7 +26,7 @@ local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 local workspace_folder = function() return vim.fn.stdpath "data" .. "/jdtls/workspace_root/" .. project_name end
 
 -- lombok jar path
-local lombok_jar = vim.fn.glob(home .. '/.config/nvim/jdtls/lombok-*.jar')
+local lombok_jar = vim.fn.glob(home .. '/.config/nvim/lua/plugins/lsp/files/jdtls/lombok-*.jar')
 
 -- jdtls path
 local jdtls_path = get_package_install_path('jdtls')
@@ -126,7 +126,7 @@ local function get_settings()
             format = {
                 settings = {
                     -- make sure to download the file from https://github.com/google/styleguide/blob/gh-pages/eclipse-java-google-style.xml
-                    url = home .. "/.config/nvim/jdtls/eclipse-java-google-style.xml",
+                    url = home .. "/.config/nvim/lua/plugins/lsp/files/jdtls/eclipse-java-google-style.xml",
                     profile = "GoogleStyle",
                 },
             },
