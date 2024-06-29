@@ -28,7 +28,6 @@ return {
     { 'kana/vim-vspec', },
     { 'antoinemadec/FixCursorHold.nvim' },
     { 'voldikss/vim-floaterm' },
-    { "SmiteshP/nvim-navic" },
     { 'kmonad/kmonad-vim' },
     { 'Eandrju/cellular-automaton.nvim' },
     { 'sindrets/diffview.nvim' },
