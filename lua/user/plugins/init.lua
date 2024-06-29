@@ -13,7 +13,7 @@ local configs = {
     -- configs modules
     -- { conf = function() require "user.plugins.configs.boole" end,         name = 'boole' },
     -- { conf = function() require "user.plugins.configs.bufferline" end,    name = 'bufferline' },
-    { conf = function() require "user.plugins.configs.cmp" end,           name = 'cmp' },
+    -- { conf = function() require "user.plugins.configs.cmp" end,           name = 'cmp' },
     { conf = function() require "user.plugins.configs.dap" end,           name = 'dap' },
     { conf = function() require "user.plugins.configs.dressing" end,      name = 'dressing' },
     { conf = function() require "user.plugins.configs.gitsigns" end,      name = 'gitsigns' },
