@@ -33,8 +33,9 @@ _G.utils.file_exists = function(path)
     return f ~= nil and io.close(f)
 end
 
--- user custom configs
+-- user customs
 require 'user.utils.discipline'.cowboy()
+require 'user.utils.buf-only'
 
 -- concat tables
 _G.utils.table_concat = function(...) return lume.merge(...) end

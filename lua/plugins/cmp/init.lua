@@ -13,7 +13,7 @@ local function config()
     -- vim.g.UltiSnipsExpandTrigger = "<tab>"
 
     require("luasnip.loaders.from_vscode")
-        .load({ paths = "~/.config/nvim/snippets/vscode" })
+        .load({ paths = "~/.config/nvim/lua/plugins/cmp/snippets/vscode" })
 
     require("luasnip.loaders.from_vscode").load()
 
@@ -197,10 +197,10 @@ end
 
 return {
     -- cmp for autocompletion
-    { 'hrsh7th/cmp-nvim-lsp' },              -- lsp completions
-    { 'hrsh7th/cmp-buffer' },                -- buffer completions
-    { 'hrsh7th/cmp-path' },                  -- path completions
-    { 'hrsh7th/cmp-cmdline' },               -- cmdline completions
+    { 'hrsh7th/cmp-nvim-lsp' },                 -- lsp completions
+    { 'hrsh7th/cmp-buffer' },                   -- buffer completions
+    { 'hrsh7th/cmp-path' },                     -- path completions
+    { 'hrsh7th/cmp-cmdline' },                  -- cmdline completions
     { 'hrsh7th/nvim-cmp',    config = config }, -- completion plugin
     -- cmp vsnip users
     -- {
