@@ -1,6 +1,6 @@
 local M = {}
 
-local configs = require("user.plugins.configs.overseer.mvn_configs")
+local configs = require("plugins.overseer.mvn_configs")
 
 local java_icon = ""
 
