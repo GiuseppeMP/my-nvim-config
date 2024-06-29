@@ -30,7 +30,7 @@ local configs = {
     { conf = function() require "user.plugins.configs.overseer" end, name = 'overseer' },
     -- { conf = function() require "user.plugins.configs.telescope" end,     name = 'telescope' },
     -- { conf = function() require "user.plugins.configs.treesitter" end, name = 'treesitter' },
-    { conf = function() require "user.plugins.configs.vim_test" end, name = 'vim_test' },
+    -- { conf = function() require "user.plugins.configs.vim_test" end, name = 'vim_test' },
     -- { conf = function() require "user.plugins.configs.which_key" end,  name = 'which_key' },
     -- { conf = function() require "user.plugins.configs.projectionist" end, name = 'projectionist' },
 }
