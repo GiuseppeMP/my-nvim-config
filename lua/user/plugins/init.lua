@@ -19,7 +19,7 @@ local configs = {
     -- { conf = function() require "user.plugins.configs.gitsigns" end,      name = 'gitsigns' },
     -- { conf = function() require "user.plugins.configs.harpoon" end,       name = 'harpoon' },
     -- { conf = function() require "user.plugins.configs.hop" end,           name = 'hop' },
-    { conf = function() require "user.plugins.configs.mason" end,         name = 'mason' },
+    -- { conf = function() require "user.plugins.configs.mason" end,         name = 'mason' },
     { conf = function() require "user.plugins.configs.navic" end,         name = 'navic' },
     { conf = function() require "user.plugins.configs.neotest" end,       name = 'neotest' },
     { conf = function() require "user.plugins.configs.noice" end,         name = 'noice' },
