@@ -1,6 +1,6 @@
 local home = os.getenv "HOME"
 local function config()
-    require 'plugins.dap.setup_dap'
+    require 'plugins.dap.dap_setup'
 end
 
 return {

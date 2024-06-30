@@ -1,5 +1,5 @@
 local function config()
-    require 'plugins.lsp.lsp'
+    require 'plugins.lsp.lsp_setup'
 end
 return {
     {

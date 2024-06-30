@@ -1,3 +1,4 @@
+---@diagnostic disable: inject-field
 local dap, dapui = require("dap"), require("dapui")
 local tokyo_colors = require("tokyonight.colors").setup()
 
@@ -25,7 +26,6 @@ vim.fn.sign_define('DapBreakpointRejected', {
     linehl = 'DapBreakpoint',
     numhl = 'DapBreakpoint'
 })
-
 
 vim.fn.sign_define('DapStopped', { text = '', texthl = "DapStopped", linehl = 'DapStopped', numhl = 'DapStopped' })
 
