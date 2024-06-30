@@ -1,3 +1,5 @@
+-- see
+-- https://github.com/nvim-tree/nvim-tree.lua/wiki/Recipes#go-to-last-used-hidden-buffer-when-deleting-a-buffer
 local function config()
     ---@diagnostic disable-next-line: unused-function, unused-local
     local function remove_keymap(mode, key, bufnr)
@@ -11,6 +13,57 @@ local function config()
 
         local function opts(desc)
             return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+        end
+        local git_add = function()
+            local node = api.tree.get_node_under_cursor()
+            local gs = node.git_status.file
+
+            -- If the current node is a directory get children status
+            if gs == nil then
+                gs = (node.git_status.dir.direct ~= nil and node.git_status.dir.direct[1])
+                    or (node.git_status.dir.indirect ~= nil and node.git_status.dir.indirect[1])
+            end
+
+            -- If the file is untracked, unstaged or partially staged, we stage it
+            if gs == "??" or gs == "MM" or gs == "AM" or gs == " M" then
+                vim.cmd("silent !git add " .. node.absolute_path)
+
+                -- If the file is staged, we unstage
+            elseif gs == "M " or gs == "A " then
+                vim.cmd("silent !git restore --staged " .. node.absolute_path)
+            end
+
+            api.tree.reload()
+        end
+
+        local function edit_or_open()
+            local node = api.tree.get_node_under_cursor()
+
+            if node.nodes ~= nil then
+                -- expand or collapse folder
+                api.node.open.edit()
+            else
+                -- open file
+                api.node.open.edit()
+                -- Close the tree if file was opened
+                api.tree.close()
+            end
+        end
+
+        -- open as vsplit on current node
+        local function vsplit_preview()
+            local node = api.tree.get_node_under_cursor()
+
+            if node.nodes ~= nil then
+                -- expand or collapse folder
+                api.node.open.edit()
+            else
+                -- open file as vsplit
+                api.node.open.vertical()
+            end
+
+            -- Finally refocus on tree if it was lost
+            api.tree.focus()
         end
 
         -- default mappings
@@ -26,11 +79,15 @@ local function config()
         vim.keymap.set('n', '?', api.tree.toggle_help, opts('Help'))
 
         vim.keymap.set('n', 'l', api.node.open.edit, opts('Open'))
+        -- vim.keymap.set("n", "l", edit_or_open, opts("Edit Or Open"))
 
-        print('nvim-tree my_on_attach')
+        vim.keymap.set("n", "L", vsplit_preview, opts("Vsplit Preview"))
+        vim.keymap.set("n", "h", api.tree.close, opts("Close"))
+        vim.keymap.set("n", "H", api.tree.collapse_all, opts("Collapse All"))
+        vim.keymap.set('n', 'ga', git_add, opts('Git Add'))
     end
-    local HEIGHT_RATIO = 0.9 -- You can change this
-    local WIDTH_RATIO = 0.9  -- You can change this too
+    local HEIGHT_RATIO = 0.7 -- You can change this
+    local WIDTH_RATIO = 0.7  -- You can change this too
 
     -- :help nvim-tree-setup
     require 'nvim-tree'.setup {
@@ -56,7 +113,7 @@ local function config()
         },
         view = {
             float = {
-                enable = false,
+                enable = true,
                 quit_on_focus_loss = true,
                 -- open_win_config = {
                 --     relative = "editor",
@@ -86,13 +143,13 @@ local function config()
                     }
                 end,
             },
-            width = {
-                max = 50,
-                min = 30
-            },
-            -- width = function()
-            --     return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
-            -- end,
+            -- width = {
+            --     max = 50,
+            --     min = 50
+            -- },
+            width = function()
+                return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
+            end,
         },
         renderer = {
             group_empty = true,

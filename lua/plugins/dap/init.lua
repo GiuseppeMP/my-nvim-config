@@ -1,9 +1,10 @@
 local home = os.getenv "HOME"
 local function config()
-    require 'plugins.dap.setup'
+    require 'plugins.dap.setup_dap'
 end
 
 return {
+    { 'mfussenegger/nvim-dap',       config = config },
     { 'rcarriga/nvim-dap-ui' },
     { 'mfussenegger/nvim-dap-python' },
     { 'jayp0521/mason-nvim-dap.nvim' },
@@ -16,6 +17,7 @@ return {
     },
     {
         "mxsdev/nvim-dap-vscode-js",
+        dependencies = { 'mfussenegger/nvim-dap' },
         config = function()
             require("dap-vscode-js").setup({
                 node_path = "node",
@@ -46,5 +48,4 @@ return {
             end
         end
     },
-    { 'mfussenegger/nvim-dap', config = config },
 }

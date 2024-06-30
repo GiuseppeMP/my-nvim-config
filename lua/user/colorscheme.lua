@@ -110,6 +110,7 @@ vim.api.nvim_set_hl(0, 'BufferLineWarningSelected',
 vim.api.nvim_set_hl(0, 'Visual', { fg = colors.green, bg = '#2F3D44', underline = false })
 vim.api.nvim_set_hl(0, 'NoiceFormatProgressDone', { link = 'NonText' })
 vim.api.nvim_set_hl(0, 'NoiceFormatProgressTodo', { link = 'NonText' })
+vim.api.nvim_set_hl(0, 'FidgetLspProgress', { link = 'NonText' })
 vim.api.nvim_set_hl(0, 'NoiceLspProgressTitle', { fg = colors.green, bg = 'none', underline = false })
 vim.api.nvim_set_hl(0, 'NoiceLspProgressClient', { fg = colors.magenta, bg = 'none', underline = false })
 

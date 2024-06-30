@@ -18,6 +18,10 @@ n("<C-j>", "<C-w>j")
 n("<C-k>", "<C-w>k")
 n("<C-l>", "<C-w>l")
 
+-- It was fixed in which-key.lua
+-- BUG: IIRC terminals always send TAB instead of <C-i>
+-- n("<Tab>", "<C-i>")
+
 t("<C-h>", "<C-w>h")
 t("<C-j>", "<C-w>j")
 t("<C-k>", "<C-w>k")

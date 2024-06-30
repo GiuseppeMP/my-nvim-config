@@ -85,6 +85,9 @@ return {
             'andy-bell101/neotest-java',
             'vim-test/vim-test',
             'nvim-neotest/neotest-vim-test',
+            "nvim-lua/plenary.nvim",
+            "antoinemadec/FixCursorHold.nvim",
+            "nvim-treesitter/nvim-treesitter"
         },
     },
     {

@@ -211,7 +211,7 @@ local function config()
 
     -- [<C-x>] - harpoon fast nav
     wk.register({
-        ['<C-f>']     = { harpoon.ui.toggle_quick_menu, 'Harpoon quick menu' },
+        ['<C-m>']     = { harpoon.ui.toggle_quick_menu, 'Harpoon quick menu' },
         ['<C-g>']     = { function() harpoon.ui.nav_next() end, 'Go to harpoon next' },
         ['<C-q>']     = { function() harpoon.ui.nav_prev() end, 'Go to harpoon previous' },
         ['<C-1>']     = { function() harpoon.ui.nav_file(1) end, 'Go to harpoon mark 1' },
@@ -268,7 +268,7 @@ local function config()
 
 
     wk.register({
-        ["<leader>e"] = { vim.cmd.NvimTreeToggle, 'File explorer' },
+        ["<C-f>"] = { vim.cmd.NvimTreeToggle, 'File explorer' },
         ["<leader>D"] = { 'Type definitions' },
         ["<leader>k"] = { 'Signature help' },
         ["<leader>xw"] = { "SWAP help", 'Swap two words separated by space' },
@@ -327,8 +327,9 @@ local function config()
 
 
     wk.register({
-        ["<Tab>"] = { vim.diagnostic.goto_next, "Go to previous lsp diagnostics." },
-        ["<S-Tab>"] = { vim.diagnostic.goto_prev, "Go to next lsp diagnostics." }
+        -- ["<Tab>"] = { vim.diagnostic.goto_next, "Go to previous lsp diagnostics." },
+        -- ["<S-Tab>"] = { vim.diagnostic.goto_prev, "Go to next lsp diagnostics." }
+        ["<Tab>"] = { '<c-i>', "Jump foward" },
     }, { mode = { "n" } })
 
 

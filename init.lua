@@ -5,6 +5,8 @@ require("user.utils")
 
 require("user.settings")
 
+require("user.keymaps")
+
 require("user.lazy")
 
 require("user.autocmds")
@@ -12,8 +14,6 @@ require("user.autocmds")
 require('user.winbar')
 
 require('user.wsl')
-
-require("user.keymaps")
 
 require("user.colemak")
 
