@@ -6,6 +6,7 @@ local g = vim.g -- For the globals
 -- local w = vim.wo -- For the window local options
 -- local b = vim.bo -- For the buffer local options
 
+o.termsync = true
 o.clipboard = 'unnamedplus'
 o.list = false
 o.autoindent = true
