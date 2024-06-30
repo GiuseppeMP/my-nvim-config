@@ -29,3 +29,31 @@ vim.api.nvim_create_autocmd('FileType', {
         vim.lsp.buf_attach_client(0, client)
     end,
 })
+local function is_no_name_buf(buf)
+    return
+        vim.api.nvim_buf_is_loaded(buf)
+        and vim.api.nvim_buf_get_option(buf, 'buflisted')
+        and vim.api.nvim_buf_get_name(buf) == ''
+        and vim.api.nvim_buf_get_option(buf, 'buftype') == ''
+        and vim.api.nvim_buf_get_option(buf, 'filetype') == ''
+end
+-- open Alpha when all buffers are closed
+vim.api.nvim_create_autocmd("BufDelete", {
+    callback = function(event)
+        local fallback_name = vim.api.nvim_buf_get_name(event.buf)
+        local fallback_ft = vim.api.nvim_buf_get_option(event.buf, "filetype")
+        local fallback_on_empty = fallback_name == "" and fallback_ft == ""
+        local bufNr = vim.api.nvim_get_current_buf()
+
+        if (bufNr ~= '' and bufNr == 1 and not is_no_name_buf(bufNr)) then
+            return
+        end
+
+        print('testing')
+        print(bufNr)
+        print(fallback_name)
+        if fallback_on_empty and not is_no_name_buf(bufNr) then
+            vim.cmd("Alpha")
+        end
+    end,
+})
