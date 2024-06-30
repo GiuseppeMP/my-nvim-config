@@ -26,9 +26,8 @@ local function config()
             },
             progress = {
                 enabled = true,
-                throttle = 250, -- frequency to update lsp progress message
-                view = nil,
-                -- view = "mini",
+                throttle = 100,
+                view = "mini",
             }
         },
         views = {
