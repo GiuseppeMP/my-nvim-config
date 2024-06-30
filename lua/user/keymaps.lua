@@ -52,10 +52,8 @@ i("jk", "<ESC>")
 v("<", "<gv")
 v(">", ">gv")
 
--- Move visual selection up and down
--- k("v", "A-j", ":m .+1<CR>==", opts)
--- k("v", "A-k", ":m .-2<CR>==", opts)
 x("p", '"_dP"')
+
 
 -- Manter o cursor centralizado.
 -- keep the cursor at center while using n,N,k,j,J
@@ -80,13 +78,14 @@ i('[', '[<c-g>u')
 i('{', '{<c-g>u')
 i('}', '}<c-g>u')
 
+
 -- insert ; at end of the line
 i(';;', '<C-o>A;')
 i(',,', '<C-o>A,')
 
 -- insert ; at end of the line and start new line
-i(';<Enter>', '<ESC>A;<ESC>o')
-i(',<Enter>', '<ESC>A,<ESC>o')
+-- i(';<Enter>', '<ESC>A;<ESC>o')
+-- i(',<Enter>', '<ESC>A,<ESC>o')
 
 i("<c-l>", "<Right>")
 i("<c-h>", "<Left>")
