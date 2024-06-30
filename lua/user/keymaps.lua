@@ -7,7 +7,7 @@ vim.g.maplocalleader = " "
 
 -- Remap esc to use clear search highlights --
 n("<esc>", ":noh<CR><esc>")
-vim.cmd [[xnoremap s :s/\%V]]
+vim.cmd [[ xnoremap s :s/\%V/g<left><left>]]
 
 
 -- Normal mode --
