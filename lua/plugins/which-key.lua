@@ -120,7 +120,7 @@ local function config()
             p = { vim.cmd.PresentingStart, 'Present start' },
             u = { vim.cmd.UndotreeToggle, 'Show undotree' },
             l = { vim.cmd.Lazy, 'Lazy plugin manager' },
-            d = { vim.cmd.TroubleToggle, 'Show diagnostics panel' },
+            d = { function() vim.cmd('Trouble diagnostics toggle') end, 'Show diagnostics panel' },
             D = { vim.cmd.TodoLocList, 'Show comments diagnostics list' },
             m = { vim.cmd.MarkdownPreview, 'Markdown Preview' },
             a = { function() vim.cmd(":CellularAutomaton make_it_rain") end, 'AFK' },
@@ -327,8 +327,14 @@ local function config()
 
 
     wk.register({
-        -- ["<Tab>"] = { vim.diagnostic.goto_next, "Go to previous lsp diagnostics." },
-        -- ["<S-Tab>"] = { vim.diagnostic.goto_prev, "Go to next lsp diagnostics." }
+        ["[d"] = { function()
+            vim.diagnostic.goto_next()
+            vim.diagnostic.open_float()
+        end, "Go to next lsp diagnostics." },
+        ["]d"] = { function()
+            vim.diagnostic.goto_prev()
+            vim.diagnostic.open_float()
+        end, "Go to previous lsp diagnostics." },
         ["<Tab>"] = { '<c-i>', "Jump foward" },
     }, { mode = { "n" } })
 

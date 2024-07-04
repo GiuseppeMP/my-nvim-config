@@ -2,7 +2,8 @@
 -- { 'christoomey/vim-tmux-navigator' },
 return
 {
-    "https://git.sr.ht/~swaits/zellij-nav.nvim",
+    -- "swaits/zellij-nav.nvim",
+    "GiuseppeMP/zellij-nav.nvim",
     lazy = true,
     event = "VeryLazy",
     enable = true,

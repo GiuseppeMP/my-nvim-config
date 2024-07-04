@@ -39,7 +39,7 @@ vim.cmd [[
     set guicursor+=i:hor20-iCursor
     set guicursor+=n-v-c:blinkon0
     set guicursor+=i:blinkwait10
-    hi TreesitterContextBottom gui=undercurl guisp=#69ff94
+    hi TreesitterContextBottom gui=underdashed guisp=#69ff94
     hi Comment guifg='#1f96e0'
     hi DiagnosticUnnecessary guifg='#e04b1f'
 

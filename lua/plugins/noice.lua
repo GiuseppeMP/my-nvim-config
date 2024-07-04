@@ -1,6 +1,15 @@
 local function config()
     vim.diagnostic.config({
-        update_in_insert = false
+        update_in_insert = false,
+        underline = true,
+        signs = true,
+        virtual_text = false,
+        float = {
+            show_header = true,
+            source = 'always',
+            border = 'rounded',
+            focusable = true,
+        },
     })
 
     require("noice").setup({
@@ -9,7 +18,7 @@ local function config()
         },
         lsp = {
             signature = {
-                enabled = false,
+                enabled = true,
                 auto_open = {
                     enabled = true,
                     trigger = true, -- Automatically show signature help when typing a trigger character from the LSP
@@ -26,7 +35,7 @@ local function config()
             },
             progress = {
                 enabled = true,
-                throttle = 100,
+                throttle = 250,
                 view = "mini",
             }
         },
@@ -82,7 +91,7 @@ local function config()
             },
         },
         notify = {
-            enabled = false
+            enabled = true
         },
         routes = {
             -- show @recording msg

@@ -10,6 +10,10 @@ local function config()
             signs = true,
             virtual_text = false
         },
+        diagnostic = {
+            enabled = true,
+            severity = 1,
+        },
         discovery = {
             enabled = false,
         },
@@ -18,6 +22,7 @@ local function config()
         },
         adapters = {
             require("neotest-vitest"),
+            require("neotest-gradle"),
             require('neotest-jest')({
                 -- jestCommand = "npx jest --watch ",
                 jestCommand = "npm test --",
@@ -30,8 +35,8 @@ local function config()
             }),
             require("neotest-plenary"),
             require("neotest-vim-test")({
-                ignore_filetypes = { "lua", "javascript", "typescript" },
-                allow_file_types = { "java", "python" }
+                ignore_filetypes = { "lua", "javascript", "typescript", "java" },
+                allow_file_types = { "python" }
             }),
             -- require("neotest-java"),
             -- require("neotest-python")(
@@ -87,7 +92,8 @@ return {
             'nvim-neotest/neotest-vim-test',
             "nvim-lua/plenary.nvim",
             "antoinemadec/FixCursorHold.nvim",
-            "nvim-treesitter/nvim-treesitter"
+            "nvim-treesitter/nvim-treesitter",
+            "weilbith/neotest-gradle"
         },
     },
     {

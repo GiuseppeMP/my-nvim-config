@@ -74,7 +74,7 @@ local function config()
                     cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
                     -- cmp.complete()
                 else
-                    -- vim.diagnostic.goto_next()
+                    vim.diagnostic.goto_next()
                     fallback()
                 end
             end, { "i", "s" }),
