@@ -473,13 +473,17 @@ local function config()
     end
 
     wk.register({
+        ['<leader>O'] = {
+            O = { "<esc>A,<esc>O", 'Add a comma at the end of the line and create a new line above' },
+        },
         ['<leader>o'] = {
             name = 'Obsidian',
             t = { vim.cmd.ObsidianTomorrow, 'Obsidian tomorrow note' },
             d = { today_note, 'Obsidian daily note' },
             y = { vim.cmd.ObsidianYesterday, 'Obsidian yesterday note' },
             c = { vim.cmd.ObsidianTemplate, 'Complete with template' },
-            o = { vim.cmd.ObsidianOpen, 'Obsidian open note' },
+            -- o = { vim.cmd.ObsidianOpen, 'Obsidian open note' },
+            o = { "<esc>A,<esc>o", 'Add a comma at the end of the line and create a new line below' },
             f = { vim.cmd.ObsidianQuickSwitch, 'Jump to another note' },
             s = { vim.cmd.ObsidianSearch, 'Search in notes' },
             n = { new_note, 'Obsidian new note from template' },

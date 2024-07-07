@@ -108,7 +108,7 @@ local function config()
             },
         },
         notify = {
-            threshold = vim.log.levels.OFF,
+            threshold = vim.log.levels.WARN,
             absolute_path = true,
         },
         view = {

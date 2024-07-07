@@ -98,32 +98,33 @@ local function config()
     end
 
     local function get_sources()
-        local firstGroup = {
+        local mainGroup = {
             { name = 'nvim_lsp',                group_index = 0, max_item_count = 25 },
+            { name = 'path',                    group_index = 1, max_item_count = 5 },
             { name = 'luasnip',                 group_index = 1, max_item_count = 15 },
-            { name = 'vsnip',                   group_index = 1 },
-            { name = 'snippy',                  group_index = 1 },
-            { name = 'path',                    group_index = 2 },
-            { name = 'nvim_lsp_signature_help', group_index = 3, max_item_count = 10 },
-            { name = 'buffer',                  group_index = 3 },
-            { name = 'emoji',                   group_index = 3, max_item_count = 10 },
-            { name = 'calc',                    group_index = 4 },
-            { name = 'treesitter',              group_index = 4, max_item_count = 10 },
+            { name = 'vsnip',                   group_index = 2, max_item_count = 5 },
+            { name = 'snippy',                  group_index = 2, max_item_count = 5 },
+            { name = 'emoji',                   group_index = 0, max_item_count = 10 },
+            { name = 'calc',                    group_index = 0, max_item_count = 5 },
+            { name = 'nvim_lsp_signature_help', group_index = 1, max_item_count = 10 },
+            { name = 'buffer',                  group_index = 2, max_item_count = 15 },
+            { name = 'treesitter',              group_index = 3, max_item_count = 10 },
         }
 
         if conf.user.copilot.enabled then
-            table.insert(firstGroup, 2, { name = 'copilot', group_index = 2 })
+            table.insert(mainGroup, 1, { name = 'copilot', group_index = 1 })
         end
         if conf.user.codeium.enabled then
-            table.insert(firstGroup, 1, { name = 'codeium', group_index = 1 })
+            table.insert(mainGroup, 1, { name = 'codeium', group_index = 1 })
         end
 
-        return cmp.config.sources(firstGroup)
+        return cmp.config.sources(mainGroup)
     end
 
     local function get_format()
         return {
-            fields = { "kind", "abbr", "menu" },
+            -- fields = { "kind", "abbr", "menu" },
+            fields = { "kind", "abbr" },
             format = lspkind.cmp_format({
                 symbol_map = { Copilot = "", Codeium = "" },
                 mode = 'symbol_text',
