@@ -7,6 +7,7 @@ local g = vim.g -- For the globals
 -- local b = vim.bo -- For the buffer local options
 
 o.termsync = true
+o.completeopt = "menu,menuone,noinsert"
 o.clipboard = 'unnamedplus'
 o.list = false
 o.autoindent = true

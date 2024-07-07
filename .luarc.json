@@ -106,5 +106,8 @@
         "Jupynium_start_sync",
         "utils",
         "conf"
+    ],
+    "diagnostics.disable": [
+        "need-check-nil"
     ]
 }

@@ -162,6 +162,7 @@ M.get = function(params)
         --leader
         if params.code_action == nil or params.code_action then
             vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, buf_opts)
+            vim.keymap.set('v', '<leader>ca', vim.lsp.buf.code_action, buf_opts)
         end
 
         -- vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, buf_opts)

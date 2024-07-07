@@ -69,12 +69,12 @@ local function config()
             ["<Tab>"] = cmp.mapping(function(fallback)
                 if luasnip.expand_or_locally_jumpable() then
                     luasnip.expand_or_jump()
-                    vim.cmd('startinsert')
+                    -- vim.cmd('startinsert')
                 elseif cmp.visible() and has_words_before_new() then
-                    cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+                    -- cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
                     -- cmp.complete()
+                    cr()
                 else
-                    vim.diagnostic.goto_next()
                     fallback()
                 end
             end, { "i", "s" }),
@@ -83,7 +83,6 @@ local function config()
                 if luasnip.jumpable(-1) then
                     luasnip.jump(-1)
                 else
-                    -- vim.diagnostic.goto_prev()
                     fallback()
                 end
             end, { "i", "s" }),
@@ -92,33 +91,30 @@ local function config()
 
     local function get_sources()
         local snip_sources = {
-            { name = 'nvim_lsp', keyword_length = 3 }, -- For nvim lsp users
-            { name = 'luasnip' },                      -- For luasnip users.
-            { name = 'vsnip' },                        -- For vsnip users.
+            { name = 'nvim_lsp', keyword_length = 3, group_index = 1 }, -- For nvim lsp users
+            { name = 'luasnip',  group_index = 1 },                     -- For luasnip users.
+            { name = 'vsnip',    group_index = 1 },                     -- For vsnip users.
+            { name = 'snippy',   group_index = 1 },                     -- For snippy users.
             -- { name = 'ultisnips' },                    -- For ultisnips users.
-            { name = 'snippy' },                       -- For snippy users.
         }
 
         local other_sources = {
             { name = 'buffer' },
             { name = 'path' },
-            { name = 'lsp',   keyword_length = 3 },
+            { name = 'nvim_lsp_signature_help' }, -- config for cmp-nvim-lsp-signature-help
+            { name = 'lsp',                    keyword_length = 3 },
         }
 
         if conf.user.copilot.enabled then
-            table.insert(snip_sources, 1, { name = 'copilot', group_index = 2 })
+            table.insert(snip_sources, 1, { name = 'copilot' })
         end
         if conf.user.codeium.enabled then
-            table.insert(snip_sources, 1, { name = 'codeium', group_index = 2 })
+            table.insert(snip_sources, 1, { name = 'codeium', group_index = 1 })
         end
 
 
         return cmp.config.sources(snip_sources, other_sources)
     end
-
-
-
-    -- vim.api.nvim_set_hl(0, "CmpItemKindSnippet", { fg = "green" })
 
     local function get_format()
         return {
@@ -172,13 +168,19 @@ local function config()
 
     cmp.setup({
         completion = {
-            completeopt = "menu,menuone,noinsert",
-            -- autocomplete = true
+            completeopt = table.concat(vim.opt.completeopt:get(), ","),
+            -- autocomplete = { require('cmp.types').cmp.TriggerEvent.TextChanged }
+            --BUG: Workaround for autocomplete not displaying all options
+            autocomplete = false
         },
+        --BUG: Workaround for autocomplete not displaying all options
+        -- performance = {
+        --     debounce = 1000,
+        --     throttle = 1000
+        -- },
         experimental = {
-            ghost_text = {
-                hl_group = "CmpGhostText",
-            },
+            -- ghost_text = { hl_group = "CmpGhostText" }
+            ghost_text = false
         },
         snippet = get_snippet(),
         mapping = get_mapping(),
@@ -191,42 +193,28 @@ local function config()
             documentation = cmp.config.window.bordered(),
         },
     })
+    --BUG: Workaround for autocomplete not displaying all options
+    vim.cmd([[
+        augroup CmpDebounceAuGroup
+            au!
+            au TextChangedI * lua require("plugins.cmp.debounce").debounce()
+        augroup end
+    ]])
 end
 
-
-
 return {
-    -- cmp for autocompletion
     { 'hrsh7th/cmp-nvim-lsp' },                 -- lsp completions
     { 'hrsh7th/cmp-buffer' },                   -- buffer completions
     { 'hrsh7th/cmp-path' },                     -- path completions
     { 'hrsh7th/cmp-cmdline' },                  -- cmdline completions
     { 'hrsh7th/nvim-cmp',    config = config }, -- completion plugin
-    -- cmp vsnip users
-    -- {
-    --     'hrsh7th/cmp-vsnip',
-    --         lazy = false,
-    --         config = lazy_rtp
-    -- },
-    -- {
-    --     'hrsh7th/vim-vsnip',
-    --         lazy = false,
-    --         event = 'VeryLazy',
-    --         config = lazy_rtp
-    -- },
-    -- cmp  luasnip users
     {
         'L3MON4D3/LuaSnip',
-        version = "2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+        version = "v2.*",
         build = "make install_jsregexp"
     },
     { 'saadparwaiz1/cmp_luasnip' },
-    -- cmp ultisnips users
-    -- { 'SirVer/ultisnips' },
-    -- { 'quangnguyen30192/cmp-nvim-ultisnips' },
-    -- cmp snippy users
     { 'dcampos/nvim-snippy' },
     { 'dcampos/cmp-snippy' },
-    -- cmp snippet collections
     { "rafamadriz/friendly-snippets" },
 }
