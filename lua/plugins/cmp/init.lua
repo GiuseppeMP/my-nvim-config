@@ -106,9 +106,9 @@ local function config()
             { name = 'path',                    group_index = 2 },
             { name = 'nvim_lsp_signature_help', group_index = 3, max_item_count = 10 },
             { name = 'buffer',                  group_index = 3 },
-            { name = 'emoji',                   group_index = 3 },
-            { name = 'calc',                    group_index = 3 },
-            { name = 'treesitter',              group_index = 3, max_item_count = 10 },
+            { name = 'emoji',                   group_index = 3, max_item_count = 10 },
+            { name = 'calc',                    group_index = 4 },
+            { name = 'treesitter',              group_index = 4, max_item_count = 10 },
         }
 
         if conf.user.copilot.enabled then
@@ -235,5 +235,5 @@ return {
     { 'dcampos/nvim-snippy' },
     { 'dcampos/cmp-snippy' },
     { "rafamadriz/friendly-snippets" },
-    { 'hrsh7th/nvim-cmp',            config = config }, -- completion plugin
+    { 'hrsh7th/nvim-cmp',            config = config, dependencies = { "hrsh7th/cmp-emoji" } },
 }
