@@ -99,17 +99,16 @@ local function config()
 
     local function get_sources()
         local firstGroup = {
-            { name = 'nvim_lsp',                group_index = 0 },
-            { name = 'luasnip',                 group_index = 1 },
+            { name = 'nvim_lsp',                group_index = 0, max_item_count = 25 },
+            { name = 'luasnip',                 group_index = 1, max_item_count = 15 },
             { name = 'vsnip',                   group_index = 1 },
             { name = 'snippy',                  group_index = 1 },
-            -- { name = 'lsp',                     group_index = 3 },
             { name = 'path',                    group_index = 2 },
-            { name = 'nvim_lsp_signature_help', group_index = 3 },
+            { name = 'nvim_lsp_signature_help', group_index = 3, max_item_count = 10 },
             { name = 'buffer',                  group_index = 3 },
             { name = 'emoji',                   group_index = 3 },
             { name = 'calc',                    group_index = 3 },
-            { name = 'treesitter',              group_index = 3 },
+            { name = 'treesitter',              group_index = 3, max_item_count = 10 },
         }
 
         if conf.user.copilot.enabled then
