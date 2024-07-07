@@ -116,7 +116,7 @@ local function config()
             table.insert(firstGroup, 2, { name = 'copilot', group_index = 2 })
         end
         if conf.user.codeium.enabled then
-            table.insert(firstGroup, 2, { name = 'codeium', group_index = 2 })
+            table.insert(firstGroup, 1, { name = 'codeium', group_index = 1 })
         end
 
         return cmp.config.sources(firstGroup)
@@ -145,10 +145,10 @@ local function config()
             cmp.config.compare.score,
             cmp.config.compare.recently_used,
             function(a1, a2)
-                if a1 == "Codeium" and a2 == "Method" then
-                    return false
+                if a2 == "Codeium" and a1 == "Method" then
+                    return true
                 end
-                return true
+                return false
             end,
             function(a1, a2)
                 if a1 == "Method" and a2 == "Variable" or a2 == "Function" or a2 == "Class" or a2 == "Interface" then
