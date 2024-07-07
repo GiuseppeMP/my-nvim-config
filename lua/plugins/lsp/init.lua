@@ -8,8 +8,8 @@ return {
         opt = { inlay_hints = { enabled = true } },
         dependencies = { 'mfussenegger/nvim-jdtls' }
     },
-    -- { 'mfussenegger/nvim-jdtls' },
-    { 'GiuseppeMP/nvim-jdtls' },
+    { 'mfussenegger/nvim-jdtls' },
+    -- { 'GiuseppeMP/nvim-jdtls' },
     {
         'mrcjkb/rustaceanvim',
         tag = '3.15.0', -- Recommended

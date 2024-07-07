@@ -90,30 +90,28 @@ local function config()
     end
 
     local function get_sources()
-        local snip_sources = {
-            { name = 'nvim_lsp', keyword_length = 3, group_index = 1 }, -- For nvim lsp users
-            { name = 'luasnip',  group_index = 1 },                     -- For luasnip users.
-            { name = 'vsnip',    group_index = 1 },                     -- For vsnip users.
-            { name = 'snippy',   group_index = 1 },                     -- For snippy users.
-            -- { name = 'ultisnips' },                    -- For ultisnips users.
-        }
-
-        local other_sources = {
-            { name = 'buffer' },
-            { name = 'path' },
-            { name = 'nvim_lsp_signature_help' }, -- config for cmp-nvim-lsp-signature-help
-            { name = 'lsp',                    keyword_length = 3 },
+        local firstGroup = {
+            { name = 'luasnip',                 group_index = 1 },
+            { name = 'vsnip',                   group_index = 1 },
+            { name = 'snippy',                  group_index = 1 },
+            { name = 'nvim_lsp',                group_index = 3 },
+            { name = 'lsp',                     group_index = 3 },
+            { name = 'path',                    group_index = 2 },
+            { name = 'nvim_lsp_signature_help', group_index = 3 },
+            { name = 'buffer',                  group_index = 3 },
+            { name = 'emoji',                   group_index = 3 },
+            { name = 'calc',                    group_index = 3 },
+            { name = 'treesitter',              group_index = 3 },
         }
 
         if conf.user.copilot.enabled then
-            table.insert(snip_sources, 1, { name = 'copilot' })
+            table.insert(firstGroup, 3, { name = 'copilot', group_index = 2 })
         end
         if conf.user.codeium.enabled then
-            table.insert(snip_sources, 1, { name = 'codeium', group_index = 1 })
+            table.insert(firstGroup, 3, { name = 'codeium', group_index = 2 })
         end
 
-
-        return cmp.config.sources(snip_sources, other_sources)
+        return cmp.config.sources(firstGroup)
     end
 
     local function get_format()
@@ -203,11 +201,10 @@ local function config()
 end
 
 return {
-    { 'hrsh7th/cmp-nvim-lsp' },                 -- lsp completions
-    { 'hrsh7th/cmp-buffer' },                   -- buffer completions
-    { 'hrsh7th/cmp-path' },                     -- path completions
-    { 'hrsh7th/cmp-cmdline' },                  -- cmdline completions
-    { 'hrsh7th/nvim-cmp',    config = config }, -- completion plugin
+    { 'hrsh7th/cmp-nvim-lsp' }, -- lsp completions
+    { 'hrsh7th/cmp-buffer' },   -- buffer completions
+    { 'hrsh7th/cmp-path' },     -- path completions
+    { 'hrsh7th/cmp-cmdline' },  -- cmdline completions
     {
         'L3MON4D3/LuaSnip',
         version = "v2.*",
@@ -217,4 +214,5 @@ return {
     { 'dcampos/nvim-snippy' },
     { 'dcampos/cmp-snippy' },
     { "rafamadriz/friendly-snippets" },
+    { 'hrsh7th/nvim-cmp',            config = config }, -- completion plugin
 }

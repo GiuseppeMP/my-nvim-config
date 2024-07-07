@@ -13,6 +13,7 @@ function M.debounce()
         0,
         vim.schedule_wrap(function()
             cmp.complete()
+            -- cmp.complete({ reason = cmp.ContextReason.Auto })
         end)
     )
 end
