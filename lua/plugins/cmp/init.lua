@@ -39,6 +39,14 @@ local function config()
         }
     end
 
+    local function get_custom_window_bordered()
+        local default = cmp.config.window.bordered()
+        default.pumheight = 450
+        default.max_width = 450
+        default.max_height = 900
+        return default
+    end
+
     local function get_mapping()
         -- default behavior
         local cr = cmp.mapping.confirm({
@@ -57,10 +65,10 @@ local function config()
         return cmp.mapping.preset.insert({
             ["<C-k>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
             ["<C-j>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-            ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-2), { "i", "c" }),
-            ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(2), { "i", "c" }),
+            ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-5), { "i", "c" }),
+            ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(5), { "i", "c" }),
             ["<C-Space>"] = cmp.mapping(cmp.mapping.complete()),
-            ["<C-d>"] = cmp.mapping {
+            ["<C-x>"] = cmp.mapping {
                 i = cmp.mapping.abort(),
                 c = cmp.mapping.close(),
             },
@@ -91,11 +99,11 @@ local function config()
 
     local function get_sources()
         local firstGroup = {
+            { name = 'nvim_lsp',                group_index = 0 },
             { name = 'luasnip',                 group_index = 1 },
             { name = 'vsnip',                   group_index = 1 },
             { name = 'snippy',                  group_index = 1 },
-            { name = 'nvim_lsp',                group_index = 3 },
-            { name = 'lsp',                     group_index = 3 },
+            -- { name = 'lsp',                     group_index = 3 },
             { name = 'path',                    group_index = 2 },
             { name = 'nvim_lsp_signature_help', group_index = 3 },
             { name = 'buffer',                  group_index = 3 },
@@ -105,10 +113,10 @@ local function config()
         }
 
         if conf.user.copilot.enabled then
-            table.insert(firstGroup, 3, { name = 'copilot', group_index = 2 })
+            table.insert(firstGroup, 2, { name = 'copilot', group_index = 2 })
         end
         if conf.user.codeium.enabled then
-            table.insert(firstGroup, 3, { name = 'codeium', group_index = 2 })
+            table.insert(firstGroup, 2, { name = 'codeium', group_index = 2 })
         end
 
         return cmp.config.sources(firstGroup)
@@ -119,9 +127,11 @@ local function config()
             fields = { "kind", "abbr", "menu" },
             format = lspkind.cmp_format({
                 symbol_map = { Copilot = "", Codeium = "" },
-                mode = 'symbol',
+                mode = 'symbol_text',
                 max_width = 80,
                 ellipsis_char = '...',
+                show_labelDetails = true,
+                menu = {},
             }),
         }
     end
@@ -134,6 +144,18 @@ local function config()
             cmp.config.compare.exact,
             cmp.config.compare.score,
             cmp.config.compare.recently_used,
+            function(a1, a2)
+                if a1 == "Codeium" and a2 == "Method" then
+                    return false
+                end
+                return true
+            end,
+            function(a1, a2)
+                if a1 == "Method" and a2 == "Variable" or a2 == "Function" or a2 == "Class" or a2 == "Interface" then
+                    return true
+                end
+                return false
+            end,
             cmp.config.compare.locality,
             cmp.config.compare.kind,
             cmp.config.compare.sort_text,
@@ -187,8 +209,8 @@ local function config()
         sorting = get_sorting(),
         confirm_opts = get_confirm_opts(),
         window = {
-            completion = cmp.config.window.bordered(),
-            documentation = cmp.config.window.bordered(),
+            completion = get_custom_window_bordered(),
+            documentation = get_custom_window_bordered(),
         },
     })
     --BUG: Workaround for autocomplete not displaying all options

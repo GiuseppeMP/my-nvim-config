@@ -12,8 +12,8 @@ function M.debounce()
         DEBOUNCE_DELAY,
         0,
         vim.schedule_wrap(function()
-            cmp.complete()
-            -- cmp.complete({ reason = cmp.ContextReason.Auto })
+            -- cmp.complete()
+            cmp.complete({ reason = cmp.ContextReason.Manual })
         end)
     )
 end
