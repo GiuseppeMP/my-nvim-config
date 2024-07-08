@@ -3,7 +3,7 @@ local M = {}
 local cmp = require("cmp")
 local timer = vim.loop.new_timer()
 
-local DEBOUNCE_DELAY = 750
+local DEBOUNCE_DELAY = 350
 
 --BUG: Workaround for autocomplete not displaying all options while using performance.debounce and autocomplete
 function M.debounce()
