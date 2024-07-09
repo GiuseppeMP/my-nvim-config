@@ -41,9 +41,9 @@ local function config()
 
     local function get_custom_window_bordered()
         local default = cmp.config.window.bordered()
-        default.pumheight = 450
-        default.max_width = 450
-        default.max_height = 900
+        default.pumheight = 650
+        default.max_width = 350
+        default.max_height = 650
         return default
     end
 
@@ -121,17 +121,35 @@ local function config()
         return cmp.config.sources(mainGroup)
     end
 
+    local ELLIPSIS_CHAR = '…'
+    local MAX_LABEL_WIDTH = 40
+    local MIN_LABEL_WIDTH = 40
+
+    local function fixLspKindWidth(entry, vim_item)
+        local label = vim_item.abbr
+        local truncated_label = vim.fn.strcharpart(label, 0, MAX_LABEL_WIDTH)
+        if truncated_label ~= label then
+            vim_item.abbr = truncated_label .. ELLIPSIS_CHAR
+        elseif string.len(label) < MIN_LABEL_WIDTH then
+            local padding = string.rep(' ', MIN_LABEL_WIDTH - string.len(label))
+            vim_item.abbr = label .. padding
+        end
+        return vim_item
+    end
+
     local function get_format()
         return {
             -- fields = { "kind", "abbr", "menu" },
             fields = { "kind", "abbr" },
             format = lspkind.cmp_format({
                 symbol_map = { Copilot = "", Codeium = "" },
-                mode = 'symbol_text',
-                max_width = 80,
+                -- mode = 'symbol_text',
+                mode = 'symbol',
+                maxwidth = 60,
                 ellipsis_char = '...',
-                show_labelDetails = true,
+                show_labelDetails = false,
                 menu = {},
+                before = fixLspKindWidth
             }),
         }
     end

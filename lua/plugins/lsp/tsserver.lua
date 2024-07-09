@@ -5,7 +5,7 @@ local lspconfig = require 'lspconfig'
 lspconfig.tsserver.setup {
     -- format options delegated to eslint lsp
     on_attach = on_attach_options.get({
-        inlay = true,
+        inlay = false,
         format_on_save = true,
         format = true,
         lsp_client = 'tsserver'

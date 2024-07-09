@@ -48,10 +48,9 @@ vim.api.nvim_create_autocmd("BufDelete", {
         if (bufNr ~= '' and bufNr == 1 and not is_no_name_buf(bufNr)) then
             return
         end
-
-        print('testing')
-        print(bufNr)
-        print(fallback_name)
+        -- print('testing')
+        -- print(bufNr)
+        -- print(fallback_name)
         if fallback_on_empty and not is_no_name_buf(bufNr) then
             vim.cmd("Alpha")
         end
