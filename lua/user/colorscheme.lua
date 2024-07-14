@@ -29,13 +29,15 @@ vim.cmd [[hi! link Identifier Function ]]
 vim.cmd [[hi! link xmlTagN Function ]]
 vim.cmd [[hi! link @markup.raw.markdown_inline CodeBlock ]]
 
-vim.api.nvim_set_hl(0, "CursorLine", { bg = 'none', blend = 95 })
-vim.api.nvim_set_hl(0, "CursorLineNr", { fg = colors.green, bg = 'none', blend = 95 })
+vim.api.nvim_set_hl(0, "CursorLine", { bg = '#1a1b26', fg = 'none' })
+vim.api.nvim_set_hl(0, "CursorLineNr", { fg = colors.syellow, bg = 'none', blend = 0, force = true })
 
 vim.cmd [[
-    highlight Cursor guifg=none guibg=#9469ff
+    "highlight Cursor guifg=none guibg=#9469ff
+    highlight Cursor guifg=none guibg=#98f3a1
+    highlight CursorBlock guifg=#98f3a1 guibg=#98f3a1
     highlight iCursor guifg=none guibg=#69ff94
-    set guicursor=n-v-c:block-Cursor
+    set guicursor=n-v-c:block-CursorBlock
     set guicursor+=i:hor20-iCursor
     set guicursor+=n-v-c:blinkon0
     set guicursor+=i:blinkwait10
@@ -54,10 +56,10 @@ vim.api.nvim_set_hl(0, 'VertSplit', { fg = colors.purple, bold = false })
 vim.api.nvim_set_hl(0, 'LspInlayHint', { fg = '#636da6', bg = 'none' })
 vim.api.nvim_set_hl(0, 'FloatBorder', { fg = 'white', bg = 'none' })
 
-vim.api.nvim_set_hl(0, 'DiagnosticVirtualTextInfo', { bg = 'none', fg = 'yellow' })
+vim.api.nvim_set_hl(0, 'DiagnosticVirtualTextInfo', { bg = 'none', fg = colors.syellow })
 vim.api.nvim_set_hl(0, 'TreesitterContext', { bg = 'none', fg = colors.purple })
 
-vim.api.nvim_set_hl(0, 'NvimTreeIndentMarker', { bg = 'none', fg = colors.purple })
+vim.api.nvim_set_hl(0, 'NvimTreeIndentMarker', { bg = 'none', fg = colors.syellow })
 vim.api.nvim_set_hl(0, 'NvimTreeWinSeparator', { fg = colors.purple, bold = false })
 
 vim.api.nvim_set_hl(0, 'Search', { fg = colors.green, bg = 'none', underline = true })
@@ -117,13 +119,13 @@ vim.api.nvim_set_hl(0, 'NoiceLspProgressClient', { fg = colors.magenta, bg = 'no
 vim.api.nvim_set_hl(0, 'MiniAnimateCursor', { fg = colors.green, bg = colors.green, underline = false })
 
 vim.api.nvim_set_hl(0, 'GitSignsAdd', { fg = colors.green, bg = 'none', underline = false })
-vim.api.nvim_set_hl(0, 'GitSignsAddnr', { fg = colors.green, bg = 'none', underline = false })
+vim.api.nvim_set_hl(0, 'GitSignsAddnr', { fg = colors.syellow, bg = 'none', underline = false })
 
 vim.api.nvim_set_hl(0, 'GitSignsDelete', { fg = colors.red, bg = 'none', underline = false })
-vim.api.nvim_set_hl(0, 'GitSignsDeleteNr', { fg = colors.red, bg = 'none', underline = false })
+vim.api.nvim_set_hl(0, 'GitSignsDeleteNr', { fg = colors.syellow, bg = 'none', underline = false })
 
 vim.api.nvim_set_hl(0, 'GitSignsChange', { fg = colors.magenta, bg = 'none', underline = false })
-vim.api.nvim_set_hl(0, 'GitSignsChangeNr', { fg = colors.magenta, bg = 'none', underline = false })
+vim.api.nvim_set_hl(0, 'GitSignsChangeNr', { fg = colors.syellow, bg = 'none', underline = false })
 
 -- vim.api.nvim_set_hl(0, 'FloatShadow', { fg = '#636da6', bg = 'none' })
 -- vim.api.nvim_set_hl(0, 'FloatShadowThrough', { fg = '#636da6', bg = 'none' })
@@ -132,3 +134,7 @@ vim.api.nvim_set_hl(0, 'GitSignsChangeNr', { fg = colors.magenta, bg = 'none', u
 
 vim.api.nvim_set_hl(0, 'Commments', { fg = colors.bg, bg = 'none', underline = false })
 vim.api.nvim_set_hl(0, 'Commment', { fg = colors.bg, bg = 'none', underline = false })
+
+-- vim.api.nvim_set_hl(0, 'WhichKeyFloat', { bg = '#1a1b26', fg = '#ffffff', underline = true })
+-- vim.api.nvim_set_hl(0, 'WhichKeyNormal', { bg = '#1a1b26', underline = false })
+-- vim.api.nvim_set_hl(0, 'WhichKeyBorder', { fg = '#ffffff', bg = '#ffffff', underline = true })

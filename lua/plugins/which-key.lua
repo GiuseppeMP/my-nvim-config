@@ -1,4 +1,8 @@
 local function config()
+    -- TODO: check if this is still needed
+    vim.cmd([[
+        let g:test#preserve_screen = 0
+    ]])
     -- pluginswhich
     -- telescope
     local telescope = require 'telescope'
@@ -34,312 +38,276 @@ local function config()
     local api = require 'nvim-tree.api'
 
     local conf = {
-        show_help = false,
-        show_keys = false,
-        ignore_missing = true,
-        window = {
-            border = "double",   -- none, single, double, shadow
-            position = "bottom", -- bottom, top
+        preset = 'modern',
+        plugins = {
+            presets = {
+                operators = false,
+            }
         },
-        layout = {
-            spacing = 8, -- spacing between columns
-        },
-        hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " },
-        icons = {
-            breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
-            separator = "  ", -- symbol used between a key and it's label
-            -- group = "+",       -- symbol prepended to a group
-            group = conf.icons.git.added .. ' ' -- symbol prepended to a group
-        },
-        triggers_blacklist = {
-            -- list of mode / prefixes that should never be hooked by WhichKey
-            i = { "j", "k" },
-            v = { "j", "k" },
-        },
+        -- triggers_blacklist = {
+        --     -- list of mode / prefixes that should never be hooked by WhichKey
+        --     i = { "j", "k" },
+        --     v = { "j", "k" },
+        -- },
+        -- disable = {
+        --     -- disable WhichKey for certain buf types and file types.
+        --     ft = {},
+        --     bt = {},
+        --     -- disable a trigger for a certain context by returning true
+        --     ---@type fun(ctx: { keys: string, mode: string, plugin?: string }):boolean?
+        --     trigger = function(ctx)
+        --         -- if keys start with j or k and mode is insert or visual return true
+        --         return vim.tbl_contains({ "j", "k" }, ctx.keys) and vim.tbl_contains({ "i", "v" })
+        --     end,
+        -- },
     }
 
     wk.setup(conf)
 
-    -- mappings
-
-    -- [<leader>f] - fzf+
-    wk.register({
-        ["<leader>f"] = {
-            name = "fuzzy finder/telescope",
-            f = { builtin.find_files, 'Find files' },
-            r = { builtin.oldfiles, "Open recent file" },
-            n = { "<cmd>enew<cr>", "New file" },
-            l = { builtin.live_grep, "Live grep" },
-            b = { builtin.buffers, "Buffers" },
-            h = { builtin.help_tags, "Help tags" },
-            k = { builtin.keymaps, "Oh Yeah, the awesome Keymaps!" },
-            g = { builtin.git_files, "Git files" },
-            d = { builtin.diagnostics, "Diagnostics" },
-            m = { function() vim.cmd(":Noice telescope") end, "Noice messages" },
-            s = { function() builtin.grep_string({ search = vim.fn.input("Greg > ") }) end, 'Search ...' },
-            v = { function() require 'neoclip.fzf' () end, 'Clipboard history' },
-            t = { vim.cmd.OverseerRun, 'Show tasks' },
-            o = { vim.cmd.OverseerOpen, 'Show tasks output' },
-            q = { builtin.quickfix, 'Quickfix' },
-            c = { vim.cmd.Noice, 'Noice console messages' },
-            w = { ':Telescope lsp_dynamic_workspace_symbols<CR>', 'Search Workspace types' },
+    wk.add({
+        -- normal mode
+        {
+            { "<leader>f",  group = "fzf/telescope+" },
+            { "<leader>ff", builtin.find_files,                                                       desc = 'Find files' },
+            { "<leader>fr", builtin.oldfiles,                                                         desc = "Open recent file" },
+            { "<leader>fn", "<cmd>enew<cr>",                                                          desc = "New file" },
+            { "<leader>fl", builtin.live_grep,                                                        desc = "Live grep" },
+            { "<leader>fb", builtin.buffers,                                                          desc = "Buffers" },
+            { "<leader>fh", builtin.help_tags,                                                        desc = "Help tags" },
+            { "<leader>fk", builtin.keymaps,                                                          desc = "Oh Yeah, the awesome Keymaps!" },
+            { "<leader>fg", builtin.git_files,                                                        desc = "Git files" },
+            { "<leader>fd", builtin.diagnostics,                                                      desc = "Diagnostics" },
+            { "<leader>fm", function() vim.cmd(":Noice telescope") end,                               desc = "Noice messages" },
+            { "<leader>fs", function() builtin.grep_string({ search = vim.fn.input("Greg > ") }) end, desc = 'Search ...' },
+            { "<leader>fv", function() require 'neoclip.fzf' () end,                                  desc = 'Clipboard history' },
+            { "<leader>ft", vim.cmd.OverseerRun,                                                      desc = 'Show tasks' },
+            { "<leader>fo", vim.cmd.OverseerOpen,                                                     desc = 'Show tasks output' },
+            { "<leader>fq", builtin.quickfix,                                                         desc = 'Quickfix' },
+            { "<leader>fc", vim.cmd.Noice,                                                            desc = 'Noice console messages' },
+            { "<leader>fw", ':Telescope lsp_dynamic_workspace_symbols<CR>',                           desc = 'Search Workspace types' },
         },
-    })
-
-    -- debug visual mode
-    wk.register({ ["<F4>"] = { dapui.eval, 'Debug eval' } }, { mode = 'v' })
-    wk.register({ ["<C-t>"] = { vim.cmd.ToggleTerm, 'Toggle Term' } }, { mode = { 't', 'n' } })
-    wk.register({ ["<C-b>"] = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", 'Toggle Term tab' } },
-        { mode = { 't', 'n' } })
-
-
-
-    -- debug normal mode
-    wk.register({
-        ["<F1>"] = { function() dap.toggle_breakpoint() end, 'Debug toggle breakpoint' },
-        ["<F2>"] = { function()
-            dap.list_breakpoints()
-            pcall(dap_save.store_breakpoints, false)
-        end, 'List and save breakpoints' },
-        ["<F3>"] = { function()
-            dap.clear_breakpoints()
-            pcall(dap_save.store_breakpoints, true)
-        end, 'Clear all breakpoints' },
-        ["<F5>"] = { dap.continue, 'Debug continue or attach' },
-        ["<F6>"] = { dap.step_into, 'Debug step into' },
-        ["<F7>"] = { dap.step_out, 'Debug step out' },
-        ["<F8>"] = { dap.step_over, 'Debug step over' },
-        ["<F9>"] = { dap.run_last, 'Debug run last' },
-    }, { 'n', 'i', 'v' })
-
-    -- [<leader>u] - utils
-    wk.register({
-        ["<leader>u"] = {
-            name = "utils",
-            t = { vim.cmd.TagbarToggle, 'Toggle tagbar' },
-            p = { vim.cmd.PresentingStart, 'Present start' },
-            u = { vim.cmd.UndotreeToggle, 'Show undotree' },
-            l = { vim.cmd.Lazy, 'Lazy plugin manager' },
-            d = { function() vim.cmd('Trouble diagnostics toggle') end, 'Show diagnostics panel' },
-            D = { vim.cmd.TodoLocList, 'Show comments diagnostics list' },
-            m = { vim.cmd.MarkdownPreview, 'Markdown Preview' },
-            a = { function() vim.cmd(":CellularAutomaton make_it_rain") end, 'AFK' },
-            z = { telescope.extensions.zoxide.list, 'Show zoxide directories' },
-            h = { builtin.highlights, "Highlights" },
-            -- a = { rest.run, "Execure nvim rest request under cursor" },
-            r = { vim.cmd.SnipRun, 'Run code' },
-            v = { vim.cmd.Pastify, 'Paste img' },
-            s = {
-                name = "Swap Buffer",
-                h = { function() require("swap-buffers").swap_buffers("h") end, "Swap left" },
-                l = { function() require("swap-buffers").swap_buffers("l") end, "Swap right" },
-                j = { function() require("swap-buffers").swap_buffers("j") end, "Swap down" },
-                k = { function() require("swap-buffers").swap_buffers("k") end, "Swap up" },
-            },
-            j = {
-                name = "Jacoco coverage",
-                t = { blanket.stop, 'Coverage blanket terminate' },
-                s = { blanket.start, 'Coverage blanket start' },
-                r = { blanket.refresh, 'Coverage blanket refresh' },
-            },
-            g = {
-                name = "Git",
-                j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
-                k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
-                b = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
-                p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
-                r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
-                R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
-                s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
-                u = {
-                    "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
-                    "Undo Stage Hunk",
-                },
-                o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
-                -- b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-                c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
-                h = {
-                    "<cmd>DiffviewFileHistory % <cr>", "File history",
-                },
-                l = {
-                    "<cmd>DiffviewFileHistory <cr>", "Git history",
-                },
-                d = {
-                    "<cmd>Gitsigns diffthis HEAD<cr>", "Diff",
-                },
-            },
+        -- normal and terminal mode
+        {
+            mode = { 'n', 't' },
+            { "<C-t>", vim.cmd.ToggleTerm,                                desc = 'Toggle Term' },
+            { "<C-b>", "<cmd>ToggleTerm size=8 direction=horizontal<cr>", desc = 'Toggle Term tab' }
         },
-    })
-
-    -- [<leader>j] - jupyter+
-    wk.register({
-        ["<leader>j"] = {
-            name = "Jupyter Notebooks",
-            a = { vim.cmd.JupyniumStartAndAttachToServer, 'Start and attach to Jupynium server' },
-            f = {
+        -- normal, insert and visual mode
+        {
+            mode = { 'n', 'i', 'v' },
+            { "<F1>", function() dap.toggle_breakpoint() end, desc = 'Debug toggle breakpoint' },
+            {
+                "<F2>",
                 function()
-                    local filename_wo_ext = vim.fn.expand "%:t:r:r"
-                    filename_wo_ext = filename_wo_ext .. '.ipynb'
-                    vim.cmd.JupyniumStartSync(filename_wo_ext)
+                    dap.list_breakpoints()
+                    pcall(dap_save.store_breakpoints, false)
                 end,
-                'Open Jupyter Notebook and start to sync'
+                desc = 'List and save breakpoints'
             },
+            {
+                "<F3>",
+                function()
+                    dap.clear_breakpoints()
+                    pcall(dap_save.store_breakpoints, true)
+                end,
+                desc = 'Clear all breakpoints'
+            },
+            { "<F4>", dapui.eval,                             desc = 'Debug eval' },
+            { "<F5>", dap.continue,                           desc = 'Debug continue or attach' },
+            { "<F6>", dap.step_into,                          desc = 'Debug step into' },
+            { "<F7>", dap.step_out,                           desc = 'Debug step out' },
+            { "<F8>", dap.step_over,                          desc = 'Debug step over' },
+            { "<F9>", dap.run_last,                           desc = 'Debug run last' },
+        },
+    })
+    -- [<leader>u] - utils
+    wk.add({
+        { "<leader>u",   group = "utils" },
+        { '<leader>t',   vim.cmd.TagbarToggle,                                      desc = 'Toggle tagbar' },
+        { '<leader>p',   vim.cmd.PresentingStart,                                   desc = 'Present start' },
+        { '<leader>uu',  vim.cmd.UndotreeToggle,                                    desc = 'Show undotree' },
+        { '<leader>ul',  vim.cmd.Lazy,                                              desc = 'Lazy plugin manager' },
+        { '<leader>ud',  function() vim.cmd('Trouble diagnostics toggle') end,      desc = 'Show diagnostics panel' },
+        { '<leader>uD',  vim.cmd.TodoLocList,                                       desc = 'Show comments diagnostics list' },
+        { '<leader>um',  vim.cmd.MarkdownPreview,                                   desc = 'Markdown Preview' },
+        { '<leader>ua',  function() vim.cmd(":CellularAutomaton make_it_rain") end, desc = 'AFK' },
+        { '<leader>uz',  telescope.extensions.zoxide.list,                          desc = 'Show zoxide directories' },
+        { '<leader>uh',  builtin.highlights,                                        desc = "Highlights" },
+        -- { '<leader>ua',  rest.run,                                                         desc = "Execure nvim rest request under cursor" },
+        { '<leader>ur',  vim.cmd.SnipRun,                                           desc = 'Run code' },
+        { '<leader>uv',  vim.cmd.Pastify,                                           desc = 'Paste img' },
+        { '<leader>us',  group = "Swap Buffer" },
+        { '<leader>ush', function() require("swap-buffers").swap_buffers("h") end,  desc = "Swap left" },
+        { '<leader>usl', function() require("swap-buffers").swap_buffers("l") end,  desc = "Swap right" },
+        { '<leader>usj', function() require("swap-buffers").swap_buffers("j") end,  desc = "Swap down" },
+        { '<leader>usk', function() require("swap-buffers").swap_buffers("k") end,  desc = "Swap up" },
+        { '<leader>uj',  group = "Jacoco coverage" },
+        { '<leader>ujt', blanket.stop,                                              desc = 'Coverage blanket terminate' },
+        { '<leader>ujs', blanket.start,                                             desc = 'Coverage blanket start' },
+        { '<leader>ujr', blanket.refresh,                                           desc = 'Coverage blanket refresh' },
+        { '<leader>g',   group = "Git" },
+        { '<leader>ugj', "<cmd>lua require 'gitsigns'.next_hunk()<cr>",             desc = "Next Hunk" },
+        { '<leader>ugk', "<cmd>lua require 'gitsigns'.prev_hunk()<cr>",             desc = "Prev Hunk" },
+        { '<leader>ugb', "<cmd>lua require 'gitsigns'.blame_line()<cr>",            desc = "Blame" },
+        { '<leader>ugp', "<cmd>lua require 'gitsigns'.preview_hunk()<cr>",          desc = "Preview Hunk" },
+        { '<leader>ugr', "<cmd>lua require 'gitsigns'.reset_hunk()<cr>",            desc = "Reset Hunk" },
+        { '<leader>ugR', "<cmd>lua require 'gitsigns'.reset_buffer()<cr>",          desc = "Reset Buffer" },
+        { '<leader>ugs', "<cmd>lua require 'gitsigns'.stage_hunk()<cr>",            desc = "Stage Hunk" },
+        { '<leader>ugu', "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",       desc = "Undo Stage Hunk", },
+        { '<leader>ugo', "<cmd>Telescope git_status<cr>",                           desc = "Open changed file" },
+        { '<leader>ugc', "<cmd>Telescope git_commits<cr>",                          desc = "Checkout commit" },
+        { '<leader>ugh', "<cmd>DiffviewFileHistory % <cr>",                         desc = "File history", },
+        { '<leader>ugl', "<cmd>DiffviewFileHistory <cr>",                           desc = "Git history", },
+        { '<leader>ugd', "<cmd>Gitsigns diffthis HEAD<cr>",                         desc = "Diff", },
+        {
+            mode = { 'v' },
+            { "<leader>uc", function() vim.cmd(":CarbonNow") end,      desc = 'Create code snippet image' },
+            { "<leader>ur", function() require 'sniprun'.run('v') end, desc = 'Run code' }
         }
-    }, { mode = 'n' })
+    })
 
-    wk.register({
-        ["<leader>uc"] =
-        { function() vim.cmd(":CarbonNow") end, 'Create code snippet image' }
-    }, { mode = 'v' })
-
-    wk.register({
-        ["<leader>ur"] =
-        { function() require 'sniprun'.run('v') end, 'Run code' }
-    }, { mode = 'v' })
+    wk.add({
+        { "<leader>j",  group = "Jupyter Notebooks" },
+        { '<leader>ja', vim.cmd.JupyniumStartAndAttachToServer, desc = 'Start and attach to Jupynium server' },
+        {
+            '<leader>jf',
+            function()
+                local filename_wo_ext = vim.fn.expand "%:t:r:r"
+                filename_wo_ext = filename_wo_ext .. '.ipynb'
+                vim.cmd.JupyniumStartSync(filename_wo_ext)
+            end,
+            desc = 'Open Jupyter Notebook and start to sync'
+        },
+    })
 
     -- [<leader>h] - harpoon+
-    wk.register({
-        ["<leader>h"] = {
-            name = "harpoon, hop",
-            a = { harpoon.mark.add_file, 'Harpoon add mark file' },
-            h = { hop.hint_words, 'Hop words' },
-            l = { tsht.nodes, 'Hop syntax' },
-            m = { harpoon.ui.toggle_quick_menu, 'Harpoon quick menu' },
-        },
-    }, { mode = 'n' })
+    wk.add({
+        { "<leader>h",  group = "harpoon, hop" },
+        { '<leader>ha', harpoon.mark.add_file,        desc = 'Harpoon add mark file' },
+        { '<leader>hh', hop.hint_words,               desc = 'Hop words' },
+        { '<leader>hl', tsht.nodes,                   desc = 'Hop syntax' },
+        { '<leader>hm', harpoon.ui.toggle_quick_menu, desc = 'Harpoon quick menu' },
+    })
 
 
     -- [<C-x>] - harpoon fast nav
-    wk.register({
-        ['<C-m>']     = { harpoon.ui.toggle_quick_menu, 'Harpoon quick menu' },
-        ['<C-g>']     = { function() harpoon.ui.nav_next() end, 'Go to harpoon next' },
-        ['<C-q>']     = { function() harpoon.ui.nav_prev() end, 'Go to harpoon previous' },
-        ['<C-1>']     = { function() harpoon.ui.nav_file(1) end, 'Go to harpoon mark 1' },
-        ['<C-2>']     = { function() harpoon.ui.nav_file(2) end, 'Go to harpoon mark 2' },
-        ['<C-3>']     = { function() harpoon.ui.nav_file(3) end, 'Go to harpoon mark 3' },
-        ['<C-4>']     = { function() harpoon.ui.nav_file(4) end, 'Go to harpoon mark 4' },
-        ['<C-5>']     = { function() harpoon.ui.nav_file(5) end, 'Go to harpoon mark 5' },
-        ['<C-6>']     = { function() harpoon.ui.nav_file(6) end, 'Go to harpoon mark 6' },
-        ['<C-7>']     = { function() harpoon.ui.nav_file(7) end, 'Go to harpoon mark 7' },
-        ['<C-8>']     = { function() harpoon.ui.nav_file(8) end, 'Go to harpoon mark 8' },
-        ['<C-9>']     = { function() harpoon.ui.nav_file(9) end, 'Go to harpoon mark 9' },
-        ["<C-Up>"]    = { function() require("swap-buffers").swap_buffers("k") end, "Swap up" },
-        ["<C-Down>"]  = { function() require("swap-buffers").swap_buffers("j") end, "Swap down" },
-        ["<C-Left>"]  = { function() require("swap-buffers").swap_buffers("h") end, "Swap left" },
-        ["<C-Right>"] = { function() require("swap-buffers").swap_buffers("l") end, "Swap right" },
-    }, { mode = 'n', 'i', 'v' })
-
-    wk.register({
-        ["<leader>h"] = {
-            name = "harpoon, hop",
-            l = { tsht.nodes, 'Hop syntax' },
-        },
-    }, { mode = { 'o', 'v' } })
-
-    vim.cmd([[
-    let g:test#preserve_screen = 0
-]])
-
-    wk.register({
-        ["<leader>t"] = {
-            name = "tests",
-            m = { function() vim.cmd(":TestNearest") end, 'Run nearest method with vim-test' },
-            c = { function() vim.cmd(":TestFile -strategy=toggleterm") end, 'Run class/file tests with vim-test' },
-            t = { function() neotest.run.run() end, 'Run nearest test' },
-            d = { function() neotest.run.run({ strategy = 'dap' }) end, 'Debug nearest test' },
-            f = { function() neotest.run.run(vim.fn.expand('%')) end, 'Run all tests in the file' },
-            s = { function() neotest.summary.toggle() end, 'Toggle tests summary' },
-            o = { function() neotest.output_panel.toggle() end, 'Toggle tests output window' },
-            a = { function() neotest.run.run({ suite = true }) end, 'Run all tests' },
-        },
+    wk.add({
+        { mode = { 'n', 'i', 'v' } },
+        { '<C-m>',                 harpoon.ui.toggle_quick_menu,                             desc = 'Harpoon quick menu' },
+        { '<C-g>',                 function() harpoon.ui.nav_next() end,                     desc = 'Go to harpoon next' },
+        { '<C-q>',                 function() harpoon.ui.nav_prev() end,                     desc = 'Go to harpoon previous' },
+        { '<C-1>',                 function() harpoon.ui.nav_file(1) end,                    desc = 'Go to harpoon mark 1' },
+        { '<C-2>',                 function() harpoon.ui.nav_file(2) end,                    desc = 'Go to harpoon mark 2' },
+        { '<C-3>',                 function() harpoon.ui.nav_file(3) end,                    desc = 'Go to harpoon mark 3' },
+        { '<C-4>',                 function() harpoon.ui.nav_file(4) end,                    desc = 'Go to harpoon mark 4' },
+        { '<C-5>',                 function() harpoon.ui.nav_file(5) end,                    desc = 'Go to harpoon mark 5' },
+        { '<C-6>',                 function() harpoon.ui.nav_file(6) end,                    desc = 'Go to harpoon mark 6' },
+        { '<C-7>',                 function() harpoon.ui.nav_file(7) end,                    desc = 'Go to harpoon mark 7' },
+        { '<C-8>',                 function() harpoon.ui.nav_file(8) end,                    desc = 'Go to harpoon mark 8' },
+        { '<C-9>',                 function() harpoon.ui.nav_file(9) end,                    desc = 'Go to harpoon mark 9' },
+        { "<C-Up>",                function() require("swap-buffers").swap_buffers("k") end, desc = "Swap up" },
+        { "<C-Down>",              function() require("swap-buffers").swap_buffers("j") end, desc = "Swap down" },
+        { "<C-Left>",              function() require("swap-buffers").swap_buffers("h") end, desc = "Swap left" },
+        { "<C-Right>",             function() require("swap-buffers").swap_buffers("l") end, desc = "Swap right" },
     })
 
-    wk.register({
-        ["<leader>c"] = {
-            name = "code",
-            a = { 'Code actions' },
-            f = { 'Code format' },
-        }
+
+
+    wk.add({
+        { "<leader>t",  group = "testing" },
+        { "<leader>tm", function() vim.cmd(":TestNearest") end,                   desc = 'Run nearest method with vim-test' },
+        { "<leader>tc", function() vim.cmd(":TestFile -strategy=toggleterm") end, desc = 'Run class/file tests with vim-test' },
+        { "<leader>tt", function() neotest.run.run() end,                         desc = 'Run nearest test' },
+        { "<leader>td", function() neotest.run.run({ strategy = 'dap' }) end,     desc = 'Debug nearest test' },
+        { "<leader>tf", function() neotest.run.run(vim.fn.expand('%')) end,       desc = 'Run all tests in the file' },
+        { "<leader>ts", function() neotest.summary.toggle() end,                  desc = 'Toggle tests summary' },
+        { "<leader>to", function() neotest.output_panel.toggle() end,             desc = 'Toggle tests output window' },
+        { "<leader>ta", function() neotest.run.run({ suite = true }) end,         desc = 'Run all tests' },
     })
 
-    wk.register({
-        ['<C-s>'] = { vim.cmd.write, 'Save buffer' },
-    }, { mode = { 't', 'n', 'i' } })
-
-
-    wk.register({
-        ["<C-f>"] = { vim.cmd.NvimTreeToggle, 'File explorer' },
-        ["<leader>D"] = { 'Type definitions' },
-        ["<leader>k"] = { 'Signature help' },
-        ["<leader>xw"] = { "SWAP help", 'Swap two words separated by space' },
-        ["<leader>rn"] = { 'Rename' },
-        ["K"] = { 'Lsp hover hints' },
-        ["<leader>q"] = { vim.cmd.Bdelete, 'Buffer delete' }
+    wk.add({
+        { "<leader>c",  group = "code" },
+        { "<leader>ca", desc = 'Code actions' },
+        { "<leader>cf", desc = 'Code format' },
     })
 
-    wk.register({
-        ["d"] = {
-            f = { 'Debug file' },
-            n = { 'Debug nearest test' },
-        }
+    wk.add({
+        { mode = { 't', 'n', 'i' }, silent = true },
+        { '<C-s>',                  vim.cmd.write, desc = 'Save buffer' },
     })
 
-    wk.register({
-        ["<leader>w"] = {
-            name = "workspace",
-            a = { 'Add workspace folder' },
-            r = { 'Remove workspace folder' },
-            l = { 'List workspace folders' },
-        }
+
+    wk.add({
+        { "<C-f>",      vim.cmd.NvimTreeToggle,                    desc = 'File explorer' },
+        { "<leader>D",  desc = 'Type definitions' },
+        { "<leader>k",  desc = 'Signature help' },
+        { "<leader>xw", desc = 'Swap two words separated by space' },
+        { "<leader>rn", desc = 'Rename' },
+        { "K",          desc = 'Lsp hover hints' },
+        { "<leader>q",  vim.cmd.Bdelete,                           desc = 'Buffer delete' },
+        { "df",         desc = 'Debug File Tests' },
+        { "dn",         desc = 'Debug Nearest Test' },
     })
+
+    wk.add({
+        { "<leader>w",  desc = "workspace" },
+        { "<leader>wa", desc = 'Add workspace folder' },
+        { "<leader>wr", desc = 'Remove workspace folder' },
+        { "<leader>wl", desc = 'List workspace folders' },
+    })
+
+    vim.keymap.set("v", ";;", ":fold<CR>", { silent = true })
+    vim.keymap.set("n", ";;", "zA", { silent = true })
 
     -- [g] goto+
-    wk.register({
-        ["gd"] = { "Go to definition" },
-        ["gD"] = { "Go to declaration" },
-        ["gi"] = { "Go to implementation" },
-        ["gr"] = { "Go to references" },
-        ["ga"] = { function()
-            vim.cmd(":w")
-            vim.cmd(":A")
-        end, 'Go to tests (Alternate)' },
-        ["gs"] = { vim.cmd.G, "Source control" },
-        ["gc"] = { "Comment" },
-        ["gC"] = { function() require("treesitter-context").go_to_context() end, 'Go to context' },
-    })
-
-    -- [m] marks+
-    wk.register({
-        ["m"] = {
-            name = "marks",
+    wk.add({
+        { "gd", desc = "Go to definition" },
+        { "gD", desc = "Go to declaration" },
+        { "gi", desc = "Go to implementation" },
+        { "gr", desc = "Go to references" },
+        {
+            "ga",
+            function()
+                vim.cmd(":w")
+                vim.cmd(":A")
+            end,
+            desc = 'Go to tests (Alternate)'
         },
+        { "gs", vim.cmd.G,                                                    desc = "Source control" },
+        { "gC", function() require("treesitter-context").go_to_context() end, desc = 'Go to context' },
     })
 
-    wk.register({
-        ["z"] = {
-            name = "folding",
-            R = { require('ufo').openAllFolds, 'Open all foldings' },
-            M = { require('ufo').closeAllFolds, 'Close all foldings' },
-            r = { require('ufo').openFoldsExecptKinds, 'Open folding except kinds' },
-            m = { require('ufo').closeFoldsWith, 'Close folds with' },
+    wk.add({
+        { "z",   group = 'folding' },
+        { "zVR", require('ufo').openAllFolds,         desc = 'Open all foldings' },
+        { "zM",  require('ufo').closeAllFolds,        desc = 'Close all foldings' },
+        { "zr",  require('ufo').openFoldsExceptKinds, desc = 'Open folding except kinds' },
+        { "zm",  require('ufo').closeFoldsWith,       desc = 'Close folds with' }
+    })
+
+
+    wk.add({
+        {
+            "[d",
+            function()
+                vim.diagnostic.goto_next()
+                vim.diagnostic.open_float()
+            end,
+            desc = "Go to next lsp diagnostics."
         },
+        {
+            "]d",
+            function()
+                vim.diagnostic.goto_prev()
+                vim.diagnostic.open_float()
+            end,
+            desc = "Go to previous lsp diagnostics."
+        },
+        { "<Tab>", '<c-i>', desc = "Jump foward" },
     })
 
 
-    wk.register({
-        ["[d"] = { function()
-            vim.diagnostic.goto_next()
-            vim.diagnostic.open_float()
-        end, "Go to next lsp diagnostics." },
-        ["]d"] = { function()
-            vim.diagnostic.goto_prev()
-            vim.diagnostic.open_float()
-        end, "Go to previous lsp diagnostics." },
-        ["<Tab>"] = { '<c-i>', "Jump foward" },
-    }, { mode = { "n" } })
-
-
-    -- wk.register({
+    -- wk.add({
     --     ["<leader>d"] = {
     --         h = { vim.cmd(":set statusline=%{synIDattr(synIDtrans(synID(line('.'),col('.'),1)),'name')}"),
     --             "Status line highlight cursor debug" }
@@ -347,84 +315,76 @@ local function config()
     -- })
 
     -- codeium
-    wk.register({
-        ["<c-;>"] = { function() vim.fn['codeium#Complete']() end, 'Codeium trigger suggestion' },
-        ["<c-,>"] = { function() vim.fn['codeium#CycleCompletions'](1) end, 'Codeium next suggestion' },
-        ["<c-.>"] = { function() vim.fn['codeium#CycleCompletions'](-1) end, 'Codeium previous suggestion' },
-    }, { mode = { 'i' } })
+    wk.add({
+        mode = { 'i' },
+        { "<c-;>", function() vim.fn['codeium#Complete']() end,           desc = 'Codeium trigger suggestion' },
+        { "<c-,>", function() vim.fn['codeium#CycleCompletions'](1) end,  desc = 'Codeium next suggestion' },
+        { "<c-.>", function() vim.fn['codeium#CycleCompletions'](-1) end, desc = 'Codeium previous suggestion' },
+    })
 
-    wk.register({
-        ["<c-y>"] = 'Codeium accept suggestion',
-        ["<c-/>"] = { function() vim.fn['codeium#Clear']() end, 'Codeium clear' },
-    }, { mode = { 'i', 'n' } })
+    wk.add({
+        {
+            mode = { 'i', 'n' },
+            { "<c-y>", desc = 'Codeium accept suggestion' },
+            { "<c-/>", function() vim.fn['codeium#Clear']() end, desc = 'Codeium clear' },
+        }
+    })
 
-    vim.cmd [[
-     imap <script><silent><nowait><expr> <C-y> codeium#Accept()
- ]]
+    vim.cmd [[ imap <script><silent><nowait><expr> <C-y> codeium#Accept() ]]
 
     -- chat-gpt
-    wk.register({
-        ["<D-p>"] = { vim.cmd.ChatGPT, 'ChatGPT Prompt' },
-        ["<D-s>"] = { vim.cmd.write, 'Write' },
-    }, { mode = { 'i', 'n', 'v', 't' } })
-
-    wk.register({
-        c = {
-            name = "ChatGPT",
-            -- p = { vim.cmd.ChatGPT, "ChatGPT Prompt" },
-            c = { "<cmd>ChatGPT<CR>", "ChatGPT Prompt" },
-            e = { vim.cmd.ChatGPTEditWithInstruction, "Edit with instruction" },
-            g = { function() vim.cmd.ChatGPTRun("grammar_correction") end, "Grammar Correction" },
-            k = { function() vim.cmd.ChatGPTRun("keywords") end, "Keywords" },
-            d = { function() vim.cmd.ChatGPTRun("docstring") end, "Docstring" },
-            o = { function() vim.cmd.ChatGPTRun("optimize_code") end, "Optimize Code" },
-            s = { function() vim.cmd.ChatGPTRun("summarize") end, "Summarize" },
-            b = { function() vim.cmd.ChatGPTRun("fix_bugs") end, "Fix Bugs" },
-            x = { function() vim.cmd.ChatGPTRun("explain_code") end, "Explain Code" },
-            r = { function() vim.cmd.ChatGPTRun("roxygen_edit") end, "Roxygen Edit" },
-            l = { function() vim.cmd.ChatGPTRun("code_readability_analysis") end, "Code Readability Analysis" },
-            t = { function() vim.cmd.ChatGPTRun("translate") end, "Translate" },
-            i = { vim.cmd.ChatGPTActAs, "Impersonate, Act as.." },
-            tt = { function() vim.cmd.ChatGPTRun("add_tests") end, "Add Tests" },
-        },
-        m = {
-            r = { "<cmd>CellularAutomaton make_it_rain<CR>", 'Make it rain! Perf your terminal' }
+    wk.add({
+        {
+            mode = { 'i', 'n', 'v', 't' },
+            { "<D-p>", vim.cmd.ChatGPT, desc = 'ChatGPT Prompt' },
+            { "<D-s>", vim.cmd.write,   desc = 'Write' },
         }
-    }, {
-        prefix = "<leader>",
-        mode = { "v", "n" },
     })
 
-    -- -- tmux
-    -- wk.register({
-    --     ["<C-k>"] = { vim.cmd.TmuxNavigateUp, 'Tmux navigate up' },
-    --     ["<C-j>"] = { vim.cmd.TmuxNavigateDown, 'Tmux navigate down' },
-    --     ["<C-h>"] = { vim.cmd.TmuxNavigateLeft, 'Tmux navigate left' },
-    --     ["<C-l>"] = { vim.cmd.TmuxNavigateRight, 'Tmux navigate right' },
-    --     ["<C-e>"] = { vim.cmd.NvimTreeFindFile, 'NvimTree Focus file' },
-    --     ["<leader>a"] = { 'ggVG', 'Select all lines' },
-    -- })
+    wk.add({
+        {
+            mode = { "v", "n" },
+            { "<leader>c",  group = "ChatGPT" },
+            { "<leader>cc", "<cmd>ChatGPT<CR>",                                             desc = "ChatGPT Prompt" },
+            { "<leader>ce", vim.cmd.ChatGPTEditWithInstruction,                             desc = "Edit with instruction" },
+            { "<leader>cg", function() vim.cmd.ChatGPTRun("grammar_correction") end,        desc = "Grammar Correction" },
+            { "<leader>ck", function() vim.cmd.ChatGPTRun("keywords") end,                  desc = "Keywords" },
+            { "<leader>cd", function() vim.cmd.ChatGPTRun("docstring") end,                 desc = "Docstring" },
+            { "<leader>co", function() vim.cmd.ChatGPTRun("optimize_code") end,             desc = "Optimize Code" },
+            { "<leader>cs", function() vim.cmd.ChatGPTRun("summarize") end,                 desc = "Summarize" },
+            { "<leader>cb", function() vim.cmd.ChatGPTRun("fix_bugs") end,                  desc = "Fix Bugs" },
+            { "<leader>cx", function() vim.cmd.ChatGPTRun("explain_code") end,              desc = "Explain Code" },
+            { "<leader>cr", function() vim.cmd.ChatGPTRun("roxygen_edit") end,              desc = "Roxygen Edit" },
+            { "<leader>cl", function() vim.cmd.ChatGPTRun("code_readability_analysis") end, desc = "Code Readability Analysis" },
+            { "<leader>ct", function() vim.cmd.ChatGPTRun("translate") end,                 desc = "Translate" },
+            { "<leader>ci", vim.cmd.ChatGPTActAs,                                           desc = "Impersonate, Act as.." },
+            { "<leader>cu", function() vim.cmd.ChatGPTRun("add_tests") end,                 desc = "Add Unit Tests" },
+        },
+    })
 
     -- spectre
-    wk.register({
-        ["<leader>sw"] = { function() require("spectre").open_visual({ select_word = true }) end, 'Search current word' },
-        ["<leader>sP"] = { function() require("spectre").open() end, 'Open Spectre' },
-        ["<leader>sd"] = { function() require("persistence").stop() end, "Don't save current session" },
-        ["<leader>sl"] = { function() require("persistence").load() end, 'Restore Session' },
-        ["<leader>sL"] = { function() require("persistence").load({ last = true }) end, 'Restore last session' },
-        ["<leader>sp"] = { function() require("spectre").open_file_search({ select_word = true }) end,
-            'Search on current file' },
-    }, { mode = { "n" }
+    wk.add({
+        { "<leader>s",  group = "spectre",                                                          desc = "Find and Replace" },
+        { "<leader>sw", function() require("spectre").open_visual({ select_word = true }) end,      desc = 'Search current word' },
+        { "<leader>sP", function() require("spectre").open() end,                                   desc = 'Open Spectre' },
+        { "<leader>sd", function() require("persistence").stop() end,                               desc = "Don't save current session" },
+        { "<leader>sl", function() require("persistence").load() end,                               desc = 'Restore Session' },
+        { "<leader>sL", function() require("persistence").load({ last = true }) end,                desc = 'Restore last session' },
+        { "<leader>sp", function() require("spectre").open_file_search({ select_word = true }) end, desc = 'Search on current file' },
     })
 
-    wk.register({
-        ["<leader>sw"] = { '<esc><cmd>lua require("spectre").open_visual()<CR>', 'Open Spectre' },
-    }, { mode = { "v" } })
+    wk.add({
+        {
+            mode = { "v", "s" },
+            { "<leader>sw", '<esc><cmd>lua require("spectre").open_visual()<CR>', desc = 'Open Spectre' },
+        }
+    })
+
 
 
     local telescope_reload = require 'user.utils.telescope_reload'
 
-    wk.register({ ["<leader>sr"] = { telescope_reload.reload, 'Reload lua modules.' } })
+    wk.add({ "<leader>sr", telescope_reload.reload, desc = 'Reload lua modules.' })
 
     local new_note = function()
         local day_folder = os.date("Journals/%Y/%m-%B/%d-%a/%F-%a-note-")
@@ -471,31 +431,41 @@ local function config()
         os.execute('mkdir -p ' .. os.date("Journals/%Y/%m-%B/%d-%a"))
         vim.cmd.ObsidianToday()
     end
+    local execute_current_line = function()
+        local line = vim.fn.getline(".")
+        vim.cmd("lua " .. line)
+    end
+    wk.add({
+        { '<leader>l',  group = 'Lua utils' },
+        { '<leader>lr', execute_current_line, desc = 'Execute curent line.' },
+    })
 
-    wk.register({
-        ['<leader>O'] = {
-            O = { "<esc>A,<esc>O", 'Add a comma at the end of the line and create a new line above' },
+    wk.add({
+        { '<leader>OO', "<esc>A,<esc>O",             desc = 'Add a comma at the end of the line and create a new line above' },
+        { '<leader>o',  group = 'Obsidian' },
+        { "<leader>ot", vim.cmd.ObsidianTomorrow,    desc = 'Obsidian tomorrow note' },
+        { "<leader>od", today_note,                  desc = 'Obsidian daily note' },
+        { "<leader>oy", vim.cmd.ObsidianYesterday,   desc = 'Obsidian yesterday note' },
+        { "<leader>oc", vim.cmd.ObsidianTemplate,    desc = 'Complete with template' },
+        { "<leader>oo", "<esc>A,<esc>o",             desc = 'Add a comma at the end of the line and create a new line below' },
+        { "<leader>of", vim.cmd.ObsidianQuickSwitch, desc = 'Jump to another note' },
+        { "<leader>os", vim.cmd.ObsidianSearch,      desc = 'Search in notes' },
+        { "<leader>on", new_note,                    desc = 'Obsidian new note from template' },
+        {
+            "<leader>op",
+            function()
+                vim.cmd("ObsidianPasteImg " .. get_path_note_under_cursor() .. '/' .. vim.fn.input("Image Name: "))
+            end,
+            desc = 'Obsidian paste image in folder'
         },
-        ['<leader>o'] = {
-            name = 'Obsidian',
-            t = { vim.cmd.ObsidianTomorrow, 'Obsidian tomorrow note' },
-            d = { today_note, 'Obsidian daily note' },
-            y = { vim.cmd.ObsidianYesterday, 'Obsidian yesterday note' },
-            c = { vim.cmd.ObsidianTemplate, 'Complete with template' },
-            -- o = { vim.cmd.ObsidianOpen, 'Obsidian open note' },
-            o = { "<esc>A,<esc>o", 'Add a comma at the end of the line and create a new line below' },
-            f = { vim.cmd.ObsidianQuickSwitch, 'Jump to another note' },
-            s = { vim.cmd.ObsidianSearch, 'Search in notes' },
-            n = { new_note, 'Obsidian new note from template' },
-            p = { function()
-                vim.cmd("ObsidianPasteImg " ..
-                    get_path_note_under_cursor() .. '/' .. vim.fn.input("Image Name: "))
-            end, 'Obsidian paste image in folder' },
-            P = { function()
+        {
+            "<leader>oP",
+            function()
                 vim.cmd("ObsidianPasteImg " .. vim.fn.input("Image Name: "))
-            end, 'Obsidian paste image' },
-            b = { new_blank_note, 'Obsidian new blank note' },
-        }
+            end,
+            desc = 'Obsidian paste image'
+        },
+        { "<leader>cb", new_blank_note, desc = 'Obsidian new blank note' },
     })
 end
 return {
