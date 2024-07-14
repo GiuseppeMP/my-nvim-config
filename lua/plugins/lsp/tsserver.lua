@@ -7,6 +7,7 @@ lspconfig.tsserver.setup {
     on_attach = on_attach_options.get({
         inlay = false,
         format_on_save = true,
+        rename = true,
         format = true,
         lsp_client = 'tsserver'
     }),

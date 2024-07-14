@@ -169,7 +169,11 @@ M.get = function(params)
         vim.keymap.set('n', '<leader>D', builtin.lsp_type_definitions, buf_opts)
 
         vim.keymap.set('n', '<leader>k', vim.lsp.buf.signature_help, buf_opts)
-        vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, buf_opts)
+
+        if params.rename == nil or params.rename then
+            vim.keymap.set('n', '<leader>rn', function() vim.lsp.buf.rename(nil, { name = client.name, bufnr }) end,
+                buf_opts)
+        end
 
         vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, buf_opts)
 

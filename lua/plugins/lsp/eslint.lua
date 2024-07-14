@@ -10,7 +10,7 @@ local on_attach_eslint = function(client, bufnr)
     ]]
 
     -- default on_attach
-    on_attach_options.get { format_on_save = true, format = true, lsp_client = 'eslint' } (client, bufnr)
+    on_attach_options.get { format_on_save = true, format = true, lsp_client = 'eslint', rename = false } (client, bufnr)
 end
 
 
