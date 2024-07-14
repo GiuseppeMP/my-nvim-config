@@ -44,6 +44,15 @@ local function config()
                 operators = false,
             }
         },
+        modes = {
+            n = true, -- Normal mode
+            i = true, -- Insert mode
+            x = false, -- Visual mode
+            s = true, -- Select mode
+            o = true, -- Operator pending mode
+            t = true, -- Terminal mode
+            c = true, -- Command mode
+        },
         -- triggers_blacklist = {
         --     -- list of mode / prefixes that should never be hooked by WhichKey
         --     i = { "j", "k" },

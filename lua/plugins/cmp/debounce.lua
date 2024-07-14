@@ -3,7 +3,8 @@ local M = {}
 local cmp = require("cmp")
 local timer = vim.loop.new_timer()
 
-local DEBOUNCE_DELAY = 350
+local DEBOUNCE_DELAY = 400
+local ignored_filetypes = { 'TelescopePrompt', 'Telescope' }
 
 --BUG: Workaround for autocomplete not displaying all options while using performance.debounce and autocomplete
 function M.debounce()
@@ -12,8 +13,10 @@ function M.debounce()
         DEBOUNCE_DELAY,
         0,
         vim.schedule_wrap(function()
-            -- cmp.complete()
-            cmp.complete({ reason = cmp.ContextReason.Manual })
+            local ft = vim.cmd("echo &filetype")
+            if not vim.tbl_contains(ignored_filetypes, ft) then
+                cmp.complete({ reason = cmp.ContextReason.Auto })
+            end
         end)
     )
 end
