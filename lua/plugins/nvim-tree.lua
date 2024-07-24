@@ -112,17 +112,10 @@ local function config()
             absolute_path = true,
         },
         view = {
+            side = 'right',
             float = {
-                enable = true,
+                enable = false,
                 quit_on_focus_loss = true,
-                -- open_win_config = {
-                --     relative = "editor",
-                --     border = "rounded",
-                --     width = 250,
-                --     height = 50,
-                --     row = 1,
-                --     col = 1,
-                -- },
                 open_win_config = function()
                     local screen_w = vim.opt.columns:get()
                     local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
@@ -143,13 +136,10 @@ local function config()
                     }
                 end,
             },
-            -- width = {
-            --     max = 50,
-            --     min = 50
-            -- },
-            width = function()
-                return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
-            end,
+            width = {
+                max = 50,
+                min = 50
+            },
         },
         renderer = {
             group_empty = true,

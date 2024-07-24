@@ -108,6 +108,7 @@
         "conf"
     ],
     "diagnostics.disable": [
-        "need-check-nil"
+        "need-check-nil",
+        "inject-field"
     ]
 }
