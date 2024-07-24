@@ -1,27 +1,27 @@
 local config = function()
-    require('telescope').load_extension('harpoon')
-    require("telescope").load_extension('scope')
-    require("telescope").load_extension('zoxide')
-    require("telescope").load_extension('lsp_handlers')
-    require("telescope").load_extension('neoclip')
-
+    local telescope = require("telescope")
     local actions = require("telescope.actions")
+    local themes = require("telescope.themes")
 
-    require("telescope").setup {
+    telescope.load_extension('harpoon')
+    telescope.load_extension('scope')
+    telescope.load_extension('zoxide')
+    telescope.load_extension('lsp_handlers')
+    telescope.load_extension('neoclip')
+
+    telescope.setup {
         extensions = {
             lsp_handlers = {
                 code_action = {
-                    telescope = require('telescope.themes').get_dropdown({}),
+                    telescope = themes.get_cursor({}),
                     no_results_message = 'No code actions available',
                 },
             },
         },
         defaults = {
-            prompt_prefix = "  ",
             selection_caret = " ",
             path_display = { "smart" },
-            -- prompt_prefix = "❯ ",
-            -- selection_caret = "❯ ",
+            prompt_prefix = "❯ ",
             preview = {
                 timeout = 500,
                 msg_bg_fillchar = " ",
@@ -42,17 +42,28 @@ local config = function()
             layout_config = {
                 prompt_position = "bottom",
                 horizontal = {
-                    width_padding = 0.04,
+                    width_padding = 0.1,
                     height_padding = 0.1,
                     preview_width = 0.6,
+                    width = 0.8,
+                    height = 0.8,
                 },
                 vertical = {
-                    width_padding = 0.05,
-                    height_padding = 1,
-                    preview_height = 0.5,
+                    width_padding = 0.1,
+                    height_padding = 0.1,
+                    width = 0.8,
+                    height = 0.8,
+                    preview_height = 0.6,
                 },
             },
             mappings = {
+                n = {
+                    ["<C-j>"] = actions.cycle_history_next,
+                    ["<C-k>"] = actions.cycle_history_prev,
+                    ["<C-n>"] = actions.move_selection_next,
+                    ["<C-p>"] = actions.move_selection_previous,
+                    ["<C-c>"] = actions.close,
+                },
                 i = {
                     ["<C-j>"] = actions.cycle_history_next,
                     ["<C-k>"] = actions.cycle_history_prev,
@@ -167,7 +178,6 @@ local config = function()
         TelescopePromptCounter = { bg = colors.bg, fg = colors.red },
 
         -- TelescopeMultiselection = { bg = colors.bg, fg = colors.yellow },
-
         TelescopeNormal = { bg = colors.dbg },
 
     }

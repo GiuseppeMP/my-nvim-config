@@ -29,7 +29,7 @@ vim.cmd [[hi! link Identifier Function ]]
 vim.cmd [[hi! link xmlTagN Function ]]
 vim.cmd [[hi! link @markup.raw.markdown_inline CodeBlock ]]
 
-vim.api.nvim_set_hl(0, "CursorLine", { bg = '#1a1b26', fg = 'none' })
+vim.api.nvim_set_hl(0, "CursorLine", { bg = '#24283b', fg = 'none' })
 vim.api.nvim_set_hl(0, "CursorLineNr", { fg = colors.syellow, bg = 'none', blend = 0, force = true })
 
 vim.cmd [[
@@ -129,12 +129,7 @@ vim.api.nvim_set_hl(0, 'GitSignsChangeNr', { fg = colors.syellow, bg = 'none', u
 
 -- vim.api.nvim_set_hl(0, 'FloatShadow', { fg = '#636da6', bg = 'none' })
 -- vim.api.nvim_set_hl(0, 'FloatShadowThrough', { fg = '#636da6', bg = 'none' })
-
 -- vim.cmd [[hi NoiceVirtualText guibg=NONE ]]
-
+--
 vim.api.nvim_set_hl(0, 'Commments', { fg = colors.bg, bg = 'none', underline = false })
 vim.api.nvim_set_hl(0, 'Commment', { fg = colors.bg, bg = 'none', underline = false })
-
--- vim.api.nvim_set_hl(0, 'WhichKeyFloat', { bg = '#1a1b26', fg = '#ffffff', underline = true })
--- vim.api.nvim_set_hl(0, 'WhichKeyNormal', { bg = '#1a1b26', underline = false })
--- vim.api.nvim_set_hl(0, 'WhichKeyBorder', { fg = '#ffffff', bg = '#ffffff', underline = true })

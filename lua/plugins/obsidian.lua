@@ -4,7 +4,7 @@ local function config()
     -- Ex: NVIM_OBSIDIAN_VAULTS="path/workspace1,path/workspace2"
     local obsidian_vaults = os.getenv "NVIM_OBSIDIAN_VAULTS"
 
-    local templateFolder = "Templates/Neovim"
+    local templateFolder = "Obisidian/Templates/Neovim"
 
     local path = require "plenary.path"
 

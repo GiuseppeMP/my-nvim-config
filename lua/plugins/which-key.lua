@@ -14,10 +14,6 @@ local function config()
     local hop = require('hop')
     local tsht = require('tsht')
 
-    -- harpoon
-    local harpoon = {}
-    harpoon.mark, harpoon.ui = require 'harpoon.mark', require 'harpoon.ui'
-
     -- dap
     local dap, dapui = require 'dap', require 'dapui'
 
@@ -39,36 +35,25 @@ local function config()
 
     local conf = {
         preset = 'modern',
-        plugins = {
-            presets = {
-                operators = false,
-            }
+        presets = {
+            operators = true,
+            motions = false,
+            text_objects = true,
+            windows = true,
+            nav = false,
+            z = true,
+            g = false
         },
+        delay = 1000,
         modes = {
-            n = true, -- Normal mode
-            i = true, -- Insert mode
+            n = true,  -- Normal mode
+            i = true,  -- Insert mode
             x = false, -- Visual mode
-            s = true, -- Select mode
-            o = true, -- Operator pending mode
-            t = true, -- Terminal mode
-            c = true, -- Command mode
+            s = true,  -- Select mode
+            o = true,  -- Operator pending mode
+            t = true,  -- Terminal mode
+            c = true,  -- Command mode
         },
-        -- triggers_blacklist = {
-        --     -- list of mode / prefixes that should never be hooked by WhichKey
-        --     i = { "j", "k" },
-        --     v = { "j", "k" },
-        -- },
-        -- disable = {
-        --     -- disable WhichKey for certain buf types and file types.
-        --     ft = {},
-        --     bt = {},
-        --     -- disable a trigger for a certain context by returning true
-        --     ---@type fun(ctx: { keys: string, mode: string, plugin?: string }):boolean?
-        --     trigger = function(ctx)
-        --         -- if keys start with j or k and mode is insert or visual return true
-        --         return vim.tbl_contains({ "j", "k" }, ctx.keys) and vim.tbl_contains({ "i", "v" })
-        --     end,
-        -- },
     }
 
     wk.setup(conf)
@@ -98,8 +83,7 @@ local function config()
         -- normal and terminal mode
         {
             mode = { 'n', 't' },
-            { "<C-t>", vim.cmd.ToggleTerm,                                desc = 'Toggle Term' },
-            { "<C-b>", "<cmd>ToggleTerm size=8 direction=horizontal<cr>", desc = 'Toggle Term tab' }
+            { "<C-t>", vim.cmd.ToggleTerm, desc = 'Toggle Term' },
         },
         -- normal, insert and visual mode
         {
@@ -188,33 +172,32 @@ local function config()
             desc = 'Open Jupyter Notebook and start to sync'
         },
     })
+    local harpoon = require("harpoon")
 
     -- [<leader>h] - harpoon+
     wk.add({
         { "<leader>h",  group = "harpoon, hop" },
-        { '<leader>ha', harpoon.mark.add_file,        desc = 'Harpoon add mark file' },
-        { '<leader>hh', hop.hint_words,               desc = 'Hop words' },
-        { '<leader>hl', tsht.nodes,                   desc = 'Hop syntax' },
-        { '<leader>hm', harpoon.ui.toggle_quick_menu, desc = 'Harpoon quick menu' },
+        { '<leader>ha', function() harpoon:list():add() end, desc = 'Harpoon add mark file' },
+        { '<leader>hh', hop.hint_words,                      desc = 'Hop words' },
+        { '<leader>hl', tsht.nodes,                          desc = 'Hop syntax' },
     })
-
 
     -- [<C-x>] - harpoon fast nav
     wk.add({
         { mode = { 'n', 'i', 'v' } },
-        { '<C-m>',                 harpoon.ui.toggle_quick_menu,                             desc = 'Harpoon quick menu' },
-        { '<C-g>',                 function() harpoon.ui.nav_next() end,                     desc = 'Go to harpoon next' },
-        { '<C-q>',                 function() harpoon.ui.nav_prev() end,                     desc = 'Go to harpoon previous' },
-        { '<C-1>',                 function() harpoon.ui.nav_file(1) end,                    desc = 'Go to harpoon mark 1' },
-        { '<C-2>',                 function() harpoon.ui.nav_file(2) end,                    desc = 'Go to harpoon mark 2' },
-        { '<C-3>',                 function() harpoon.ui.nav_file(3) end,                    desc = 'Go to harpoon mark 3' },
-        { '<C-4>',                 function() harpoon.ui.nav_file(4) end,                    desc = 'Go to harpoon mark 4' },
-        { '<C-5>',                 function() harpoon.ui.nav_file(5) end,                    desc = 'Go to harpoon mark 5' },
-        { '<C-6>',                 function() harpoon.ui.nav_file(6) end,                    desc = 'Go to harpoon mark 6' },
-        { '<C-7>',                 function() harpoon.ui.nav_file(7) end,                    desc = 'Go to harpoon mark 7' },
-        { '<C-8>',                 function() harpoon.ui.nav_file(8) end,                    desc = 'Go to harpoon mark 8' },
-        { '<C-9>',                 function() harpoon.ui.nav_file(9) end,                    desc = 'Go to harpoon mark 9' },
-        { "<C-Up>",                function() require("swap-buffers").swap_buffers("k") end, desc = "Swap up" },
+        -- { '<C-g>',                 function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, desc = 'Open harpoon menu' },
+        { '<C-e>',                 function() harpoon:list():next() end,                     desc = 'Go to harpoon next' },
+        { '<C-q>',                 function() harpoon:list():prev() end,                     desc = 'Go to harpoon prev' },
+        { '<leader>1',             function() harpoon:list():select(1) end,                  desc = 'Go to harpoon mark 1' },
+        { '<leader>2',             function() harpoon:list():select(2) end,                  desc = 'Go to harpoon mark 2' },
+        { '<leader>3',             function() harpoon:list():select(3) end,                  desc = 'Go to harpoon mark 3' },
+        { '<leader>4',             function() harpoon:list():select(4) end,                  desc = 'Go to harpoon mark 4' },
+        { '<leader>5',             function() harpoon:list():select(5) end,                  desc = 'Go to harpoon mark 5' },
+        { '<leader>6',             function() harpoon:list():select(6) end,                  desc = 'Go to harpoon mark 6' },
+        { '<leader>7',             function() harpoon:list():select(7) end,                  desc = 'Go to harpoon mark 7' },
+        { '<leader>8',             function() harpoon:list():select(8) end,                  desc = 'Go to harpoon mark 8' },
+        { '<leader>9',             function() harpoon:list():select(9) end,                  desc = 'Go to harpoon mark 9' },
+        { "<C-Up",                 function() require("swap-buffers").swap_buffers("k") end, desc = "Swap up" },
         { "<C-Down>",              function() require("swap-buffers").swap_buffers("j") end, desc = "Swap down" },
         { "<C-Left>",              function() require("swap-buffers").swap_buffers("h") end, desc = "Swap left" },
         { "<C-Right>",             function() require("swap-buffers").swap_buffers("l") end, desc = "Swap right" },
@@ -273,7 +256,7 @@ local function config()
         { "gd", desc = "Go to definition" },
         { "gD", desc = "Go to declaration" },
         { "gi", desc = "Go to implementation" },
-        { "gr", desc = "Go to references" },
+        { "gu", desc = "Go to usages/references" },
         {
             "ga",
             function()

@@ -205,17 +205,15 @@ local function config()
 
 
     cmp.setup({
+        performance = {
+            max_view_entries = 20,
+            fetchin_timeout = 1000,
+            debounce = 500
+        },
         completion = {
             completeopt = table.concat(vim.opt.completeopt:get(), ","),
-            -- autocomplete = { require('cmp.types').cmp.TriggerEvent.TextChanged }
-            --BUG: Workaround for autocomplete not displaying all options
-            autocomplete = false
+            autocomplete = { require('cmp.types').cmp.TriggerEvent.TextChanged }
         },
-        --BUG: Workaround for autocomplete not displaying all options
-        -- performance = {
-        --     debounce = 1000,
-        --     throttle = 1000
-        -- },
         experimental = {
             -- ghost_text = { hl_group = "CmpGhostText" }
             ghost_text = false
@@ -231,13 +229,6 @@ local function config()
             documentation = get_custom_window_bordered(),
         },
     })
-    --BUG: Workaround for autocomplete not displaying all options
-    vim.cmd([[
-        augroup CmpDebounceAuGroup
-            au!
-            au TextChangedI * lua require("plugins.cmp.debounce").debounce()
-        augroup end
-    ]])
 end
 
 return {

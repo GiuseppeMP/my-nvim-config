@@ -44,6 +44,7 @@ local function config()
             { 'google-java-format',              auto_update = false },
             -- debuggers
             { 'chrome-debug-adapter',            auto_update = true },
+            { 'cucumber-language-server',        auto_update = true },
         },
         auto_update = true,
         run_on_start = true,

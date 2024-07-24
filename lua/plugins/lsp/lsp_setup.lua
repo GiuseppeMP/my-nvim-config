@@ -2,6 +2,7 @@
 --
 -- lsp settings:
 utils.init_err_handler('ansiblels', function() require "plugins.lsp.ansiblels" end)
+utils.init_err_handler('cucumber_language_server', function() require "plugins.lsp.cucumber_ls" end)
 utils.init_err_handler('cssls', function() require "plugins.lsp.cssls" end)
 utils.init_err_handler('dartls', function() require "plugins.lsp.dartls" end)
 utils.init_err_handler('docker', function() require "plugins.lsp.docker" end)

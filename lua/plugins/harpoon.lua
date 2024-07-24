@@ -1,41 +1,26 @@
 local function config()
-    -- default settings
-    require("harpoon").setup({
+    local harpoon = require 'harpoon'
+    harpoon:setup()
 
-        global_settings = {
-            -- sets the marks upon calling `toggle` on the ui, instead of require `:w`.
-            save_on_toggle = false,
+    local conf = require("telescope.config").values
+    local function toggle_telescope(harpoon_files)
+        local file_paths = {}
+        for _, item in ipairs(harpoon_files.items) do
+            table.insert(file_paths, item.value)
+        end
+        require("telescope.pickers").new({}, {
+            prompt_title = "Harpoon",
+            finder = require("telescope.finders").new_table({
+                results = file_paths,
+            }),
+            previewer = conf.file_previewer({}),
+            sorter = conf.generic_sorter({}),
+        }):find()
+    end
+    -- basic telescope configuration
 
-            -- saves the harpoon file upon every change. disabling is unrecommended.
-            save_on_change = true,
-
-            -- sets harpoon to run the command immediately as it's passed to the terminal when calling `sendCommand`.
-            enter_on_sendcmd = false,
-
-            -- closes any tmux windows harpoon that harpoon creates when you close Neovim.
-            tmux_autoclose_windows = false,
-
-            -- filetypes that you want to prevent from adding to the harpoon list menu.
-            excluded_filetypes = { "harpoon" },
-
-            -- set marks specific to each git branch inside git repository
-            mark_branch = false,
-        },
-
-        -- pre configure term commands in the project dir
-        -- configuracao previa dos terminais abertos no dir especificado
-        projects = {
-            -- Yes $HOME works
-            ["/"] = {
-                term = {
-                    cmds = {
-                        "Your commnds for / dir"
-                    }
-                }
-            }
-        }
-    })
+    vim.keymap.set("n", "<C-g>", function() toggle_telescope(harpoon:list()) end, { desc = "Open harpoon window" })
 end
 return {
-    { 'ThePrimeagen/harpoon', config = config },
+    { 'ThePrimeagen/harpoon', config = config, branch = 'harpoon2' },
 }
