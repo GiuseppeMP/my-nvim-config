@@ -20,6 +20,7 @@ local config = function()
             },
         },
         defaults = {
+            border = true,
             file_ignore_patterns = {
                 ".git/",
                 ".cache",
@@ -52,20 +53,26 @@ local config = function()
                 "--smart-case",
                 "--hidden",
             },
+            borderchars = {
+                preview = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+                prompt = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+                results = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+            },
             sorting_strategy = "ascending",
+            layout_strategy = "flex",
             color_devicons = true,
             layout_config = {
-                prompt_position = "bottom",
+                -- prompt_position = "bottom",
                 horizontal = {
-                    width_padding = 0.1,
-                    height_padding = 0.1,
+                    -- width_padding = 0.1,
+                    -- height_padding = 0.1,
                     preview_width = 0.6,
                     width = 0.8,
                     height = 0.8,
                 },
                 vertical = {
-                    width_padding = 0.1,
-                    height_padding = 0.1,
+                    -- width_padding = 0.1,
+                    -- height_padding = 0.1,
                     width = 0.8,
                     height = 0.8,
                     preview_height = 0.6,
