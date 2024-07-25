@@ -9,6 +9,7 @@ local config = function()
     telescope.load_extension('lsp_handlers')
     telescope.load_extension('neoclip')
 
+
     telescope.setup {
         extensions = {
             lsp_handlers = {
@@ -19,9 +20,23 @@ local config = function()
             },
         },
         defaults = {
+            file_ignore_patterns = {
+                ".git/",
+                ".cache",
+                "%.o",
+                "%.a",
+                "%.out",
+                "%.class",
+                "%.pdf",
+                "%.mkv",
+                "%.mp4",
+                "%.zip",
+                "%.png",
+                "%lazy-lock_bak.json",
+            },
             selection_caret = " ",
             path_display = { "smart" },
-            prompt_prefix = "❯ ",
+            prompt_prefix = " ",
             preview = {
                 timeout = 500,
                 msg_bg_fillchar = " ",
