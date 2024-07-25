@@ -55,31 +55,21 @@ o.timeoutlen = 700
 o.timeout = true
 o.cmdheight = 0
 o.ch = 0 -- hide command line
-o.spelllang = 'pt,en'
+o.spelllang = 'en,pt'
 o.spell = false
 o.cursorline = true
 o.laststatus = 3
--- o.guifont = 'CaskaydiaCove Nerd Font SemiLight:h12'
-o.guifont = 'FiraCode Nerd Font'
+o.guifont = 'Lilex Nerd Font Mono'
 g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
 
 
-vim.opt.fillchars = {
-    horiz     = '━',
-    horizup   = '┻',
-    horizdown = '┳',
-    vert      = '┃',
-    vertleft  = '┫',
-    vertright = '┣',
-    verthoriz = '╋',
-}
-
--- g.tagbar_left=1
-
-vim.cmd [[ autocmd FileType latex,tex,md,markdown setlocal spell ]]
--- vim.cmd [[ autocmd FileType  * call tagbar#autoopen(0) ]]
-
-
--- FIX LSP Integration and treesitter
--- vim.cmd [[ autocmd FileType javascript,typescript setlocal shiftwidth=2 ]]
+-- vim.opt.fillchars = {
+--     horiz     = '━',
+--     horizup   = '┻',
+--     horizdown = '┳',
+--     vert      = '┃',
+--     vertleft  = '┫',
+--     vertright = '┣',
+--     verthoriz = '╋',
+-- }

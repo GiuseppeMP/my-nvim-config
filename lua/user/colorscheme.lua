@@ -86,12 +86,12 @@ vim.api.nvim_set_hl(0, 'BufferLineWarningSelected',
 vim.api.nvim_set_hl(0, 'NoiceFormatProgressDone', { link = 'NonText' })
 vim.api.nvim_set_hl(0, 'NoiceFormatProgressTodo', { link = 'NonText' })
 vim.api.nvim_set_hl(0, 'FidgetLspProgress', { link = 'NonText' })
-vim.api.nvim_set_hl(0, 'NoiceLspProgressTitle', { fg = colors.green, bg = 'none', underline = false })
+vim.api.nvim_set_hl(0, 'NoiceLspProgressTitle', { fg = colors.b_green, bg = 'none', underline = false })
 vim.api.nvim_set_hl(0, 'NoiceLspProgressClient', { fg = colors.magenta, bg = 'none', underline = false })
 
-vim.api.nvim_set_hl(0, 'MiniAnimateCursor', { fg = colors.green, bg = colors.green, underline = false })
+vim.api.nvim_set_hl(0, 'MiniAnimateCursor', { fg = colors.b_green, bg = colors.green, underline = false })
 
-vim.api.nvim_set_hl(0, 'GitSignsAdd', { fg = colors.green, bg = 'none', underline = false })
+vim.api.nvim_set_hl(0, 'GitSignsAdd', { fg = colors.b_green, bg = 'none', underline = false })
 vim.api.nvim_set_hl(0, 'GitSignsAddnr', { fg = colors.b_yellow, bg = 'none', underline = false })
 
 vim.api.nvim_set_hl(0, 'GitSignsDelete', { fg = colors.red, bg = 'none', underline = false })
