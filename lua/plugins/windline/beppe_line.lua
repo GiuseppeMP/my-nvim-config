@@ -3,15 +3,13 @@ local helper = require('windline.helpers')
 local b_components = require('windline.components.basic')
 ---@diagnostic disable-next-line: undefined-field
 local state = _G.WindLine.state
-local tokyo_colors = require("tokyonight.colors").setup()
+local tokyo_colors = require("user.colors").colors
 local sep = helper.separators
 local lsp_comps = require('windline.components.lsp')
 local git_comps = require('windline.components.git')
 local vim_components = require('windline.components.vim')
 local hostname = vim.fn.hostname()
 local icon_comp = b_components.cache_file_icon({ default = '', hl_colors = { 'bwhite', 'bg' } })
-
-tokyo_colors.green = '#98f3a1'
 
 local nvim_hl = {
     Normal = { 'black', 'red' },
@@ -163,7 +161,8 @@ basic.file = {
         default = { 'bwhite', 'black_light' },
         virtual = { 'vgreen', 'black' },
         virtual_bg = { 'vgreen', 'black' },
-        bubble_bg = { 'bgreen', 'bg' }
+        bubble_bg = { 'bgreen', 'bg' },
+        green = { 'green', 'bg' },
     },
     text = function(bufnr)
         return {
@@ -171,9 +170,9 @@ basic.file = {
             icon_comp(bufnr),
             { ' ', 'bubble_bg' },
             { " ", '' },
-            { b_components.cache_file_name('[No Name]', ''), '' },
-            { b_components.file_modified(' '), '' },
-            { b_components.cache_file_size(), '' },
+            { b_components.cache_file_name('[No Name]', ''), 'green' },
+            { b_components.file_modified(' '), 'green' },
+            { b_components.cache_file_size(), 'green' },
             { " ", '' },
         }
     end,

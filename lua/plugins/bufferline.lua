@@ -1,10 +1,9 @@
 ---@diagnostic disable: unused-local, unused-function
----
+local colors = require 'user.colors'.colors
 local function config()
     vim.opt.termguicolors = true
-    local tokyo_colors = require("tokyonight.colors").setup()
-    local tokyo = { fg = tokyo_colors.fg, bg = 'none', sp = tokyo_colors.sp }
-    tokyo.green = '#98f3a1'
+    ---@diagnostic disable-next-line: undefined-field
+    local tokyo = { fg = colors.fg, bg = 'none', sp = colors.sp }
     local offsets = {}
 
     -- for _, win in ipairs(vim.fn.getwininfo()) do
@@ -23,23 +22,23 @@ local function config()
         highlights = {
             fill = tokyo,
             background = tokyo,
-            tab = { fg = tokyo_colors.magenta, bg = tokyo.bg },
-            tab_selected = { fg = tokyo_colors.blue, bg = tokyo.bg },
+            tab = { fg = colors.magenta, bg = tokyo.bg },
+            tab_selected = { fg = colors.blue, bg = tokyo.bg },
             tab_close = tokyo,
-            close_button = { fg = tokyo_colors.magenta, bg = tokyo.bg },
-            close_button_visible = { fg = tokyo_colors.magenta, bg = tokyo.bg },
-            close_button_selected = { fg = tokyo_colors.red, bg = tokyo.bg },
+            close_button = { fg = colors.magenta, bg = tokyo.bg },
+            close_button_visible = { fg = colors.magenta, bg = tokyo.bg },
+            close_button_selected = { fg = colors.red, bg = tokyo.bg },
             buffer_visible = tokyo,
             buffer_selected = {
-                fg = '#98f3a1',
+                fg = colors.green,
                 bg = tokyo.bg
             },
             numbers = tokyo,
             numbers_visible = tokyo,
             numbers_selected = {
-                fg = '#98f3a1',
+                fg = colors.green,
                 bg = tokyo.bg,
-                sp = tokyo_colors.sp,
+                sp = tokyo.sp,
                 bold = true,
                 italic = true,
             },

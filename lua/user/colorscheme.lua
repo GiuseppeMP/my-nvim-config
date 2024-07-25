@@ -1,6 +1,7 @@
 ---@diagnostic disable: inject-field
 vim.cmd "colorscheme tokyonight-moon"
 local colors = require("user.colors").colors
+local util = require("user.colors").util
 
 -- fix xml sintax
 vim.cmd [[hi! link Function Label ]]
@@ -8,22 +9,20 @@ vim.cmd [[hi! link Identifier Function ]]
 vim.cmd [[hi! link xmlTagN Function ]]
 vim.cmd [[hi! link @markup.raw.markdown_inline CodeBlock ]]
 
-vim.api.nvim_set_hl(0, "CursorLine", { bg = '#24283b', fg = 'none' })
+vim.api.nvim_set_hl(0, "CursorLine", { bg = 'none', fg = 'none', blend = 90 })
 vim.api.nvim_set_hl(0, "CursorLineNr", { fg = colors.b_yellow, bg = 'none', blend = 0, force = true })
+vim.api.nvim_set_hl(0, "Cursor", { fg = colors.red, bg = colors.green, blend = 100, force = true })
+vim.api.nvim_set_hl(0, "CursorBlock", { fg = colors.green, bg = colors.green, blend = 0, force = true })
+vim.api.nvim_set_hl(0, "iCursor", { fg = 'none', bg = colors.green, blend = 0, force = true })
+vim.api.nvim_set_hl(0, "TreesitterContextBottom", { underdashed = true, sp = colors.green, force = true })
+vim.api.nvim_set_hl(0, "Comment", { fg = util.darken(colors.blue, 0.7), italic = true })
+vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", { fg = util.darken(colors.blue, 0.7) })
 
 vim.cmd [[
-    "highlight Cursor guifg=none guibg=#9469ff
-    highlight Cursor guifg=none guibg=#98f3a1
-    highlight CursorBlock guifg=#98f3a1 guibg=#98f3a1
-    highlight iCursor guifg=none guibg=#69ff94
     set guicursor=n-v-c:block-CursorBlock
     set guicursor+=i:hor20-iCursor
     set guicursor+=n-v-c:blinkon0
     set guicursor+=i:blinkwait10
-    hi TreesitterContextBottom gui=underdashed guisp=#69ff94
-    hi Comment guifg='#1f96e0'
-    hi DiagnosticUnnecessary guifg='#e04b1f'
-
 ]]
 
 -- selected winbar
@@ -32,7 +31,7 @@ vim.api.nvim_set_hl(0, 'WinBarNC', { fg = 'white', bg = 'none' })
 vim.api.nvim_set_hl(0, 'WinBarSeparator', { fg = 'white', bg = 'none' })
 vim.api.nvim_set_hl(0, 'WinSeparator', { fg = colors.purple, bold = false })
 vim.api.nvim_set_hl(0, 'VertSplit', { fg = colors.purple, bold = false })
-vim.api.nvim_set_hl(0, 'LspInlayHint', { fg = '#636da6', bg = 'none' })
+vim.api.nvim_set_hl(0, 'LspInlayHint', { fg = colors.gray, bg = 'none' })
 vim.api.nvim_set_hl(0, 'FloatBorder', { fg = 'white', bg = 'none' })
 
 vim.api.nvim_set_hl(0, 'DiagnosticVirtualTextInfo', { bg = 'none', fg = colors.b_yellow })
@@ -56,7 +55,6 @@ vim.api.nvim_set_hl(0, 'NvimTreeDiagnosticErrorFolderHL', { fg = colors.red, bg 
 vim.api.nvim_set_hl(0, 'NvimTreeOpenedFolderIcon', { fg = colors.green, bg = 'none' })
 vim.api.nvim_set_hl(0, 'NvimTreeOpenedFolderName', { fg = colors.green, bg = 'none' })
 vim.api.nvim_set_hl(0, 'NvimTreeFileIcon', { fg = colors.bg, bg = 'none' })
--- vim.api.nvim_set_hl(0, 'NvimTreeDirectoryBufferline', { fg = colors.purple, bg = 'none' })
 vim.api.nvim_set_hl(0, 'NvimTreeDirectoryBufferline', { bg = colors.purple, fg = colors.black })
 
 vim.api.nvim_set_hl(0, 'BufferLineGroupSeparator', { fg = colors.purple, bg = 'none' })
@@ -83,10 +81,8 @@ vim.api.nvim_set_hl(0, 'BufferLineWarning', { fg = colors.yellow, bg = 'none', u
 vim.api.nvim_set_hl(0, 'BufferLineWarningVisible', { fg = colors.yellow, bg = 'none', undercurl = true })
 vim.api.nvim_set_hl(0, 'BufferLineWarningSelected',
     { fg = colors.green, bg = 'none', sp = colors.yellow, undercurl = true })
--- vim.api.nvim_set_hl(0, 'NoiceCmdlinePopupBorderCmdline', { fg = colors.purple, bg = 'none' })
 
--- vim.api.nvim_set_hl(0, 'Visual', { fg = colors.syellow, bg = colors.none, underline = false })
-vim.api.nvim_set_hl(0, 'Visual', { fg = colors.green, bg = '#2F3D44', underline = false })
+-- vim.api.nvim_set_hl(0, 'Visual', { bg = colors., fg = colors.yellow, underline = false })
 vim.api.nvim_set_hl(0, 'NoiceFormatProgressDone', { link = 'NonText' })
 vim.api.nvim_set_hl(0, 'NoiceFormatProgressTodo', { link = 'NonText' })
 vim.api.nvim_set_hl(0, 'FidgetLspProgress', { link = 'NonText' })

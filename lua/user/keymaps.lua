@@ -65,7 +65,7 @@ n('N', 'Nzzzv')
 -- n('k', 'kzz')
 -- n('j', 'jzz')
 
-n('<CR>', 'i<CR><ESC>')
+n('<CR>', 'i<CR><ESC>==')
 
 -- Create breakpoints to not lost all the stuff in the undo
 -- Criando breakpoints durante insert mode para n perder textos no undo
