@@ -4,7 +4,7 @@ local function config()
     -- Ex: NVIM_OBSIDIAN_VAULTS="path/workspace1,path/workspace2"
     local obsidian_vaults = os.getenv "NVIM_OBSIDIAN_VAULTS"
 
-    local templateFolder = "Obisidian/Templates/Neovim"
+    local templateFolder = "Obsidian/Templates/Neovim"
 
     local path = require "plenary.path"
 
@@ -55,6 +55,13 @@ local function config()
     -- You can customize as you wish
     require 'obsidian'.setup {
         workspaces = getObsidianWorkspaces(),
+        -- Optional, completion of wiki links, local markdown links, and tags using nvim-cmp.
+        completion = {
+            -- Set to false to disable completion.
+            nvim_cmp = true,
+            -- Trigger completion at 2 chars.
+            min_chars = 3,
+        },
         daily_notes = {
             -- Optional, if you keep daily notes in a separate directory.
             folder = "Journals",
@@ -153,7 +160,7 @@ end
 return {
     "epwalsh/obsidian.nvim",
     tag = 'v2.5.3',
-    ft = "markdown",
+    ft = { "markdown", "alpha" },
     config = config,
     dependencies = {
         "nvim-lua/plenary.nvim",

@@ -62,8 +62,10 @@ n('{', '{zzzv')
 n('}', '}zzzv')
 n('N', 'Nzzzv')
 -- n('J', 'mzJ`z')
--- n('k', 'kzz')
--- n('j', 'jzz')
+n('k', 'kzz')
+n('j', 'jzz')
+n('<C-d>', '<C-d>zz')
+n('<C-u>', '<C-u>zz')
 
 n('<CR>', 'i<CR><ESC>==')
 
