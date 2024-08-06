@@ -16,5 +16,6 @@ return {
     config = config,
     dependencies = {
         "nvim-lua/plenary.nvim",
+        "echasnovski/mini.nvim",
     }
 }
