@@ -112,7 +112,7 @@ local function config()
             absolute_path = true,
         },
         view = {
-            side = 'right',
+            side = 'left',
             float = {
                 enable = false,
                 quit_on_focus_loss = true,
