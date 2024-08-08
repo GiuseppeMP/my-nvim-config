@@ -1,0 +1,154 @@
+# Fresh Install My Neovim Configuration on Debian/Ubuntu distro
+
+Failing:
+
+- [ ] None
+
+
+## Install building tools, package and runtime managers
+
+```sh
+# install building tools
+sudo apt-get install build-essential procps curl file git
+
+# install homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# add homebrew to linux $PATH
+
+test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc
+echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.zshrc
+
+# re-open zsh and test brew
+
+exec zsh && brew
+
+# install asdf runtime manager
+
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
+
+# add asdf to zsh
+echo ". \"$HOME/.asdf/asdf.sh\"" >> ~/.zshrc
+echo ". \"$HOME/.asdf/asdf.sh\"" >> ~/.bashrc
+# add autocompletion
+echo "fpath=(\${ASDF_DIR}/completions \$fpath)" >> ~/.zshrc
+echo "autoload -Uz compinit && compinit" >> ~/.zshrc
+
+echo "fpath=(\${ASDF_DIR}/completions \$fpath)" >> ~/.bashrc
+echo "autoload -Uz compinit && compinit" >> ~/.bashrc
+# refresh zsh
+exec zsh
+
+```
+
+## Install NerdFonts
+
+```sh
+git clone --depth 1 git@github.com:ryanoasis/nerd-fonts.git /tmp/nerd-fonts
+chmod +x /tmp/nerd-fonts/install.sh && /tmp/nerd-fonts/install.sh
+```
+
+Recommended font: **Inconsolata LGC Nerd Font**
+
+Why: Ligtures are fancy but decreases my performance/velocity to read/understand complex code due the different combinations of operators in complex stuffs.(leetcoding, datasets, math, llms, etc). A small example of this is not noting the difference between ==> or => during code review.
+
+Slashed zero, takes inspiration from many different fonts and glyphs, subtle curves in lowercase.
+
+## Install Python
+
+```sh
+# add asdf plugin for python mgnt
+asdf plugin-add python
+# install python debian pre-reqs
+sudo apt install libedit-dev libssl-dev zlib1g zlib1g-dev libssl-dev libbz2-dev libsqlite3-dev libreadline-dev liblzma-dev tk-dev
+# If you're facing building issues please take a look: https://github.com/pyenv/pyenv/wiki/Common-build-problems
+# install python3 and python2.
+asdf install python 3.12.5
+asdf install python 2.7.18
+# set global python3 and python2
+asdf global python 3.12.5 2.7.18
+# check
+python2 --version
+python3 --version
+python --version
+
+```
+
+## Install NodeJS and Deno 
+
+```sh
+# add asdf nodejs plugin
+asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+
+# install latest-available lts version
+asdf install nodejs $(asdf nodejs resolve lts --latest-available)
+asdf global nodejs $(asdf nodejs resolve lts --latest-available)
+
+#check
+node -v
+npm -v
+
+# install yarn
+npm i -g npm yarn
+
+# add asdf deno plugin
+asdf plugin-add deno https://github.com/asdf-community/asdf-deno.git
+
+# install latest deno version
+asdf install deno $(asdf list all deno | tail -1)
+asdf global deno $(asdf list all deno | tail -1)
+
+#check
+deno -v
+
+# refresh zsh/asdf reshim
+exec zsh
+```
+
+## Install neovim
+
+```
+brew install neovim
+neovim -v
+```
+
+## Install github CLI
+
+```sh
+sudo apt install gh
+gh auth login # follow instructions
+```
+
+## Clone my config into ~/.config/nvim
+
+```sh
+mkdir -p ~/.config/nvim && git clone https://github.com/GiuseppeMP/my-nvim-config.git ~/.config/nvim
+
+# open nvim first time with the new config. (build, treesitter, etc)
+nvim
+```
+
+## Codeium Auth
+
+Inside neovim run `:Codeium Auth` and follow the instructions.
+
+Recommended: Save your token in `~/.codeium/config.json` following the structure:
+```json
+{"apiKey": "your-token-here"}
+```
+
+## ChatGPT
+
+TODO
+
+## LazyGit
+
+```sh
+brew install jesseduffield/lazygit/lazygit && brew install lazygit
+```
+
+## Zoxyde
+
+TODO

@@ -1,7 +1,8 @@
 return {
-    { "Exafunction/codeium.vim" },
+    { "Exafunction/codeium.vim", event = 'BufEnter' },
     {
         "jcdickinson/codeium.nvim",
+        enabled = true,
         event = 'VeryLazy',
         dependencies = {
             "nvim-lua/plenary.nvim",
