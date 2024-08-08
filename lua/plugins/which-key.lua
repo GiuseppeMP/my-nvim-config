@@ -45,15 +45,6 @@ local function config()
             g = false
         },
         delay = 1000,
-        modes = {
-            n = true,  -- Normal mode
-            i = true,  -- Insert mode
-            x = false, -- Visual mode
-            s = true,  -- Select mode
-            o = true,  -- Operator pending mode
-            t = true,  -- Terminal mode
-            c = true,  -- Command mode
-        },
     }
 
     wk.setup(conf)
@@ -232,6 +223,7 @@ local function config()
 
     wk.add({
         { "<C-f>",      vim.cmd.NvimTreeToggle,                    desc = 'File explorer' },
+        { "<leader>e",  vim.cmd.NvimTreeToggle,                    desc = 'File explorer' },
         { "<leader>D",  desc = 'Type definitions' },
         { "<leader>k",  desc = 'Signature help' },
         { "<leader>xw", desc = 'Swap two words separated by space' },
