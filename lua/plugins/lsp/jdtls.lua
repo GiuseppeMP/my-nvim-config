@@ -11,6 +11,12 @@ end
 
 -- home dir
 local home = os.getenv "HOME"
+local java_8 = os.getenv "JAVA_8"
+local java_11 = os.getenv "JAVA_11"
+local java_14 = os.getenv "JAVA_14"
+local java_17 = os.getenv "JAVA_17"
+local java_19 = os.getenv "JAVA_19"
+local java_21 = os.getenv "JAVA_21"
 
 
 -- maybe needs to improve marks because multimodule projects (maven/gradle)
@@ -162,33 +168,29 @@ local function get_settings()
                 runtimes = {
                     {
                         name = "JavaSE-1.8",
-                        path = home .. "/.asdf/installs/java/corretto-8.412.08.1"
+                        path = java_8,
                     },
                     {
                         name = "JavaSE-11",
-                        path = home .. "/.asdf/installs/java/corretto-11.0.23.9.1",
+                        path = java_11
                     },
                     {
                         name = "JavaSE-14",
-                        path = home .. "/.asdf/installs/java/zulu-14.29.23",
+                        path = java_14
                     },
                     {
                         name = "JavaSE-17",
-                        path = home .. "/.asdf/installs/java/zulu-17.50.19",
+                        path = java_17
                     },
                     {
                         name = "JavaSE-19",
-                        path = home .. "/.asdf/installs/java/zulu-19.32.13",
+                        path = java_19
                     },
                     {
                         name = "JavaSE-21",
-                        path = home .. "/.asdf/installs/java/corretto-21.0.3.9.1",
                         default = true,
+                        path = java_21
                     },
-                    -- {
-                    --     name = "JavaSE-22",
-                    --     path = home .. "/.asdf/installs/java/corretto-22.0.1.8.1",
-                    -- },
                 }
             }
         }
@@ -199,10 +201,7 @@ end
 -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
 local function get_cmd()
     return {
-        home .. "/.asdf/installs/java/corretto-21.0.3.9.1/bin/java",
-        -- home .. "/.asdf/installs/java/corretto-22.0.0.36.2/bin/java",
-        -- home .. '/.asdf/installs/java/corretto-19.0.2.7.1/bin/java',
-        -- home .. '/.asdf/installs/java/corretto-17.0.4.9.1/bin/java',
+        java_21 .. "/bin/java",
         '-Declipse.application=org.eclipse.jdt.ls.core.id1',
         '-Dosgi.bundles.defaultStartLevel=4',
         '-Declipse.product=org.eclipse.jdt.ls.core.product',

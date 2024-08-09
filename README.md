@@ -1,6 +1,5 @@
 # My nvim configs
 
-
 > README in WIP...
 
 *Read this in other languages: 🇺🇸[English](README.md), 🇧🇷[Portuguese](README.pt-br.md).*
@@ -59,20 +58,7 @@ Install asdf for setup languages and runtimes needed for LSPs.
 
 ### Java
 
-```sh
-# add plugin
-asdf plugin-add java https://github.com/halcyon/asdf-java.git
-
-# install versions
-asdf install java corretto-8.342.07.1
-asdf install java corretto-11.0.16.9.1
-asdf install java zulu-14.29.23
-asdf install java corretto-17.0.4.9.1
-asdf install java corretto-19.0.2.7.1
-
-# activate
-asdf global java corretto-19.0.2.7.1
-```
+Check (./ubuntu-fresh-install.md)
 
 ### Python
 
