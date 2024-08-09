@@ -1,5 +1,8 @@
 return {
-    { "Exafunction/codeium.vim", event = 'BufEnter' },
+    {
+        "Exafunction/codeium.vim",
+        event = 'BufEnter',
+    },
     {
         "jcdickinson/codeium.nvim",
         enabled = true,
@@ -14,7 +17,7 @@ return {
             vim.g.codeium_disable_bindings = 1
             ---@diagnostic disable-next-line: different-requires
             require("codeium").setup({
-                -- config_path = home .. "/.config/secrets/codeium_key.json"
+                enable_chat = true
             })
         end
     },
