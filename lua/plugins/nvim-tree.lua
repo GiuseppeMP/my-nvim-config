@@ -112,6 +112,7 @@ local function config()
             absolute_path = true,
         },
         view = {
+            adaptive_size = true,
             side = 'left',
             float = {
                 enable = false,
@@ -136,10 +137,10 @@ local function config()
                     }
                 end,
             },
-            width = {
-                max = 50,
-                min = 50
-            },
+            -- width = {
+            --     max = 50,
+            --     min = 50
+            -- },
         },
         renderer = {
             group_empty = true,
