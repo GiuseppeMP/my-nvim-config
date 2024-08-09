@@ -16,6 +16,14 @@ I work daily using this configuration with Python, Java, Kotlin, Lua, Golang, Ja
 
 Let me know if you have any questions, other lsp help, or suggestions, free to [open an issue](https://github.com/GiuseppeMP/my-nvim-config/issues/new).
 
+## ⚠️  Breaking Changes!!
+
+Java configurations have changed, please check the new instructions in Java section in the {your-os}_install.md.
+[ubuntu-java](https://github.com/GiuseppeMP/my-nvim-config/blob/main/ubuntu_install.md#java)
+[macos-java](https://github.com/GiuseppeMP/my-nvim-config/blob/main/macos_install.md#java)
+
+Now `jdtls` configuration is using os.env to get java runtimes from environment variables. ($JAVA_HOME, $JAVA8_HOME, $JAVA11_HOME, $JAVA17_HOME, so on).
+
 ## ⚡️ Dependencies and Requirements
 
 * Neovim >= 0.10.0 or Nightly
