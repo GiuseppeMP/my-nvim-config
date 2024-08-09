@@ -5,7 +5,7 @@ Failing:
 - [ ] None
 
 
-## Install building tools, package and runtime managers
+## Building tools, package and runtime managers
 
 ```sh
 # install building tools
@@ -43,7 +43,7 @@ exec zsh
 
 ```
 
-## Install NerdFonts
+## NerdFonts
 
 ```sh
 git clone --depth 1 git@github.com:ryanoasis/nerd-fonts.git /tmp/nerd-fonts
@@ -56,7 +56,7 @@ Why: Ligtures are fancy but decreases my performance/velocity to read/understand
 
 Slashed zero, takes inspiration from many different fonts and glyphs, subtle curves in lowercase.
 
-## Install Python
+## Python
 
 ```sh
 # add asdf plugin for python mgnt
@@ -76,7 +76,7 @@ python --version
 
 ```
 
-## Install NodeJS and Deno 
+## NodeJS and Deno 
 
 ```sh
 # add asdf nodejs plugin
@@ -107,14 +107,23 @@ deno -v
 exec zsh
 ```
 
-## Install neovim
+## Neovim
 
 ```
 brew install neovim
 neovim -v
 ```
 
-## Install github CLI
+## Neovim Dependencies 
+
+```sh
+brew install ripgrep
+brew install fd
+brew install fzf
+echo "source <(fzf --zsh)" >> ~/.zshrc
+```
+
+## Github CLI
 
 ```sh
 sudo apt install gh
@@ -141,7 +150,14 @@ Recommended: Save your token in `~/.codeium/config.json` following the structure
 
 ## ChatGPT
 
-TODO
+1. Go to https://platform.openai.com/docs/overview and login with your credentials.
+2. Navigate to: https://platform.openai.com/settings/profile?tab=api-keys
+3. Create a new secret Key.
+4. Copy your key and save it in `~/.config/secrets/open_ai_key.txt`
+5. Create a gpg key with your email using `gpg --full-generate-key`
+6. Run gpg --encrypt -r youremailhere@nice.com open_ai_key.txt
+7. Delete open_ai_key.txt `rm open_ai_key.txt`
+
 
 ## LazyGit
 
@@ -151,4 +167,57 @@ brew install jesseduffield/lazygit/lazygit && brew install lazygit
 
 ## Zoxyde
 
-TODO
+```sh
+brew install zoxide
+echo "eval \"\$(zoxide init zsh)\"" >> ~/.zshrc
+```
+
+## Golang
+
+```sh
+# install the latest stable version of Golang.
+asdf install golang $(asdf list all golang | grep -E '^[0-9.]+$' | tail -1)
+asdf global golang $(asdf list all golang | grep -E '^[0-9.]+$' | tail -1)
+
+# check version
+go version
+```
+
+## Java
+
+```sh
+asdf plugin-add java https://github.com/halcyon/asdf-java.git
+
+## latest java 8 (corretto)
+asdf install java $(asdf list all java | grep corretto-8 | tail -1)
+echo "export JAVA_8=\$HOME/.asdf/installs/java/\$(asdf list all java | grep corretto-8 | tail -1)"  >> ~/.zshrc
+
+## latest java 11 (corretto)
+asdf install java $(asdf list all java | grep corretto-11 | tail -1)
+ echo "export JAVA_11=\$HOME/.asdf/installs/java/\$(asdf list all java | grep corretto-11 | tail -1)" >> ~/.zshrc
+
+## latest java 14 (zulu)
+asdf install java $(asdf list all java | grep zulu-14 | tail -1)
+echo "export JAVA_14=\$HOME/.asdf/installs/java/\$(asdf list all java | grep zulu-14 | tail -1)"  >> ~/.zshrc
+
+## latest graalvm with java 17 (graalvm)
+asdf install java $(asdf list all java | grep '^graalvm-.*java17$' | tail -1)
+echo "export JAVA_17=\$HOME/.asdf/installs/java/\$(asdf list all java | grep '^graalvm-.*java17$' | tail -1)"  >> ~/.zshrc
+
+
+## latest graalvm with java 19 (graalvm)
+asdf install java $(asdf list all java | grep '^graalvm-.*java19$' | tail -1)
+echo "export JAVA_19=\$HOME/.asdf/installs/java/\$(asdf list all java | grep '^graalvm-.*java19$' | tail -1)"  >> ~/.zshrc
+
+
+## latest graalvm-community for java 21 (graalvm)
+asdf install java $(asdf list all java | grep graalvm-community-21 | tail -1)
+echo "export JAVA_21=\$HOME/.asdf/installs/java/\$(asdf list all java | grep graalvm-community-21 | tail -1)"  >> ~/.zshrc
+
+## set JDK 21 as global
+asdf global java $(asdf list all java | grep graalvm-community-21 | tail -1)
+echo "export JAVA_HOME=\$HOME/.asdf/installs/java/\$(asdf list all java | grep graalvm-community-21 | tail -1)"  >> ~/.zshrc
+
+## check
+java --version
+```
