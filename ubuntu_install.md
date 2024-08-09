@@ -119,6 +119,8 @@ neovim -v
 ```sh
 brew install ripgrep
 brew install fd
+brew install safe-rm
+brew install gnu-sed
 brew install fzf
 echo "source <(fzf --zsh)" >> ~/.zshrc
 ```
