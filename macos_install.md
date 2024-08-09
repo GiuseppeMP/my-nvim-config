@@ -8,19 +8,11 @@
 
 ```sh
 # install building tools
-sudo apt-get install build-essential procps curl file git xdg-utils
+# sudo apt-get install build-essential procps curl file git xdg-utils
+TODO: macos
 
 # install homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-# add homebrew to linux $PATH
-
-test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
-test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc
-echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.zshrc
-
-# re-open zsh and test brew
 
 exec zsh && brew
 
@@ -48,7 +40,6 @@ exec zsh
 git clone --depth 1 git@github.com:ryanoasis/nerd-fonts.git /tmp/nerd-fonts
 chmod +x /tmp/nerd-fonts/install.sh && /tmp/nerd-fonts/install.sh
 ```
-
 Recommended font: **Inconsolata LGC Nerd Font**
 
 Why: Ligtures are fancy but decreases my performance/velocity to read/understand complex code due the different combinations of operators in complex stuffs.(leetcoding, datasets, math, llms, etc). A small example of this is not noting the difference between ==> or => during code review.
@@ -61,7 +52,8 @@ Slashed zero, takes inspiration from many different fonts and glyphs, subtle cur
 # add asdf plugin for python mgnt
 asdf plugin-add python
 # install python debian pre-reqs
-sudo apt install libedit-dev libssl-dev zlib1g zlib1g-dev libssl-dev libbz2-dev libsqlite3-dev libreadline-dev liblzma-dev tk-dev
+# sudo apt install libedit-dev libssl-dev zlib1g zlib1g-dev libssl-dev libbz2-dev libsqlite3-dev libreadline-dev liblzma-dev tk-dev
+TODO: macos dependencies
 # If you're facing building issues please take a look: https://github.com/pyenv/pyenv/wiki/Common-build-problems
 # install python3 and python2.
 asdf install python 3.12.5
@@ -127,7 +119,7 @@ echo "source <(fzf --zsh)" >> ~/.zshrc
 ## Github CLI
 
 ```sh
-sudo apt install gh
+brew install gh
 gh auth login # follow instructions
 ```
 

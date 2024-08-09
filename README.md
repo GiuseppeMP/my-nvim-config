@@ -2,80 +2,31 @@
 
 > README in WIP...
 
-*Read this in other languages: 🇺🇸[English](README.md), 🇧🇷[Portuguese](README.pt-br.md).*
-
 Hello, I'm Giuseppe Matheus (Beppe) a software engineer from Brazil. 👋
 
-I created this configuration to help others achieve a full workflow using Neovim. I have tried NvChad, Alpha, and other configurations, but I always encounter the same problem: I struggle to understand their configuration architecture, and I feel unable to make changes without reading extensive documentation on how things are organized.
+I have created this configuration to assist others in achieving a complete workflow using Neovim.
 
-In the past, I wrote many configuration files, but now I want to share my experience with you. My goal is to keep things as simple as possible, so that any user who knows Lua and Neovim can make changes without heavy abstraction."
+I have experimented with NvChad, Alpha, and other configurations, but I consistently face the same issue: I find it difficult to comprehend their configuration structure, and I feel incapable of making modifications without thoroughly studying the documentation on how things are structured. Additionally, it is challenging to determine the functions of each plugin.
 
-I work daily with Python, Java, Lua, Golang, Javascript, Typescript, HTML/YAML/Json/XML, Markdown, Terraform, Ansible, and Shell.
+In the past, I have written numerous configuration files, but now I would like to share my experience with you. My aim is to keep things as simple as possible, allowing any user familiar with Lua and Neovim to make changes without excessive abstraction.
 
-Let me know if you have any questions, other lsp help, or suggestions, free to [open an
-issue](https://github.com/GiuseppeMP/my-nvim-config/issues/new).
+All the configurations of plugins are present in the /lua/plugins folder, each .lua file in there is a atomic plugin configuration.
 
-## Demo
+I work daily using this configuration with Python, Java, Kotlin, Lua, Golang, JavaScript, TypeScript, HTML, YAML, JSON, XML, Markdown, Terraform, Ansible, and Shell.
 
-![Demo](./docs/images/04-03-24-ss.png)
+Let me know if you have any questions, other lsp help, or suggestions, free to [open an issue](https://github.com/GiuseppeMP/my-nvim-config/issues/new).
 
 ## ⚡️ Dependencies and Requirements
 
-* Neovim >= 0.9.0 or Nightly
-* macOS (`homebrew`)
+* Neovim >= 0.10.0 or Nightly
+* macOS (`homebrew`) or Linux (`linuxbrew`)
 * macOS (`open`), Linux (`xdg-open`) or Windows (`powershell.exe start explorer.exe`)
-* Deno
 
-This configuration has plugins that relies on some external thiNithlyngs.
+## Ubuntu
+All the dependencies instructions for Ubuntu can be found [here](https://github.com/GiuseppeMP/my-nvim-config/blob/main/ubuntu_install.md).
 
-### 🍺 Homebrew Packages
+## MacOs
+All the dependencies instructions for MacOs can be found [here](https://github.com/GiuseppeMP/my-nvim-config/blob/main/macos_install.md).
 
-```sh
-brew install safe-rm
-brew install gnu-sed
-brew install fd
-brew install fzf
-brew install npm
-brew install gpg
-brew install go
-```
-
-## Language Server, Linters, DAPs and Formatters
-
-You can install by yourself, but I recommend using asdf.
-
-You can install any of these things using `:Mason`.
-
-The list of the LSP's supported by `Mason` is documented at [LSP Configurations](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md)
-
-Depending which LSP you want to use, you can install the language binaries using `asdf`
-
-## The Multiple Runtime Version Manager 
-
-Install asdf for setup languages and runtimes needed for LSPs.
-
-[asdf](https://asdf-vm.com/guide/getting-started.html#_2-download-asdf)
-
-### Java
-
-Check (./ubuntu-fresh-install.md)
-
-### Python
-
-```sh
-# add python plugin
-asdf plugin-add python
-
-# install versions
-asdf install python 2.7.18
-asdf install python 3.10.5
-
-# activate
-asdf global python 3.10.5 
-```
-
-I'm personally used `pipenv` check out in [pipenv](https://pipenv.pypa.io/en/latest/)
-
-```sh
-pip install --user pipenv
-```
+## Windows
+In the Roadmap, feel free to open PR for Windows support, I'm glad to help.
