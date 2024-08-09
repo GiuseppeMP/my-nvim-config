@@ -221,3 +221,15 @@ echo ". ~/.asdf/plugins/java/set-java-home.zsh" >> ~/.zshrc
 ## check
 java --version
 ```
+
+## Gradle
+
+```sh
+brew install gradle
+```
+
+## Maven
+
+```sh
+brew install maven
+```
