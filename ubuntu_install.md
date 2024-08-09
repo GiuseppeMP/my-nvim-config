@@ -226,10 +226,12 @@ java --version
 
 ```sh
 brew install gradle
+gradle -v
 ```
 
 ## Maven
 
 ```sh
 brew install maven
+mvn -v
 ```
