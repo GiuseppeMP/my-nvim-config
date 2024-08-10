@@ -247,3 +247,10 @@ asdf plugin-add rust https://github.com/asdf-community/asdf-rust.git
 asdf install rust $(asdf list all rust | tail -1)
 asdf global rust $(asdf list all rust | tail -1)
 ```
+
+## Default Editor Linux
+
+```sh
+echo "export EDITOR=nvim" >> ~/.zshrc
+echo "export VISUAL=nvim" >> ~/.zshrc
+```

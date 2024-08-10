@@ -4,9 +4,9 @@ return
 {
     -- "swaits/zellij-nav.nvim",
     "GiuseppeMP/zellij-nav.nvim",
-    lazy = true,
-    event = "VeryLazy",
-    enable = true,
+    enabled = function()
+        return vim.fn.executable("zellij") == 1
+    end,
     keys = {
         { "<m-h>", "<cmd>ZellijNavigateLeft<cr>",  { silent = true, desc = "navigate left" } },
         { "<m-j>", "<cmd>ZellijNavigateDown<cr>",  { silent = true, desc = "navigate down" } },
