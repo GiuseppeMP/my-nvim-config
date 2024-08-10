@@ -55,8 +55,7 @@ vim.api.nvim_set_hl(0, 'NvimTreeDiagnosticErrorFolderHL', { fg = colors.red, bg 
 vim.api.nvim_set_hl(0, 'NvimTreeOpenedFolderIcon', { fg = colors.green, bg = 'none' })
 vim.api.nvim_set_hl(0, 'NvimTreeOpenedFolderName', { fg = colors.green, bg = 'none' })
 vim.api.nvim_set_hl(0, 'NvimTreeFileIcon', { fg = colors.bg, bg = 'none' })
-vim.api.nvim_set_hl(0, 'NvimTreeDirectoryBufferline', { bg = colors.purple, fg = colors.black })
-
+vim.api.nvim_set_hl(0, 'NvimTreeDirectoryBufferline', { bg = colors.none, fg = colors.green, underdashed = true })
 vim.api.nvim_set_hl(0, 'BufferLineGroupSeparator', { fg = colors.purple, bg = 'none' })
 vim.api.nvim_set_hl(0, 'BufferLineTabSeparator', { fg = colors.purple, bg = 'none' })
 vim.api.nvim_set_hl(0, 'BufferLineSeparator', { fg = colors.purple, bg = 'none' })

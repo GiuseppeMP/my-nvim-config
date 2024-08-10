@@ -75,13 +75,12 @@ local function config()
             offsets = { {
                 filetype = "NvimTree",
                 text = function()
-                    return '  Files'
-                    -- return '  '
-                    -- return '   Files'
+                    return '🭹🭹🭹🭹🭹🭹 Project 🭹🭹🭹🭹🭹🭹'
+                    -- return ''
                 end,
                 highlight = "NvimTreeDirectoryBufferline",
                 padding = 0,
-                separator = "┃",
+                separator = "│",
             }
             },
             -- offsets = offsets,
@@ -90,7 +89,7 @@ local function config()
             show_close_icon = true,
             show_tab_indicators = true,
             persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
-            separator_style = "slope",
+            separator_style = { "", "|" },
             enforce_regular_tabs = true,
             always_show_bufferline = true,
             color_icons = true

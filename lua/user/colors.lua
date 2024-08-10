@@ -8,7 +8,8 @@ M.colors = {}
 
 M.colors = tokyo_colors
 -- M.colors.b_green = '#98f3a1'
-M.colors.green = '#bee5b0'
+-- M.colors.green = '#bee5b0'
+M.colors.green = '#b1ce92'
 M.colors.b_green = '#bee5b0'
 M.colors.purple = '#a198f3'
 M.colors.magenta = '#a198f3'
