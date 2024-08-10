@@ -35,11 +35,11 @@ local function config()
             }),
             require("neotest-plenary"),
             require("neotest-vim-test")({
-                ignore_filetypes = { "lua", "javascript", "typescript", "java" },
-                allow_file_types = { "python" }
+                ignore_filetypes = { "lua", "javascript", "typescript" },
+                allow_file_types = { "python", "java" }
             }),
             -- require("neotest-java"),
-            -- require("neotest-python")(
+            -- -- require("neotest-python")(
             --     {
             --         dap = { justMyCode = true },
             --         args = { "--log-level", "DEBUG" },
@@ -47,11 +47,11 @@ local function config()
             -- )
         },
         quickfix = {
-            enabled = false,
-            open = false,
+            enabled = true,
+            open = true,
         },
         output = {
-            enabled = false,
+            enabled = true,
         },
         icons = {
             unknown = conf.icons.question,

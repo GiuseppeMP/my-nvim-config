@@ -347,29 +347,28 @@ local function config()
         },
     })
 
-    -- spectre
+    -- <leader>s
     wk.add({
-        { "<leader>s",  group = "spectre",                                                          desc = "Find and Replace" },
-        { "<leader>sw", function() require("spectre").open_visual({ select_word = true }) end,      desc = 'Search current word' },
-        { "<leader>sP", function() require("spectre").open() end,                                   desc = 'Open Spectre' },
-        { "<leader>sd", function() require("persistence").stop() end,                               desc = "Don't save current session" },
-        { "<leader>sl", function() require("persistence").load() end,                               desc = 'Restore Session' },
-        { "<leader>sL", function() require("persistence").load({ last = true }) end,                desc = 'Restore last session' },
-        { "<leader>sp", function() require("spectre").open_file_search({ select_word = true }) end, desc = 'Search on current file' },
-    })
+            { "<leader>s",  group = "Search and Replace & Session Management", },
 
-    wk.add({
+            { "<leader>sw", function() require("spectre").open_visual({ select_word = true }) end,      desc = 'Search selected [w]ord' },
+            { "<leader>sr", '<cmd>lua require("spectre").toggle()<CR>',                                 desc = 'Search & [r]eplace' },
+            -- TODO: sf not working
+            { "<leader>sf", function() require("spectre").open_file_search({ select_word = true }) end, desc = 'Search on current [f]ile' },
+
+            { "<leader>sc", function() require("persistence").select() end,                             desc = 'Session [c]hange' },
+            { "<leader>sd", function() require("persistence").stop() end,                               desc = "Session [d]isconnect" },
+            { "<leader>sl", function() require("persistence").load() end,                               desc = 'Session [l]oad' },
+            { "<leader>sL", function() require("persistence").load({ last = true }) end,                desc = 'Session [L]ast' },
+            { "<leader>sR", require 'user.utils.telescope_reload'.reload,                               desc = 'Session [R]eload configs' }
+        },
         {
-            mode = { "v", "s" },
-            { "<leader>sw", '<esc><cmd>lua require("spectre").open_visual()<CR>', desc = 'Open Spectre' },
-        }
-    })
+            mode = { "v", "s", "x" },
+            { "<leader>sw", '<esc><cmd>lua require("spectre").open_visual()<CR>', desc = 'Search selected [w]ord' },
+        })
 
 
 
-    local telescope_reload = require 'user.utils.telescope_reload'
-
-    wk.add({ "<leader>sr", telescope_reload.reload, desc = 'Reload lua modules.' })
 
     local new_note = function()
         local day_folder = os.date("Journals/%Y/%m-%B/%d-%a/%F-%a-note-")

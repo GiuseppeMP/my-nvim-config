@@ -77,8 +77,8 @@ local get_bundles = function()
     local JAVA_DEBUG_ADAPTER_LOC = get_package_install_path('java-debug-adapter') .. "/extension/server"
 
     -- java-test loc
-    -- local VSCODE_JAVA_TEST_LOC = get_package_install_path('java-test') .. "/extension/server"
-    local VSCODE_JAVA_TEST_LOC = home .. '/.config/packages/vscode-java-test/server'
+    local VSCODE_JAVA_TEST_LOC = get_package_install_path('java-test') .. "/extension/server"
+    -- local VSCODE_JAVA_TEST_LOC = home .. '/.config/packages/vscode-java-test/server'
 
     -- Debugging bundles
     local bundles = {}

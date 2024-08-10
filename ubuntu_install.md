@@ -2,7 +2,7 @@
 
 ## Pending
 
-- [ ] ..
+- [ ] Spectre is falling to open.
 
 ## Building tools, package and runtime managers
 
@@ -235,4 +235,15 @@ gradle -v
 ```sh
 brew install maven
 mvn -v
+```
+
+## Rust 
+
+```sh
+# add asdf plugin
+asdf plugin-add rust https://github.com/asdf-community/asdf-rust.git
+
+# install
+asdf install rust $(asdf list all rust | tail -1)
+asdf global rust $(asdf list all rust | tail -1)
 ```
