@@ -222,7 +222,7 @@ local function config()
 
 
     wk.add({
-        { "<C-f>",      vim.cmd.NvimTreeToggle,                    desc = 'File explorer' },
+        { "<C-f>",      vim.cmd.NvimTreeFocus,                     desc = 'Focus file' },
         { "<leader>e",  vim.cmd.NvimTreeToggle,                    desc = 'File explorer' },
         { "<leader>D",  desc = 'Type definitions' },
         { "<leader>k",  desc = 'Signature help' },

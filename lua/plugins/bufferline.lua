@@ -40,7 +40,7 @@ local function config()
                 bg = tokyo.bg,
                 sp = tokyo.sp,
                 bold = true,
-                italic = true,
+                italic = false,
             },
             diagnostic = tokyo,
             diagnostic_visible = tokyo,
@@ -75,7 +75,7 @@ local function config()
             offsets = { {
                 filetype = "NvimTree",
                 text = function()
-                    return '🭹🭹🭹🭹🭹🭹 Project 🭹🭹🭹🭹🭹🭹'
+                    return '🭹🭹🭹🭹🭹🭹 Files 🭹🭹🭹🭹🭹🭹'
                     -- return ''
                 end,
                 highlight = "NvimTreeDirectoryBufferline",
