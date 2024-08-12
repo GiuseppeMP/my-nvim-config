@@ -30,11 +30,11 @@ local function config()
                 },
             },
             ['src/test/groovy/*Test.groovy'] = {
-                -- type = "test",
+                type = "test",
                 alternate = "src/main/groovy/{}.groovy"
             },
             ['src/test/groovy/*Spec.groovy'] = {
-                -- type = "test",
+                type = "test",
                 alternate = "src/main/groovy/{}.groovy"
             },
             ['src/test/java/*Test.java'] = {
@@ -88,6 +88,11 @@ local function config()
                 }
             }
         },
+        -- golang activation
+        ['go.mod|go.sum'] = {
+            ['*.go'] = { alternate = "{}_test.go" },
+            ['*_test.go'] = { alternate = "{}.go", type = 'test' },
+        },
         -- activation in javascript/typescript
         ['settings.json|.nodejs|.angular|.react|tsconfig.json|jsconfig.json|jsconfig.js'] = {
 
@@ -95,7 +100,8 @@ local function config()
             ['src/*.ts'] = {
                 alternate = "src/{}.test.ts" },
             ['src/*.test.ts'] = {
-                alternate = "src/{}.ts"
+                alternate = "src/{}.ts",
+                type = "test"
             },
             -- projections for tsx
             ['src/*.tsx'] = {

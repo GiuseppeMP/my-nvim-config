@@ -22,6 +22,7 @@ local function config()
         },
         adapters = {
             require("neotest-vitest"),
+            require("neotest-golang"),
             require("neotest-gradle"),
             require('neotest-jest')({
                 -- jestCommand = "npx jest --watch ",
@@ -95,6 +96,9 @@ return {
             "nvim-treesitter/nvim-treesitter",
             "weilbith/neotest-gradle"
         },
+    },
+    {
+        "fredrikaverpil/neotest-golang", -- Installation
     },
     {
         'nvim-neotest/neotest-jest',
