@@ -180,6 +180,7 @@ echo "eval \"\$(zoxide init zsh)\"" >> ~/.zshrc
 asdf install golang $(asdf list all golang | grep -E '^[0-9.]+$' | tail -1)
 asdf global golang $(asdf list all golang | grep -E '^[0-9.]+$' | tail -1)
 
+echo ". ~/.asdf/plugins/golang/set-env.zsh" >> ~/.zshrc
 # check version
 go version
 ```
