@@ -82,6 +82,15 @@ end
 return {
     {
         'nvim-neotest/neotest',
+        keys = {
+            {
+                "<leader>td",
+                function()
+                    require("neotest").run.run({ suite = false, strategy = "dap" })
+                end,
+                desc = "Debug nearest test",
+            },
+        },
         config = config,
         dependencies = {
             "nvim-neotest/nvim-nio",
@@ -99,6 +108,7 @@ return {
     },
     {
         "fredrikaverpil/neotest-golang", -- Installation
+        dependencies = { "leoluz/nvim-dap-go", }
     },
     {
         'nvim-neotest/neotest-jest',
