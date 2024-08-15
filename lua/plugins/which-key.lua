@@ -64,7 +64,8 @@ local function config()
             { "<leader>fd", builtin.diagnostics,                                             desc = "Diagnostics" },
             { "<leader>fm", function() vim.cmd(":Noice telescope") end,                      desc = "Noice messages" },
             -- { "<leader>fs", function() builtin.grep_string({ search = vim.fn.input("Greg > ") }) end, desc = 'Search ...' },
-            { "<leader>fs", function() vim.cmd(":Telescope grep_string use_regex=true") end, desc = 'Search ...' },
+            { "<leader>fs", function() vim.cmd(":Telescope live_grep use_regex=true") end,   desc = 'Search ...' },
+            { "<leader>fg", function() vim.cmd(":Telescope grep_string use_regex=true") end, desc = 'Search ...' },
             { "<leader>fv", function() require 'neoclip.fzf' () end,                         desc = 'Clipboard history' },
             { "<leader>ft", vim.cmd.OverseerRun,                                             desc = 'Show tasks' },
             { "<leader>fo", vim.cmd.OverseerOpen,                                            desc = 'Show tasks output' },
@@ -351,6 +352,7 @@ local function config()
     wk.add({
             { "<leader>s",  group = "Search and Replace & Session Management", },
 
+            { "<leader>sa", vim.cmd.Alpha,                                                              desc = 'Session [a]lpha' },
             { "<leader>sw", function() require("spectre").open_visual({ select_word = true }) end,      desc = 'Search selected [w]ord' },
             { "<leader>sr", '<cmd>lua require("spectre").toggle()<CR>',                                 desc = 'Search & [r]eplace' },
             -- TODO: sf not working
