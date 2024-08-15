@@ -37,22 +37,6 @@ local function is_no_name_buf(buf)
         and vim.api.nvim_buf_get_option(buf, 'buftype') == ''
         and vim.api.nvim_buf_get_option(buf, 'filetype') == ''
 end
--- open Alpha when all buffers are closed
-vim.api.nvim_create_autocmd("BufDelete", {
-    callback = function(event)
-        local fallback_name = vim.api.nvim_buf_get_name(event.buf)
-        local fallback_ft = vim.api.nvim_buf_get_option(event.buf, "filetype")
-        local fallback_on_empty = fallback_name == "" and fallback_ft == ""
-        local bufNr = vim.api.nvim_get_current_buf()
-
-        if (bufNr ~= '' and bufNr == 1 and not is_no_name_buf(bufNr)) then
-            return
-        end
-        if fallback_on_empty and not is_no_name_buf(bufNr) then
-            vim.cmd("Alpha")
-        end
-    end,
-})
 
 vim.api.nvim_create_augroup('PersistencePlugin', { clear = true })
 vim.api.nvim_create_autocmd("User", {
