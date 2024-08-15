@@ -4,7 +4,16 @@ local function config()
     let test#javascript#runner = 'jest'
     let test#typescript#runner = 'jest'
 ]])
-
+    require('dap-go').setup {
+        dap_configurations = {
+            {
+                type = "go",
+                name = "Attach remote",
+                mode = "remote",
+                request = "attach",
+            },
+        },
+    }
     require("neotest").setup({
         status = {
             signs = true,
@@ -27,7 +36,7 @@ local function config()
             require('neotest-jest')({
                 -- jestCommand = "npx jest --watch ",
                 jestCommand = "npm test --",
-                jestConfigFile = "jest.config.mjs",
+                jestConfigFile = "jest.config.json",
                 env = { CI = true },
                 jest_test_discovery = true,
                 cwd = function(_)
