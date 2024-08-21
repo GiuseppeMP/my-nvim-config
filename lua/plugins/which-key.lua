@@ -274,6 +274,29 @@ local function config()
 
     wk.add({
         {
+            "<leader>dd",
+            function()
+                vim.diagnostic.open_float()
+            end,
+            desc = "Open float [d]iagnostic"
+        },
+        {
+            "<leader>dn",
+            function()
+                vim.diagnostic.goto_next()
+                vim.diagnostic.open_float()
+            end,
+            desc = "Go to [n]ext lsp diagnostic."
+        },
+        {
+            "<leader>dp",
+            function()
+                vim.diagnostic.goto_prev()
+                vim.diagnostic.open_float()
+            end,
+            desc = "Go to [p]revious diagnostic."
+        },
+        {
             "[d",
             function()
                 vim.diagnostic.goto_next()

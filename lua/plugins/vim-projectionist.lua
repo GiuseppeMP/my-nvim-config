@@ -97,41 +97,41 @@ local function config()
         ['settings.json|.nodejs|.angular|.react|tsconfig.json|jsconfig.json|jsconfig.js'] = {
 
             -- projections for tsx
-            ['src/*.ts'] = {
-                alternate = "src/{}.test.ts" },
-            ['src/*.test.ts'] = {
-                alternate = "src/{}.ts",
+            ['*.ts'] = {
+                alternate = "{}.test.ts" },
+            ['*.test.ts'] = {
+                alternate = "{}.ts",
                 type = "test"
             },
             -- projections for tsx
-            ['src/*.tsx'] = {
-                alternate = "src/{}.test.tsx"
+            ['*.tsx'] = {
+                alternate = "{}.test.tsx"
             },
-            ['src/*.test.tsx'] = {
-                alternate = "src/{}.tsx"
+            ['*.test.tsx'] = {
+                alternate = "{}.tsx"
             },
             -- projections for js
-            ['src/*.js'] = {
-                alternate = { "src/*.xslt.test.js", "src/{}.test.js", "src/{}.spec.js" },
+            ['*.js'] = {
+                alternate = { "*.xslt.test.js", "{}.test.js", "{}.spec.js" },
             },
-            ['src/*.xslt'] = {
-                alternate = { "src/{}.xslt.test.js" },
+            ['*.xslt'] = {
+                alternate = { "{}.xslt.test.js" },
             },
-            ['src/*.test.js'] = {
-                alternate = { "src/{}.js", "src/{}" },
+            ['*.test.js'] = {
+                alternate = { "{}.js", "{}" },
             },
-            ['src/*.spec.js'] = {
-                alternate = "src/{}.js"
+            ['*.spec.js'] = {
+                alternate = "{}.js"
             },
-            ['src/*.xslt.test.js'] = {
-                alternate = "src/{}.js"
+            ['*.xslt.test.js'] = {
+                alternate = "{}.js"
             },
             -- projections for jsx
-            ['src/*.jsx'] = {
-                alternate = "src/{}.test.jsx"
+            ['*.jsx'] = {
+                alternate = "{}.test.jsx"
             },
-            ['src/*.test.jsx'] = {
-                alternate = "src/{}.jsx"
+            ['*.test.jsx'] = {
+                alternate = "{}.jsx"
             }
         }
     }
