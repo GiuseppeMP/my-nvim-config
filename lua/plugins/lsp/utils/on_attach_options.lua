@@ -1,5 +1,33 @@
 local M = {}
 
+local function get_diagnostic_at_cursor()
+    local cur_buf = vim.api.nvim_get_current_buf()
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    local entrys = vim.diagnostic.get(cur_buf, { lnum = line - 1 })
+    local res = {}
+    for _, v in pairs(entrys) do
+        if v.col <= col and v.end_col >= col then
+            table.insert(res, {
+                code = v.code,
+                message = v.message,
+                range = {
+                    ['start'] = {
+                        character = v.col,
+                        line = v.lnum,
+                    },
+                    ['end'] = {
+                        character = v.end_col,
+                        line = v.end_lnum,
+                    },
+                },
+                severity = v.severity,
+                source = v.source or nil,
+            })
+        end
+    end
+    return res
+end
+
 local builtin = require 'telescope.builtin'
 
 -- maybe needs to improve marks because multimodule projects (maven/gradle)
@@ -136,7 +164,17 @@ M.get = function(params)
         -- Disable completion triggered by <c-x><c-o>
         vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-        vim.keymap.set('n', 'K', vim.lsp.buf.hover, buf_opts)
+        -- vim.keymap.set('n', 'K', vim.lsp.buf.hover, buf_opts)
+        vim.keymap.set('n', '<leader>k', vim.lsp.buf.signature_help, buf_opts)
+        vim.keymap.set('n', 'K', function()
+            local diagnostic = get_diagnostic_at_cursor()
+            if diagnostic == nil or next(diagnostic) == nil then
+                vim.lsp.buf.hover()
+            else
+                vim.diagnostic.open_float()
+            end
+        end, buf_opts)
+
 
         vim.keymap.set('n', 'gD',
             function() go_to_with_options(function(selected) builtin.lsp_definitions({ jump_type = selected }) end) end,
@@ -168,7 +206,6 @@ M.get = function(params)
         -- vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, buf_opts)
         vim.keymap.set('n', '<leader>D', builtin.lsp_type_definitions, buf_opts)
 
-        vim.keymap.set('n', '<leader>k', vim.lsp.buf.signature_help, buf_opts)
 
         if params.rename == nil or params.rename then
             vim.keymap.set('n', '<leader>rn', function() vim.lsp.buf.rename(nil, { name = client.name, bufnr }) end,
