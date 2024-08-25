@@ -19,7 +19,9 @@ local function config()
         return ''
     end
 
-    require 'bufferline'.setup({
+    local bufferline = require 'bufferline'
+
+    bufferline.setup({
         highlights = {
             fill = tokyo,
             background = tokyo,
@@ -55,6 +57,7 @@ local function config()
             separator_visible = tokyo,
         },
         options = {
+            style_preset = bufferline.style_preset.no_italic,
             themable = true,
             mode = 'buffers',
             numbers = "ordinal",
@@ -69,16 +72,14 @@ local function config()
             close_icon = "",
             left_trunc_marker = "",
             right_trunc_marker = "",
-            max_name_length = 35,
-            max_prefix_length = 35, -- prefix used when a buffer is de-duplicated
+            max_name_length = 30,
+            max_prefix_length = 30, -- prefix used when a buffer is de-duplicated
             tab_size = 20,
             diagnostics = "nvim_lsp",
             offsets = { {
                 filetype = "NvimTree",
-                text = function()
-                    return '🭹🭹🭹🭹🭹🭹 Files 🭹🭹🭹🭹🭹🭹'
-                    -- return ''
-                end,
+                text = '~ File Explorer ~',
+                text_align = "center",
                 highlight = "NvimTreeDirectoryBufferline",
                 padding = 0,
                 separator = "│",
@@ -90,7 +91,7 @@ local function config()
             show_close_icon = true,
             show_tab_indicators = true,
             persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
-            separator_style = { "", "|" },
+            separator_style = { "|", "|" },
             enforce_regular_tabs = true,
             always_show_bufferline = true,
             color_icons = true
