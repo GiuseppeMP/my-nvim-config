@@ -297,7 +297,7 @@ local function config()
             desc = "Go to [p]revious diagnostic."
         },
         {
-            "[d",
+            "]d",
             function()
                 vim.diagnostic.goto_next()
                 vim.diagnostic.open_float()
@@ -305,7 +305,7 @@ local function config()
             desc = "Go to next lsp diagnostics."
         },
         {
-            "]d",
+            "[d",
             function()
                 vim.diagnostic.goto_prev()
                 vim.diagnostic.open_float()
@@ -360,7 +360,7 @@ local function config()
             { "<leader>ck", function() vim.cmd.ChatGPTRun("keywords") end,                  desc = "Keywords" },
             { "<leader>cd", function() vim.cmd.ChatGPTRun("docstring") end,                 desc = "Docstring" },
             { "<leader>co", function() vim.cmd.ChatGPTRun("optimize_code") end,             desc = "Optimize Code" },
-            { "<leader>cs", function() vim.cmd.ChatGPTRun("summarize") end,                 desc = "Summarize" },
+            { "<leader>cz", function() vim.cmd.ChatGPTRun("summarize") end,                 desc = "Summarize" },
             { "<leader>cb", function() vim.cmd.ChatGPTRun("fix_bugs") end,                  desc = "Fix Bugs" },
             { "<leader>cx", function() vim.cmd.ChatGPTRun("explain_code") end,              desc = "Explain Code" },
             { "<leader>cr", function() vim.cmd.ChatGPTRun("roxygen_edit") end,              desc = "Roxygen Edit" },
@@ -368,6 +368,7 @@ local function config()
             { "<leader>ct", function() vim.cmd.ChatGPTRun("translate") end,                 desc = "Translate" },
             { "<leader>ci", vim.cmd.ChatGPTActAs,                                           desc = "Impersonate, Act as.." },
             { "<leader>cu", function() vim.cmd.ChatGPTRun("add_tests") end,                 desc = "Add Unit Tests" },
+            { "<leader>cs", function() vim.cmd.ChatGPTRun("show_tests") end,                desc = "Show Tests" },
         },
     })
 

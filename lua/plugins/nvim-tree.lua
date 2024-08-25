@@ -1,3 +1,4 @@
+local icons = require 'user.icons'
 -- see
 -- https://github.com/nvim-tree/nvim-tree.lua/wiki/Recipes#go-to-last-used-hidden-buffer-when-deleting-a-buffer
 local function config()
@@ -101,10 +102,10 @@ local function config()
             enable = true,
             show_on_dirs = true,
             icons = {
-                hint = "",
-                info = "",
-                warning = "",
-                error = "",
+                info = icons.diagnostics.info,
+                hint = icons.diagnostics.hint,
+                error = icons.diagnostics.error,
+                warning = icons.diagnostics.warning,
             },
         },
         notify = {
@@ -137,10 +138,10 @@ local function config()
                     }
                 end,
             },
-            -- width = {
-            --     max = 50,
-            --     min = 50
-            -- },
+            width = {
+                max = 45,
+                min = 30
+            },
         },
         renderer = {
             group_empty = true,

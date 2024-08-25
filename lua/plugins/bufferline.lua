@@ -1,5 +1,6 @@
 ---@diagnostic disable: unused-local, unused-function
 local colors = require 'user.colors'.colors
+
 local function config()
     vim.opt.termguicolors = true
     ---@diagnostic disable-next-line: undefined-field

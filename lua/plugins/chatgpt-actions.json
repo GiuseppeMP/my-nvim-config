@@ -1,0 +1,16 @@
+{
+    "show_tests": {
+        "type": "chat",
+        "opts": {
+        "title": " Show potential tests",
+            "template": "Implement tests for the following code.\n\nCode:\n```{{filetype}}\n{{input}}\n```\n\nTests:\n```{{filetype}}",
+            "strategy": "display",
+            "params": {
+                "model": "gpt-3.5-turbo",
+                "stop": [
+                    "```"
+                ]
+            }
+        }
+    }
+}
