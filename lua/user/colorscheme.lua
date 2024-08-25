@@ -11,8 +11,8 @@ vim.cmd [[hi! link @markup.raw.markdown_inline CodeBlock ]]
 
 -- vim.api.nvim_set_hl(0, "CursorLine", { bg = 'none', fg = 'none', blend = 90 })
 -- vim.api.nvim_set_hl(0, "CursorLine", { bg = '#292e42', fg = 'none', blend = 60 })
-vim.api.nvim_set_hl(0, "CursorLine", { bg = '#312942', fg = 'none', blend = 60 })
 -- vim.api.nvim_set_hl(0, "CursorLine", { bg = colors.green, fg = 'none', blend = 90 })
+vim.api.nvim_set_hl(0, "CursorLine", { bg = '#312942', fg = 'none', blend = 60 })
 vim.api.nvim_set_hl(0, "CursorLineNr", { fg = colors.b_yellow, bg = 'none', blend = 0, force = true })
 vim.api.nvim_set_hl(0, "Cursor", { fg = colors.red, bg = colors.green, blend = 100, force = true })
 vim.api.nvim_set_hl(0, "CursorBlock", { fg = colors.green, bg = colors.green, blend = 0, force = true })
@@ -78,14 +78,14 @@ vim.api.nvim_set_hl(0, 'BufferLineTabSeparatorSelected', { fg = colors.purple, b
 vim.api.nvim_set_hl(0, 'BufferLineBuffer', { fg = colors.purple, bg = 'none' })
 vim.api.nvim_set_hl(0, 'BufferLineTruncMarker', { fg = colors.purple, bg = 'none' })
 
-vim.api.nvim_set_hl(0, 'BufferLineError', { fg = colors.red, bg = 'none', undercurl = true })
-vim.api.nvim_set_hl(0, 'BufferLineErrorVisible', { fg = colors.red, bg = 'none', undercurl = true })
-vim.api.nvim_set_hl(0, 'BufferLineErrorSelected', { fg = colors.green, bg = 'none', sp = colors.red, undercurl = true })
+vim.api.nvim_set_hl(0, 'BufferLineError', { fg = colors.red, bg = 'none', underdashed = true })
+vim.api.nvim_set_hl(0, 'BufferLineErrorVisible', { fg = colors.red, bg = 'none', underdashed = true })
+vim.api.nvim_set_hl(0, 'BufferLineErrorSelected', { fg = colors.green, bg = 'none', sp = colors.red, underdashed = true })
 
-vim.api.nvim_set_hl(0, 'BufferLineWarning', { fg = colors.yellow, bg = 'none', undercurl = true })
-vim.api.nvim_set_hl(0, 'BufferLineWarningVisible', { fg = colors.yellow, bg = 'none', undercurl = true })
+vim.api.nvim_set_hl(0, 'BufferLineWarning', { fg = colors.yellow, bg = 'none', underdashed = true })
+vim.api.nvim_set_hl(0, 'BufferLineWarningVisible', { fg = colors.yellow, bg = 'none', undercurl = false })
 vim.api.nvim_set_hl(0, 'BufferLineWarningSelected',
-    { fg = colors.green, bg = 'none', sp = colors.yellow, undercurl = true })
+    { fg = colors.green, bg = 'none', sp = colors.yellow, undercurl = false })
 
 -- vim.api.nvim_set_hl(0, 'Visual', { bg = colors., fg = colors.yellow, underline = false })
 vim.api.nvim_set_hl(0, 'NoiceFormatProgressDone', { link = 'NonText' })
