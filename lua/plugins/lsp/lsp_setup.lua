@@ -1,3 +1,5 @@
+local icons = require 'user.icons'
+
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 --
 -- lsp settings:
@@ -27,22 +29,22 @@ utils.init_err_handler('taplo', function() require "lspconfig".taplo.setup {} en
 -- diagnostic signs
 vim.fn.sign_define(
     'DiagnosticSignError',
-    { text = '', texthl = 'LspDiagnosticsDefaultError' }
+    { text = icons.diagnostics.error, texthl = 'LspDiagnosticsDefaultError' }
 )
 
 vim.fn.sign_define(
     'DiagnosticSignWarn',
-    { text = '', texthl = 'LspDiagnosticsDefaultWarning' }
+    { text = icons.diagnostics.warning, texthl = 'LspDiagnosticsDefaultWarning' }
 )
 
 vim.fn.sign_define(
     'DiagnosticSignInfo',
-    { text = '', texthl = 'LspDiagnosticsDefaultInformation' }
+    { text = icons.diagnostics.info, texthl = 'LspDiagnosticsDefaultInformation' }
 )
 
 vim.fn.sign_define(
     'DiagnosticSignHint',
-    { text = '', texthl = 'LspDiagnosticsDefaultHint' }
+    { text = icons.diagnostics.hint, texthl = 'LspDiagnosticsDefaultHint' }
 )
 
 vim.cmd('highlight link LspDiagnosticsDefaultError DiagnosticError ')
@@ -52,11 +54,11 @@ vim.cmd('highlight link LspDiagnosticsDefaultHint DiagnosticHint ')
 
 
 vim.diagnostic.config {
-    underline        = true,
+    underline        = false,
     virtual_text     = false,
     signs            = true,
     update_in_insert = true,
-    severity_sort    = false,
+    severity_sort    = true,
     float            = {
         border = 'rounded',
         source = 'always',
