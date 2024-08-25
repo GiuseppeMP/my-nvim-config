@@ -11,6 +11,11 @@ lspconfig.tsserver.setup {
         format = true,
         lsp_client = 'tsserver'
     }),
+    filetypes = {
+        "javascript",
+        -- "typescript", --using typescript-tools for ts.
+        "vue",
+    },
     init_options = {
         hostInfo = "neovim",
         preferences = {

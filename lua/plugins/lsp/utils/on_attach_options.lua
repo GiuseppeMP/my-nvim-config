@@ -165,7 +165,7 @@ M.get = function(params)
         vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
         -- vim.keymap.set('n', 'K', vim.lsp.buf.hover, buf_opts)
-        vim.keymap.set('n', '<leader>k', vim.lsp.buf.signature_help, buf_opts)
+        vim.keymap.set('n', '<leader>kk', vim.lsp.buf.signature_help, buf_opts)
         vim.keymap.set('n', 'K', function()
             local diagnostic = get_diagnostic_at_cursor()
             if diagnostic == nil or next(diagnostic) == nil then
