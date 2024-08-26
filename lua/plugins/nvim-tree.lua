@@ -101,6 +101,10 @@ local function config()
         diagnostics = {
             enable = true,
             show_on_dirs = true,
+            severity = {
+                max = vim.diagnostic.severity.ERROR,
+                min = vim.diagnostic.severity.INFO
+            },
             icons = {
                 info = icons.diagnostics.info,
                 hint = icons.diagnostics.hint,
