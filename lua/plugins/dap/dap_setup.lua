@@ -1,6 +1,7 @@
 ---@diagnostic disable: inject-field
 local dap, dapui = require("dap"), require("dapui")
 local tokyo_colors = require("tokyonight.colors").setup()
+local icons = require 'user.icons'
 
 tokyo_colors.vgreen = '#0db9d7'
 
@@ -14,14 +15,14 @@ vim.api.nvim_set_hl(0, 'DapStopped', { ctermbg = 0, fg = tokyo_colors.vgreen, bg
 
 -- Dap Icons.
 vim.fn.sign_define('DapBreakpointCondition', {
-    text = '',
+    text = icons.diagnostics.question,
     texthl = 'blue',
     linehl = 'DapBreakpoint',
     numhl = 'DapBreakpoint'
 })
 
 vim.fn.sign_define('DapBreakpointRejected', {
-    text = '',
+    text = icons.diagnostics.error,
     texthl = 'orange',
     linehl = 'DapBreakpoint',
     numhl = 'DapBreakpoint'
@@ -33,32 +34,47 @@ vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'red', linehl = '',
 
 vim.cmd [[vnoremap <leader>de <Cmd>lua require("dapui").eval()<CR>]]
 
-dap.listeners.after.event_initialized["dapui_config"] = function()
-    ---@diagnostic disable-next-line: undefined-field
-    _G.dapui.current_win = vim.api.nvim_get_current_win()
-    ---@diagnostic disable-next-line: undefined-field
-    vim.cmd.NvimTreeClose()
+-- dap.listeners.after.event_initialized["dapui_config"] = function()
+--     ---@diagnostic disable-next-line: undefined-field
+--     _G.dapui.current_win = vim.api.nvim_get_current_win()
+--     ---@diagnostic disable-next-line: undefined-field
+--     vim.cmd.NvimTreeClose()
+--     dapui.open()
+-- end
+--
+-- dap.listeners.before.event_terminated["dapui_config"] = function()
+--     dapui.close()
+--     ---@diagnostic disable-next-line: undefined-field
+--     vim.api.nvim_set_current_win(_G.dapui.current_win)
+--     ---@diagnostic disable-next-line: undefined-field
+--     vim.cmd.NvimTreeToggle()
+-- end
+--
+-- dap.listeners.before.event_exited["dapui_config"] = function()
+--     dapui.close()
+--     ---@diagnostic disable-next-line: undefined-field
+--     vim.api.nvim_set_current_win(_G.dapui.current_win)
+--     ---@diagnostic disable-next-line: undefined-field
+--     vim.cmd.NvimTreeToggle()
+-- end
+
+dap.listeners.before.attach.dapui_config = function()
     dapui.open()
 end
-
-dap.listeners.before.event_terminated["dapui_config"] = function()
+dap.listeners.before.launch.dapui_config = function()
+    dapui.open()
+end
+dap.listeners.before.event_terminated.dapui_config = function()
     dapui.close()
-    ---@diagnostic disable-next-line: undefined-field
-    vim.api.nvim_set_current_win(_G.dapui.current_win)
-    ---@diagnostic disable-next-line: undefined-field
-    vim.cmd.NvimTreeToggle()
+end
+dap.listeners.before.event_exited.dapui_config = function()
+    dapui.close()
 end
 
-dap.listeners.before.event_exited["dapui_config"] = function()
-    dapui.close()
-    ---@diagnostic disable-next-line: undefined-field
-    vim.api.nvim_set_current_win(_G.dapui.current_win)
-    ---@diagnostic disable-next-line: undefined-field
-    vim.cmd.NvimTreeToggle()
-end
 
 
 require("dapui").setup({
+    force_buffers = true,
     icons = { expanded = "", collapsed = "", current_frame = "" },
     mappings = {
         -- Use a table to apply multiple mappings
@@ -110,7 +126,7 @@ require("dapui").setup({
     },
     controls = {
         -- Requires Neovim nightly (or 0.8 when released)
-        enabled = false,
+        enabled = true,
         -- Display controls in this element
         element = "repl",
         icons = {
@@ -134,6 +150,7 @@ require("dapui").setup({
     },
     windows = { indent = 1 },
     render = {
+        indent = 80,
         max_type_length = nil, -- Can be integer or nil.
         max_value_lines = 100, -- Can be integer or nil.
     }
