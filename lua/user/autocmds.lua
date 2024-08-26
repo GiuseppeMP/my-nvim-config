@@ -46,3 +46,20 @@ vim.api.nvim_create_autocmd("User", {
         vim.cmd("NvimTreeToggle")
     end
 })
+vim.api.nvim_create_autocmd("CursorHold", {
+    callback = function(_event)
+        vim.cmd("normal! m'")
+    end
+})
+vim.api.nvim_create_augroup('vim-test-runners', { clear = true })
+vim.api.nvim_create_autocmd("VimEnter", {
+    group = 'vim-test-runners',
+    callback = function(_event)
+        vim.cmd([[
+            if filereadable("vite.config.ts")
+                let test#javascript#runner = 'vitest'
+                let test#typescript#runner = 'vitest'
+            endif
+        ]])
+    end
+})
