@@ -67,7 +67,7 @@ local on_attach_jdtls = function(_client, buf_nr)
     ]]
 
     -- setup dap
-    jdtls.setup_dap({ hotcodereplace = 'auto' })
+    jdtls.setup_dap({ hotcodereplace = 'auto', config_overrides = {} })
     -- require('jdtls.dap').setup_dap_main_class_configs()
 end
 
