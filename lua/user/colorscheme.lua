@@ -42,6 +42,7 @@ vim.api.nvim_set_hl(0, 'TreesitterContext', { bg = 'none', fg = colors.purple })
 
 vim.api.nvim_set_hl(0, 'NvimTreeIndentMarker', { bg = 'none', fg = colors.yellow })
 vim.api.nvim_set_hl(0, 'NvimTreeWinSeparator', { fg = colors.purple, bold = false })
+vim.api.nvim_set_hl(0, 'NvimTreeWindowPicker', { bg = colors.purple, fg = colors.black, bold = true })
 
 vim.api.nvim_set_hl(0, 'Search', { fg = colors.green, bg = 'none', underline = true })
 vim.api.nvim_set_hl(0, 'IncSearch', { fg = colors.purple, bg = 'none', underline = true })
