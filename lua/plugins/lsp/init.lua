@@ -18,6 +18,5 @@ return {
     {
         "pmizio/typescript-tools.nvim",
         dependencies = { 'jose-elias-alvarez/null-ls.nvim', "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-        opts = {},
     },
 }

@@ -150,7 +150,7 @@ require("dapui").setup({
     },
     windows = { indent = 1 },
     render = {
-        indent = 80,
+        indent = 240,
         max_type_length = nil, -- Can be integer or nil.
         max_value_lines = 100, -- Can be integer or nil.
     }

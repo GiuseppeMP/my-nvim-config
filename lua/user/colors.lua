@@ -21,5 +21,6 @@ M.colors.none = 'none'
 M.colors.black = '#1a1b26'
 M.colors.gray = '#636da6'
 M.colors.b_red = '#e5b0be'
+M.colors.cursor_line = '#312942'
 
 return M

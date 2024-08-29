@@ -8,4 +8,5 @@ require("typescript-tools").setup {
         format = true,
         lsp_client = 'typescript-tools'
     }),
+    expose_as_code_action = "all"
 }
