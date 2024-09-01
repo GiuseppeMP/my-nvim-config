@@ -73,6 +73,7 @@ local function config()
 
         -- remove mappings
         -- remove_keymap('n', '<c-t>', bufnr)
+        remove_keymap('n', '<c-t>', bufnr)
 
         -- custom mappings
         -- vim.keymap.set('n', '<leader-e>', api.node.open.edit, opts('Open'))

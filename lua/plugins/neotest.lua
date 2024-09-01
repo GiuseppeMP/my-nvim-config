@@ -24,7 +24,7 @@ local function config()
             severity = 1,
         },
         discovery = {
-            enabled = false,
+            enabled = true,
         },
         running = {
             concurrent = false
@@ -48,13 +48,13 @@ local function config()
                 ignore_filetypes = { "lua", "javascript", "typescript" },
                 allow_file_types = { "python", "java" }
             }),
-            -- require("neotest-java"),
-            -- -- require("neotest-python")(
-            --     {
-            --         dap = { justMyCode = true },
-            --         args = { "--log-level", "DEBUG" },
-            --     }
-            -- )
+            require("neotest-java"),
+            require("neotest-python")(
+                {
+                    dap = { justMyCode = true },
+                    args = { "--log-level", "DEBUG" }
+                }
+            )
         },
         quickfix = {
             enabled = true,

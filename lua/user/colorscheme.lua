@@ -80,9 +80,9 @@ vim.api.nvim_set_hl(0, 'BufferLineTabSeparatorSelected', { fg = colors.purple, b
 vim.api.nvim_set_hl(0, 'BufferLineBuffer', { fg = colors.purple, bg = 'none' })
 vim.api.nvim_set_hl(0, 'BufferLineTruncMarker', { fg = colors.purple, bg = 'none' })
 
-vim.api.nvim_set_hl(0, 'BufferLineError', { fg = colors.red, bg = 'none', underdashed = true })
-vim.api.nvim_set_hl(0, 'BufferLineErrorVisible', { fg = colors.red, bg = 'none', underdashed = true })
-vim.api.nvim_set_hl(0, 'BufferLineErrorSelected', { fg = colors.green, bg = 'none', sp = colors.red, underdashed = true })
+vim.api.nvim_set_hl(0, 'BufferLineError', { fg = colors.red, bg = 'none', underdashed = false  })
+vim.api.nvim_set_hl(0, 'BufferLineErrorVisible', { fg = colors.red, bg = 'none', underdashed = false })
+vim.api.nvim_set_hl(0, 'BufferLineErrorSelected', { fg = colors.red, bg = 'none', sp = colors.red, underdashed = false, bold=true })
 
 vim.api.nvim_set_hl(0, 'BufferLineWarning', { fg = colors.yellow, bg = 'none', underdashed = true })
 vim.api.nvim_set_hl(0, 'BufferLineWarningVisible', { fg = colors.yellow, bg = 'none', undercurl = false })

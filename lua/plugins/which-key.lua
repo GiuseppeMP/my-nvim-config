@@ -197,17 +197,49 @@ local function config()
     })
 
 
+    local function is_vim_test()
+        local vimtest_list = { "python" }
+        return vim.tbl_contains(vimtest_list, vim.bo.filetype)
+    end
+
+    local function test_nearest()
+        if (is_vim_test) then
+            vim.cmd(":TestNearest")
+        else
+            neotest.run.run()
+        end
+    end
+    local function test_file()
+        if (is_vim_test) then
+            vim.cmd(":TestFile")
+        else
+            neotest.run.run(vim.fn.expand('%'))
+        end
+    end
+    local function test_class()
+        if (is_vim_test) then
+            vim.cmd(":TestClass")
+        else
+            neotest.run.run(vim.fn.expand('%'))
+        end
+    end
+    local function test_suite()
+        if (is_vim_test) then
+            vim.cmd(":TestSuite")
+        else
+            neotest.run.run({ suite = true })
+        end
+    end
 
     wk.add({
-        { "<leader>t",  group = "testing" },
-        { "<leader>tm", function() vim.cmd(":TestNearest") end,                   desc = 'Run nearest method with vim-test' },
-        { "<leader>tc", function() vim.cmd(":TestFile -strategy=toggleterm") end, desc = 'Run class/file tests with vim-test' },
-        { "<leader>tt", function() neotest.run.run() end,                         desc = 'Run nearest test' },
-        { "<leader>td", function() neotest.run.run({ strategy = 'dap' }) end,     desc = 'Debug nearest test' },
-        { "<leader>tf", function() neotest.run.run(vim.fn.expand('%')) end,       desc = 'Run all tests in the file' },
-        { "<leader>ts", function() neotest.summary.toggle() end,                  desc = 'Toggle tests summary' },
-        { "<leader>to", function() neotest.output_panel.toggle() end,             desc = 'Toggle tests output window' },
-        { "<leader>ta", function() neotest.run.run({ suite = true }) end,         desc = 'Run all tests' },
+        { "<leader>t",  group = "[t]esting" },
+        { "<leader>tt", test_nearest,                                         desc = 'Run nearest [t]est' },
+        { "<leader>tc", test_class,                                           desc = 'Run [c]lasstests with vim-test' },
+        { "<leader>tf", test_file,                                            desc = 'Run [f]ile test' },
+        { "<leader>ta", test_suite,                                           desc = 'Run [s]uite tests' },
+        { "<leader>td", function() neotest.run.run({ strategy = 'dap' }) end, desc = '[d]ebug nearest test' },
+        { "<leader>ts", function() neotest.summary.toggle() end,              desc = 'Toggle tests [s]ummary' },
+        { "<leader>to", function() neotest.output_panel.toggle() end,         desc = 'Toggle tests [o]utput window' },
     })
 
     wk.add({

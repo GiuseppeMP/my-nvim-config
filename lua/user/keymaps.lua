@@ -41,7 +41,8 @@ t("<S-Right>", ":vertical resize +3<CR>")
 -- Navigate buffers --
 n("<S-l>", ":bnext<CR>")
 n("<S-h>", ":bprevious<CR>")
-
+t("<S-l>", ":bnext<CR>")
+t("<S-h>", ":bprevious<CR>")
 -- Insert opts --
 --
 i("jk", "<ESC>")
