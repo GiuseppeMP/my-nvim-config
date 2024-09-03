@@ -74,6 +74,10 @@ local function config()
             },
             -- ['<CR>'] = cmp.mapping.confirm({ select = false }),
             ["<C-e>"] = cr,
+            ["<C-;>"] = cmp.mapping(function(_)
+                cmp.close()
+                vim.fn['codeium#Complete']()
+            end, { "i", "c" }),
             ["<Tab>"] = cmp.mapping(function(fallback)
                 if luasnip.expand_or_locally_jumpable() then
                     luasnip.expand_or_jump()
