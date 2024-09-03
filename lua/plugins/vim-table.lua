@@ -1,8 +1,8 @@
 return { {
     'dhruvasagar/vim-table-mode',
-    ft = { 'markdown', 'text', 'tex', 'plaintex', 'norg' },
+    ft = { 'markdown', 'text', 'text', 'plaintext', 'norg' },
     config = function()
-        -- require('tablemode').setup()
+        vim.g.table_mode_disable_mappings = 1
     end
 },
 }
