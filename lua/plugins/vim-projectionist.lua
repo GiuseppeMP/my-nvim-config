@@ -57,36 +57,31 @@ local function config()
 
         -- activation in python
         ['Pipfile|requirements.txt|main.py|setup.py'] = {
-            ['tests/test_*.py'] = {
+            ['**/test_*.py'] = {
+                type = "test",
+                alternate = {
+                    "{}.py",
+                }
+            },
+            ['*.py'] = {
+                type = "source",
+                alternate = {
+                    "{dirname}/test_{basename}.py",
+                }
+            },
+            ['**/tests/*test_*.py'] = {
                 type = "test",
                 alternate = {
                     "src/{}.py",
                 }
             },
-            ['tests/*_test.py'] = {
+            ['**/tests/*_test.py'] = {
                 type = "test",
                 alternate = {
                     "src/{}.py",
                 }
             },
-            ['src/*.py'] = {
-                type = "src",
-                alternate = {
-                    "tests/{}_test.py",
-                    "tests/test_{}.py",
-                    -- same dir tests
-                    -- "{file|dirname}/test_{basename}.py",
-                    -- "{}_test.py",
-                    -- "{file|dirname}/test_{basename}.py",
-                    -- "{file|dirname}/{}_test.py",
-                    -- create /tests in same dir
-                    -- "{file|dirname}/tests/{basename}_test.py",
-                    -- "{file|dirname}/tests/test_{basename}.py",
-                    -- create /tests in the root dir
-                    -- "{project}/tests{dirname}/test_{basename}.py",
-                    -- "tests/{dirname}/{basename}_test.py",
-                }
-            }
+            ['**/src/*.py'] = { alternate = { "tests/{}_test.py", "tests/test_{}.py" } },
         },
         -- golang activation
         ['go.mod|go.sum'] = {
