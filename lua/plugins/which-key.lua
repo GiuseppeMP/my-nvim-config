@@ -255,14 +255,15 @@ local function config()
 
 
     wk.add({
-        { "<C-f>",      vim.cmd.NvimTreeFocus,                     desc = 'Focus file' },
-        { "<leader>e",  vim.cmd.NvimTreeToggle,                    desc = 'File explorer' },
+        { "<C-f>",      vim.cmd.NvimTreeFocus,                                   desc = 'Focus file' },
+        { "<leader>e",  vim.cmd.NvimTreeToggle,                                  desc = 'File explorer' },
         { "<leader>D",  desc = 'Type definitions' },
         { "<leader>k",  desc = 'Signature help' },
         { "<leader>xw", desc = 'Swap two words separated by space' },
         { "<leader>rn", desc = 'Rename' },
         { "K",          desc = 'Lsp hover hints' },
-        { "<leader>q",  vim.cmd.Bdelete,                           desc = 'Buffer delete' },
+        { "<leader>q",  vim.cmd.Bdelete,                                         desc = 'Buffer delete' },
+        { "<leader>Q",  function() require('bufdelete').bufdelete(0, true) end,  desc = 'Buffer delete' },
         { "df",         desc = 'Debug File Tests' },
         { "dn",         desc = 'Debug Nearest Test' },
     })

@@ -38,4 +38,5 @@ return {
     },
     { 'onsails/lspkind.nvim' },
     { 'skywind3000/asyncrun.vim' },
+    { 'famiu/bufdelete.nvim' }
 }
