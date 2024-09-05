@@ -13,7 +13,7 @@ lspconfig.tsserver.setup {
     }),
     filetypes = {
         "javascript",
-        "typescript", --using typescript-tools for ts.
+        -- "typescript", --using typescript-tools for ts.
         "vue",
     },
     init_options = {
