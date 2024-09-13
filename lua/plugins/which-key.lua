@@ -248,11 +248,8 @@ local function config()
         { "<leader>cf", desc = 'Code format' },
     })
 
-    wk.add({
-        { mode = { 't', 'n', 'i' }, silent = true },
-        { '<C-s>',                  vim.cmd.write, desc = 'Save buffer' },
-    })
-
+    vim.keymap.set("i", "<C-s>", function() vim.cmd("silent write") end, { silent = true })
+    vim.keymap.set("n", "<C-s>", function() vim.cmd("silent write") end, { silent = true })
 
     wk.add({
         { "<C-f>",      vim.cmd.NvimTreeFocus,                                  desc = 'Focus file' },
