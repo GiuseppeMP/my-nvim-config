@@ -21,7 +21,7 @@ utils.init_err_handler('marksman', function() require "plugins.lsp.marksman" end
 utils.init_err_handler('pyright', function() require "plugins.lsp.pyright" end)
 utils.init_err_handler('rust_analyzer', function() require "plugins.lsp.rust_analyzer" end)
 utils.init_err_handler('terraformls', function() require "plugins.lsp.terraformls" end)
-utils.init_err_handler('tsserver', function() require "plugins.lsp.tsserver" end)
+utils.init_err_handler('ts_ls', function() require "plugins.lsp.ts_ls" end)
 utils.init_err_handler('typescript-tools', function() require "plugins.lsp.typescript-tools" end)
 utils.init_err_handler('yamlls', function() require "plugins.lsp.yamlls" end)
 utils.init_err_handler('taplo', function() require "lspconfig".taplo.setup {} end)
