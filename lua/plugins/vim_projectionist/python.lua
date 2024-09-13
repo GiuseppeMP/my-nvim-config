@@ -11,12 +11,14 @@ return {
             type = "source",
             alternate = {
                 "{dirname}/test_{basename}.py",
+                "{dirname}/{basename}_test.py",
             }
         },
         ['**/tests/*_test.py'] = {
             type = "test",
             alternate = {
                 "src/{}.py",
+                "{}.py",
             }
         },
         ['**/tests/test_*.py'] = {
