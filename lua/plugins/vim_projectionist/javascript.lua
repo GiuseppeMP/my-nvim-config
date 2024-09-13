@@ -2,19 +2,22 @@ return {
     -- activation in javascript/typescript
     activation = 'settings.json|.nodejs|.angular|.react|tsconfig.json|jsconfig.json|jsconfig.js',
     config = {
-
         -- projections for tsx
         ['*.ts'] = {
-            alternate = "{}.test.ts" },
+            type = 'source',
+            alternate = "{}.test.ts"
+        },
         ['*.test.ts'] = {
             alternate = "{}.ts",
             type = "test"
         },
         -- projections for tsx
         ['*.tsx'] = {
+            type = 'source',
             alternate = "{}.test.tsx"
         },
         ['*.test.tsx'] = {
+            type = 'test',
             alternate = "{}.tsx"
         },
         -- projections for js
