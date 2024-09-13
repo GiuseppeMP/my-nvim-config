@@ -285,15 +285,23 @@ local function config()
         { "gi", desc = "Go to implementation" },
         { "gu", desc = "Go to usages/references" },
         {
+            "gA",
+            function()
+                vim.cmd(":w")
+                vim.cmd(":AS")
+            end,
+            desc = 'split [A]lternate'
+        },
+        {
             "ga",
             function()
                 vim.cmd(":w")
                 vim.cmd(":A")
             end,
-            desc = 'Go to tests (Alternate)'
+            desc = 'buffer [a]lternate'
         },
-        { "gs", vim.cmd.G,                                                    desc = "Source control" },
-        { "gC", function() require("treesitter-context").go_to_context() end, desc = 'Go to context' },
+        { "gs", vim.cmd.G,                                                    desc = "[s]ource control" },
+        { "gC", function() require("treesitter-context").go_to_context() end, desc = 'Go to [C]ontext' },
     })
 
     wk.add({
