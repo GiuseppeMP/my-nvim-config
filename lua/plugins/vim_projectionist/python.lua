@@ -1,10 +1,22 @@
 return {
     activation = 'Pipfile|requirements.txt|main.py|setup.py',
     config = {
+        ['test_*.py'] = {
+            type = "test",
+            alternate = {
+                "{}.py"
+            }
+        },
         ['**/test_*.py'] = {
             type = "test",
             alternate = {
-                "{}.py",
+                "{}.py"
+            }
+        },
+        ['*_test.py'] = {
+            type = "test",
+            alternate = {
+                "{}.py"
             }
         },
         ['*.py'] = {
@@ -18,7 +30,6 @@ return {
             type = "test",
             alternate = {
                 "src/{}.py",
-                "{}.py",
             }
         },
         ['**/tests/test_*.py'] = {
