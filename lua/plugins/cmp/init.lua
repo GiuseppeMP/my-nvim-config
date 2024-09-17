@@ -108,6 +108,7 @@ local function config()
             { name = 'luasnip',                 group_index = 1, max_item_count = 15 },
             { name = 'vsnip',                   group_index = 2, max_item_count = 5 },
             { name = 'snippy',                  group_index = 2, max_item_count = 5 },
+            { name = "dotenv",                  group_index = 2, max_item_count = 5 },
             { name = 'emoji',                   group_index = 0, max_item_count = 10 },
             { name = 'calc',                    group_index = 0, max_item_count = 5 },
             { name = 'nvim_lsp_signature_help', group_index = 1, max_item_count = 10 },
@@ -264,5 +265,6 @@ return {
     { 'dcampos/nvim-snippy' },
     { 'dcampos/cmp-snippy' },
     { "rafamadriz/friendly-snippets" },
-    { 'hrsh7th/nvim-cmp',            config = config, dependencies = { "hrsh7th/cmp-emoji" } },
+    { "SergioRibera/cmp-dotenv" },
+    { 'hrsh7th/nvim-cmp',            config = config, dependencies = { "hrsh7th/cmp-emoji" } }
 }
