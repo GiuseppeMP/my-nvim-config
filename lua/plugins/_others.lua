@@ -38,5 +38,6 @@ return {
     },
     { 'onsails/lspkind.nvim' },
     { 'skywind3000/asyncrun.vim' },
+    { 'AndrewRadev/tagalong.vim' },
     { 'famiu/bufdelete.nvim' }
 }
