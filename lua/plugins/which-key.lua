@@ -66,7 +66,7 @@ local function config()
             -- { "<leader>fs", function() builtin.grep_string({ search = vim.fn.input("Greg > ") }) end, desc = 'Search ...' },
             { "<leader>fs", function() vim.cmd(":Telescope live_grep use_regex=true") end,   desc = 'Search ...' },
             { "<leader>fg", function() vim.cmd(":Telescope grep_string use_regex=true") end, desc = 'Search ...' },
-            { "<leader>fv", function() require 'neoclip.fzf' () end,                         desc = 'Clipboard history' },
+            { "<leader>fv", function() vim.cmd(":Telescope neoclip") end,                    desc = 'ctrl/cmd-[v]' },
             { "<leader>ft", vim.cmd.OverseerRun,                                             desc = 'Show tasks' },
             { "<leader>fo", vim.cmd.OverseerOpen,                                            desc = 'Show tasks output' },
             { "<leader>fq", builtin.quickfix,                                                desc = 'Quickfix' },
