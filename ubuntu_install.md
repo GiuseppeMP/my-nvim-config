@@ -254,6 +254,8 @@ mkdir -p ~/.config/nvim && git clone https://github.com/GiuseppeMP/my-nvim-confi
 
 # open nvim first time with the new config. (build, treesitter, etc)
 nvim
+
+# Wait for everything to be installed, treesitter, mason, etc. You may experience error messages in vim output, just ignore and wait.
 ```
 
 ## Codeium Auth
