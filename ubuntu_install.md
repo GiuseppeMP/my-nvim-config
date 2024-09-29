@@ -188,6 +188,32 @@ asdf install rust $(asdf list all rust | tail -1)
 asdf global rust $(asdf list all rust | tail -1)
 ```
 
+## Golang
+
+```sh
+# install the latest stable version of Golang.
+asdf install golang $(asdf list all golang | grep -E '^[0-9.]+$' | tail -1)
+asdf global golang $(asdf list all golang | grep -E '^[0-9.]+$' | tail -1)
+
+echo ". ~/.asdf/plugins/golang/set-env.zsh" >> ~/.zshrc
+# check version
+go version
+```
+
+
+## LazyGit
+
+```sh
+brew install jesseduffield/lazygit/lazygit && brew install lazygit
+```
+
+## Zoxyde
+
+```sh
+brew install zoxide
+echo "eval \"\$(zoxide init zsh)\"" >> ~/.zshrc
+```
+
 ## Neovim
 
 ```
@@ -233,29 +259,6 @@ Recommended: Save your token in `~/.codeium/config.json` following the structure
 7. Delete open_ai_key.txt `rm open_ai_key.txt`
 
 
-## LazyGit
 
-```sh
-brew install jesseduffield/lazygit/lazygit && brew install lazygit
-```
-
-## Zoxyde
-
-```sh
-brew install zoxide
-echo "eval \"\$(zoxide init zsh)\"" >> ~/.zshrc
-```
-
-## Golang
-
-```sh
-# install the latest stable version of Golang.
-asdf install golang $(asdf list all golang | grep -E '^[0-9.]+$' | tail -1)
-asdf global golang $(asdf list all golang | grep -E '^[0-9.]+$' | tail -1)
-
-echo ". ~/.asdf/plugins/golang/set-env.zsh" >> ~/.zshrc
-# check version
-go version
-```
 
 
