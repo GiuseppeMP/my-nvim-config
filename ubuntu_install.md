@@ -8,7 +8,9 @@
 
 ```sh
 # install building tools
-sudo apt-get install build-essential procps curl file git xdg-utils
+sudo apt update
+sudo apt upgrade -y
+sudo apt-get install build-essential procps curl file git xdg-utils gnupg2 -Y
 
 # install homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -17,6 +19,10 @@ sudo apt-get install build-essential procps curl file git xdg-utils
 
 test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
 test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+brew install zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
 echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc
 echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.zshrc
 
@@ -39,7 +45,13 @@ echo "fpath=(\${ASDF_DIR}/completions \$fpath)" >> ~/.bashrc
 echo "autoload -Uz compinit && compinit" >> ~/.bashrc
 # refresh zsh
 exec zsh
+```
 
+## Github CLI
+
+```sh
+sudo apt install gh -y
+gh auth login # follow instructions
 ```
 
 ## NerdFonts
@@ -124,12 +136,6 @@ brew install fzf
 echo "source <(fzf --zsh)" >> ~/.zshrc
 ```
 
-## Github CLI
-
-```sh
-sudo apt install gh
-gh auth login # follow instructions
-```
 
 ## Clone my config into ~/.config/nvim
 
