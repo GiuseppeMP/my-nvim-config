@@ -194,6 +194,9 @@ brew install rust
 ## Golang
 
 ```sh
+# add golang plugin
+asdf plugin add golang
+
 # install the latest stable version of Golang.
 asdf install golang $(asdf list all golang | grep -E '^[0-9.]+$' | tail -1)
 asdf global golang $(asdf list all golang | grep -E '^[0-9.]+$' | tail -1)
