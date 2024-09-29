@@ -47,6 +47,13 @@ echo "autoload -Uz compinit && compinit" >> ~/.bashrc
 exec zsh
 ```
 
+## Default Editor Linux
+
+```sh
+echo "export EDITOR=nvim" >> ~/.zshrc
+echo "export VISUAL=nvim" >> ~/.zshrc
+```
+
 ## Github CLI
 
 ```sh
@@ -117,80 +124,6 @@ deno -v
 # refresh zsh/asdf reshim
 exec zsh
 ```
-
-## Neovim
-
-```
-brew install neovim
-neovim -v
-```
-
-## Neovim Dependencies 
-
-```sh
-brew install ripgrep
-brew install fd
-brew install safe-rm
-brew install gnu-sed
-brew install fzf
-echo "source <(fzf --zsh)" >> ~/.zshrc
-```
-
-
-## Clone my config into ~/.config/nvim
-
-```sh
-mkdir -p ~/.config/nvim && git clone https://github.com/GiuseppeMP/my-nvim-config.git ~/.config/nvim
-
-# open nvim first time with the new config. (build, treesitter, etc)
-nvim
-```
-
-## Codeium Auth
-
-Inside neovim run `:Codeium Auth` and follow the instructions.
-
-Recommended: Save your token in `~/.codeium/config.json` following the structure:
-```json
-{"apiKey": "your-token-here"}
-```
-
-## ChatGPT
-
-1. Go to https://platform.openai.com/docs/overview and login with your credentials.
-2. Navigate to: https://platform.openai.com/settings/profile?tab=api-keys
-3. Create a new secret Key.
-4. Copy your key and save it in `~/.config/secrets/open_ai_key.txt`
-5. Create a gpg key with your email using `gpg --full-generate-key`
-6. Run gpg --encrypt -r youremailhere@nice.com open_ai_key.txt
-7. Delete open_ai_key.txt `rm open_ai_key.txt`
-
-
-## LazyGit
-
-```sh
-brew install jesseduffield/lazygit/lazygit && brew install lazygit
-```
-
-## Zoxyde
-
-```sh
-brew install zoxide
-echo "eval \"\$(zoxide init zsh)\"" >> ~/.zshrc
-```
-
-## Golang
-
-```sh
-# install the latest stable version of Golang.
-asdf install golang $(asdf list all golang | grep -E '^[0-9.]+$' | tail -1)
-asdf global golang $(asdf list all golang | grep -E '^[0-9.]+$' | tail -1)
-
-echo ". ~/.asdf/plugins/golang/set-env.zsh" >> ~/.zshrc
-# check version
-go version
-```
-
 ## Java
 
 ```sh
@@ -255,9 +188,74 @@ asdf install rust $(asdf list all rust | tail -1)
 asdf global rust $(asdf list all rust | tail -1)
 ```
 
-## Default Editor Linux
+## Neovim
+
+```
+brew install neovim
+neovim -v
+```
+
+## Neovim Dependencies 
 
 ```sh
-echo "export EDITOR=nvim" >> ~/.zshrc
-echo "export VISUAL=nvim" >> ~/.zshrc
+brew install ripgrep fd safe-rm gnu-sed fzf
+echo "source <(fzf --zsh)" >> ~/.zshrc
+exec zsh
 ```
+
+
+## Clone my config into ~/.config/nvim
+
+```sh
+mkdir -p ~/.config/nvim && git clone https://github.com/GiuseppeMP/my-nvim-config.git ~/.config/nvim
+
+# open nvim first time with the new config. (build, treesitter, etc)
+nvim
+```
+
+## Codeium Auth
+
+Inside neovim run `:Codeium Auth` and follow the instructions.
+
+Recommended: Save your token in `~/.codeium/config.json` following the structure:
+```json
+{"apiKey": "your-token-here"}
+```
+
+## ChatGPT
+
+1. Go to https://platform.openai.com/docs/overview and login with your credentials.
+2. Navigate to: https://platform.openai.com/settings/profile?tab=api-keys
+3. Create a new secret Key.
+4. Copy your key and save it in `~/.config/secrets/open_ai_key.txt`
+5. Create a gpg key with your email using `gpg --full-generate-key`
+6. Run gpg --encrypt -r youremailhere@nice.com open_ai_key.txt
+7. Delete open_ai_key.txt `rm open_ai_key.txt`
+
+
+## LazyGit
+
+```sh
+brew install jesseduffield/lazygit/lazygit && brew install lazygit
+```
+
+## Zoxyde
+
+```sh
+brew install zoxide
+echo "eval \"\$(zoxide init zsh)\"" >> ~/.zshrc
+```
+
+## Golang
+
+```sh
+# install the latest stable version of Golang.
+asdf install golang $(asdf list all golang | grep -E '^[0-9.]+$' | tail -1)
+asdf global golang $(asdf list all golang | grep -E '^[0-9.]+$' | tail -1)
+
+echo ". ~/.asdf/plugins/golang/set-env.zsh" >> ~/.zshrc
+# check version
+go version
+```
+
+
