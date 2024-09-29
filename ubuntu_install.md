@@ -186,6 +186,9 @@ asdf plugin-add rust https://github.com/asdf-community/asdf-rust.git
 # install
 asdf install rust $(asdf list all rust | tail -1)
 asdf global rust $(asdf list all rust | tail -1)
+
+# fallback: If asdf fails to download it, use brew instead.
+brew install rust
 ```
 
 ## Golang
