@@ -236,6 +236,16 @@ echo "source <(fzf --zsh)" >> ~/.zshrc
 exec zsh
 ```
 
+## ChatGPT
+
+1. Go to https://platform.openai.com/docs/overview and login with your credentials.
+2. Navigate to: https://platform.openai.com/settings/profile?tab=api-keys
+3. Create a new secret Key and copy it.
+4. `mkdir -p ~/.config/secrets`.
+6. Copy your key and save it in `~/.config/secrets/open_ai_key.txt`, using `vi ~/.config/secrets/open_ai_key.txt`
+7. Create a gpg key with your email using `gpg --full-generate-key`
+8. `cd ~/.config/secrets` then `gpg --encrypt -r youremailhere@nice.com open_ai_key.txt`
+10. Delete open_ai_key.txt `rm open_ai_key.txt`
 
 ## Clone my config into ~/.config/nvim
 
@@ -255,15 +265,6 @@ Recommended: Save your token in `~/.codeium/config.json` following the structure
 {"apiKey": "your-token-here"}
 ```
 
-## ChatGPT
-
-1. Go to https://platform.openai.com/docs/overview and login with your credentials.
-2. Navigate to: https://platform.openai.com/settings/profile?tab=api-keys
-3. Create a new secret Key.
-4. Copy your key and save it in `~/.config/secrets/open_ai_key.txt`
-5. Create a gpg key with your email using `gpg --full-generate-key`
-6. Run gpg --encrypt -r youremailhere@nice.com open_ai_key.txt
-7. Delete open_ai_key.txt `rm open_ai_key.txt`
 
 
 
