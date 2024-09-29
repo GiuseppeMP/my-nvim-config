@@ -267,7 +267,10 @@ Recommended: Save your token in `~/.codeium/config.json` following the structure
 {"apiKey": "your-token-here"}
 ```
 
+## Cheers, that's it!
 
+If you want suggestions about kitty, wezterm, etc configuration, please see:
+https://github.com/GiuseppeMP/my-dotfiles
 
 
 
