@@ -45,8 +45,8 @@ local function config()
             }),
             require("neotest-plenary"),
             require("neotest-vim-test")({
-                ignore_filetypes = { "lua", "javascript", "typescript" },
-                allow_file_types = { "python", "java" }
+                ignore_filetypes = { "lua", "javascript", "typescript", "python" },
+                allow_file_types = { "java" }
             }),
             require("neotest-java"),
             require("neotest-python")(

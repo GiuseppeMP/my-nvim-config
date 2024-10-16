@@ -12,8 +12,8 @@ lspconfig.ts_ls.setup {
         lsp_client = 'tsserver'
     }),
     filetypes = {
-        "javascript",
         -- "typescript", --using typescript-tools for ts.
+        "javascript",
         "vue",
     },
     init_options = {

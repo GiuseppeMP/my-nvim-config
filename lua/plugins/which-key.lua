@@ -1,3 +1,5 @@
+local vim_test_support = { "python" }
+
 local function config()
     -- TODO: check if this is still needed
     vim.cmd([[
@@ -52,23 +54,23 @@ local function config()
     wk.add({
         -- normal mode
         {
-            { "<leader>f",  group = "fzf/telescope+" },
-            { "<leader>ff", builtin.find_files,                                              desc = 'Find files' },
-            { "<leader>fr", builtin.oldfiles,                                                desc = "Open recent file" },
-            { "<leader>fn", "<cmd>enew<cr>",                                                 desc = "New file" },
-            { "<leader>fl", builtin.live_grep,                                               desc = "Live grep" },
-            { "<leader>fb", builtin.buffers,                                                 desc = "Buffers" },
-            { "<leader>fh", builtin.help_tags,                                               desc = "Help tags" },
-            { "<leader>fk", builtin.keymaps,                                                 desc = "Oh Yeah, the awesome Keymaps!" },
-            { "<leader>fg", builtin.git_files,                                               desc = "Git files" },
-            { "<leader>fd", builtin.diagnostics,                                             desc = "Diagnostics" },
-            { "<leader>fm", function() vim.cmd(":Noice telescope") end,                      desc = "Noice messages" },
+            { "<leader>f",  group = "[f]zf/telescope+" },
+            { "<leader>ff", builtin.find_files,                                              desc = 'find [f]iles' },
+            { "<leader>fr", builtin.oldfiles,                                                desc = "Open [r]ecent file" },
+            { "<leader>fn", "<cmd>enew<cr>",                                                 desc = "[n]ew file" },
+            { "<leader>fl", builtin.live_grep,                                               desc = "[l]ive grep" },
+            { "<leader>fb", builtin.buffers,                                                 desc = "[b]uffers" },
+            { "<leader>fh", builtin.help_tags,                                               desc = "[h]elp tags" },
+            { "<leader>fk", builtin.keymaps,                                                 desc = "Oh Yeah, the awesome [k]eymaps!" },
+            { "<leader>fg", builtin.git_files,                                               desc = "[g]it files" },
+            { "<leader>fd", builtin.diagnostics,                                             desc = "[d]iagnostics" },
+            { "<leader>fm", function() vim.cmd(":Noice telescope") end,                      desc = "noice [m]essages" },
             -- { "<leader>fs", function() builtin.grep_string({ search = vim.fn.input("Greg > ") }) end, desc = 'Search ...' },
-            { "<leader>fs", function() vim.cmd(":Telescope live_grep use_regex=true") end,   desc = 'Search ...' },
-            { "<leader>fg", function() vim.cmd(":Telescope grep_string use_regex=true") end, desc = 'Search ...' },
+            { "<leader>fs", function() vim.cmd(":Telescope live_grep use_regex=true") end,   desc = '[s]earch ...' },
+            { "<leader>fg", function() vim.cmd(":Telescope grep_string use_regex=true") end, desc = '[g]rep ...' },
             { "<leader>fv", function() vim.cmd(":Telescope neoclip") end,                    desc = 'ctrl/cmd-[v]' },
-            { "<leader>ft", vim.cmd.OverseerRun,                                             desc = 'Show tasks' },
-            { "<leader>fo", vim.cmd.OverseerOpen,                                            desc = 'Show tasks output' },
+            { "<leader>ft", vim.cmd.OverseerRun,                                             desc = 'Show [t]asks' },
+            { "<leader>fo", vim.cmd.OverseerOpen,                                            desc = 'Show tasks [o]utput' },
             { "<leader>fq", builtin.quickfix,                                                desc = 'Quickfix' },
             { "<leader>fc", vim.cmd.Noice,                                                   desc = 'Noice console messages' },
             { "<leader>fw", ':Telescope lsp_dynamic_workspace_symbols<CR>',                  desc = 'Search Workspace types' },
@@ -198,8 +200,7 @@ local function config()
 
 
     local function is_vim_test()
-        local vimtest_list = { "python" }
-        return vim.tbl_contains(vimtest_list, vim.bo.filetype)
+        return vim.tbl_contains(vim_test_support, vim.bo.filetype)
     end
 
     local function test_nearest()

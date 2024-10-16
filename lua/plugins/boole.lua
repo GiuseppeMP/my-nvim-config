@@ -8,6 +8,7 @@ local function config()
         additions = {
             { 'private', 'public',       'protected' },
             { 'String',  'List<String>' },
+            { 'int',     'float32',      'string',    'bool' },
             { 'Integer', 'List<Integer>' },
             { 'require', 'import',       'export' },
             { 'at',      'on',           'in' },

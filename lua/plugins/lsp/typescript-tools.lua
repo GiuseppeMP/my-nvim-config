@@ -8,6 +8,10 @@ require("typescript-tools").setup {
         complete_function_calls = true,
         code_lens = "on"
     },
+    filetypes = {
+        "typescript",
+        "vue",
+    },
     on_attach = on_attach_options.get({
         inlay = false,
         format_on_save = true,

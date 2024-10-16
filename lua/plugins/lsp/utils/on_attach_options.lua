@@ -50,10 +50,10 @@ local format_callback = function(lsp_client, bufnr, async)
     else
         -- add missing imports before format
         if (lsp_client == 'eslint') then
-            vim.cmd.TSToolsAddMissingImports()
-            vim.cmd.TSToolsOrganizeImports()
+            -- vim.cmd.TSToolsAddMissingImports()
+            -- vim.cmd.TSToolsOrganizeImports()
             -- -- debounce
-            vim.cmd("sleep 200m")
+            -- vim.cmd("sleep 200m")
         end
         vim.lsp.buf.format {
             buffer = bufnr,
