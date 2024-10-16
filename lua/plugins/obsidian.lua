@@ -43,7 +43,7 @@ local function config()
     local function getObsidianWorkspaces()
         local vaults = {}
         if obsidian_vaults then
-            for vault in obsidian_vaults:gmatch('[^,%s]+') do
+            for vault in obsidian_vaults:gmatch('[^,]+') do
                 local w = { name = vault, path = vault }
                 table.insert(vaults, w)
             end

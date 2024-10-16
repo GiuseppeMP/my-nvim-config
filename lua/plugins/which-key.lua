@@ -516,6 +516,17 @@ local function config()
         },
         { "<leader>cb", new_blank_note, desc = 'Obsidian new blank note' },
     })
+
+    wk.add({
+        { '<leader>D',  group = 'SQL' },
+        { '<leader>Ds', vim.cmd.DBUI,              desc = 'Dadbod SQL UI' },
+        { '<leader>Dc', vim.cmd.DBUIAddConnection, desc = 'Add DB connection' },
+        { '<leader>Df', vim.cmd.DBUIFindBuffer,    desc = 'Find DB buffer' },
+        { '<leader>Dq', vim.cmd.DBUIClose,         desc = 'Close Dadbod' },
+        { '<leader>Dr', vim.cmd.DBUIRenameBuffer,  desc = 'Rename DB buffer' },
+        { '<leader>Di', vim.cmd.DBUILastQueryInfo, desc = 'Last query info' },
+
+    })
 end
 return {
     { "folke/which-key.nvim", config = config }
