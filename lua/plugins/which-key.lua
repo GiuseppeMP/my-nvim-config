@@ -111,7 +111,6 @@ local function config()
     -- [<leader>u] - utils
     wk.add({
         { "<leader>u",   group = "utils" },
-        { '<leader>t',   vim.cmd.TagbarToggle,                                      desc = 'Toggle tagbar' },
         { '<leader>p',   vim.cmd.PresentingStart,                                   desc = 'Present start' },
         { '<leader>uu',  vim.cmd.UndotreeToggle,                                    desc = 'Show undotree' },
         { '<leader>ul',  vim.cmd.Lazy,                                              desc = 'Lazy plugin manager' },
@@ -234,6 +233,7 @@ local function config()
 
     wk.add({
         { "<leader>t",  group = "[t]esting" },
+        { '<leader>tb', vim.cmd.TagbarToggle,                                 desc = 'Toggle tagbar' },
         { "<leader>tt", test_nearest,                                         desc = 'Run nearest [t]est' },
         { "<leader>tc", test_class,                                           desc = 'Run [c]lasstests with vim-test' },
         { "<leader>tf", test_file,                                            desc = 'Run [f]ile test' },
