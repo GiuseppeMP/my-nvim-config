@@ -17,7 +17,20 @@ return {
             vim.g.codeium_disable_bindings = 1
             ---@diagnostic disable-next-line: different-requires
             require("codeium").setup({
-                enable_chat = true
+                enable_chat = true,
+                workspace_root = {
+                    use_lsp = true,
+                    find_root = nil,
+                    paths = {
+                        ".bzr",
+                        ".git",
+                        ".hg",
+                        ".svn",
+                        "_FOSSIL_",
+                        "package.json",
+                        "pom.xml",
+                    }
+                }
             })
         end
     },

@@ -225,6 +225,20 @@ local function config()
     })
 
     cmp.setup({
+        enabled = function()
+            local buftype = vim.api.nvim_buf_get_option(0, "buftype")
+            local ft = vim.bo.filetype
+
+            if buftype == "prompt" then
+                return false
+            end
+
+            if ft == "chatgpt-input" then
+                return false
+            end
+
+            return true
+        end,
         performance = {
             max_view_entries = 20,
             fetchin_timeout = 1000,
