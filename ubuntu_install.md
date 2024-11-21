@@ -231,7 +231,7 @@ neovim -v
 ## Neovim Dependencies 
 
 ```sh
-brew install ripgrep fd safe-rm gnu-sed fzf
+brew install ripgrep fd safe-rm gnu-sed fzf gnupg
 echo "source <(fzf --zsh)" >> ~/.zshrc
 exec zsh
 ```
