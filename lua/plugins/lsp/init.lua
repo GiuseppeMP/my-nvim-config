@@ -12,7 +12,9 @@ return {
     -- { 'GiuseppeMP/nvim-jdtls' },
     {
         'mrcjkb/rustaceanvim',
-        tag = '3.15.0', -- Recommended
+        version = '^5', -- Recommended
+        ft = { 'rust' },
+        lazy = false,
         -- ft = { 'rust' },
     },
     {
