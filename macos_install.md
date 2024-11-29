@@ -113,6 +113,7 @@ brew install fd
 brew install safe-rm
 brew install gnu-sed
 brew install fzf
+brew install ccls
 echo "source <(fzf --zsh)" >> ~/.zshrc
 ```
 
