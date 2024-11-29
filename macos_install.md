@@ -114,6 +114,7 @@ brew install safe-rm
 brew install gnu-sed
 brew install fzf
 brew install ccls
+brew install pillow
 echo "source <(fzf --zsh)" >> ~/.zshrc
 ```
 
