@@ -30,6 +30,7 @@ local function config()
             { 'dockerfile-language-server',      auto_update = false },
             { 'gopls',                           auto_update = false },
             { 'terraform-ls',                    auto_update = false },
+            { 'clangd',                          auto_update = false },
             -- linters
             { 'proselint',                       auto_update = false },
             { 'ltex-ls',                         auto_update = false },
