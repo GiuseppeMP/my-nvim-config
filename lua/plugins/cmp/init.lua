@@ -53,6 +53,10 @@ local function config()
             behavior = cmp.ConfirmBehavior.Insert,
             select = true
         })
+        local select = cmp.mapping.confirm({
+            behavior = cmp.SelectBehavior.Select,
+            select = true
+        })
 
         -- copilot behavior
         if conf.user.copilot.enabled then
@@ -79,14 +83,20 @@ local function config()
                 vim.fn['codeium#Complete']()
             end, { "i", "c" }),
             ["<Tab>"] = cmp.mapping(function(fallback)
-                if luasnip.expand_or_locally_jumpable() then
-                    luasnip.expand_or_jump()
-                    -- vim.cmd('startinsert')
+                if 1 == 2 then
+                elseif luasnip.jumpable(1) then
+                    print("jumpable")
+                    luasnip.jump(1)
                 elseif cmp.visible() and has_words_before_new() then
-                    -- cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-                    -- cmp.complete()
-                    cr()
+                    print("visible")
+                    select()
+                elseif luasnip.expand_or_jumpable() == 1 then
+                    luasnip.expand_or_jump()
+                elseif luasnip.expand_or_locally_jumpable() then
+                    print("expand")
+                    luasnip.expand_or_jump()
                 else
+                    print("fallback")
                     fallback()
                 end
             end, { "i", "s" }),
@@ -208,20 +218,23 @@ local function config()
         return opts
     end
 
-    cmp.setup.cmdline('/', {
+    -- `/` `?` cmdline setup.
+    cmp.setup.cmdline({ '/', '?' }, {
         mapping = cmp.mapping.preset.cmdline(),
-        sources = { { name = 'buffer' } }
+        completion = { completeopt = 'menu,menuone,noselect' },
+        sources = {
+            { name = 'buffer' },
+        },
     })
 
+    -- `:` cmdline setup.
     cmp.setup.cmdline(':', {
         mapping = cmp.mapping.preset.cmdline(),
-        sources = cmp.config.sources({
-            { name = 'path' },
-            {
-                name = 'cmdline',
-                option = { ignore_cmds = { 'Man', '!' } },
-            }
-        })
+        completion = { completeopt = 'menu,menuone,noselect' },
+        sources = cmp.config.sources(
+            { { name = 'path' } },
+            { { name = 'cmdline', option = { ignore_cmds = { 'Man', '!' } } } }
+        ),
     })
 
     cmp.setup({
@@ -240,8 +253,8 @@ local function config()
             return true
         end,
         performance = {
-            max_view_entries = 20,
-            fetchin_timeout = 1000,
+            max_view_entries = 25,
+            fetchin_timeout = 500,
             debounce = 500
         },
         completion = {
