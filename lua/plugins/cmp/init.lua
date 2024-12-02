@@ -50,7 +50,7 @@ local function config()
     local function get_mapping()
         -- default behavior
         local cr = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Insert,
+            behavior = cmp.SelectBehavior.Insert,
             select = true
         })
         local select = cmp.mapping.confirm({
@@ -84,13 +84,13 @@ local function config()
             end, { "i", "c" }),
             ["<Tab>"] = cmp.mapping(function(fallback)
                 if 1 == 2 then
-                elseif luasnip.jumpable(1) then
-                    print("jumpable")
-                    luasnip.jump(1)
                 elseif cmp.visible() and has_words_before_new() then
                     print("visible")
                     select()
-                elseif luasnip.expand_or_jumpable() == 1 then
+                elseif luasnip.jumpable(1) then
+                    print("jumpable")
+                    luasnip.jump(1)
+                elseif luasnip.expand_or_jumpable() then
                     luasnip.expand_or_jump()
                 elseif luasnip.expand_or_locally_jumpable() then
                     print("expand")
@@ -98,6 +98,7 @@ local function config()
                 else
                     print("fallback")
                     fallback()
+                    -- c:select()
                 end
             end, { "i", "s" }),
 
@@ -113,24 +114,24 @@ local function config()
 
     local function get_sources()
         local mainGroup = {
-            { name = 'nvim_lsp',                group_index = 0, max_item_count = 25 },
+            { name = 'nvim_lsp',                group_index = 0, max_item_count = 10 },
             { name = 'path',                    group_index = 1, max_item_count = 5 },
-            { name = 'luasnip',                 group_index = 1, max_item_count = 15 },
+            { name = 'luasnip',                 group_index = 1, max_item_count = 5 },
             { name = 'vsnip',                   group_index = 2, max_item_count = 5 },
             { name = 'snippy',                  group_index = 2, max_item_count = 5 },
             { name = "dotenv",                  group_index = 2, max_item_count = 5 },
-            { name = 'emoji',                   group_index = 0, max_item_count = 10 },
+            { name = 'emoji',                   group_index = 0, max_item_count = 5 },
             { name = 'calc',                    group_index = 0, max_item_count = 5 },
-            { name = 'nvim_lsp_signature_help', group_index = 1, max_item_count = 10 },
-            { name = 'buffer',                  group_index = 2, max_item_count = 15 },
-            { name = 'treesitter',              group_index = 3, max_item_count = 10 },
+            { name = 'nvim_lsp_signature_help', group_index = 1, max_item_count = 5 },
+            { name = 'buffer',                  group_index = 2, max_item_count = 5 },
+            { name = 'treesitter',              group_index = 3, max_item_count = 5 },
         }
 
         if conf.user.copilot.enabled then
             table.insert(mainGroup, 1, { name = 'copilot', group_index = 1 })
         end
         if conf.user.codeium.enabled then
-            table.insert(mainGroup, 1, { name = 'codeium', group_index = 1 })
+            table.insert(mainGroup, 1, { name = 'codeium', group_index = 1, max_item_count = 5 })
         end
 
         return cmp.config.sources(mainGroup)
@@ -252,15 +253,15 @@ local function config()
 
             return true
         end,
-        performance = {
-            max_view_entries = 25,
-            fetchin_timeout = 500,
-            debounce = 500
-        },
-        completion = {
-            completeopt = table.concat(vim.opt.completeopt:get(), ","),
-            autocomplete = { require('cmp.types').cmp.TriggerEvent.TextChanged }
-        },
+        -- performance = {
+        --     max_view_entries = 25,
+        --     fetchin_timeout = 500,
+        --     debounce = 500
+        -- },
+        -- completion = {
+        --     completeopt = table.concat(vim.opt.completeopt:get(), ","),
+        --     autocomplete = { require('cmp.types').cmp.TriggerEvent.TextChanged }
+        -- },
         experimental = {
             -- ghost_text = { hl_group = "CmpGhostText" }
             ghost_text = false
