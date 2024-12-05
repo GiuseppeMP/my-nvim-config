@@ -83,6 +83,11 @@ npm -v
 
 # install yarn
 npm i -g npm yarn
+npm i -g tslib
+npm i -g @chemzqm/neovim
+npm i -g log4js
+npm -i msgpack-lite
+npm -i sockect.io
 
 # add asdf deno plugin
 asdf plugin-add deno https://github.com/asdf-community/asdf-deno.git
