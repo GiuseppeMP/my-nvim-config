@@ -120,6 +120,7 @@ brew install gnu-sed
 brew install fzf
 brew install ccls
 brew install pillow
+brew install gpg
 echo "source <(fzf --zsh)" >> ~/.zshrc
 ```
 
