@@ -225,6 +225,8 @@ echo "export JAVA_21=\$HOME/.asdf/installs/java/\$(asdf list all java | grep gra
 asdf global java $(asdf list all java | grep graalvm-community-21 | tail -1)
 echo ". ~/.asdf/plugins/java/set-java-home.zsh" >> ~/.zshrc
 
+exec zsh
+
 ## check
 java --version
 ```
