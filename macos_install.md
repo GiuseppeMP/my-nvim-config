@@ -244,3 +244,9 @@ gradle -v
 brew install maven
 mvn -v
 ```
+
+
+## C++
+```sh
+brew install cmake
+```
