@@ -10,7 +10,7 @@
 # install building tools
 sudo apt update
 sudo apt upgrade -y
-sudo apt-get install build-essential procps curl file git xdg-utils gnupg2 -Y
+sudo apt-get install build-essential procps curl file git xdg-utils gnupg2 xclip -Y
 
 # install homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
