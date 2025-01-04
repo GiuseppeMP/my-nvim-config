@@ -9,7 +9,7 @@ lspconfig.ts_ls.setup {
         format_on_save = true,
         rename = true,
         format = true,
-        lsp_client = 'tsserver'
+        lsp_client = 'ts_ls'
     }),
     filetypes = {
         -- "typescript", --using typescript-tools for ts.
