@@ -1,6 +1,7 @@
 local colors = require 'user.colors'.colors
 return { {
     'b0o/incline.nvim',
+    enabled = false,
     config = function()
         local helpers = require 'incline.helpers'
         local navic = require 'nvim-navic'
@@ -8,7 +9,14 @@ return { {
         require('incline').setup {
             window = {
                 padding = 0,
-                margin = { horizontal = 0, vertical = 0 },
+                margin = { horizontal = 0, vertical = 1 },
+                placement = { horizontal = 'right', vertical = 'bottom' },
+                overlap = {
+                    tabline = false,
+                    winbar = true,
+                    borders = true,
+                    statusline = true,
+                },
             },
             render = function(props)
                 local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ':t')
