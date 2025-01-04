@@ -5,7 +5,6 @@ end
 
 return { {
     'honza/vim-snippets',
-    lazy = true,
     config = lazy_rtp
 },
     {
