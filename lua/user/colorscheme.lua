@@ -10,10 +10,7 @@ vim.cmd [[hi! link xmlTagN Function ]]
 vim.cmd [[hi! link @markup.raw.markdown_inline CodeBlock ]]
 
 -- vim.api.nvim_set_hl(0, "CursorLine", { bg = 'none', fg = 'none', blend = 90 })
--- vim.api.nvim_set_hl(0, "CursorLine", { bg = '#292e42', fg = 'none', blend = 60 })
--- vim.api.nvim_set_hl(0, "CursorLine", { bg = colors.green, fg = 'none', blend = 90 })
-vim.api.nvim_set_hl(0, "CursorLine", { bg = 'none', fg = 'none', blend = 60 })
--- vim.api.nvim_set_hl(0, "CursorLine", { bg = '#312942', fg = 'none', blend = 60 })
+vim.api.nvim_set_hl(0, "CursorLine", { bg = util.darken(colors.blue, 0.1), fg = 'none' })
 -- vim.api.nvim_set_hl(0, "CursorLineNr", { fg = colors.b_yellow, bg = 'none', blend = 0, force = true })
 vim.api.nvim_set_hl(0, "CursorLineNr", { fg = colors.green, bg = 'none', blend = 0, force = true })
 vim.api.nvim_set_hl(0, "Cursor", { fg = colors.red, bg = colors.green, blend = 100, force = true })

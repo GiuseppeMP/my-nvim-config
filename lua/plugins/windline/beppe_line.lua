@@ -209,54 +209,6 @@ basic.file_right = {
         end
     end,
 }
-basic.genai = {
-    name = 'genai',
-    width = breakpoint_width,
-    hl_colors = {
-        green = { 'green', 'bg' },
-        red = { 'red', 'bg' },
-        blue = { 'blue', 'bg' },
-        magenta = { 'magenta', 'bg' },
-        yellow = { 'yellow', 'bg' },
-        cyan = { 'cyan', 'bg' },
-        virtual = { 'vgreen', 'bg' },
-        virtual_bg = { 'vgreen', 'bg' }
-    },
-    text = function(_)
-        if conf.user.codeium.enabled then
-            return {
-                { ' ', 'virtual_bg' },
-                { function()
-                    if conf.user.copilot.enabled
-                    then
-                        return ' '
-                    else
-                        return ' '
-                    end
-                end, 'virtual' },
-                { ' 󰚩 ', 'virtual_bg' },
-                { function()
-                    if
-                        conf.user.chatgpt.enabled then
-                        return ' '
-                    else
-                        return ' '
-                    end
-                end, 'virtual' },
-                { '  ', 'virtual_bg' },
-                {
-                    function()
-                        local status = vim.fn['codeium#GetStatusString']():lower()
-                        if status:gsub("%s", "") == '' or status == nil or string.len(status) ~= 3 or string.find(status, 'on') ~= nil then
-                            return ' '
-                        else
-                            return status:gsub(" ", "")
-                        end
-                    end, 'virtual' },
-            }
-        end
-    end
-}
 basic.git = {
     name = 'git',
     hl_colors = {
@@ -369,7 +321,7 @@ local default = {
         -- { ' ',              { 'magenta', 'bg' } },
         basic.lsp_name,
         basic.lsp_diagnos,
-        basic.genai,
+        -- basic.genai,
         -- { ' ',               { 'magenta', 'bg' } },
         -- { sep.right_rounded, { 'magenta', 'bg' } },
         -- basic.divider,
@@ -410,8 +362,8 @@ windline.setup({
         colors.bgreen = '#98f3a1'
         colors.vgreen = '#0db9d7'
         colors.vgreen_bg = '#203346'
-        colors.bg = tokyo_colors.bg
-        colors.dbg = tokyo_colors.bg_dark
+        -- colors.bg = tokyo_colors.bg
+        -- colors.dbg = tokyo_colors.bg_dark
         colors.bwhite = '#ffffff'
         colors.bg = 'none'
         colors.dbg = 'none'

@@ -82,7 +82,7 @@ M.create_winbar = function()
     )
 end
 
---disabled temporarily because of incline.nvim
+-- disabled if incline.nvim is on
 -- M.create_winbar()
 
 return M

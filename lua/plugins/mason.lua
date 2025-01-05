@@ -40,7 +40,7 @@ local function config()
             { 'autopep8',                        auto_update = false },
             { 'pydocstyle',                      auto_update = false },
             { 'pylint',                          auto_update = false },
-            { 'eslint_d',                        auto_update = false },
+            -- { 'eslint_d',                        auto_update = false },
             -- formatters
             { 'google-java-format',              auto_update = false },
             -- debuggers

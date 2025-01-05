@@ -1,4 +1,17 @@
-local tokyo_colors = require("tokyonight.colors").setup()
+local tokyo_colors = require("tokyonight.colors").setup({
+    transparent = true,
+    styles = {
+        -- Style to be applied to different syntax groups
+        -- Value is any valid attr-list value for `:help nvim_set_hl`
+        comments = { italic = true },
+        keywords = { italic = true },
+        functions = {},
+        variables = {},
+        -- Background styles. Can be "dark", "transparent" or "normal"
+        sidebars = "transparent", -- style for sidebars, see below
+        floats = "transparent",   -- style for floating windows
+    }
+})
 local util = require("tokyonight.util")
 local M = {}
 
@@ -15,7 +28,8 @@ M.colors.purple = '#a198f3'
 M.colors.magenta = '#a198f3'
 M.colors.moca = '#291c17'
 M.colors.b_yellow = '#FCDC94'
-M.colors.bg = '#f0f0f0'
+M.colors.bg = 'none'
+M.colors.dbg = 'none'
 M.colors.transparent = '#24283b'
 M.colors.none = 'none'
 M.colors.black = '#1a1b26'
