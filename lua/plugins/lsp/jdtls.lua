@@ -145,6 +145,15 @@ local function get_settings()
                     staticStarThreshold = 9999,
                 },
             },
+            codeGeneration = {
+                toString = {
+                    template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}"
+                },
+                hashCodeEquals = {
+                    useJava7Objects = true,
+                },
+                useBlocks = true,
+            },
             configuration = {
                 updateBuildConfiguration = "interactive",
                 implementationsCodeLens = {
@@ -207,7 +216,7 @@ local function get_cmd()
         '-Declipse.product=org.eclipse.jdt.ls.core.product',
         '-Dlog.protocol=true',
         '-Dlog.level=ALL',
-        '-Xms64m',
+        '-Xmx1G',
         -- "-XX:+UseSerialGC",
         '-javaagent:' .. lombok_jar,
         '--add-modules=ALL-SYSTEM',
@@ -234,15 +243,6 @@ local function jdtls_start_or_attach()
         capabilities = require('plugins.lsp.utils.capabilities_options').default,
         flags = {
             debounce_text_changes = 80,
-        },
-        codeGeneration = {
-            toString = {
-                template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}"
-            },
-            hashCodeEquals = {
-                useJava7Objects = true,
-            },
-            useBlocks = true,
         },
         cmd = get_cmd(),
         settings = get_settings(),
