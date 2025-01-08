@@ -217,6 +217,8 @@ local function get_cmd()
         '-Dosgi.bundles.defaultStartLevel=4',
         '-Declipse.product=org.eclipse.jdt.ls.core.product',
         '-Dlog.protocol=true',
+        '-noverify',
+        '-XX:TieredStopAtLevel=1',
         '-Dlog.level=ALL',
         '-Xmx1G',
         -- "-XX:+UseSerialGC",
