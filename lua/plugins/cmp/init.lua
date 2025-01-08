@@ -9,13 +9,12 @@ local function config()
     if not snip_status_ok then
         return
     end
-    -- vim.g.UltiSnipsSnippetDirectories = { "UltiSnips", "snippets/ultisnips" }
-    -- vim.g.UltiSnipsExpandTrigger = "<tab>"
 
+    require("luasnip.loaders.from_vscode").load()
     require("luasnip.loaders.from_vscode")
         .load({ paths = "~/.config/nvim/lua/plugins/cmp/snippets/vscode" })
 
-    require("luasnip.loaders.from_vscode").load()
+    require("plugins.cmp.snippets.luasnips")
 
     local has_words_before = function()
         unpack = unpack or table.unpack
@@ -32,6 +31,17 @@ local function config()
     local lspkind = require 'lspkind'
 
     local function get_snippet()
+        -- return {
+        --     expand = function(fallback)
+        --         local suggestion = require('supermaven-nvim.completion_preview')
+        --         if suggestion.has_suggestion() then
+        --             suggestion.on_accept_suggestion()
+        --         elseif luasnip.expandable() then
+        --             luasnip.expand()
+        --             fallback()
+        --         end
+        --     end
+        -- }
         return {
             expand = function(args)
                 luasnip.lsp_expand(args.body) -- For `luasnip` users.
@@ -114,11 +124,19 @@ local function config()
 
     local function get_sources()
         local mainGroup = {
-            { name = 'nvim_lsp',                group_index = 0, max_item_count = 10 },
-            { name = 'path',                    group_index = 1, max_item_count = 5 },
-            { name = 'luasnip',                 group_index = 1, max_item_count = 5 },
-            { name = 'vsnip',                   group_index = 2, max_item_count = 5 },
-            { name = 'snippy',                  group_index = 2, max_item_count = 5 },
+            { name = 'nvim_lsp', group_index = 0, max_item_count = 10 },
+            { name = 'path',     group_index = 1, max_item_count = 5 },
+            {
+                name = 'luasnip',
+                option = {
+                    show_autosnippets = true,
+                    use_show_condition = true,
+                },
+                group_index = 1,
+                max_item_count = 5
+            },
+            -- { name = 'vsnip',                   group_index = 2, max_item_count = 2 },
+            -- { name = 'snippy',                  group_index = 2, max_item_count = 2 },
             { name = "dotenv",                  group_index = 2, max_item_count = 5 },
             { name = 'emoji',                   group_index = 0, max_item_count = 5 },
             { name = 'calc',                    group_index = 0, max_item_count = 5 },
@@ -130,8 +148,11 @@ local function config()
         if conf.user.copilot.enabled then
             table.insert(mainGroup, 1, { name = 'copilot', group_index = 1 })
         end
+        if conf.user.supermaven.enabled then
+            table.insert(mainGroup, 1, { name = 'supermaven', group_index = 1, max_item_count = 5 })
+        end
         if conf.user.codeium.enabled then
-            table.insert(mainGroup, 1, { name = 'codeium', group_index = 1, max_item_count = 5 })
+            table.insert(mainGroup, 1, { name = 'codeium', group_index = 1, max_item_count = 3 })
         end
 
         return cmp.config.sources(mainGroup)
@@ -158,7 +179,11 @@ local function config()
             -- fields = { "kind", "abbr", "menu" },
             fields = { "kind", "abbr" },
             format = lspkind.cmp_format({
-                symbol_map = { Copilot = "", Codeium = "" },
+                symbol_map = {
+                    Copilot = "",
+                    Supermaven = "",
+                    Codeium = "",
+                },
                 -- mode = 'symbol_text',
                 mode = 'symbol',
                 maxwidth = 60,
@@ -253,15 +278,16 @@ local function config()
 
             return true
         end,
-        -- performance = {
-        --     max_view_entries = 25,
-        --     fetchin_timeout = 500,
-        --     debounce = 500
-        -- },
-        -- completion = {
-        --     completeopt = table.concat(vim.opt.completeopt:get(), ","),
-        --     autocomplete = { require('cmp.types').cmp.TriggerEvent.TextChanged }
-        -- },
+        performance = {
+            max_view_entries = 25,
+            fetchin_timeout = 500,
+            debounce = 1000
+        },
+        -- Trigger completion using ctrl-n
+        completion = {
+            autocomplete = false,
+            completeopt = "menu,menuone,noselect",
+        },
         experimental = {
             -- ghost_text = { hl_group = "CmpGhostText" }
             ghost_text = false

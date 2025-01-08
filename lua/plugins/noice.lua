@@ -14,7 +14,7 @@ local function config()
 
     require("noice").setup({
         messages = {
-            enabled = false
+            enabled = true
         },
         lsp = {
             signature = {

@@ -82,7 +82,7 @@ i('}', '}<c-g>u')
 
 
 -- insert ; at end of the line
-i(';;', '<C-o>A;')
+i(';;', '<C-o>A;<CR>')
 i(',,', '<C-o>A,')
 
 -- insert ; at end of the line and start new line

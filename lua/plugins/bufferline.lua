@@ -5,6 +5,7 @@ local function config()
     vim.opt.termguicolors = true
     ---@diagnostic disable-next-line: undefined-field
     local tokyo = { fg = colors.fg, bg = 'none', sp = colors.sp }
+    local bar = { fg = colors.fg, bg = 'black', sp = colors.sp }
     local offsets = {}
 
     -- for _, win in ipairs(vim.fn.getwininfo()) do
@@ -103,6 +104,7 @@ return {
         'akinsho/bufferline.nvim',
         version = '*',
         dependencies = 'folke/tokyonight.nvim',
-        config = config
+        config = config,
+        enabled = true,
     },
 }
