@@ -1,5 +1,9 @@
 local M = {}
 
+M.nvim_tree = {
+    float = false
+}
+
 M.copilot = {
     enabled = false
 }
