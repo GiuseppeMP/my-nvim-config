@@ -41,6 +41,7 @@ local function config()
             { 'pydocstyle',                      auto_update = false },
             { 'pylint',                          auto_update = false },
             { 'eslint_d',                        auto_update = false },
+            { 'mypy',                            auto_update = false },
             -- formatters
             { 'google-java-format',              auto_update = false },
             -- debuggers
