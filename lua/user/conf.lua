@@ -16,4 +16,8 @@ M.chatgpt = {
     enabled = true
 }
 
+M.supermaven = {
+    enabled = true
+}
+
 return M

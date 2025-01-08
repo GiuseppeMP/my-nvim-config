@@ -42,6 +42,7 @@ local function config()
             { 'pylint',                          auto_update = false },
             { 'eslint_d',                        auto_update = false },
             { 'mypy',                            auto_update = false },
+            -- { 'eslint_d',                        auto_update = false },
             -- formatters
             { 'google-java-format',              auto_update = false },
             -- debuggers

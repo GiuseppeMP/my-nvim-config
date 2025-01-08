@@ -14,44 +14,44 @@ local on_attach_eslint = function(client, bufnr)
 end
 
 
-lspconfig.eslint.setup {
-    on_attach = on_attach_eslint,
-    flags = { debounce_text_changes = 500 },
-    capabilities = capabilities_options.default,
-    -- root_dir = function() return vim.loop.cwd() end,
-    -- cmd = { 'eslint_d', '--stdio' },
-    settings = {
-        codeActionOnSave = {
-            enable = true,
-            mode = "all",
-        },
-        autoFixOnSave = true,
-        codeAction = {
-            disableRuleComment = {
-                enable = true,
-                location = "separateLine"
-            },
-            showDocumentation = {
-                enable = true
-            }
-        },
-        experimental = {
-            useFlatConfig = false
-        },
-        format = true,
-        nodePath = "",
-        onIgnoredFiles = "off",
-        packageManager = "npm",
-        problems = {
-            shortenToSingleLine = false
-        },
-        quiet = false,
-        rulesCustomizations = {},
-        run = "onType",
-        useESLintClass = false,
-        validate = "on",
-        workingDirectory = {
-            mode = "location"
-        }
-    }
-}
+-- lspconfig.eslint.setup {
+--     on_attach = on_attach_eslint,
+-- flags = { debounce_text_changes = 500 },
+-- root_dir = lspconfig.util.root_pattern(".git", "eslint.config.js"),
+-- capabilities = capabilities_options.default,
+-- cmd = { "vscode-eslint-language-server", "--stdio" },
+-- settings = {
+--     codeActionOnSave = {
+--         enable = true,
+--         mode = "all",
+--     },
+--     autoFixOnSave = true,
+--     codeAction = {
+--         disableRuleComment = {
+--             enable = true,
+--             location = "separateLine"
+--         },
+--         showDocumentation = {
+--             enable = true
+--         }
+--     },
+--     experimental = {
+--         useFlatConfig = false
+--     },
+--     format = true,
+--     nodePath = "",
+--     onIgnoredFiles = "off",
+--     packageManager = "npm",
+--     problems = {
+--         shortenToSingleLine = false
+--     },
+--     quiet = false,
+--     rulesCustomizations = {},
+--     run = "onType",
+--     useESLintClass = false,
+--     validate = "on",
+--     workingDirectory = {
+--         mode = "location"
+--     }
+-- }
+-- }

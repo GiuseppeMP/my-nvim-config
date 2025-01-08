@@ -95,7 +95,7 @@ local function config()
     require 'nvim-tree'.setup {
         on_attach = my_on_attach,
         sort_by = "case_sensitive",
-        sync_root_with_cwd = true,
+        sync_root_with_cwd = false,
         git = {
             ignore = false
         },
@@ -149,6 +149,7 @@ local function config()
             },
         },
         renderer = {
+            root_folder_label = ":~:.:t",
             group_empty = true,
             indent_markers = {
                 inline_arrows = true,
