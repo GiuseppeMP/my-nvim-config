@@ -93,6 +93,7 @@ local function config()
                 vim.fn['codeium#Complete']()
             end, { "i", "c" }),
             ["<Tab>"] = cmp.mapping(function(fallback)
+                -- I known, you're reading this 1 == 2 now thinking I'm crazy.
                 if 1 == 2 then
                 elseif cmp.visible() and has_words_before_new() then
                     select()
@@ -103,7 +104,7 @@ local function config()
                 elseif luasnip.expand_or_locally_jumpable() then
                     luasnip.expand_or_jump()
                 else
-                    select()
+                    fallback()
                 end
             end, { "i", "s" }),
 
