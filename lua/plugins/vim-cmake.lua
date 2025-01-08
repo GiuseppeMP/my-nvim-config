@@ -30,6 +30,7 @@ return {
 
     init = function()
         vim.g.cmake_link_compile_commands = 1
+        vim.g.cmake_root_markers = { 'CMakeLists.txt', }
     end,
 
 }

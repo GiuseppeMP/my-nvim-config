@@ -6,7 +6,7 @@ local lspconfig = require 'lspconfig'
 
 lspconfig.clangd.setup {
     filetypes = filetypes,
-    root_dir = lspconfig.util.root_pattern("build/compile_commands.json", "compile_commands.json", ".git", "compile_flags.txt", "CMakeLists.txt"),
+    root_dir = lspconfig.util.root_pattern("build/compile_commands.json", "compile_commands.json", "compile_flags.txt", "CMakeLists.txt"),
     on_attach = on_attach_options.get { lsp_client = 'clangd' },
     capabilities = capabilities_options.get({ cmp_nvim = true, snippetSupport = false }),
 

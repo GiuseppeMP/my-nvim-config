@@ -159,3 +159,4 @@ require("dapui").setup({
 require 'plugins.dap.java'
 require 'plugins.dap.python'
 require 'plugins.dap.js'
+require 'plugins.dap.cpp'

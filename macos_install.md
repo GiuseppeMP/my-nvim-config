@@ -53,7 +53,11 @@ Slashed zero, takes inspiration from many different fonts and glyphs, subtle cur
 asdf plugin-add python
 # install python debian pre-reqs
 # sudo apt install libedit-dev libssl-dev zlib1g zlib1g-dev libssl-dev libbz2-dev libsqlite3-dev libreadline-dev liblzma-dev tk-dev
-TODO: macos dependencies
+
+brew install xz
+brew install openssl
+
+
 # If you're facing building issues please take a look: https://github.com/pyenv/pyenv/wiki/Common-build-problems
 # install python3 and python2.
 asdf install python 3.12.5
@@ -83,6 +87,11 @@ npm -v
 
 # install yarn
 npm i -g npm yarn
+npm i -g tslib
+npm i -g @chemzqm/neovim
+npm i -g log4js
+npm i -g msgpack-lite
+npm i -g socket.io
 
 # add asdf deno plugin
 asdf plugin-add deno https://github.com/asdf-community/asdf-deno.git
@@ -115,6 +124,7 @@ brew install gnu-sed
 brew install fzf
 brew install ccls
 brew install pillow
+brew install gpg
 echo "source <(fzf --zsh)" >> ~/.zshrc
 ```
 
@@ -171,6 +181,8 @@ echo "eval \"\$(zoxide init zsh)\"" >> ~/.zshrc
 
 ```sh
 # install the latest stable version of Golang.
+asdf plugin-add golang https://github.com/asdf-community/asdf-golang.git
+
 asdf install golang $(asdf list all golang | grep -E '^[0-9.]+$' | tail -1)
 asdf global golang $(asdf list all golang | grep -E '^[0-9.]+$' | tail -1)
 
@@ -213,6 +225,8 @@ echo "export JAVA_21=\$HOME/.asdf/installs/java/\$(asdf list all java | grep gra
 asdf global java $(asdf list all java | grep graalvm-community-21 | tail -1)
 echo ". ~/.asdf/plugins/java/set-java-home.zsh" >> ~/.zshrc
 
+exec zsh
+
 ## check
 java --version
 ```
@@ -229,4 +243,10 @@ gradle -v
 ```sh
 brew install maven
 mvn -v
+```
+
+
+## C++
+```sh
+brew install cmake
 ```
