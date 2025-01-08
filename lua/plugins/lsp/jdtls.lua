@@ -1,6 +1,6 @@
 local jdtls = require 'jdtls'
 local jdtls_tests = require 'jdtls.tests'
-
+local on_attach_options = require("plugins.lsp.utils.on_attach_options")
 -- mason installations registry
 local mason_registry = require("mason-registry");
 
@@ -37,25 +37,28 @@ local lombok_jar = vim.fn.glob(home .. '/.config/nvim/lua/plugins/lsp/files/jdtl
 -- jdtls path
 local jdtls_path = get_package_install_path('jdtls')
 
+-- WIP
 local go_to_with_options = function()
     vim.ui.select({ 'vertical', 'horizontal', 'float', 'tab' }, {
         prompt = "Jump style",
         telescope = require("telescope.themes").get_cursor(),
     }, function(selected)
+        -- open goto using the selected option
         print(selected)
     end)
 end
 
 -- on_attach custom for nvim-jdtls
 local on_attach_jdtls = function(_client, buf_nr)
-    -- call default on_attach
-    require("plugins.lsp.utils.on_attach_options").get { lsp_client = 'jdtls' } (_client, buf_nr)
+    -- default on_attach
+    require("plugins.lsp.utils.on_attach_options").get { format_on_save = true, format = true, lsp_client =
+    'jdtls' } (_client, buf_nr)
 
     local buf_opts = { noremap = true, silent = false, buffer = buf_nr }
     vim.keymap.set('n', 'df', jdtls.test_class, buf_opts)
     vim.keymap.set('n', 'dn', jdtls.test_nearest_method, buf_opts)
-    -- vim.keymap.set('n', 'df', go_to_with_options, buf_opts)
     vim.keymap.set('n', '<leader>gt', jdtls_tests.generate, buf_opts)
+    -- vim.keymap.set('n', '<leader>gT', go_to_with_options, buf_opts)
 
     vim.cmd [[
         nnoremap <D-o> <Cmd>lua require'jdtls'.organize_imports()<CR>
@@ -68,7 +71,6 @@ local on_attach_jdtls = function(_client, buf_nr)
 
     -- setup dap
     jdtls.setup_dap({ hotcodereplace = 'auto', config_overrides = {} })
-    -- require('jdtls.dap').setup_dap_main_class_configs()
 end
 
 -- create bundles table
@@ -229,35 +231,17 @@ local function get_cmd()
     }
 end
 
--- auto-fix some problems when mason updates the jdtls or nvim-jdtls change something (idk yet)
-function JdtForceWipeDataAndRestart()
-    -- JdtWipeDataAndRestart is dangerous because a misconfiguration of workspace folder
-    -- leads to delete the wrong directory of the user.
-    os.execute("safe-rm -r " .. workspace_folder())
-    vim.cmd.JdtWipeDataAndRestart()
-end
-
--- jdtls attach function
-local function jdtls_start_or_attach()
-    local config = {
-        capabilities = require('plugins.lsp.utils.capabilities_options').default,
-        flags = {
-            debounce_text_changes = 80,
-        },
-        cmd = get_cmd(),
-        settings = get_settings(),
-        root_dir = root_dir(),
-        init_options = {
-            bundles = get_bundles()
-        },
-        on_attach = on_attach_jdtls,
+require('lspconfig').jdtls.setup {
+    on_attach = on_attach_jdtls,
+    capabilities = require 'plugins.lsp.utils.capabilities_options'.default,
+    flags = {
+        debounce_text_changes = 80,
+    },
+    filetypes = { "java" },
+    cmd = get_cmd(),
+    settings = get_settings(),
+    root_dir = root_dir(),
+    init_options = {
+        bundles = get_bundles()
     }
-    jdtls.start_or_attach(config)
-
-    vim.cmd('command! JdtForceWipeDataAndRestart lua JdtForceWipeDataAndRestart()')
-end
-
-vim.api.nvim_create_autocmd("Filetype", {
-    pattern = "java", -- autocmd to start jdtls in java files
-    callback = jdtls_start_or_attach
-})
+}
