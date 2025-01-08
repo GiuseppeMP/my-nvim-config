@@ -95,20 +95,15 @@ local function config()
             ["<Tab>"] = cmp.mapping(function(fallback)
                 if 1 == 2 then
                 elseif cmp.visible() and has_words_before_new() then
-                    print("visible")
                     select()
                 elseif luasnip.jumpable(1) then
-                    print("jumpable")
                     luasnip.jump(1)
                 elseif luasnip.expand_or_jumpable() then
                     luasnip.expand_or_jump()
                 elseif luasnip.expand_or_locally_jumpable() then
-                    print("expand")
                     luasnip.expand_or_jump()
                 else
-                    print("fallback")
-                    fallback()
-                    -- c:select()
+                    select()
                 end
             end, { "i", "s" }),
 
