@@ -233,13 +233,12 @@ local function get_cmd()
     }
 end
 
-require('lspconfig').jdtls.setup {
+local jdtls_config = {
     on_attach = on_attach_jdtls,
-    capabilities = require 'plugins.lsp.utils.capabilities_options'.default,
+    capabilities = require('plugins.lsp.utils.capabilities_options').default,
     flags = {
         debounce_text_changes = 80,
     },
-    filetypes = { "java" },
     cmd = get_cmd(),
     settings = get_settings(),
     root_dir = root_dir(),
@@ -247,3 +246,13 @@ require('lspconfig').jdtls.setup {
         bundles = get_bundles()
     }
 }
+require('lspconfig').jdtls.setup(jdtls_config)
+
+local function jdtls_start_or_attach()
+    jdtls.start_or_attach(jdtls_config)
+end
+
+vim.api.nvim_create_autocmd("Filetype", {
+    pattern = "java",
+    callback = jdtls_start_or_attach
+})
