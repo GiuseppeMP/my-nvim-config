@@ -147,15 +147,15 @@ local function get_settings()
                     staticStarThreshold = 9999,
                 },
             },
-            codeGeneration = {
-                toString = {
-                    template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}"
-                },
-                hashCodeEquals = {
-                    useJava7Objects = true,
-                },
-                useBlocks = true,
-            },
+            -- codeGeneration = {
+            --     toString = {
+            --         template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}"
+            --     },
+            --     hashCodeEquals = {
+            --         useJava7Objects = true,
+            --     },
+            --     useBlocks = true,
+            -- },
             configuration = {
                 updateBuildConfiguration = "interactive",
                 implementationsCodeLens = {
@@ -246,7 +246,8 @@ local jdtls_config = {
         bundles = get_bundles()
     }
 }
-require('lspconfig').jdtls.setup(jdtls_config)
+-- Not working as expected
+-- require('lspconfig').jdtls.setup(jdtls_config)
 
 local function jdtls_start_or_attach()
     jdtls.start_or_attach(jdtls_config)
