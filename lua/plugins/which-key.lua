@@ -1,4 +1,4 @@
-local vim_test_support = {}
+local vim_test_support = { "java" }
 
 local function config()
     -- TODO: check if this is still needed
