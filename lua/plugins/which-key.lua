@@ -25,13 +25,6 @@ local function config()
     -- neotest
     local neotest = require 'neotest'
 
-    -- tmux navigator
-    -- vim.g.tmux_navigator_no_mappings = 1
-    -- vim.g.tmux_navigator_save_on_switch = 2
-
-    -- rest.vim
-    -- local rest = require 'rest-nvim'
-
     -- nvimtree
     local api = require 'nvim-tree.api'
 
@@ -299,7 +292,6 @@ local function config()
             end,
             desc = 'buffer [a]lternate'
         },
-        { "gs", vim.cmd.G,                                                    desc = "[s]ource control" },
         { "gC", function() require("treesitter-context").go_to_context() end, desc = 'Go to [C]ontext' },
     })
 
