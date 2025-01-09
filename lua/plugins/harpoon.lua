@@ -1,7 +1,29 @@
+local telescope_state = require("telescope.actions.state")
+local telescope_finders = require("telescope.finders")
+local telescope_pickers = require("telescope.pickers")
+local harpoon_get_paths = function(files)
+    local paths = {}
+    local items = files.items
+    local len = files._length
+
+    for i = 1, len do
+        paths[i] = ''
+        local item = items[i]
+        if item ~= nil then
+            paths[i] = item.value
+        end
+    end
+
+    return paths
+end
+
+local function harpoon_make_finder(paths)
+    return telescope_finders.new_table({ results = paths })
+end
+
 local function config()
     local harpoon = require 'harpoon'
     harpoon:setup()
-
     ---@type HarpoonList
     local term_list = harpoon:list("terms") -- note the : instead of .
 
@@ -39,6 +61,18 @@ local function config()
             }),
             previewer = conf.file_previewer({}),
             sorter = conf.generic_sorter({}),
+            attach_mappings = function(prompt_buffer_number, map)
+                -- map("i", "<C-g>", function()
+                --     toggle_telescope(harpoon:list())
+                -- end)
+                -- map("i", "<C-x>", function()
+                --     local selected_entry = telescope_state.get_selected_entry()
+                --     local current_picker = telescope_state.get_current_picker(prompt_buffer_number)
+                --     harpoon:list():remove_at(selected_entry.index)
+                --     current_picker:refresh(harpoon_make_finder(harpoon_get_paths(harpoon:list())))
+                -- end)
+                return true
+            end
         }):find()
     end
     -- basic telescope configuration
