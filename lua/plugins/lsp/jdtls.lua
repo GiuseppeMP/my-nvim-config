@@ -147,15 +147,15 @@ local function get_settings()
                     staticStarThreshold = 9999,
                 },
             },
-            -- codeGeneration = {
-            --     toString = {
-            --         template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}"
-            --     },
-            --     hashCodeEquals = {
-            --         useJava7Objects = true,
-            --     },
-            --     useBlocks = true,
-            -- },
+            codeGeneration = {
+                toString = {
+                    template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}"
+                },
+                hashCodeEquals = {
+                    useJava7Objects = true,
+                },
+                useBlocks = true,
+            },
             configuration = {
                 updateBuildConfiguration = "interactive",
                 implementationsCodeLens = {
