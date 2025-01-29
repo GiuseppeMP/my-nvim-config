@@ -21,5 +21,5 @@ return {
             hop.setup({ keys = querty_home_row .. 'woei' })
         end,
         version = "*"
-    },
+    }
 }

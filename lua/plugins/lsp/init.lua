@@ -5,11 +5,10 @@ return {
     {
         'neovim/nvim-lspconfig',
         config = config,
-        opt = { inlay_hints = { enabled = true } },
+        lazy = false,
         dependencies = { 'mfussenegger/nvim-jdtls' }
     },
-    { 'mfussenegger/nvim-jdtls' },
-    -- { 'GiuseppeMP/nvim-jdtls' },
+    { 'mfussenegger/nvim-jdtls', lazy = false },
     {
         'mrcjkb/rustaceanvim',
         version = '^5', -- Recommended

@@ -1,4 +1,28 @@
 local icons = require 'user.icons'
+local W_RATIO = 0.7
+local H_RATIO = 0.9
+
+local function set_win()
+    local lines = vim.opt.lines:get() - vim.opt.cmdheight:get()
+    local columns = vim.opt.columns:get()
+
+    local columns_width = math.floor(columns * W_RATIO)
+    local padding_x = columns - columns_width
+    local start_column = math.floor(padding_x / 2)
+
+    local window_height = math.floor(lines * H_RATIO)
+    local padding_y = lines - window_height
+    local start_row = math.floor(padding_y / 2)
+
+    return {
+        relative = "editor",
+        border = "rounded",
+        width = columns_width,
+        height = window_height,
+        row = start_row,
+        col = start_column,
+    }
+end
 -- see
 -- https://github.com/nvim-tree/nvim-tree.lua/wiki/Recipes#go-to-last-used-hidden-buffer-when-deleting-a-buffer
 local function config()
@@ -88,9 +112,6 @@ local function config()
         vim.keymap.set("n", "H", api.tree.collapse_all, opts("Collapse All"))
         vim.keymap.set('n', 'ga', git_add, opts('Git Add'))
     end
-    local HEIGHT_RATIO = 0.7 -- You can change this
-    local WIDTH_RATIO = 0.7  -- You can change this too
-
     -- :help nvim-tree-setup
     require 'nvim-tree'.setup {
         on_attach = my_on_attach,
@@ -121,32 +142,16 @@ local function config()
             adaptive_size = true,
             side = 'left',
             float = {
-                enable = false,
+                enable = conf.user.nvim_tree.float,
                 quit_on_focus_loss = true,
-                open_win_config = function()
-                    local screen_w = vim.opt.columns:get()
-                    local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
-                    local window_w = screen_w * WIDTH_RATIO
-                    local window_h = screen_h * HEIGHT_RATIO
-                    local window_w_int = math.floor(window_w)
-                    local window_h_int = math.floor(window_h)
-                    local center_x = (screen_w - window_w) / 2
-                    local center_y = ((vim.opt.lines:get() - window_h) / 2)
-                        - vim.opt.cmdheight:get()
-                    return {
-                        border = "rounded",
-                        relative = "editor",
-                        row = center_y,
-                        col = center_x,
-                        width = window_w_int,
-                        height = window_h_int,
-                    }
-                end,
+                open_win_config = set_win(),
             },
-            width = {
-                max = 45,
-                min = 30
-            },
+            width = function()
+                if conf.user.nvim_tree.float then
+                    return math.floor(vim.opt.columns:get() * W_RATIO)
+                end
+                return 50
+            end,
         },
         renderer = {
             root_folder_label = ":~:.:t",
@@ -170,7 +175,7 @@ local function config()
         },
         update_focused_file = {
             enable = true,
-            update_root = true,
+            update_root = false,
             ignore_list = {},
         },
     }

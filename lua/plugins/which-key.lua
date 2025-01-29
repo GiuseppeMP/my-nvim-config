@@ -1,4 +1,4 @@
-local vim_test_support = { "python" }
+local vim_test_support = { "java" }
 
 local function config()
     -- TODO: check if this is still needed
@@ -24,13 +24,6 @@ local function config()
 
     -- neotest
     local neotest = require 'neotest'
-
-    -- tmux navigator
-    -- vim.g.tmux_navigator_no_mappings = 1
-    -- vim.g.tmux_navigator_save_on_switch = 2
-
-    -- rest.vim
-    -- local rest = require 'rest-nvim'
 
     -- nvimtree
     local api = require 'nvim-tree.api'
@@ -204,28 +197,28 @@ local function config()
     end
 
     local function test_nearest()
-        if (is_vim_test) then
+        if (is_vim_test()) then
             vim.cmd(":TestNearest")
         else
             neotest.run.run()
         end
     end
     local function test_file()
-        if (is_vim_test) then
+        if (is_vim_test()) then
             vim.cmd(":TestFile")
         else
             neotest.run.run(vim.fn.expand('%'))
         end
     end
     local function test_class()
-        if (is_vim_test) then
+        if (is_vim_test()) then
             vim.cmd(":TestClass")
         else
             neotest.run.run(vim.fn.expand('%'))
         end
     end
     local function test_suite()
-        if (is_vim_test) then
+        if (is_vim_test()) then
             vim.cmd(":TestSuite")
         else
             neotest.run.run({ suite = true })
@@ -299,7 +292,6 @@ local function config()
             end,
             desc = 'buffer [a]lternate'
         },
-        { "gs", vim.cmd.G,                                                    desc = "[s]ource control" },
         { "gC", function() require("treesitter-context").go_to_context() end, desc = 'Go to [C]ontext' },
     })
 
