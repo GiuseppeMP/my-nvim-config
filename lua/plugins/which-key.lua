@@ -479,7 +479,7 @@ local function config()
     end
     wk.add({
         { '<leader>l',  group = 'Lua utils' },
-        { '<leader>lr', execute_current_line, desc = 'Execute curent line.' },
+        { '<leader>lr', execute_current_line, desc = '[r]un cursor line as command.' },
     })
 
     wk.add({
