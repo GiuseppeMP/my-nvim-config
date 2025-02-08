@@ -134,7 +134,8 @@ local function get_settings()
             format = {
                 settings = {
                     -- make sure to download the file from https://github.com/google/styleguide/blob/gh-pages/eclipse-java-google-style.xml
-                    url = home .. "/.config/nvim/lua/plugins/lsp/files/jdtls/eclipse-java-google-style.xml",
+                    -- url = home .. "/.config/nvim/lua/plugins/lsp/files/jdtls/eclipse-java-google-style.xml",
+                    url = home .. "/.config/nvim/lua/plugins/lsp/files/jdtls/intellij-google-style.xml",
                     profile = "GoogleStyle",
                 },
             },
