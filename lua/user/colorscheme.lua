@@ -10,7 +10,7 @@ vim.cmd [[hi! link xmlTagN Function ]]
 vim.cmd [[hi! link @markup.raw.markdown_inline CodeBlock ]]
 
 -- vim.api.nvim_set_hl(0, "CursorLine", { bg = 'none', fg = 'none', blend = 90 })
-vim.api.nvim_set_hl(0, "CursorLine", { bg = util.darken(colors.blue, 0.1), fg = 'none' })
+vim.api.nvim_set_hl(0, "CursorLine", { bg = 'none', fg = 'none' })
 -- vim.api.nvim_set_hl(0, "CursorLineNr", { fg = colors.b_yellow, bg = 'none', blend = 0, force = true })
 vim.api.nvim_set_hl(0, "CursorLineNr", { fg = colors.green, bg = 'none', blend = 0, force = true })
 vim.api.nvim_set_hl(0, "Cursor", { fg = colors.red, bg = colors.green, blend = 100, force = true })
@@ -21,10 +21,10 @@ vim.api.nvim_set_hl(0, "Comment", { fg = util.darken(colors.blue, 0.7), italic =
 vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", { fg = util.darken(colors.blue, 0.7) })
 
 vim.cmd [[
-    set guicursor=n-v-c:block-CursorBlock
+    set guicursor=n-v-c:blinkon0-CursorBlock
     set guicursor+=i:hor20-iCursor
-    set guicursor+=n-v-c:blinkon0
-    set guicursor+=i:blinkwait10
+    "set guicursor+=n-v-c:blinkon0
+    "set guicursor+=i:blinkon0
 ]]
 
 -- selected winbar
@@ -114,37 +114,37 @@ vim.api.nvim_set_hl(0, 'Commment', { fg = colors.bg, bg = 'none', underline = fa
 -- DAP
 
 
-vim.api.nvim_set_hl(0, 'DapUIStop', { fg = colors.red, bg = 'none', underline = false, bold = true })
-vim.api.nvim_set_hl(0, 'DapUIScope', { fg = colors.green, bg = 'none', underline = false, bold = true })
-vim.api.nvim_set_hl(0, 'DapUIThread', { fg = colors.green, bg = 'none', underline = false, bold = true })
-vim.api.nvim_set_hl(0, 'DapUIRestart', { fg = colors.green, bg = 'none', underline = false, bold = true })
-vim.api.nvim_set_hl(0, 'DapUIPlayPause', { fg = colors.green, bg = 'none', underline = false, bold = true })
-
-vim.api.nvim_set_hl(0, 'DapUIBreakpointsLine', { fg = colors.blue, bg = 'none', underline = false, bold = true })
-vim.api.nvim_set_hl(0, 'DapUIBreakpointsPath', { fg = colors.blue, bg = 'none', underline = false, bold = true })
-vim.api.nvim_set_hl(0, 'DapUILineNumber', { fg = colors.blue, bg = 'none', underline = false, bold = true })
-vim.api.nvim_set_hl(0, 'DapUIStoppedThread', { fg = colors.blue, bg = 'none', underline = false, bold = true })
-
-vim.api.nvim_set_hl(0, 'DapUIWatchesEmpty', { fg = colors.red, bg = 'none', underline = false, bold = true })
-vim.api.nvim_set_hl(0, 'DapUIWatchesError', { fg = colors.red, bg = 'none', underline = false, bold = true })
-
-vim.api.nvim_set_hl(0, 'DapUIRestartNC', { fg = colors.green, bg = 'none', underline = false, bold = true })
-vim.api.nvim_set_hl(0, 'DapUIStopNC', { fg = colors.red, bg = 'none', underline = false, bold = true })
-
-vim.api.nvim_set_hl(0, 'DapUIStepOverNC', { fg = colors.blue, bg = 'none', underline = false, bold = true })
-vim.api.nvim_set_hl(0, 'DapUIStepIntoNC', { fg = colors.blue, bg = 'none', underline = false, bold = true })
-vim.api.nvim_set_hl(0, 'DapUIStepOutNC', { fg = colors.blue, bg = 'none', underline = false, bold = true })
-vim.api.nvim_set_hl(0, 'DapUIStepBackNC', { fg = colors.blue, bg = 'none', underline = false, bold = true })
-
-vim.api.nvim_set_hl(0, 'DapUIStepOver', { fg = colors.blue, bg = 'none', underline = false, bold = true })
-vim.api.nvim_set_hl(0, 'DapUIStepInto', { fg = colors.blue, bg = 'none', underline = false, bold = true })
-vim.api.nvim_set_hl(0, 'DapUIStepOut', { fg = colors.blue, bg = 'none', underline = false, bold = true })
-vim.api.nvim_set_hl(0, 'DapUIStepBack', { fg = colors.blue, bg = 'none', underline = false, bold = true })
-
-vim.api.nvim_set_hl(0, 'DapUIUnavailableNC', { fg = colors.gray, bg = 'none', underline = false, bold = true })
-vim.api.nvim_set_hl(0, 'DapUIPlayPauseNC', { fg = colors.green, bg = 'none', underline = false, bold = true })
-
-vim.api.nvim_set_hl(0, 'DapStopped', { ctermbg = 0, bg = "#3e322e", bold = false })
+-- vim.api.nvim_set_hl(0, 'DapUIStop', { fg = colors.red, bg = 'none', underline = false, bold = true })
+-- vim.api.nvim_set_hl(0, 'DapUIScope', { fg = colors.green, bg = 'none', underline = false, bold = true })
+-- vim.api.nvim_set_hl(0, 'DapUIThread', { fg = colors.green, bg = 'none', underline = false, bold = true })
+-- vim.api.nvim_set_hl(0, 'DapUIRestart', { fg = colors.green, bg = 'none', underline = false, bold = true })
+-- vim.api.nvim_set_hl(0, 'DapUIPlayPause', { fg = colors.green, bg = 'none', underline = false, bold = true })
+--
+-- vim.api.nvim_set_hl(0, 'DapUIBreakpointsLine', { fg = colors.blue, bg = 'none', underline = false, bold = true })
+-- vim.api.nvim_set_hl(0, 'DapUIBreakpointsPath', { fg = colors.blue, bg = 'none', underline = false, bold = true })
+-- vim.api.nvim_set_hl(0, 'DapUILineNumber', { fg = colors.blue, bg = 'none', underline = false, bold = true })
+-- vim.api.nvim_set_hl(0, 'DapUIStoppedThread', { fg = colors.blue, bg = 'none', underline = false, bold = true })
+--
+-- vim.api.nvim_set_hl(0, 'DapUIWatchesEmpty', { fg = colors.red, bg = 'none', underline = false, bold = true })
+-- vim.api.nvim_set_hl(0, 'DapUIWatchesError', { fg = colors.red, bg = 'none', underline = false, bold = true })
+--
+-- vim.api.nvim_set_hl(0, 'DapUIRestartNC', { fg = colors.green, bg = 'none', underline = false, bold = true })
+-- vim.api.nvim_set_hl(0, 'DapUIStopNC', { fg = colors.red, bg = 'none', underline = false, bold = true })
+--
+-- vim.api.nvim_set_hl(0, 'DapUIStepOverNC', { fg = colors.blue, bg = 'none', underline = false, bold = true })
+-- vim.api.nvim_set_hl(0, 'DapUIStepIntoNC', { fg = colors.blue, bg = 'none', underline = false, bold = true })
+-- vim.api.nvim_set_hl(0, 'DapUIStepOutNC', { fg = colors.blue, bg = 'none', underline = false, bold = true })
+-- vim.api.nvim_set_hl(0, 'DapUIStepBackNC', { fg = colors.blue, bg = 'none', underline = false, bold = true })
+--
+-- vim.api.nvim_set_hl(0, 'DapUIStepOver', { fg = colors.blue, bg = 'none', underline = false, bold = true })
+-- vim.api.nvim_set_hl(0, 'DapUIStepInto', { fg = colors.blue, bg = 'none', underline = false, bold = true })
+-- vim.api.nvim_set_hl(0, 'DapUIStepOut', { fg = colors.blue, bg = 'none', underline = false, bold = true })
+-- vim.api.nvim_set_hl(0, 'DapUIStepBack', { fg = colors.blue, bg = 'none', underline = false, bold = true })
+--
+-- vim.api.nvim_set_hl(0, 'DapUIUnavailableNC', { fg = colors.gray, bg = 'none', underline = false, bold = true })
+-- vim.api.nvim_set_hl(0, 'DapUIPlayPauseNC', { fg = colors.green, bg = 'none', underline = false, bold = true })
+--
+-- vim.api.nvim_set_hl(0, 'DapStopped', { ctermbg = 0, bg = "#3e322e", bold = false })
 
 
 -- CMP

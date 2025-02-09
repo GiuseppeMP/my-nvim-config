@@ -1,4 +1,6 @@
 -- highlights
+local user_colors = require("user.colors").colors
+
 local colors = {
     --- ??
     text = { 'black', 'white_light' },
@@ -32,16 +34,16 @@ local colors = {
     label_blue = { 'blue', 'lbg_fix' },
 
     -- VIM Modes
-    Normal = { 'red', 'black', 'bold' },
-    NormalOff = { 'black', 'red_fix', 'bold' },
-    Insert = { 'green', 'black', 'bold' },
-    InsertOff = { 'black', 'green_fix', 'bold' },
-    Visual = { 'yellow', 'black', 'bold' },
-    VisualOff = { 'black', 'yellow_fix', 'bold' },
-    Replace = { 'blue_light', 'black', 'bold' },
-    ReplaceOff = { 'black', 'blue_light_fix', 'bold' },
-    Command = { 'magenta', 'black', 'bold' },
-    CommandOff = { 'black', 'magenta_fix', 'bold' },
+    Normal = { 'red', 'lbg_fix' },
+    NormalOff = { 'lbg_fix', 'red_fix' },
+    Insert = { 'green', 'lbg_fix' },
+    InsertOff = { 'lbg_fix', 'green_fix' },
+    Visual = { 'yellow', 'lbg_fix' },
+    VisualOff = { 'lbg_fix', 'yellow_fix' },
+    Replace = { 'blue_light', 'lbg_fix' },
+    ReplaceOff = { 'lbg_fix', 'blue_light_fix' },
+    Command = { 'magenta', 'lbg_fix' },
+    CommandOff = { 'lbg_fix', 'magenta_fix' },
 
 }
 --  imports
@@ -99,8 +101,8 @@ components.divider = {
     hl_colors = colors,
     text = function()
         return {
-            { '%=%', 'Divider' }
-            -- { b_components.divider, 'Divider' }
+            -- { '%=', 'Divider' }
+            { b_components.divider, 'Divider' }
         }
     end,
 }
@@ -121,24 +123,22 @@ components.vi_mode = {
             { '   ', state.mode[2] },
             { sep.left_rounded, state.mode[2] },
             { padding(state.mode[1] .. ' ', 9), state.mode[2] .. 'Off' },
-            { ' 󰢩 ' .. text_hostname .. '  ', 'red' },
+            { ' 󰢩 ' .. text_hostname .. ' ', state.mode[2] },
         }
     end,
 }
 
 components.file = {
     hl_colors = colors,
-    with = 100,
+    with = 50,
     text = function(bufnr)
         return {
-            { ' ', 'bubble_bg' },
+            { ' ',                                           'bubble_bg' },
             icon_comp(bufnr),
-            { ' ', 'bubble_bg' },
-            { " ", '' },
-            { b_components.cache_file_name('[No Name]', ''), 'green' },
-            { b_components.file_modified(' '), 'green' },
-            { b_components.cache_file_size(), 'green' },
-            { " ", '' },
+            { ' ',                                           'bubble_bg' },
+            { b_components.cache_file_name('[No Name]', ''), 'LabelOff' },
+            { b_components.cache_file_size(),                'LabelOff' },
+            { b_components.file_modified('*'),               'red' },
         }
     end,
 }
@@ -153,7 +153,7 @@ components.lsp_diagnos = {
                 -- { sep.left_rounded, 'Label' },
                 { lsp_comps.lsp_error({ format = ' %s', show_zero = true }), 'label_red' },
                 { lsp_comps.lsp_warning({ format = '  %s', show_zero = true }), 'label_yellow' },
-                { lsp_comps.lsp_hint({ format = '  %s ', show_zero = true }), 'label_blue' },
+                { lsp_comps.lsp_hint({ format = '  %s         ', show_zero = true }), 'label_blue' },
                 -- { sep.right_rounded, 'Label' },
             }
         end
@@ -197,11 +197,11 @@ components.git = {
         if git_comps.is_git(bufnr) then
             return {
                 -- { sep.left_rounded,                                                                              'Label' },
-                { git_comps.git_branch(),                                                                        'LabelOff' },
-                { ":",                                                                                           'LabelOff' },
+                { git_comps.git_branch(), state.mode[2] },
+                { '  ', state.mode[2] },
                 { git_comps.diff_removed({ format = ' ' .. conf.icons.git.removed .. ' %s', show_zero = true }), 'label_red' },
                 { git_comps.diff_changed({ format = ' ' .. conf.icons.git.changed .. ' %s', show_zero = true }), 'label_yellow' },
-                { git_comps.diff_added({ format = ' ' .. conf.icons.git.added .. ' %s ', show_zero = true }),    'label_blue' },
+                { git_comps.diff_added({ format = ' ' .. conf.icons.git.added .. ' %s        ', show_zero = true }), 'label_blue' },
                 -- { sep.right_rounded,                                                                             'Label' },
             }
         end
@@ -252,8 +252,8 @@ components.lsp_name = {
     text = function(bufnr)
         if lsp_comps.check_lsp(bufnr) then
             return {
-                { lsp_comps.lsp_name(), 'LabelOff' },
-                { ': ',                 'LabelOff' },
+                { lsp_comps.lsp_name(), state.mode[2] },
+                { '  ', state.mode[2] },
             }
         end
         return {
@@ -269,7 +269,7 @@ components.battery = {
     width = default_width,
     text = function(_)
         return {
-            { ' ' .. require("battery").get_status_line() .. ' ', 'green' },
+            { ' ' .. require("battery").get_status_line() .. ' ', 'LabelOff' },
         }
     end,
 }
@@ -285,7 +285,7 @@ local default = {
         components.lsp_name,
         components.lsp_diagnos,
         -- components.divider,
-        components.r_divider,
+        -- components.r_divider,
         -- components.file_right,
         components.git,
         components.battery,
@@ -320,6 +320,8 @@ windline.setup({
         -- colors.bg = tokyo_colors.bg
         -- colors.dbg = tokyo_colors.bg_dark
         _colors.bwhite = '#ffffff'
+        _colors.white = '#B5BFDE'
+        -- _colors.white = user_colors.white
         _colors.bg = 'none'
         _colors.dbg = 'none'
         _colors.lbg = '#343855'
