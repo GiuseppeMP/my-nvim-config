@@ -44,6 +44,7 @@ local function config()
         -- }
         return {
             expand = function(args)
+                -- vim.snippet.expand(args.body)
                 luasnip.lsp_expand(args.body) -- For `luasnip` users.
             end,
         }
@@ -95,14 +96,16 @@ local function config()
             ["<Tab>"] = cmp.mapping(function(fallback)
                 -- I known, you're reading this 1 == 2 now thinking I'm crazy.
                 if 1 == 2 then
-                elseif cmp.visible() and has_words_before_new() then
+                elseif cmp.visible() and has_words_before_new() and not luasnip.expand_or_jumpable() then
                     select()
                 elseif luasnip.jumpable(1) then
                     luasnip.jump(1)
                 elseif luasnip.expand_or_jumpable() then
                     luasnip.expand_or_jump()
                 elseif luasnip.expand_or_locally_jumpable() then
-                    luasnip.expand_or_jump()
+                    luasnip.expand_or_locally_jump()
+                elseif cmp.visible() and luasnip.jumpable() then
+                    select()
                 else
                     fallback()
                 end
@@ -199,6 +202,7 @@ local function config()
             cmp.config.compare.exact,
             cmp.config.compare.score,
             cmp.config.compare.recently_used,
+            -- Codeium ranker
             function(a1, a2)
                 if a2 == "Codeium" and a1 == "Method" then
                     return true
@@ -274,14 +278,13 @@ local function config()
 
             return true
         end,
-        performance = {
-            max_view_entries = 25,
-            fetchin_timeout = 500,
-            debounce = 1000
-        },
-        -- Trigger completion using ctrl-n
+        -- Causes fetchin_timeout in snippets (maybe open PR)
+        -- performance = {
+        --     max_view_entries = 25,
+        --     fetchin_timeout = 500,
+        --     debounce = 1000
+        -- },
         completion = {
-            autocomplete = false,
             completeopt = "menu,menuone,noselect",
         },
         experimental = {
