@@ -1,7 +1,7 @@
 local M = {}
 
 M.nvim_tree = {
-    float = false
+    float = true
 }
 
 M.copilot = {
