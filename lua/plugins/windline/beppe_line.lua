@@ -44,6 +44,7 @@ local colors = {
     ReplaceOff = { 'lbg_fix', 'blue_light_fix' },
     Command = { 'magenta', 'lbg_fix' },
     CommandOff = { 'lbg_fix', 'magenta_fix' },
+    transparent = { 'none', 'none' },
 
 }
 --  imports
@@ -89,6 +90,7 @@ components.end_logo = {
                 sep.right_rounded,
                 state.mode[2],
             },
+            { ' ', 'transparent' },
         }
     end,
 }
@@ -120,7 +122,7 @@ components.vi_mode = {
     hl_colors = colors,
     text = function()
         return {
-            { '   ', state.mode[2] },
+            { '   ', 'transparent' },
             { sep.left_rounded, state.mode[2] },
             { padding(state.mode[1] .. ' ', 9), state.mode[2] .. 'Off' },
             { ' 󰢩 ' .. text_hostname .. ' ', state.mode[2] },
@@ -324,6 +326,7 @@ windline.setup({
         -- _colors.white = user_colors.white
         _colors.bg = 'none'
         _colors.dbg = 'none'
+        _colors.none = 'none'
         _colors.lbg = '#343855'
         _colors.lbg_fix = '#1E2030'
         -- transparent:
