@@ -1,6 +1,22 @@
 -- highlights
 local user_colors = require("user.colors").colors
 
+local codeium_status = function()
+    local status = require('codeium.virtual_text').status()
+
+    print(status.total)
+    print(status.state)
+    if status.state == 'idle' then
+        return 'idle'
+    elseif status.state == 'completions' and status.total > 0 then
+        return string.format('%d/%d', status.current, status.total)
+    elseif status.state == 'waiting' then
+        return "Thinking..."
+    end
+
+    return ' 0/0 '
+end
+
 local colors = {
     --- ??
     text = { 'black', 'white_light' },
@@ -246,6 +262,19 @@ local explorer = {
     always_active = true,
     show_last_status = true,
 }
+components.gen_ai = {
+    width = default_width,
+    name = 'lsp_name',
+    hl_colors = colors,
+    text = function(_)
+        return {
+            { ' ', state.mode[2], state.mode[2] },
+            { ' ', state.mode[2] },
+            { require('codeium.virtual_text').status_string, 'white' },
+            { '   ', 'LabelOff' }
+        }
+    end,
+}
 
 components.lsp_name = {
     width = default_width,
@@ -284,6 +313,7 @@ local default = {
         components.file,
         { vim_components.search_count(), { 'yellow', 'lbg_fix' } },
         components.divider,
+        components.gen_ai,
         components.lsp_name,
         components.lsp_diagnos,
         -- components.divider,

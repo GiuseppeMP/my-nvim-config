@@ -90,8 +90,10 @@ local function config()
             -- ['<CR>'] = cmp.mapping.confirm({ select = false }),
             ["<C-e>"] = cr,
             ["<C-;>"] = cmp.mapping(function(_)
+                -- close CMP
                 cmp.close()
-                vim.fn['codeium#Complete']()
+                -- Request completions immediately.
+                require('codeium.virtual_text').complete()
             end, { "i", "c" }),
             ["<Tab>"] = cmp.mapping(function(fallback)
                 -- I known, you're reading this 1 == 2 now thinking I'm crazy.

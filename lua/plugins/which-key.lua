@@ -358,16 +358,17 @@ local function config()
     -- codeium
     wk.add({
         mode = { 'i' },
-        { "<c-;>", function() vim.fn['codeium#Complete']() end,           desc = 'Codeium trigger suggestion' },
-        { "<c-,>", function() vim.fn['codeium#CycleCompletions'](1) end,  desc = 'Codeium next suggestion' },
-        { "<c-.>", function() vim.fn['codeium#CycleCompletions'](-1) end, desc = 'Codeium previous suggestion' },
+        { "<c-;>", require('codeium.virtual_text').debounced_complete,                   desc = 'Codeium trigger suggestion' },
+        { "<c-.>", function() require('codeium.virtual_text').cycle_or_complete(1) end,  desc = 'Codeium next suggestion' },
+        { "<c-,>", function() require('codeium.virtual_text').cycle_or_complete(-1) end, desc = 'Codeium previous suggestion' },
+
     })
 
     wk.add({
         {
             mode = { 'i', 'n' },
             { "<c-y>", desc = 'Codeium accept suggestion' },
-            { "<c-/>", function() vim.fn['codeium#Clear']() end, desc = 'Codeium clear' },
+            -- { "<c-/>", function() vim.fn['codeium#Clear']() end, desc = 'Codeium clear' },
         }
     })
 
