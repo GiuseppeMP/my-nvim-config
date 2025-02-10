@@ -10,6 +10,21 @@ local on_attach_pyright = function(client, bufnr)
     ]]
 end
 
+
+local get_python_path = function()
+    local virtual_env = vim.fn.getenv("VIRTUAL_ENV")
+
+    if type(virtual_env) ~= "string" then
+        virtual_env = tostring(virtual_env)
+    end
+    if virtual_env ~= "" then
+        return virtual_env .. "/bin/python"
+    else
+        error("VIRTUAL_ENV is not difine! Please, activate a virtual env.")
+    end
+end
+
+
 require('lspconfig').pyright.setup {
     on_attach = on_attach_pyright,
     capabilities = require 'plugins.lsp.utils.capabilities_options'.default,
@@ -19,6 +34,7 @@ require('lspconfig').pyright.setup {
     end,
     settings = {
         python = {
+            pythonPath = get_python_path(),
             analysis = {
                 autoSearchPaths = true,
                 diagnosticMode = "openFilesOnly",
