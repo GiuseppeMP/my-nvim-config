@@ -67,7 +67,8 @@ end
 
 -- icons used as signs columns
 _G.conf.signs = {
-    error = "",
+    -- error = "",
+    error = "",
     warn = "",
     hint = "",
     info = "",
@@ -91,7 +92,8 @@ _G.conf.icons = {
     pencil = '',
     git = {
         removed = '',
-        changed = '',
+        -- changed = '',
+        changed = '',
         added = '',
     }
 }

@@ -1,5 +1,6 @@
 return {
     "xiyaowong/transparent.nvim",
+    enabled = false,
     config = function()
         local ok, transparent = pcall(require, "transparent")
 
