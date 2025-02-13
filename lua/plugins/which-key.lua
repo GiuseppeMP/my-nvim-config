@@ -520,6 +520,15 @@ local function config()
         { '<leader>Di', vim.cmd.DBUILastQueryInfo, desc = 'Last query info' },
 
     })
+    -- unimpaired remap
+    vim.cmd [[
+        nmap < [
+        nmap > ]
+        omap < [
+        omap > ]
+        xmap < [
+        xmap > ]
+    ]]
 end
 return {
     { "folke/which-key.nvim", config = config }
