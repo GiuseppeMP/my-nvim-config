@@ -2,7 +2,7 @@ return {
     {
         'TobinPalmer/pastify.nvim',
         cmd = { 'Pastify', 'PastifyAfter' },
-        event = { 'BufReadPost' },
+        ft = "markdown",
         keys = {
             { noremap = true, mode = "x", '<leader>up', "<cmd>PastifyAfter<CR>" },
             { noremap = true, mode = "n", '<leader>up', "<cmd>PastifyAfter<CR>" },
