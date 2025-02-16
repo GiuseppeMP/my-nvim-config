@@ -2,7 +2,7 @@ return {
     {
         'TobinPalmer/pastify.nvim',
         cmd = { 'Pastify', 'PastifyAfter' },
-        ft = "markdown",
+        ft = "md",
         keys = {
             { noremap = true, mode = "x", '<leader>up', "<cmd>PastifyAfter<CR>" },
             { noremap = true, mode = "n", '<leader>up', "<cmd>PastifyAfter<CR>" },
