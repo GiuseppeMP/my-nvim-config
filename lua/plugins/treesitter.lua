@@ -23,7 +23,7 @@ local function config()
             smart_rename = {
                 enable = true,
                 keymaps = {
-                    smart_rename = "gR",
+                    smart_rename = "grr",
                 },
             },
         },
