@@ -386,7 +386,7 @@ local function config()
         {
             mode = { "v", "n" },
             { "<leader>c",  group = "ChatGPT" },
-            { "<leader>cc", "<cmd>ChatGPT<CR>",                                             desc = "ChatGPT Prompt" },
+            -- { "<leader>cc", "<cmd>ChatGPT<CR>",                                             desc = "ChatGPT Prompt" },
             { "<leader>ce", vim.cmd.ChatGPTEditWithInstruction,                             desc = "Edit with instruction" },
             { "<leader>cg", function() vim.cmd.ChatGPTRun("grammar_correction") end,        desc = "Grammar Correction" },
             { "<leader>ck", function() vim.cmd.ChatGPTRun("keywords") end,                  desc = "Keywords" },
@@ -528,6 +528,8 @@ local function config()
         omap > ]
         xmap < [
         xmap > ]
+        noremap >> >>
+        noremap << <<
     ]]
 end
 return {
