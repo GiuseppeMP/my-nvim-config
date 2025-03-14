@@ -268,7 +268,7 @@ components.gen_ai = {
     hl_colors = colors,
     text = function(_)
         return {
-            { ' ', state.mode[2], state.mode[2] },
+            { ' ', state.mode[2] },
             { ' ', state.mode[2] },
             { require('codeium.virtual_text').status_string, 'white' },
             { '   ', 'LabelOff' }
@@ -360,7 +360,7 @@ windline.setup({
         _colors.lbg = '#343855'
         _colors.lbg_fix = '#1E2030'
         -- transparent:
-        -- _colors.lbg_fix = _colors.bg
+        -- _colors.lbg_fix = _colors.none
         return _colors
     end,
     statuslines = {
