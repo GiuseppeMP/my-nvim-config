@@ -110,7 +110,7 @@ local function config()
         { '<leader>ud',  function() vim.cmd('Trouble diagnostics toggle') end,      desc = 'Show diagnostics panel' },
         { '<leader>uD',  vim.cmd.TodoLocList,                                       desc = 'Show comments diagnostics list' },
         { '<leader>um',  vim.cmd.MarkdownPreview,                                   desc = 'Markdown Preview' },
-        { '<leader>ua',  function() vim.cmd(":CellularAutomaton make_it_rain") end, desc = 'AFK' },
+        { '<leader>ux',  function() vim.cmd(":CellularAutomaton make_it_rain") end, desc = 'AFK' },
         { '<leader>uz',  telescope.extensions.zoxide.list,                          desc = 'Show zoxide directories' },
         { '<leader>uh',  builtin.highlights,                                        desc = "Highlights" },
         -- { '<leader>ua',  rest.run,                                                         desc = "Execure nvim rest request under cursor" },
@@ -518,6 +518,7 @@ local function config()
         { '<leader>Dq', vim.cmd.DBUIClose,         desc = 'Close Dadbod' },
         { '<leader>Dr', vim.cmd.DBUIRenameBuffer,  desc = 'Rename DB buffer' },
         { '<leader>Di', vim.cmd.DBUILastQueryInfo, desc = 'Last query info' },
+        { '<leader>cc', ":@ <CR>",                 desc = 'Run last command' },
 
     })
     -- unimpaired remap
