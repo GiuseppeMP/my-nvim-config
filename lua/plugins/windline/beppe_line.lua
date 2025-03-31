@@ -300,7 +300,7 @@ components.battery = {
     width = default_width,
     text = function(_)
         return {
-            { ' ' .. require("battery").get_status_line() .. ' ', 'LabelOff' },
+            -- { ' ' .. require("battery").get_status_line() .. ' ', 'LabelOff' },
         }
     end,
 }
