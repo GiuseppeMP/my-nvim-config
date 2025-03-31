@@ -16,7 +16,7 @@ vim.api.nvim_set_hl(0, "CursorLineNr", { fg = colors.green, bg = 'none', blend =
 vim.api.nvim_set_hl(0, "Cursor", { fg = colors.red, bg = colors.green, blend = 100, force = true })
 vim.api.nvim_set_hl(0, "CursorBlock", { fg = colors.green, bg = colors.green, blend = 0, force = true })
 vim.api.nvim_set_hl(0, "iCursor", { fg = 'none', bg = colors.green, blend = 0, force = true })
-vim.api.nvim_set_hl(0, "TreesitterContextBottom", { underdashed = true, sp = colors.green, force = true })
+vim.api.nvim_set_hl(0, "TreesitterContextBottom", { underdashed = false, sp = colors.green, force = true })
 vim.api.nvim_set_hl(0, "Comment", { fg = util.darken(colors.blue, 0.7), italic = true })
 vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", { fg = util.darken(colors.blue, 0.7) })
 
@@ -36,7 +36,34 @@ vim.api.nvim_set_hl(0, 'VertSplit', { fg = colors.purple, bold = false })
 vim.api.nvim_set_hl(0, 'LspInlayHint', { fg = colors.gray, bg = 'none' })
 vim.api.nvim_set_hl(0, 'FloatBorder', { fg = 'white', bg = 'none' })
 
-vim.api.nvim_set_hl(0, 'DiagnosticVirtualTextInfo', { bg = 'none', fg = colors.yellow })
+vim.api.nvim_set_hl(0, 'DiagnosticVirtualTextInfo', {
+    bg = 'none',
+    fg = colors.yellow,
+})
+vim.api.nvim_set_hl(0, 'DiagnosticUnderlineInfo', {
+    bg = 'none',
+    fg = colors.blue,
+    undercurl = false,
+    underline = true,
+})
+vim.api.nvim_set_hl(0, 'DiagnosticUnderlineError', {
+    bg = 'none',
+    fg = colors.red,
+    undercurl = false,
+    underline = true,
+})
+vim.api.nvim_set_hl(0, 'DiagnosticUnderlineWarn', {
+    bg = 'none',
+    fg = colors.yellow,
+    undercurl = false,
+    underline = true,
+})
+vim.api.nvim_set_hl(0, 'DiagnosticUnderlineHint', {
+    bg = 'none',
+    fg = colors.blue,
+    undercurl = false,
+    underline = true,
+})
 vim.api.nvim_set_hl(0, 'TreesitterContext', { bg = 'none', fg = colors.purple })
 
 vim.api.nvim_set_hl(0, 'NvimTreeIndentMarker', { bg = 'none', fg = colors.yellow })
