@@ -387,8 +387,9 @@ local function config()
         {
             mode = { "v", "n" },
             { "<leader>c",  group = "ChatGPT" },
-            -- { "<leader>cc", "<cmd>ChatGPT<CR>",                                             desc = "ChatGPT Prompt" },
+            { "<leader>cc", "<cmd>ChatGPT<CR>",                                             desc = "ChatGPT Prompt" },
             { "<leader>ce", vim.cmd.ChatGPTEditWithInstruction,                             desc = "Edit with instruction" },
+            -- {{ "<leader>cc", "ma<S-g><S-v>gg0",                                              desc = "Edit with instruction" },
             { "<leader>cg", function() vim.cmd.ChatGPTRun("grammar_correction") end,        desc = "Grammar Correction" },
             { "<leader>ck", function() vim.cmd.ChatGPTRun("keywords") end,                  desc = "Keywords" },
             { "<leader>cd", function() vim.cmd.ChatGPTRun("docstring") end,                 desc = "Docstring" },
@@ -519,7 +520,7 @@ local function config()
         { '<leader>Dq', vim.cmd.DBUIClose,         desc = 'Close Dadbod' },
         { '<leader>Dr', vim.cmd.DBUIRenameBuffer,  desc = 'Rename DB buffer' },
         { '<leader>Di', vim.cmd.DBUILastQueryInfo, desc = 'Last query info' },
-        { '<leader>cc', ":@ <CR>",                 desc = 'Run last command' },
+        -- { '<leader>cc', ":@ <CR>",                 desc = 'Run last command' },
 
     })
     -- unimpaired remap

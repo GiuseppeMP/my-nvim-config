@@ -79,3 +79,8 @@ endfunction
 autocmd FileType qf map <buffer> dd :RemoveQFItem<cr>
 
 ]]
+
+
+vim.cmd [[
+    autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+]]

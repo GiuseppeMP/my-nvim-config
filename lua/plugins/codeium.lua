@@ -20,7 +20,7 @@ return {
                 -- Whether to enable virtual text of not for filetypes not specifically listed above.
                 default_filetype_enabled = true,
                 -- How long to wait (in ms) before requesting completions after typing stops.
-                idle_delay = 90,
+                idle_delay = 70,
                 -- Priority of the virtual text. This usually ensures that the completions appear on top of
                 -- other plugins that also add virtual text, such as LSP inlay hints, but can be modified if
                 -- desired.
@@ -35,11 +35,11 @@ return {
                     -- Accept the current completion.
                     accept = "<c-e>",
                     -- Accept the next word.
-                    -- accept_word = false,
+                    -- accept_word = "<c-w>",
                     -- Accept the next line.
-                    accept_line = "c-q",
+                    -- accept_line = "<c-g>",
                     -- Clear the virtual text.
-                    -- clear = true,
+                    -- clear = "<c-x>",
                     -- Cycle to the next completion.
                     -- next = "<M-]>",
                     next = "<c-.>",
