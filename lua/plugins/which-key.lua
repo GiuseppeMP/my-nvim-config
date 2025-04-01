@@ -173,8 +173,8 @@ local function config()
     wk.add({
         { mode = { 'n', 'i', 'v' } },
         -- { '<C-g>',                 function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, desc = 'Open harpoon menu' },
-        { '<C-e>',                 function() harpoon:list():next() end,                     desc = 'Go to harpoon next' },
-        { '<C-q>',                 function() harpoon:list():prev() end,                     desc = 'Go to harpoon prev' },
+        -- { '<C-e>',                 function() harpoon:list():next() end,                     desc = 'Go to harpoon next' },
+        -- { '<C-q>',                 function() harpoon:list():prev() end,                     desc = 'Go to harpoon prev' },
         { '<leader>1',             function() harpoon:list():select(1) end,                  desc = 'Go to harpoon mark 1' },
         { '<leader>2',             function() harpoon:list():select(2) end,                  desc = 'Go to harpoon mark 2' },
         { '<leader>3',             function() harpoon:list():select(3) end,                  desc = 'Go to harpoon mark 3' },
@@ -360,18 +360,19 @@ local function config()
         { "<c-;>", require('codeium.virtual_text').debounced_complete,                   desc = 'Codeium trigger suggestion' },
         { "<c-.>", function() require('codeium.virtual_text').cycle_or_complete(1) end,  desc = 'Codeium next suggestion' },
         { "<c-,>", function() require('codeium.virtual_text').cycle_or_complete(-1) end, desc = 'Codeium previous suggestion' },
+        -- { "<c-y>", function() require('codeium.virtual_text').complete() end,            desc = 'Codeium accept suggestion' },
 
     })
 
-    wk.add({
-        {
-            mode = { 'i', 'n' },
-            { "<c-y>", desc = 'Codeium accept suggestion' },
-            -- { "<c-/>", function() vim.fn['codeium#Clear']() end, desc = 'Codeium clear' },
-        }
-    })
+    -- wk.add({
+    --     {
+    --         mode = { 'i', 'n' },
+    --         -- { "<c-y>", desc = 'Codeium accept suggestion' },
+    --         -- { "<c-/>", function() vim.fn['codeium#Clear']() end, desc = 'Codeium clear' },
+    --     }
+    -- })
 
-    vim.cmd [[ imap <script><silent><nowait><expr> <C-y> codeium#Accept() ]]
+    -- vim.cmd [[ imap <script><silent><nowait><expr> <C-y> codeium#Accept() ]]
 
     -- chat-gpt
     wk.add({

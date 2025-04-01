@@ -13,18 +13,23 @@ vim.cmd [[hi! link @markup.raw.markdown_inline CodeBlock ]]
 vim.api.nvim_set_hl(0, "CursorLine", { bg = 'none', fg = 'none' })
 -- vim.api.nvim_set_hl(0, "CursorLineNr", { fg = colors.b_yellow, bg = 'none', blend = 0, force = true })
 vim.api.nvim_set_hl(0, "CursorLineNr", { fg = colors.green, bg = 'none', blend = 0, force = true })
-vim.api.nvim_set_hl(0, "Cursor", { fg = colors.red, bg = colors.green, blend = 100, force = true })
+vim.api.nvim_set_hl(0, "Cursor", { fg = colors.red, bg = colors.green, blend = 0, force = true })
 vim.api.nvim_set_hl(0, "CursorBlock", { fg = colors.green, bg = colors.green, blend = 0, force = true })
+vim.api.nvim_set_hl(0, "lCursor", { fg = colors.green, bg = colors.green, blend = 0, force = true })
 vim.api.nvim_set_hl(0, "iCursor", { fg = 'none', bg = colors.green, blend = 0, force = true })
 vim.api.nvim_set_hl(0, "TreesitterContextBottom", { underdashed = false, sp = colors.green, force = true })
 vim.api.nvim_set_hl(0, "Comment", { fg = util.darken(colors.blue, 0.7), italic = true })
 vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", { fg = util.darken(colors.blue, 0.7) })
 
 vim.cmd [[
-    set guicursor=n-v-c:blinkon0-CursorBlock
-    set guicursor+=i:hor20-iCursor
+    "set guicursor=n-v-c:blinkon0-CursorBlock
+    "set guicursor+=i:hor20-iCursor
     "set guicursor+=n-v-c:blinkon0
     "set guicursor+=i:blinkon0
+    set guicursor=n-v-c:block,i-ci-ve:ver50,r-cr:hor20,o:hor50
+		  \,a:blinkwait250-blinkoff250-blinkon250-Cursor/lCursor
+		  \,sm:block-blinkwait175-blinkoff150-blinkon175
+
 ]]
 
 -- selected winbar

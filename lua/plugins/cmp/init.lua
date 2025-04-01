@@ -125,8 +125,9 @@ local function config()
 
     local function get_sources()
         local mainGroup = {
-            { name = 'nvim_lsp', group_index = 0, max_item_count = 10 },
-            { name = 'path',     group_index = 1, max_item_count = 5 },
+            { name = 'nvim_lsp',                group_index = 0, max_item_count = 10 },
+            { name = 'nvim_lsp_signature_help', group_index = 1, max_item_count = 5 },
+            { name = 'path',                    group_index = 1, max_item_count = 5 },
             {
                 name = 'luasnip',
                 option = {
@@ -138,12 +139,11 @@ local function config()
             },
             -- { name = 'vsnip',                   group_index = 2, max_item_count = 2 },
             -- { name = 'snippy',                  group_index = 2, max_item_count = 2 },
-            { name = "dotenv",                  group_index = 2, max_item_count = 5 },
-            { name = 'emoji',                   group_index = 0, max_item_count = 5 },
-            { name = 'calc',                    group_index = 0, max_item_count = 5 },
-            { name = 'nvim_lsp_signature_help', group_index = 1, max_item_count = 5 },
-            { name = 'buffer',                  group_index = 2, max_item_count = 5 },
-            { name = 'treesitter',              group_index = 3, max_item_count = 5 },
+            { name = "dotenv",     group_index = 2, max_item_count = 5 },
+            { name = 'emoji',      group_index = 0, max_item_count = 5 },
+            { name = 'calc',       group_index = 0, max_item_count = 5 },
+            { name = 'buffer',     group_index = 2, max_item_count = 5 },
+            { name = 'treesitter', group_index = 3, max_item_count = 5 },
         }
 
         if conf.user.copilot.enabled then
@@ -153,7 +153,7 @@ local function config()
             table.insert(mainGroup, 1, { name = 'supermaven', group_index = 1, max_item_count = 5 })
         end
         if conf.user.codeium.enabled then
-            table.insert(mainGroup, 1, { name = 'codeium', group_index = 1, max_item_count = 3 })
+            table.insert(mainGroup, 3, { name = 'codeium', group_index = 1, max_item_count = 5 })
         end
 
         return cmp.config.sources(mainGroup)
