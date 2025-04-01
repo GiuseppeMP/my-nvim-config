@@ -258,3 +258,7 @@ vim.api.nvim_create_autocmd("Filetype", {
     pattern = "java",
     callback = jdtls_start_or_attach
 })
+vim.api.nvim_create_autocmd("Filetype", {
+    pattern = "groovy",
+    callback = jdtls_start_or_attach
+})
