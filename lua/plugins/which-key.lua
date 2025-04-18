@@ -388,6 +388,7 @@ local function config()
             mode = { "v", "n" },
             { "<leader>c",  group = "ChatGPT" },
             { "<leader>cc", "<cmd>ChatGPT<CR>",                                             desc = "ChatGPT Prompt" },
+            { "<c-g>",      "<cmd>ChatGPT<CR>",                                             desc = "ChatGPT Prompt" },
             { "<leader>ce", vim.cmd.ChatGPTEditWithInstruction,                             desc = "Edit with instruction" },
             -- {{ "<leader>cc", "ma<S-g><S-v>gg0",                                              desc = "Edit with instruction" },
             { "<leader>cg", function() vim.cmd.ChatGPTRun("grammar_correction") end,        desc = "Grammar Correction" },
