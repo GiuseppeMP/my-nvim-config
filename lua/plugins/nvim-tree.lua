@@ -1,6 +1,6 @@
 local icons = require 'user.icons'
 local W_RATIO = 0.7
-local H_RATIO = 0.9
+local H_RATIO = 0.8
 
 local function set_win()
     local lines = vim.opt.lines:get() - vim.opt.cmdheight:get()
