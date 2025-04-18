@@ -11,9 +11,10 @@ require("typescript-tools").setup {
     filetypes = {
         "typescript",
         "vue",
+        "javascript"
     },
     on_attach = on_attach_options.get({
-        inlay = false,
+        inlay = true,
         format_on_save = true,
         rename = true,
         format = true,
