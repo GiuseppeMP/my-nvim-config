@@ -25,9 +25,10 @@ utils.init_err_handler('rust_analyzer', function() require "plugins.lsp.rust_ana
 utils.init_err_handler('terraformls', function() require "plugins.lsp.terraformls" end)
 utils.init_err_handler('ts_ls', function() require "plugins.lsp.ts_ls" end)
 utils.init_err_handler('typescript-tools', function() require "plugins.lsp.typescript-tools" end)
+-- utils.init_err_handler('snyk-ls', function() require "plugins.lsp.snyk_ls" end)
 utils.init_err_handler('yamlls', function() require "plugins.lsp.yamlls" end)
 utils.init_err_handler('taplo', function() require "lspconfig".taplo.setup {} end)
-
+utils.init_err_handler('vtsls', function() require "plugins.lsp.vtsls" end)
 
 -- diagnostic signs
 vim.fn.sign_define(
