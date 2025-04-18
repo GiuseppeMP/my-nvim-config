@@ -52,6 +52,8 @@ local function config()
             { 'chrome-debug-adapter',            auto_update = true },
             { 'cucumber-language-server',        auto_update = true },
             { 'codelldb',                        auto_update = true },
+            { 'snyk-ls',                         auto_update = true },
+            { 'vtsls',                           auto_update = true },
         },
         auto_update = true,
         run_on_start = true,
