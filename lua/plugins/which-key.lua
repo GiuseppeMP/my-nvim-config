@@ -343,11 +343,29 @@ local function config()
             end,
             desc = "Go to previous lsp diagnostics."
         },
-        { "<Tab>", '<c-i>', desc = "Jump foward" },
+        -- { "<Tab>", '<c-i>', desc = "Jump foward" },
+
     })
 
-
     -- wk.add({
+    --     mode = { 'i' },
+    --     {
+    --         "<Tab>",
+    --         function()
+    --             local status = require('codeium.virtual_text').status().state
+    --             if (status == 'completions') then
+    --                 print(status)
+    --                 -- require('codeium.virtual_text').accept()
+    --                 require('codeium.virtual_text').accept()
+    --                 -- print(vim.inspect(require('codeium.virtual_text').get_current_completion_item()))
+    --             else
+    --                 return "<Tab>"
+    --             end
+    --         end,
+    --         desc = "Tab or accept"
+    --     },
+    -- })
+    -- -- wk.add({
     --     ["<leader>d"] = {
     --         h = { vim.cmd(":set statusline=%{synIDattr(synIDtrans(synID(line('.'),col('.'),1)),'name')}"),
     --             "Status line highlight cursor debug" }
