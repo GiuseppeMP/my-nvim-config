@@ -87,27 +87,28 @@ local function config()
                 i = cmp.mapping.abort(),
                 c = cmp.mapping.close(),
             },
-            -- ['<CR>'] = cmp.mapping.confirm({ select = false }),
-            ["<C-e>"] = cr,
             ["<C-;>"] = cmp.mapping(function(_)
-                -- close CMP
-                cmp.close()
-                -- Request completions immediately.
-                require('codeium.virtual_text').complete()
             end, { "i", "c" }),
+            -- ["<Tab>"] = cmp.mapping(function(fallback)
+            --     -- I known, you're reading this 1 == 2 now thinking I'm crazy.
+            --     if 1 == 2 then
+            --     elseif cmp.visible() and has_words_before_new() and not luasnip.expand_or_jumpable() then
+            --         select()
+            --     elseif luasnip.jumpable(1) then
+            --         luasnip.jump(1)
+            --     elseif luasnip.expand_or_jumpable() then
+            --         luasnip.expand_or_jump()
+            --     elseif luasnip.expand_or_locally_jumpable() then
+            --         luasnip.expand_or_locally_jump()
+            --     elseif cmp.visible() and luasnip.jumpable() then
+            --         select()
+            --     else
+            --         fallback()
+            --     end
+            -- end, { "i", "s" }),
             ["<Tab>"] = cmp.mapping(function(fallback)
-                -- I known, you're reading this 1 == 2 now thinking I'm crazy.
-                if 1 == 2 then
-                elseif cmp.visible() and has_words_before_new() and not luasnip.expand_or_jumpable() then
-                    select()
-                elseif luasnip.jumpable(1) then
-                    luasnip.jump(1)
-                elseif luasnip.expand_or_jumpable() then
-                    luasnip.expand_or_jump()
-                elseif luasnip.expand_or_locally_jumpable() then
-                    luasnip.expand_or_locally_jump()
-                elseif cmp.visible() and luasnip.jumpable() then
-                    select()
+                if (cmp.visible()) then
+                    cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace })
                 else
                     fallback()
                 end
@@ -153,7 +154,7 @@ local function config()
             table.insert(mainGroup, 1, { name = 'supermaven', group_index = 1, max_item_count = 5 })
         end
         if conf.user.codeium.enabled then
-            table.insert(mainGroup, 3, { name = 'codeium', group_index = 1, max_item_count = 5 })
+            table.insert(mainGroup, 3, { name = 'codeium', group_index = 1, max_item_count = 3 })
         end
 
         return cmp.config.sources(mainGroup)
