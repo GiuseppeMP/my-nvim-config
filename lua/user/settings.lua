@@ -1,15 +1,15 @@
 --
 -- General Settings
 --
-local o = vim.o -- For the opt
-local g = vim.g -- For the globals
+local o = vim.opt -- For the opt
+local g = vim.g   -- For the globals
+local dot = "·"
 -- local w = vim.wo -- For the window local options
 -- local b = vim.bo -- For the buffer local options
 
 o.termsync = true
 o.completeopt = "menu,menuone,noinsert"
 o.clipboard = 'unnamedplus'
-o.list = false
 o.autoindent = true
 o.cindent = true
 o.autoread = true
@@ -35,7 +35,7 @@ o.foldnestmax = 10
 o.foldenable = false
 o.foldlevel = 2
 o.updatetime = 500
-o.shortmess = o.shortmess .. 'cWt'
+-- o.shortmess = o.shortmess .. 'cWt'
 o.signcolumn = 'auto'
 -- o.signcolumn = 'auto:1-2'
 o.encoding = 'UTF-8'
@@ -62,14 +62,25 @@ o.laststatus = 3
 o.guifont = 'Lilex Nerd Font Mono'
 g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
+o.list = true
+vim.opt.listchars:append {
+    multispace = dot,
+    space = dot,
+    lead = " ",
+    eol = "↲",
+    tab = "» ",
+    nbsp = "␣",
+    trail = dot,
+    extends = "›",
+    precedes = "‹",
+}
 
-
--- vim.opt.fillchars = {
---     horiz     = '━',
---     horizup   = '┻',
---     horizdown = '┳',
---     vert      = '┃',
---     vertleft  = '┫',
---     vertright = '┣',
---     verthoriz = '╋',
--- }
+vim.opt.fillchars = {
+    horiz     = '━',
+    horizup   = '┻',
+    horizdown = '┳',
+    vert      = '┃',
+    vertleft  = '┫',
+    vertright = '┣',
+    verthoriz = '╋',
+}

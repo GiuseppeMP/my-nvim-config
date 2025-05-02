@@ -23,7 +23,7 @@ local function config()
             smart_rename = {
                 enable = true,
                 keymaps = {
-                    smart_rename = "gR",
+                    smart_rename = "grr",
                 },
             },
         },
@@ -154,15 +154,15 @@ local function config()
             [''] = 'rainbow-delimiters',
             lua = 'rainbow-blocks',
         },
-        highlight = {
-            'RainbowDelimiterRed',
-            'RainbowDelimiterYellow',
-            'RainbowDelimiterBlue',
-            'RainbowDelimiterOrange',
-            'RainbowDelimiterGreen',
-            'RainbowDelimiterViolet',
-            'RainbowDelimiterCyan',
-        },
+        -- highlight = {
+        --     'RainbowDelimiterRed',
+        --     'RainbowDelimiterYellow',
+        --     'RainbowDelimiterBlue',
+        --     'RainbowDelimiterOrange',
+        --     'RainbowDelimiterGreen',
+        --     'RainbowDelimiterViolet',
+        --     'RainbowDelimiterCyan',
+        -- },
     }
 end
 return {

@@ -1,4 +1,4 @@
-local tokyo_colors = require("tokyonight.colors").setup({
+local tokyo_colors = require("tokyonight.colors").setup {
     transparent = true,
     styles = {
         -- Style to be applied to different syntax groups
@@ -11,7 +11,7 @@ local tokyo_colors = require("tokyonight.colors").setup({
         sidebars = "transparent", -- style for sidebars, see below
         floats = "transparent",   -- style for floating windows
     }
-})
+}
 local util = require("tokyonight.util")
 local M = {}
 

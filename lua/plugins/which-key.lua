@@ -110,7 +110,7 @@ local function config()
         { '<leader>ud',  function() vim.cmd('Trouble diagnostics toggle') end,      desc = 'Show diagnostics panel' },
         { '<leader>uD',  vim.cmd.TodoLocList,                                       desc = 'Show comments diagnostics list' },
         { '<leader>um',  vim.cmd.MarkdownPreview,                                   desc = 'Markdown Preview' },
-        { '<leader>ua',  function() vim.cmd(":CellularAutomaton make_it_rain") end, desc = 'AFK' },
+        { '<leader>ux',  function() vim.cmd(":CellularAutomaton make_it_rain") end, desc = 'AFK' },
         { '<leader>uz',  telescope.extensions.zoxide.list,                          desc = 'Show zoxide directories' },
         { '<leader>uh',  builtin.highlights,                                        desc = "Highlights" },
         -- { '<leader>ua',  rest.run,                                                         desc = "Execure nvim rest request under cursor" },
@@ -173,8 +173,8 @@ local function config()
     wk.add({
         { mode = { 'n', 'i', 'v' } },
         -- { '<C-g>',                 function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, desc = 'Open harpoon menu' },
-        { '<C-e>',                 function() harpoon:list():next() end,                     desc = 'Go to harpoon next' },
-        { '<C-q>',                 function() harpoon:list():prev() end,                     desc = 'Go to harpoon prev' },
+        -- { '<C-e>',                 function() harpoon:list():next() end,                     desc = 'Go to harpoon next' },
+        -- { '<C-q>',                 function() harpoon:list():prev() end,                     desc = 'Go to harpoon prev' },
         { '<leader>1',             function() harpoon:list():select(1) end,                  desc = 'Go to harpoon mark 1' },
         { '<leader>2',             function() harpoon:list():select(2) end,                  desc = 'Go to harpoon mark 2' },
         { '<leader>3',             function() harpoon:list():select(3) end,                  desc = 'Go to harpoon mark 3' },
@@ -360,18 +360,19 @@ local function config()
         { "<c-;>", require('codeium.virtual_text').debounced_complete,                   desc = 'Codeium trigger suggestion' },
         { "<c-.>", function() require('codeium.virtual_text').cycle_or_complete(1) end,  desc = 'Codeium next suggestion' },
         { "<c-,>", function() require('codeium.virtual_text').cycle_or_complete(-1) end, desc = 'Codeium previous suggestion' },
+        -- { "<c-y>", function() require('codeium.virtual_text').complete() end,            desc = 'Codeium accept suggestion' },
 
     })
 
-    wk.add({
-        {
-            mode = { 'i', 'n' },
-            { "<c-y>", desc = 'Codeium accept suggestion' },
-            -- { "<c-/>", function() vim.fn['codeium#Clear']() end, desc = 'Codeium clear' },
-        }
-    })
+    -- wk.add({
+    --     {
+    --         mode = { 'i', 'n' },
+    --         -- { "<c-y>", desc = 'Codeium accept suggestion' },
+    --         -- { "<c-/>", function() vim.fn['codeium#Clear']() end, desc = 'Codeium clear' },
+    --     }
+    -- })
 
-    vim.cmd [[ imap <script><silent><nowait><expr> <C-y> codeium#Accept() ]]
+    -- vim.cmd [[ imap <script><silent><nowait><expr> <C-y> codeium#Accept() ]]
 
     -- chat-gpt
     wk.add({
@@ -387,7 +388,9 @@ local function config()
             mode = { "v", "n" },
             { "<leader>c",  group = "ChatGPT" },
             { "<leader>cc", "<cmd>ChatGPT<CR>",                                             desc = "ChatGPT Prompt" },
+            { "<c-g>",      "<cmd>ChatGPT<CR>",                                             desc = "ChatGPT Prompt" },
             { "<leader>ce", vim.cmd.ChatGPTEditWithInstruction,                             desc = "Edit with instruction" },
+            -- {{ "<leader>cc", "ma<S-g><S-v>gg0",                                              desc = "Edit with instruction" },
             { "<leader>cg", function() vim.cmd.ChatGPTRun("grammar_correction") end,        desc = "Grammar Correction" },
             { "<leader>ck", function() vim.cmd.ChatGPTRun("keywords") end,                  desc = "Keywords" },
             { "<leader>cd", function() vim.cmd.ChatGPTRun("docstring") end,                 desc = "Docstring" },
@@ -518,6 +521,7 @@ local function config()
         { '<leader>Dq', vim.cmd.DBUIClose,         desc = 'Close Dadbod' },
         { '<leader>Dr', vim.cmd.DBUIRenameBuffer,  desc = 'Rename DB buffer' },
         { '<leader>Di', vim.cmd.DBUILastQueryInfo, desc = 'Last query info' },
+        -- { '<leader>cc', ":@ <CR>",                 desc = 'Run last command' },
 
     })
     -- unimpaired remap
@@ -528,6 +532,8 @@ local function config()
         omap > ]
         xmap < [
         xmap > ]
+        noremap >> >>
+        noremap << <<
     ]]
 end
 return {

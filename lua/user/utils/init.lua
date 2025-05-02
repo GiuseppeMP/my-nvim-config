@@ -4,6 +4,7 @@ _G.conf = {}
 _G.conf.user = {}
 _G.dapui = {}
 _G.dapui.current_win = nil
+_G.nvim_utils = {}
 
 local status_ok, user_conf = pcall(require, "user.conf")
 if not status_ok then
@@ -133,3 +134,6 @@ _G.utils.init_err_handler = function(task_name, task)
 end
 
 _G.utils.log = require 'user.utils.log'
+
+_G.nvim_utils.minor = vim.version().minor
+_G.nvim_utils.major = vim.version().major

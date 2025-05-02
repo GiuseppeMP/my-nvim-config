@@ -16,4 +16,4 @@ local function config()
         }
     })
 end
-return { 'jose-elias-alvarez/null-ls.nvim', config = config }
+return { 'jose-elias-alvarez/null-ls.nvim', config = config, enabled=false }

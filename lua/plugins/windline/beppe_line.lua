@@ -22,44 +22,44 @@ local colors = {
     text = { 'black', 'white_light' },
 
     -- icons
-    DevIconDefault = { 'white', 'lbg_fix' },
-    DevIconLua = { 'white', 'lbg_fix' },
+    DevIconDefault = { 'white', 'bg' },
+    DevIconLua = { 'white', 'bg' },
 
     --- diagnostics
-    red = { 'red', 'lbg_fix' },
-    yellow = { 'yellow', 'lbg_fix' },
-    blue = { 'blue', 'lbg_fix' },
-    magenta = { 'magenta', 'lbg_fix' },
+    red = { 'red', 'none' },
+    yellow = { 'yellow', 'bg' },
+    blue = { 'blue', 'bg' },
+    magenta = { 'magenta', 'bg' },
     -- files
-    default = { 'bwhite', 'lbg_fix' },
-    virtual = { 'vgreen', 'lbg_fix' },
-    virtual_bg = { 'vgreen', 'lbg_fix' },
-    bubble_bg = { 'bgreen', 'lbg_fix' },
-    green = { 'green', 'lbg_fix' },
+    default = { 'bwhite', 'bg' },
+    virtual = { 'vgreen', 'bg' },
+    virtual_bg = { 'vgreen', 'bg' },
+    bubble_bg = { 'bgreen', 'bg' },
+    green = { 'green', 'bg' },
 
     -- ???
     Black = { 'white', 'bg' },
-    White = { 'black', 'white' },
+    White = { 'white', 'bg' },
     Inactive = { 'InactiveFg', 'InactiveBg' },
     Active = { 'ActiveFg', 'ActiveBg' },
-    Label = { 'lbg', 'bg' },
-    LabelOff = { 'white', 'lbg_fix' },
-    Divider = { 'lbg_fix', 'lbg_fix' },
-    label_red = { 'red', 'lbg_fix' },
-    label_yellow = { 'yellow', 'lbg_fix' },
-    label_blue = { 'blue', 'lbg_fix' },
+    Label = { 'bg', 'bg' },
+    LabelOff = { 'white', 'bg' },
+    Divider = { 'bg', 'bg' },
+    label_red = { 'red', 'bg' },
+    label_yellow = { 'yellow', 'bg' },
+    label_blue = { 'blue', 'bg' },
 
     -- VIM Modes
-    Normal = { 'red', 'lbg_fix' },
-    NormalOff = { 'lbg_fix', 'red_fix' },
-    Insert = { 'green', 'lbg_fix' },
-    InsertOff = { 'lbg_fix', 'green_fix' },
-    Visual = { 'yellow', 'lbg_fix' },
-    VisualOff = { 'lbg_fix', 'yellow_fix' },
-    Replace = { 'blue_light', 'lbg_fix' },
-    ReplaceOff = { 'lbg_fix', 'blue_light_fix' },
-    Command = { 'magenta', 'lbg_fix' },
-    CommandOff = { 'lbg_fix', 'magenta_fix' },
+    Normal = { 'red', 'none' },
+    NormalOff = { 'black', 'red' },
+    Insert = { 'green', 'none' },
+    InsertOff = { 'black', 'green' },
+    Visual = { 'yellow', 'none' },
+    VisualOff = { 'black', 'yellow' },
+    Replace = { 'blue_light', 'none' },
+    ReplaceOff = { 'black', 'blue_light' },
+    Command = { 'magenta', 'none' },
+    CommandOff = { 'black', 'magenta' },
     transparent = { 'none', 'none' },
 
 }
@@ -75,7 +75,7 @@ local lsp_comps = require('windline.components.lsp')
 local git_comps = require('windline.components.git')
 local vim_components = require('windline.components.vim')
 local hostname = vim.fn.hostname()
-local icon_comp = b_components.cache_file_icon({ default = ' ', hl_colors = { '', 'lbg_fix' } })
+local icon_comp = b_components.cache_file_icon({ default = ' ', hl_colors = { '', 'bg' } })
 
 -- get data/texts/variables
 local text_hostname = hostname
@@ -100,13 +100,13 @@ components.end_logo = {
         return {
             {
                 '  ',
-                state.mode[2] .. 'Off',
+                state.mode[2]
             },
             {
-                sep.right_rounded,
-                state.mode[2],
+                ' ',
+                state.mode[2] .. 'Off',
             },
-            { ' ', 'transparent' },
+            -- { ' ', 'transparent' },
         }
     end,
 }
@@ -138,9 +138,9 @@ components.vi_mode = {
     hl_colors = colors,
     text = function()
         return {
-            { '   ', 'transparent' },
-            { sep.left_rounded, state.mode[2] },
-            { padding(state.mode[1] .. ' ', 9), state.mode[2] .. 'Off' },
+            { ' ', 'transparent' },
+            { ' ', state.mode[2] .. 'Off' },
+            { ' ' .. padding(state.mode[1] .. ' ', 4), state.mode[2] },
             { ' 󰢩 ' .. text_hostname .. ' ', state.mode[2] },
         }
     end,
@@ -230,7 +230,7 @@ components.git = {
 local quickfix = {
     filetypes = { 'qf', 'Trouble' },
     active = {
-        { ' ', { 'dbg', 'dbg' } },
+        { ' ', { 'bg', 'bg' } },
         { sep.left_rounded, { 'bwhite', 'bg' } },
         { '🔥 Quickfix ', { 'black', 'bwhite' } },
         {
@@ -243,8 +243,8 @@ local quickfix = {
         components.divider,
         { ' ', { 'black', 'bwhite' } },
         { '%L 󱧖 ', { 'black', 'bwhite' } },
-        { sep.right_rounded, { 'bwhite', 'dbg' } },
-        { ' ', { 'black', 'dbg' } },
+        { sep.right_rounded, { 'bwhite', 'bg' } },
+        { ' ', { 'black', 'bg' } },
 
     },
     always_active = true,
@@ -268,9 +268,9 @@ components.gen_ai = {
     hl_colors = colors,
     text = function(_)
         return {
-            { ' ', state.mode[2], state.mode[2] },
-            { ' ', state.mode[2] },
-            { require('codeium.virtual_text').status_string, 'white' },
+            { ' ', state.mode[2] },
+            { '  ', state.mode[2] },
+            { padding(require('codeium.virtual_text').status_string(), 4), 'White' },
             { '   ', 'LabelOff' }
         }
     end,
@@ -300,7 +300,7 @@ components.battery = {
     width = default_width,
     text = function(_)
         return {
-            { ' ' .. require("battery").get_status_line() .. ' ', 'LabelOff' },
+            -- { ' ' .. require("battery").get_status_line() .. ' ', 'LabelOff' },
         }
     end,
 }
@@ -311,7 +311,7 @@ local default = {
         components.vi_mode,
         -- { git_comps.git_branch(),        { 'vgreen', 'bg' }, default_width },
         components.file,
-        { vim_components.search_count(), { 'yellow', 'lbg_fix' } },
+        { vim_components.search_count(), { 'yellow', 'bg' } },
         components.divider,
         components.gen_ai,
         components.lsp_name,
@@ -349,18 +349,10 @@ windline.setup({
         _colors.bgreen = '#98f3a1'
         _colors.vgreen = '#0db9d7'
         _colors.vgreen_bg = '#203346'
-        -- colors.bg = tokyo_colors.bg
-        -- colors.dbg = tokyo_colors.bg_dark
         _colors.bwhite = '#ffffff'
         _colors.white = '#B5BFDE'
-        -- _colors.white = user_colors.white
         _colors.bg = 'none'
-        _colors.dbg = 'none'
         _colors.none = 'none'
-        _colors.lbg = '#343855'
-        _colors.lbg_fix = '#1E2030'
-        -- transparent:
-        -- _colors.lbg_fix = _colors.bg
         return _colors
     end,
     statuslines = {

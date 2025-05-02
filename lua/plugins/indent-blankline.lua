@@ -3,7 +3,7 @@ return
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
     config = function()
-        local highlight = {
+        local highlight_rainbow = {
             "RainbowRed",
             "RainbowYellow",
             "RainbowBlue",
@@ -23,11 +23,34 @@ return
             vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
             vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
             vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+            vim.api.nvim_set_hl(0, "Darkspace", { fg = "#61AFEF", bg = 'none' })
         end)
 
-        vim.g.rainbow_delimiters = { highlight = highlight }
-        require("ibl").setup { scope = { highlight = highlight, enabled = false } }
+        vim.g.rainbow_delimiters = { highlight = highlight_rainbow }
 
+        local highlight = {
+            -- "Darkspace",
+            "Whitespace",
+        }
+        -- local ichar = "▓"
+        -- local ichar = "▌"
+        local ichar = "░"
+        require("ibl").setup {
+            indent = { highlight = highlight, char = ichar },
+            whitespace = {
+                highlight = highlight,
+                remove_blankline_trail = true,
+            },
+            scope = { highlight = highlight_rainbow, show_start = false, show_end = true, enabled = true },
+        }
         hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
+        hooks.register(
+            hooks.type.WHITESPACE,
+            hooks.builtin.hide_first_space_indent_level
+        )
+        hooks.register(
+            hooks.type.WHITESPACE,
+            hooks.builtin.hide_first_tab_indent_level
+        )
     end
 }
