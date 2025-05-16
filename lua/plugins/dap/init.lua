@@ -12,7 +12,52 @@ return {
         "theHamsta/nvim-dap-virtual-text",
         event = 'VeryLazy',
         config = function()
-            require('nvim-dap-virtual-text').setup {}
+            require('nvim-dap-virtual-text').setup {
+                virt_text_pos = 'inline',
+                all_frames = true,  -- show virtual text for all stack frames not only current. Only works for debugpy on my machine.
+                virt_lines = false, -- show virtual lines instead of virtual text (will flicker!)
+                -- virt_text_win_col = 80,
+                display_callback = function(variable, _buf, _stackframe, _node, _options)
+                    local name = variable.name
+                    local value = variable.value
+
+                    local function mask_secret(val)
+                        if #val > 5 then
+                            return val:sub(1, 3) .. string.rep("*", #val - 5) .. val:sub(-2)
+                        else
+                            return val
+                        end
+                    end
+
+                    local secret_patterns = {
+                        "[Pp]assword",
+                        "[Ss]ecret",
+                        "[Tt]oken",
+                        "[Kk]ey",
+                        "[Cc]redential",
+                        "[Aa]uth",
+                        ".*_pw",
+                        ".*_key",
+                        ".*_secret",
+                        ".*token.*"
+                    }
+
+                    for _, pattern in ipairs(secret_patterns) do
+                        if name:match(pattern) then
+                            return name .. " = " .. mask_secret(value)
+                        end
+                    end
+
+                    -- Truncate long values
+                    local max_len = 160
+                    if #value > max_len then
+                        value = value:sub(1, max_len) .. "..."
+                    end
+                    return ' = ' .. value:gsub("%s+", " ")
+
+                    -- return name .. " = " .. value
+                end,
+            }
         end
     },
     {
