@@ -91,3 +91,30 @@ i(',,', '<C-o>A,')
 
 i("<c-l>", "<Right>")
 i("<c-h>", "<Left>")
+
+-- Helper function to format the current buffer
+local function format_buffer()
+    vim.lsp.buf.format({ async = true })
+end
+
+-- Override normal mode paste `p` and `P`
+vim.keymap.set('n', 'p', function()
+    vim.api.nvim_feedkeys('p', 'n', false) -- do normal paste
+    vim.schedule(format_buffer)            -- schedule formatting after paste
+end, { noremap = true })
+
+vim.keymap.set('n', 'P', function()
+    vim.api.nvim_feedkeys('P', 'n', false) -- do normal paste
+    vim.schedule(format_buffer)
+end, { noremap = true })
+
+-- Override visual mode paste
+vim.keymap.set('x', 'p', function()
+    vim.api.nvim_feedkeys('p', 'x', false) -- visual paste
+    vim.schedule(format_buffer)
+end, { noremap = true })
+
+vim.keymap.set('x', 'P', function()
+    vim.api.nvim_feedkeys('P', 'x', false)
+    vim.schedule(format_buffer)
+end, { noremap = true })
