@@ -31,24 +31,33 @@ local java_snippets = {
             if class_name:match("Test$") then
                 -- Remove the "Test" suffix and use the remaining name as the variable name
                 local base_class_name = class_name:sub(1, -5) -- Remove "Test" from the name
-                return "private " .. base_class_name .. " " .. base_class_name:lower() .. ";"
+                local var_name = (base_class_name:gsub("^%u", string.lower))
+
+                return "private " .. base_class_name .. " " .. var_name .. " = new " .. base_class_name .. "();"
             else
                 return "" -- No extra line if the class name doesn't end with "Test"
             end
         end),
         t({ "", "    " }),
         -- Add empty line before the method
-        t({ "", "    @Test", "    public void should_" }),
+        t({ "", "    @Test", "    public void canary_test" }),
         -- Automatically generate method name from class name
-        f(function()
-            local class_name = vim.fn.expand("%:t:r")
-            return class_name:sub(1, -5):lower() .. "_" -- Generate the test method name (without "Test")
-        end),
-        i(1, "___"),                                    -- Stop cursor waiting method tst name
-        t({ "(" }),                                     -- Stop cursor waiting params declaration
+        -- f(function()
+        --     local class_name = vim.fn.expand("%:t:r")
+        --     return class_name:sub(1, -5) .. "_" -- Generate the test method name (without "Test")
+        -- end),
+        -- i(1, "___"), -- Stop cursor waiting method tst name
+        t({ "(" }), -- Stop cursor waiting params declaration
         i(2, ""),
         t({ ") {", "    " }),
-        t({ "   assertThat(car).isNotNull();" }),
+        t({ "   assertThat(" }),
+        f(function()
+            local class_name = vim.fn.expand("%:t:r")
+            local base_class_name = class_name:sub(1, -5) -- Remove "Test" from the name
+            local var_name = (base_class_name:gsub("^%u", string.lower))
+            return var_name
+        end),
+        t({ ").isNotNull();" }),
         t({ "", "       " }),
         i(0), -- Cursor for typing the method name
         t({ "", "    }", "}" }),
