@@ -15,9 +15,9 @@ require("typescript-tools").setup {
     },
     on_attach = on_attach_options.get({
         inlay = true,
-        format_on_save = true,
+        format_on_save = false,
         rename = true,
-        format = true,
+        format = false,
         lsp_client = 'typescript-tools'
     }),
 }
