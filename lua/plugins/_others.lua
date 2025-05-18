@@ -20,7 +20,24 @@ return {
     },
     {
         'nvim-pack/nvim-spectre',
-        config = function() require('spectre').setup() end,
+        config = function()
+            if (conf.so.is_mac) then
+                require("spectre").setup({
+                    replace_engine = {
+                        ["sed"] = {
+                            cmd = "sed",
+                            args = {
+                                "-i",
+                                "",
+                                "-E",
+                            },
+                        },
+                    },
+                })
+            else
+                require("spectre").setup()
+            end
+        end,
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
     { 'tpope/vim-fugitive' },
