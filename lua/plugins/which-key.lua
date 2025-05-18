@@ -424,27 +424,69 @@ local function config()
             { "<leader>cs", function() vim.cmd.ChatGPTRun("show_tests") end,                desc = "Show Tests" },
         },
     })
+
     function WrapWithBackticks()
         -- Get visual selection range
         local _, start_line, _, _ = unpack(vim.fn.getpos("'<"))
         local _, end_line, _, _ = unpack(vim.fn.getpos("'>"))
-        -- Prompt for language
-        local lang = vim.fn.input("Language Identifier (default: sh):")
-        if lang == "" then
-            lang = "sh"
-        end
+
+        -- Retrieve last used language or fallback to 'sh'
+        local bufnr = vim.api.nvim_get_current_buf()
+        local last_lang = vim.b[bufnr].last_code_lang or "sh"
+
+        -- Prompt with the last used language as default
+        local lang = vim.fn.input("Language:", last_lang)
+
+        -- Save the language for next time
+        vim.b[bufnr].last_code_lang = lang
+
         -- Insert ``` before and after selection
         vim.fn.append(start_line - 1, "```" .. lang)
         vim.fn.append(end_line + 1, "```")
 
-        -- Move cursor to the opening backtick
-        -- vim.api.nvim_win_set_cursor(0, { start_line, 4 })
+        vim.api.nvim_win_set_cursor(0, { end_line + 2, 0 })
+    end
 
-        -- Move cursor to the closing backtick
-        vim.api.nvim_win_set_cursor(0, { end_line + 2, 0 }) -- +2 accounts for both inserted lines
+    function WrapSmart()
+        local mode = vim.fn.mode()
 
-        -- Enter insert mode
-        -- vim.api.nvim_feedkeys("a", "n", true)
+        local bufnr = vim.api.nvim_get_current_buf()
+        local start_pos = vim.fn.getpos("'<")
+        local end_pos = vim.fn.getpos("'>")
+        local start_line, start_col = start_pos[2], start_pos[3]
+        local end_line, end_col = end_pos[2], end_pos[3]
+
+        -- Determine if it's a single line selection
+        local is_inline = start_line == end_line
+
+        local wrap_type = vim.fn.input("Wrap with (c)ode/(f)unction): ", "c")
+
+        if wrap_type == "f" then
+            if is_inline then
+                -- Get the line and replace selected part
+                local line = vim.api.nvim_buf_get_lines(bufnr, start_line - 1, start_line, false)[1]
+                local before = line:sub(1, start_col - 1)
+                local selection = line:sub(start_col, end_col)
+                local after = line:sub(end_col + 1)
+                local new_line = before .. "function() " .. selection .. " end" .. after
+                vim.api.nvim_buf_set_lines(bufnr, start_line - 1, start_line, false, { new_line })
+            else
+                -- Insert function wrapper
+                vim.fn.append(start_line - 1, "function()")
+                vim.fn.append(end_line + 1, "end")
+            end
+            vim.api.nvim_win_set_cursor(0, { end_line + 2, 0 })
+        else
+            -- code block wrapping (multiline)
+            local last_lang = vim.b[bufnr].last_code_lang or "sh"
+            local lang = vim.fn.input("Enter code block language: ", last_lang)
+            if lang == "" then lang = "sh" end
+            vim.b[bufnr].last_code_lang = lang
+
+            vim.fn.append(start_line - 1, "```" .. lang)
+            vim.fn.append(end_line + 1, "```")
+            vim.api.nvim_win_set_cursor(0, { end_line + 2, 0 })
+        end
     end
 
     -- <leader>s
@@ -466,7 +508,7 @@ local function config()
             mode = { "v", "s", "x" },
             { "<leader>sw", '<esc><cmd>lua require("spectre").open_visual()<CR>', desc = 'Search selected [w]ord' },
         })
-    vim.api.nvim_set_keymap("x", "<leader>sa", [[:lua WrapWithBackticks()<CR>]], { noremap = true, silent = true })
+    vim.api.nvim_set_keymap("x", "<leader>sa", [[:lua WrapSmart()<CR>]], { noremap = true, silent = true })
     vim.api.nvim_set_keymap("x", "<leader>sw", '<esc><cmd>lua require("spectre").open_visual()<CR>',
         { noremap = true, silent = true })
 
