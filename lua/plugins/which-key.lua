@@ -424,12 +424,33 @@ local function config()
             { "<leader>cs", function() vim.cmd.ChatGPTRun("show_tests") end,                desc = "Show Tests" },
         },
     })
+    function WrapWithBackticks()
+        -- Get visual selection range
+        local _, start_line, _, _ = unpack(vim.fn.getpos("'<"))
+        local _, end_line, _, _ = unpack(vim.fn.getpos("'>"))
+        -- Prompt for language
+        local lang = vim.fn.input("Language Identifier (default: sh):")
+        if lang == "" then
+            lang = "sh"
+        end
+        -- Insert ``` before and after selection
+        vim.fn.append(start_line - 1, "```" .. lang)
+        vim.fn.append(end_line + 1, "```")
+
+        -- Move cursor to the opening backtick
+        -- vim.api.nvim_win_set_cursor(0, { start_line, 4 })
+
+        -- Move cursor to the closing backtick
+        vim.api.nvim_win_set_cursor(0, { end_line + 2, 0 }) -- +2 accounts for both inserted lines
+
+        -- Enter insert mode
+        -- vim.api.nvim_feedkeys("a", "n", true)
+    end
 
     -- <leader>s
     wk.add({
             { "<leader>s",  group = "Search and Replace & Session Management", },
-
-            { "<leader>sa", vim.cmd.Alpha,                                                              desc = 'Session [a]lpha' },
+            -- { "<leader>sa", vim.cmd.Alpha,                                                              desc = 'Session [a]lpha' },
             { "<leader>sw", function() require("spectre").open_visual({ select_word = true }) end,      desc = 'Search selected [w]ord' },
             { "<leader>sr", '<cmd>lua require("spectre").toggle()<CR>',                                 desc = 'Search & [r]eplace' },
             -- TODO: sf not working
@@ -439,13 +460,15 @@ local function config()
             { "<leader>sd", function() require("persistence").stop() end,                               desc = "Session [d]isconnect" },
             { "<leader>sl", function() require("persistence").load() end,                               desc = 'Session [l]oad' },
             { "<leader>sL", function() require("persistence").load({ last = true }) end,                desc = 'Session [L]ast' },
-            { "<leader>sR", require 'user.utils.telescope_reload'.reload,                               desc = 'Session [R]eload configs' }
+            { "<leader>sR", require 'user.utils.telescope_reload'.reload,                               desc = 'Session [R]eload configs' },
         },
         {
             mode = { "v", "s", "x" },
             { "<leader>sw", '<esc><cmd>lua require("spectre").open_visual()<CR>', desc = 'Search selected [w]ord' },
         })
-
+    vim.api.nvim_set_keymap("x", "<leader>sa", [[:lua WrapWithBackticks()<CR>]], { noremap = true, silent = true })
+    vim.api.nvim_set_keymap("x", "<leader>sw", '<esc><cmd>lua require("spectre").open_visual()<CR>',
+        { noremap = true, silent = true })
 
 
 
