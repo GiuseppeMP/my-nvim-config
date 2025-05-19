@@ -8,7 +8,7 @@ local dot = "·"
 -- local b = vim.bo -- For the buffer local options
 
 o.termsync = true
-o.textwidth = 80
+-- o.textwidth = 80
 -- o.colorcolumn = "80"
 o.completeopt = "menu,menuone,noinsert"
 o.clipboard = 'unnamedplus'
