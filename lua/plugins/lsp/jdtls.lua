@@ -115,7 +115,8 @@ local function get_settings()
             -- Specify any completion options
             completion = {
                 favoriteStaticMembers = {
-                    "org.hamcrest.MatcherAssert.assertThat",
+                    "org.awaitility.Awaitility.*",
+                    "org.hamcrest.MatcherAssert.*",
                     "org.hamcrest.Matchers.*",
                     "org.hamcrest.CoreMatchers.*",
                     "org.junit.jupiter.api.Assertions.*",
