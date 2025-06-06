@@ -639,8 +639,10 @@ end
 function runNearestScenario()
     local testCommand = buildRunNeasterScenarioCmd()
     if testCommand ~= "" then
-        vim.cmd("botright 10new")       -- Open a new floating terminal window
-        vim.cmd("term " .. testCommand) -- Run the test command in the terminal
+        vim.cmd(
+            'FloatermNew --height=0.8 --width=0.8 --wintype=float --autoclose=0 --name=cucumber-tests --position=center ' ..
+            testCommand
+        )
     else
         print("No test command found for the current file type")
     end
@@ -658,20 +660,22 @@ end
 function runFeatureFileCmd()
     local testCommand = buildRunFeatureFileCmd()
     if testCommand ~= "" then
-        vim.cmd("botright 10new")       -- Open a new floating terminal window
-        vim.cmd("term " .. testCommand) -- Run the test command in the terminal
+        vim.cmd(
+            'FloatermNew --height=0.8 --width=0.8 --wintype=float --autoclose=0 --name=cucumber-tests --position=center ' ..
+            testCommand
+        )
     else
         print("No test command found for the current file type")
     end
 end
 
 vim.cmd("command! -nargs=0 RunFeatureFile :lua runFeatureFileCmd()")
-vim.cmd("command! -nargs=0 RunNeasterScenario :lua runNearestScenario()")
+vim.cmd("command! -nargs=0 RunNearestScenario :lua runNearestScenario()")
 
 vim.cmd([[
   augroup CucumberMappings
     autocmd!
-    autocmd FileType cucumber nnoremap <buffer> <leader>tt :RunNeasterScenario<CR>
+    autocmd FileType cucumber nnoremap <buffer> <leader>tt :RunNearestScenario<CR>
     autocmd FileType cucumber nnoremap <buffer> <leader>tf :RunFeatureFile<CR>
   augroup END
 ]])
