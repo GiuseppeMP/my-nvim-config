@@ -619,6 +619,64 @@ local function config()
         noremap << <<
     ]]
 end
+
+-- Function to build the test command
+local function buildRunNeasterScenarioCmd()
+    local filetype = vim.bo.filetype
+    local testCommand = ""
+    if filetype == "cucumber" then
+        local line_number = vim.fn.search('^scenario:', 'n')
+        if line_number > 0 then
+            testCommand = "npm run test:dev --feature " .. vim.fn.expand("%") .. ":" .. line_number
+        else
+            print("No scenario found in the current file")
+        end
+    end
+    return testCommand
+end
+
+-- Function to build and execute the test command
+function runNearestScenario()
+    local testCommand = buildRunNeasterScenarioCmd()
+    if testCommand ~= "" then
+        vim.cmd("botright 10new")       -- Open a new floating terminal window
+        vim.cmd("term " .. testCommand) -- Run the test command in the terminal
+    else
+        print("No test command found for the current file type")
+    end
+end
+
+local function buildRunFeatureFileCmd()
+    local filetype = vim.bo.filetype
+    local testCommand = ""
+    if filetype == "cucumber" then
+        testCommand = "npm run test:dev --feature " .. vim.fn.expand("%")
+    end
+    return testCommand
+end
+-- Function to build and print the test command for running the entire file
+function runFeatureFileCmd()
+    local testCommand = buildRunFeatureFileCmd()
+    if testCommand ~= "" then
+        vim.cmd("botright 10new")       -- Open a new floating terminal window
+        vim.cmd("term " .. testCommand) -- Run the test command in the terminal
+    else
+        print("No test command found for the current file type")
+    end
+end
+
+vim.cmd("command! -nargs=0 RunFeatureFile :lua runFeatureFileCmd()")
+vim.cmd("command! -nargs=0 RunNeasterScenario :lua runNearestScenario()")
+
+vim.cmd([[
+  augroup CucumberMappings
+    autocmd!
+    autocmd FileType cucumber nnoremap <buffer> <leader>tt :RunNeasterScenario<CR>
+    autocmd FileType cucumber nnoremap <buffer> <leader>tf :RunFeatureFile<CR>
+  augroup END
+]])
+
+
 return {
     { "folke/which-key.nvim", config = config }
 }
