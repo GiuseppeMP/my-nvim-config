@@ -1,11 +1,15 @@
----@diagnostic disable: unused-local, unused-function
+vim.opt.termguicolors = true
 local colors = require 'user.colors'.colors
-
 local function config()
-    vim.opt.termguicolors = true
     ---@diagnostic disable-next-line: undefined-field
-    local tokyo = { fg = colors.fg, bg = "none", sp = colors.sp }
-    local bar = { fg = colors.fg, bg = "none", sp = colors.sp }
+    local tokyo = {
+        fg = colors.fg,
+        bg = "NONE",
+        sp = "NONE",
+        ctermbg = "NONE", -- Only relevant in terminals with cterm (e.g. Vim, not Neovim GUI)
+        ctermfg = "NONE",
+    }
+    local bar = tokyo
     local offsets = {}
 
     -- for _, win in ipairs(vim.fn.getwininfo()) do
