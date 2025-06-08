@@ -609,14 +609,14 @@ local function config()
     })
     -- unimpaired remap
     vim.cmd [[
-        nmap < [
-        nmap > ]
-        omap < [
-        omap > ]
-        xmap < [
-        xmap > ]
-        noremap >> >>
-        noremap << <<
+        "nmap < [
+        "nmap > ]
+        "omap < [
+        "omap > ]
+        "xmap < [
+        "xmap > ]
+        "noremap >> >>
+        "noremap << <<
     ]]
 end
 
@@ -679,7 +679,6 @@ vim.cmd([[
     autocmd FileType cucumber nnoremap <buffer> <leader>tf :RunFeatureFile<CR>
   augroup END
 ]])
-
 
 return {
     { "folke/which-key.nvim", config = config }
