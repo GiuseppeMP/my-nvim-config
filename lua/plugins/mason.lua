@@ -66,9 +66,9 @@ local function config()
         automatic_installation = true,
     })
 
-    require("mason-lspconfig").setup {
-        ensure_installed = { "lua_ls", "rust_analyzer" },
-    }
+    -- require("mason-lspconfig").setup {
+    --     ensure_installed = { "lua_ls", "rust_analyzer" },
+    -- }
 end
 return {
     {

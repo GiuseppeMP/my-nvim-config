@@ -5,10 +5,9 @@ return {
     {
         'neovim/nvim-lspconfig',
         config = config,
-        lazy = false,
         dependencies = { 'mfussenegger/nvim-jdtls' }
     },
-    { 'mfussenegger/nvim-jdtls', lazy = false },
+    { 'mfussenegger/nvim-jdtls', dependencies = { 'neovim/nvim-lspconfig', 'williamboman/mason.nvim' } },
     {
         'mrcjkb/rustaceanvim',
         version = '^5', -- Recommended

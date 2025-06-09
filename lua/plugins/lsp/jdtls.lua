@@ -1,23 +1,27 @@
 local jdtls = require 'jdtls'
 local jdtls_tests = require 'jdtls.tests'
 local on_attach_options = require("plugins.lsp.utils.on_attach_options")
--- mason installations registry
-local mason_registry = require("mason-registry");
+require("mason")
 
 -- mason utils to get installation path
 local get_package_install_path = function(package_name)
-    return mason_registry.get_package(package_name):get_install_path()
+    return vim.fn.expand("$MASON/packages/" .. package_name)
 end
+-- print("mason package path: " .. path)
+-- return path
+-- mason installations registry
+-- local mason_registry = require("mason-registry");
+-- return mason_registry.get_package(package_name):get_install_path()
 
 -- home dir
 local home = os.getenv "HOME"
-local java_8 = os.getenv "JAVA_8"
-local java_11 = os.getenv "JAVA_11"
-local java_14 = os.getenv "JAVA_14"
-local java_17 = os.getenv "JAVA_17"
-local java_19 = os.getenv "JAVA_19"
+-- local java_8 = os.getenv "JAVA_8"
+-- local java_11 = os.getenv "JAVA_11"
+-- local java_14 = os.getenv "JAVA_14"
+-- local java_17 = os.getenv "JAVA_17"
+-- local java_19 = os.getenv "JAVA_19"
 local java_21 = os.getenv "JAVA_21"
-
+-- local java_21_jdtls = home .. "/.asdf/installs/java/corretto-21.0.6.7.1"
 
 -- maybe needs to improve marks because multimodule projects (maven/gradle)
 local root_markers = { 'pom.xml', 'gradlew', 'mvnw', '.git', 'settings.gradle', '.lsp_root' }
@@ -29,13 +33,22 @@ local root_dir = function() return require('jdtls.setup').find_root(root_markers
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 
 -- eclipse needs to create workspace settings folder, you can reset it using :JdtWipeDataAndRestart
-local workspace_folder = function() return vim.fn.stdpath "data" .. "/jdtls/workspace_root/" .. project_name end
+local workspace_folder = function()
+    local workspace = home .. "/.local/share/nvim/jdtls_workspaces/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
+    -- print(workspace)
+    return workspace
+    -- return vim.fn.stdpath "data" .. "/jdtls/workspace_root/" .. project_name
+end
+
 
 -- lombok jar path
 local lombok_jar = vim.fn.glob(home .. '/.config/nvim/lua/plugins/lsp/files/jdtls/lombok-*.jar')
+-- local lombok_jar = home .. "/Downloads/lombok.jar"
+-- print(lombok_jar)
 
 -- jdtls path
 local jdtls_path = get_package_install_path('jdtls')
+-- print(jdtls_path)
 
 -- WIP
 local go_to_with_options = function()
@@ -101,6 +114,7 @@ local function get_os_string()
     else
         os = "linux"
     end
+    -- print(os)
     return os
 end
 
@@ -111,7 +125,7 @@ local function get_settings()
     return {
         signature_help = { enabled = true },
         java = {
-            trace = { server = false },
+            trace = { server = true },
             -- Specify any completion options
             completion = {
                 favoriteStaticMembers = {
@@ -179,26 +193,26 @@ local function get_settings()
                     enabled = true
                 },
                 runtimes = {
-                    {
-                        name = "JavaSE-1.8",
-                        path = java_8,
-                    },
-                    {
-                        name = "JavaSE-11",
-                        path = java_11
-                    },
-                    {
-                        name = "JavaSE-14",
-                        path = java_14
-                    },
-                    {
-                        name = "JavaSE-17",
-                        path = java_17
-                    },
-                    {
-                        name = "JavaSE-19",
-                        path = java_19
-                    },
+                    -- {
+                    --     name = "JavaSE-1.8",
+                    --     path = java_8,
+                    -- },
+                    -- {
+                    --     name = "JavaSE-11",
+                    --     path = java_11
+                    -- },
+                    -- {
+                    --     name = "JavaSE-14",
+                    --     path = java_14
+                    -- },
+                    -- {
+                    --     name = "JavaSE-17",
+                    --     path = java_17
+                    -- },
+                    -- {
+                    --     name = "JavaSE-19",
+                    --     path = java_19
+                    -- },
                     {
                         name = "JavaSE-21",
                         default = true,
@@ -208,6 +222,16 @@ local function get_settings()
             }
         }
     }
+end
+local function getEclipseLauncherJar()
+    local eclipse_plugins = vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar")
+    -- print(eclipse_plugins)
+    return eclipse_plugins
+end
+local function getConfigurationPath()
+    local config_path = jdtls_path .. "/config_" .. get_os_string()
+    -- print(config_path)
+    return config_path
 end
 
 -- The command that starts the language server
@@ -229,8 +253,8 @@ local function get_cmd()
         '--add-opens', 'java.base/java.util=ALL-UNNAMED',
         '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
         '--add-exports', 'java.base/jdk.internal.misc=ALL-UNNAMED',
-        '-jar', vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar"),
-        '-configuration', jdtls_path .. "/config_" .. get_os_string(),
+        '-jar', getEclipseLauncherJar(),
+        '-configuration', getConfigurationPath(),
         '-data', workspace_folder(),
     }
 end
@@ -249,17 +273,17 @@ local jdtls_config = {
     }
 }
 -- Not working as expected
--- require('lspconfig').jdtls.setup(jdtls_config)
+require('lspconfig').jdtls.setup(jdtls_config)
 
-local function jdtls_start_or_attach()
-    jdtls.start_or_attach(jdtls_config)
-end
+-- local function jdtls_start_or_attach()
+--     jdtls.start_or_attach(jdtls_config)
+-- end
 
-vim.api.nvim_create_autocmd("Filetype", {
-    pattern = "java",
-    callback = jdtls_start_or_attach
-})
-vim.api.nvim_create_autocmd("Filetype", {
-    pattern = "groovy",
-    callback = jdtls_start_or_attach
-})
+-- vim.api.nvim_create_autocmd("Filetype", {
+--     pattern = "java",
+--     callback = jdtls_start_or_attach
+-- })
+-- vim.api.nvim_create_autocmd("Filetype", {
+--     pattern = "groovy",
+--     callback = jdtls_start_or_attach
+-- })
