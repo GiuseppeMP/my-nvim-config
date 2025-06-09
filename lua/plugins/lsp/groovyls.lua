@@ -1,13 +1,14 @@
 local on_attach_options = require("plugins.lsp.utils.on_attach_options")
 local capabilities_options = require("plugins.lsp.utils.capabilities_options")
 local lspconfig = require 'lspconfig'
-
--- mason installations registry
-local mason_registry = require("mason-registry");
+require "mason"
 
 -- mason utils to get installation path
 local get_package_install_path = function(package_name)
-    return mason_registry.get_package(package_name):get_install_path()
+    return vim.fn.expand("$MASON/packages/" .. package_name)
+    -- mason installations registry
+    -- local mason_registry = require("mason-registry");
+    -- return mason_registry.get_package(package_name):get_install_path()
 end
 
 local groovyls_exec = get_package_install_path('groovy-language-server')
