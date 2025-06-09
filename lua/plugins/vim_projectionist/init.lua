@@ -18,5 +18,5 @@ local function config()
 end
 
 return {
-    { 'tpope/vim-projectionist', event = 'VeryLazy', config = config },
+    { 'tpope/vim-projectionist', config = config },
 }
