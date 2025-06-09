@@ -1,4 +1,15 @@
 vim.opt.termguicolors = true
+vim.o.winblend = 0
+vim.o.pumblend = 0
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
+vim.api.nvim_set_hl(0, "VertSplit", { bg = "none" })
+
+for _, group in ipairs(vim.fn.getcompletion("BufferLine", "highlight")) do
+    vim.api.nvim_set_hl(0, group, { bg = "none", nocombine = true, force = true })
+end
+
 local colors = require 'user.colors'.colors
 local function config()
     ---@diagnostic disable-next-line: undefined-field
@@ -8,6 +19,8 @@ local function config()
         sp = "NONE",
         ctermbg = "NONE", -- Only relevant in terminals with cterm (e.g. Vim, not Neovim GUI)
         ctermfg = "NONE",
+        nocombine = false,
+        force = true
     }
     local bar = tokyo
     local offsets = {}
@@ -70,7 +83,8 @@ local function config()
             right_mouse_command = "Bdelete! %d",
             left_mouse_command = "buffer %d",
             middle_mouse_command = nil,
-            indicator = 'none',
+            indicator_icon = '',
+            -- indicator = 'none',
             -- indicator = diagnostics_indicator,
             buffer_close_icon = '',
             modified_icon = "●",
@@ -79,11 +93,12 @@ local function config()
             right_trunc_marker = "",
             max_name_length = 30,
             max_prefix_length = 30, -- prefix used when a buffer is de-duplicated
-            tab_size = 20,
+            tab_size = 25,
             diagnostics = "nvim_lsp",
             offsets = { {
                 filetype = "NvimTree",
                 text = '~ File Explorer ~',
+                -- text_align = "center",
                 text_align = "center",
                 highlight = "NvimTreeDirectoryBufferline",
                 padding = 0,
