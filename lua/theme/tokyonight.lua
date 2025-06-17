@@ -1,11 +1,13 @@
 return {
     {
         "folke/tokyonight.nvim",
+        enabled = true,
         config = function()
             require('tokyonight').setup({
                 style = 'moon',
                 transparent = true,
                 transparent_sidebar = true,
+                terminal_colors = true,
                 styles = {
                     comments = { italic = true },
                     keywords = { italic = true },

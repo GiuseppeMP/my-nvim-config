@@ -94,24 +94,22 @@ require("dapui").setup({
     expand_lines = vim.fn.has("nvim-0.7") == 1,
     layouts = {
         {
+            -- Left panel: Watches only
             elements = {
-                -- Elements can be strings or table with id and size keys.
-                "breakpoints",
-                { id = "scopes", size = 0.25 },
-                "watches",
-                "stacks",
+                { id = "scopes",  size = 0.5 },
+                { id = "watches", size = 0.5 },
             },
-            size = 40,
+            size = 45, -- width in columns
             position = "left",
         },
         {
+            -- Bottom panel: Scopes (variables) and Console
             elements = {
-                "console",
+                { id = "console" },
             },
-            size = 0.25, -- 25% of total lines
+            size = 7, -- height in lines
             position = "bottom",
-        },
-    },
+        }, },
     controls = {
         -- Requires Neovim nightly (or 0.8 when released)
         enabled = true,
@@ -138,7 +136,50 @@ require("dapui").setup({
     },
     render = {
         indent = 1,
-        max_value_lines = 100
+        max_value_lines = 2,
+        format = function(value, variable)
+            local max_visible = 80
+
+            -- Define your regex pattern to match secret-like variable names
+            local secret_patterns = {
+                "[Pp]assword",
+                "[Ss]ecret",
+                "[Tt]oken",
+                "[Kk]ey",
+                "[Cc]redential",
+                "[Aa]uth",
+                ".*_pw",
+                ".*_key",
+                ".*_secret",
+                ".*token.*",
+                ".*pass.*",
+                ".*Bearer.*"
+            }
+
+            local function is_secret(name)
+                for _, pattern in ipairs(secret_patterns) do
+                    if name:match(pattern) then
+                        return true
+                    end
+                end
+                return false
+            end
+
+            -- Mask if variable name matches secret pattern
+            if is_secret(variable.name) and type(value) == "string" and #value > 5 then
+                local first = value:sub(1, 3)
+                local last = value:sub(-2)
+                local masked = string.rep("*", #value - 5)
+                return first .. masked .. last
+            end
+
+            -- Truncate if too long
+            if type(value) == "string" and #value > max_visible then
+                return value:sub(1, max_visible) .. "..."
+            end
+
+            return value
+        end,
     }
 })
 

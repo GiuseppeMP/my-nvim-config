@@ -8,6 +8,8 @@ local dot = "·"
 -- local b = vim.bo -- For the buffer local options
 
 o.termsync = true
+-- o.textwidth = 80
+-- o.colorcolumn = "80"
 o.completeopt = "menu,menuone,noinsert"
 o.clipboard = 'unnamedplus'
 o.autoindent = true
@@ -75,12 +77,21 @@ vim.opt.listchars:append {
     precedes = "‹",
 }
 
+-- vim.opt.fillchars = {
+--     horiz     = '━',
+--     horizup   = '┻',
+--     horizdown = '┳',
+--     vert      = '┃',
+--     vertleft  = '┫',
+--     vertright = '┣',
+--     verthoriz = '╋',
+-- }
 vim.opt.fillchars = {
-    horiz     = '━',
-    horizup   = '┻',
-    horizdown = '┳',
-    vert      = '┃',
-    vertleft  = '┫',
-    vertright = '┣',
-    verthoriz = '╋',
+    horiz     = '─',
+    horizup   = '┴',
+    horizdown = '┬',
+    vert      = '│',
+    vertleft  = '┤',
+    vertright = '├',
+    verthoriz = '┼',
 }

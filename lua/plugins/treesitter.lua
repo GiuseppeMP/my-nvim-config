@@ -106,10 +106,10 @@ local function config()
                     ["[L"] = { query = "@loop.outer", desc = "Prev loop end" },
                 }, }
         },
-        ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-        sync_install = false,     -- install languages synchronously (only applied to `ensure_installed`)
+        ensure_installed = "all",    -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+        sync_install = false,        -- install languages synchronously (only applied to `ensure_installed`)
         auto_install = true,
-        ignore_install = { "" },  -- List of parsers to ignore installing
+        ignore_install = { "ipkg" }, -- List of parsers to ignore installing
         autopairs = { enable = true, },
         highlight = {
             enable = true,    -- false will disable the whole extension

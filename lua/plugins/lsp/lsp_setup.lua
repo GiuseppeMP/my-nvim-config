@@ -23,12 +23,12 @@ utils.init_err_handler('marksman', function() require "plugins.lsp.marksman" end
 utils.init_err_handler('pyright', function() require "plugins.lsp.pyright" end)
 utils.init_err_handler('rust_analyzer', function() require "plugins.lsp.rust_analyzer" end)
 utils.init_err_handler('terraformls', function() require "plugins.lsp.terraformls" end)
-utils.init_err_handler('ts_ls', function() require "plugins.lsp.ts_ls" end)
+-- utils.init_err_handler('ts_ls', function() require "plugins.lsp.ts_ls" end)
 utils.init_err_handler('typescript-tools', function() require "plugins.lsp.typescript-tools" end)
 -- utils.init_err_handler('snyk-ls', function() require "plugins.lsp.snyk_ls" end)
 utils.init_err_handler('yamlls', function() require "plugins.lsp.yamlls" end)
 utils.init_err_handler('taplo', function() require "lspconfig".taplo.setup {} end)
-utils.init_err_handler('vtsls', function() require "plugins.lsp.vtsls" end)
+-- utils.init_err_handler('vtsls', function() require "plugins.lsp.vtsls" end)
 
 -- diagnostic signs
 vim.fn.sign_define(

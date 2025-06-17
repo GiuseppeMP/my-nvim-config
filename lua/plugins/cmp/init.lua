@@ -89,30 +89,30 @@ local function config()
             },
             ["<C-;>"] = cmp.mapping(function(_)
             end, { "i", "c" }),
-            -- ["<Tab>"] = cmp.mapping(function(fallback)
-            --     -- I known, you're reading this 1 == 2 now thinking I'm crazy.
-            --     if 1 == 2 then
-            --     elseif cmp.visible() and has_words_before_new() and not luasnip.expand_or_jumpable() then
-            --         select()
-            --     elseif luasnip.jumpable(1) then
-            --         luasnip.jump(1)
-            --     elseif luasnip.expand_or_jumpable() then
-            --         luasnip.expand_or_jump()
-            --     elseif luasnip.expand_or_locally_jumpable() then
-            --         luasnip.expand_or_locally_jump()
-            --     elseif cmp.visible() and luasnip.jumpable() then
-            --         select()
-            --     else
-            --         fallback()
-            --     end
-            -- end, { "i", "s" }),
             ["<Tab>"] = cmp.mapping(function(fallback)
-                if (cmp.visible()) then
-                    cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace })
+                -- I known, you're reading this 1 == 2 now thinking I'm crazy.
+                if 1 == 2 then
+                elseif cmp.visible() and has_words_before_new() and not luasnip.expand_or_jumpable() then
+                    select()
+                elseif luasnip.jumpable(1) then
+                    luasnip.jump(1)
+                elseif luasnip.expand_or_jumpable() then
+                    luasnip.expand_or_jump()
+                elseif luasnip.expand_or_locally_jumpable() then
+                    luasnip.expand_or_locally_jump()
+                elseif cmp.visible() and luasnip.jumpable() then
+                    select()
                 else
                     fallback()
                 end
             end, { "i", "s" }),
+            -- ["<Tab>"] = cmp.mapping(function(fallback)
+            --     if (cmp.visible()) then
+            --         cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace })
+            --     else
+            --         fallback()
+            --     end
+            -- end, { "i", "s" }),
 
             ["<S-Tab>"] = cmp.mapping(function(fallback)
                 if luasnip.jumpable(-1) then

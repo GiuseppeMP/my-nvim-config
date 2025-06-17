@@ -52,7 +52,7 @@ i("jk", "<ESC>")
 v("<", "<gv")
 v(">", ">gv")
 
-x("p", '"_dP"')
+-- x("p", '"_dP"')
 
 
 -- Manter o cursor centralizado.

@@ -144,7 +144,7 @@ M.get = function(params)
         -- inlay hint default false
         if params.inlay ~= nil and params.inlay then
             utils.log.info('Inlay hints enabled: ' .. client.name)
-            vim.lsp.inlay_hint.enable(bufnr, true)
+            vim.lsp.inlay_hint.enable(true)
         end
 
         -- custom shiftwidth

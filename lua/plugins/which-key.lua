@@ -343,11 +343,29 @@ local function config()
             end,
             desc = "Go to previous lsp diagnostics."
         },
-        { "<Tab>", '<c-i>', desc = "Jump foward" },
+        -- { "<Tab>", '<c-i>', desc = "Jump foward" },
+
     })
 
-
     -- wk.add({
+    --     mode = { 'i' },
+    --     {
+    --         "<Tab>",
+    --         function()
+    --             local status = require('codeium.virtual_text').status().state
+    --             if (status == 'completions') then
+    --                 print(status)
+    --                 -- require('codeium.virtual_text').accept()
+    --                 require('codeium.virtual_text').accept()
+    --                 -- print(vim.inspect(require('codeium.virtual_text').get_current_completion_item()))
+    --             else
+    --                 return "<Tab>"
+    --             end
+    --         end,
+    --         desc = "Tab or accept"
+    --     },
+    -- })
+    -- -- wk.add({
     --     ["<leader>d"] = {
     --         h = { vim.cmd(":set statusline=%{synIDattr(synIDtrans(synID(line('.'),col('.'),1)),'name')}"),
     --             "Status line highlight cursor debug" }
@@ -407,11 +425,74 @@ local function config()
         },
     })
 
+    function WrapWithBackticks()
+        -- Get visual selection range
+        local _, start_line, _, _ = unpack(vim.fn.getpos("'<"))
+        local _, end_line, _, _ = unpack(vim.fn.getpos("'>"))
+
+        -- Retrieve last used language or fallback to 'sh'
+        local bufnr = vim.api.nvim_get_current_buf()
+        local last_lang = vim.b[bufnr].last_code_lang or "sh"
+
+        -- Prompt with the last used language as default
+        local lang = vim.fn.input("Language:", last_lang)
+
+        -- Save the language for next time
+        vim.b[bufnr].last_code_lang = lang
+
+        -- Insert ``` before and after selection
+        vim.fn.append(start_line - 1, "```" .. lang)
+        vim.fn.append(end_line + 1, "```")
+
+        vim.api.nvim_win_set_cursor(0, { end_line + 2, 0 })
+    end
+
+    function WrapSmart()
+        local mode = vim.fn.mode()
+
+        local bufnr = vim.api.nvim_get_current_buf()
+        local start_pos = vim.fn.getpos("'<")
+        local end_pos = vim.fn.getpos("'>")
+        local start_line, start_col = start_pos[2], start_pos[3]
+        local end_line, end_col = end_pos[2], end_pos[3]
+
+        -- Determine if it's a single line selection
+        local is_inline = start_line == end_line
+
+        local wrap_type = vim.fn.input("Wrap with (c)ode/(f)unction): ", "c")
+
+        if wrap_type == "f" then
+            if is_inline then
+                -- Get the line and replace selected part
+                local line = vim.api.nvim_buf_get_lines(bufnr, start_line - 1, start_line, false)[1]
+                local before = line:sub(1, start_col - 1)
+                local selection = line:sub(start_col, end_col)
+                local after = line:sub(end_col + 1)
+                local new_line = before .. "function() " .. selection .. " end" .. after
+                vim.api.nvim_buf_set_lines(bufnr, start_line - 1, start_line, false, { new_line })
+            else
+                -- Insert function wrapper
+                vim.fn.append(start_line - 1, "function()")
+                vim.fn.append(end_line + 1, "end")
+            end
+            vim.api.nvim_win_set_cursor(0, { end_line + 2, 0 })
+        else
+            -- code block wrapping (multiline)
+            local last_lang = vim.b[bufnr].last_code_lang or "sh"
+            local lang = vim.fn.input("Enter code block language: ", last_lang)
+            if lang == "" then lang = "sh" end
+            vim.b[bufnr].last_code_lang = lang
+
+            vim.fn.append(start_line - 1, "```" .. lang)
+            vim.fn.append(end_line + 1, "```")
+            vim.api.nvim_win_set_cursor(0, { end_line + 2, 0 })
+        end
+    end
+
     -- <leader>s
     wk.add({
             { "<leader>s",  group = "Search and Replace & Session Management", },
-
-            { "<leader>sa", vim.cmd.Alpha,                                                              desc = 'Session [a]lpha' },
+            -- { "<leader>sa", vim.cmd.Alpha,                                                              desc = 'Session [a]lpha' },
             { "<leader>sw", function() require("spectre").open_visual({ select_word = true }) end,      desc = 'Search selected [w]ord' },
             { "<leader>sr", '<cmd>lua require("spectre").toggle()<CR>',                                 desc = 'Search & [r]eplace' },
             -- TODO: sf not working
@@ -421,13 +502,15 @@ local function config()
             { "<leader>sd", function() require("persistence").stop() end,                               desc = "Session [d]isconnect" },
             { "<leader>sl", function() require("persistence").load() end,                               desc = 'Session [l]oad' },
             { "<leader>sL", function() require("persistence").load({ last = true }) end,                desc = 'Session [L]ast' },
-            { "<leader>sR", require 'user.utils.telescope_reload'.reload,                               desc = 'Session [R]eload configs' }
+            { "<leader>sR", require 'user.utils.telescope_reload'.reload,                               desc = 'Session [R]eload configs' },
         },
         {
             mode = { "v", "s", "x" },
             { "<leader>sw", '<esc><cmd>lua require("spectre").open_visual()<CR>', desc = 'Search selected [w]ord' },
         })
-
+    vim.api.nvim_set_keymap("x", "<leader>sa", [[:lua WrapSmart()<CR>]], { noremap = true, silent = true })
+    vim.api.nvim_set_keymap("x", "<leader>sw", '<esc><cmd>lua require("spectre").open_visual()<CR>',
+        { noremap = true, silent = true })
 
 
 
@@ -526,16 +609,77 @@ local function config()
     })
     -- unimpaired remap
     vim.cmd [[
-        nmap < [
-        nmap > ]
-        omap < [
-        omap > ]
-        xmap < [
-        xmap > ]
-        noremap >> >>
-        noremap << <<
+        "nmap < [
+        "nmap > ]
+        "omap < [
+        "omap > ]
+        "xmap < [
+        "xmap > ]
+        "noremap >> >>
+        "noremap << <<
     ]]
 end
+
+-- Function to build the test command
+local function buildRunNeasterScenarioCmd()
+    local filetype = vim.bo.filetype
+    local testCommand = ""
+    if filetype == "cucumber" then
+        local line_number = vim.fn.search('^scenario:', 'n')
+        if line_number > 0 then
+            testCommand = "npm run test:dev --feature " .. vim.fn.expand("%") .. ":" .. line_number
+        else
+            print("No scenario found in the current file")
+        end
+    end
+    return testCommand
+end
+
+-- Function to build and execute the test command
+function runNearestScenario()
+    local testCommand = buildRunNeasterScenarioCmd()
+    if testCommand ~= "" then
+        vim.cmd(
+            'FloatermNew --height=0.8 --width=0.8 --wintype=float --autoclose=0 --name=cucumber-tests --position=center ' ..
+            testCommand
+        )
+    else
+        print("No test command found for the current file type")
+    end
+end
+
+local function buildRunFeatureFileCmd()
+    local filetype = vim.bo.filetype
+    local testCommand = ""
+    if filetype == "cucumber" then
+        testCommand = "npm run test:dev --feature " .. vim.fn.expand("%")
+    end
+    return testCommand
+end
+-- Function to build and print the test command for running the entire file
+function runFeatureFileCmd()
+    local testCommand = buildRunFeatureFileCmd()
+    if testCommand ~= "" then
+        vim.cmd(
+            'FloatermNew --height=0.8 --width=0.8 --wintype=float --autoclose=0 --name=cucumber-tests --position=center ' ..
+            testCommand
+        )
+    else
+        print("No test command found for the current file type")
+    end
+end
+
+vim.cmd("command! -nargs=0 RunFeatureFile :lua runFeatureFileCmd()")
+vim.cmd("command! -nargs=0 RunNearestScenario :lua runNearestScenario()")
+
+vim.cmd([[
+  augroup CucumberMappings
+    autocmd!
+    autocmd FileType cucumber nnoremap <buffer> <leader>tt :RunNearestScenario<CR>
+    autocmd FileType cucumber nnoremap <buffer> <leader>tf :RunFeatureFile<CR>
+  augroup END
+]])
+
 return {
     { "folke/which-key.nvim", config = config }
 }
