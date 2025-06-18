@@ -2,7 +2,7 @@
     "show_tests": {
         "type": "chat",
         "opts": {
-        "title": " Show potential tests",
+            "title": " Show potential tests",
             "template": "Implement tests for the following code.\n\nCode:\n```{{filetype}}\n{{input}}\n```\n\nTests:\n```{{filetype}}",
             "strategy": "display",
             "params": {
@@ -10,6 +10,26 @@
                 "stop": [
                     "```"
                 ]
+            }
+        }
+    },
+    "translate_into_spanish": {
+        "type": "chat",
+        "opts": {
+            "template": "Correct this to standard, not so formal into Spanish :\n\n{{input}}",
+            "strategy": "replace",
+            "params": {
+                "model": "gpt-3.5-turbo"
+            }
+        }
+    },
+    "translate_into_italian": {
+        "type": "chat",
+        "opts": {
+            "template": "Correct this to standard, not so formal into Italian :\n\n{{input}}",
+            "strategy": "replace",
+            "params": {
+                "model": "gpt-3.5-turbo"
             }
         }
     }
