@@ -105,7 +105,8 @@
         "require",
         "Jupynium_start_sync",
         "utils",
-        "conf"
+        "conf",
+        "MiniFiles"
     ],
     "diagnostics.disable": [
         "need-check-nil",
