@@ -228,7 +228,7 @@ local function config()
         { "<leader>t",  group = "[t]esting" },
         { '<leader>tb', vim.cmd.TagbarToggle,                                 desc = 'Toggle tagbar' },
         { "<leader>tt", test_nearest,                                         desc = 'Run nearest [t]est' },
-        { "<leader>tc", test_class,                                           desc = 'Run [c]lasstests with vim-test' },
+        -- { "<leader>tc", test_class,                                           desc = 'Run [c]lasstests with vim-test' },
         { "<leader>tf", test_file,                                            desc = 'Run [f]ile test' },
         { "<leader>ta", test_suite,                                           desc = 'Run [s]uite tests' },
         { "<leader>td", function() neotest.run.run({ strategy = 'dap' }) end, desc = '[d]ebug nearest test' },
@@ -404,24 +404,26 @@ local function config()
     wk.add({
         {
             mode = { "v", "n" },
-            { "<leader>c",  group = "ChatGPT" },
-            { "<leader>cc", "<cmd>ChatGPT<CR>",                                             desc = "ChatGPT Prompt" },
-            { "<c-g>",      "<cmd>ChatGPT<CR>",                                             desc = "ChatGPT Prompt" },
-            { "<leader>ce", vim.cmd.ChatGPTEditWithInstruction,                             desc = "Edit with instruction" },
+            { "<leader>c",   group = "ChatGPT" },
+            { "<leader>cc",  "<cmd>ChatGPT<CR>",                                             desc = "ChatGPT Prompt" },
+            { "<c-g>",       "<cmd>ChatGPT<CR>",                                             desc = "ChatGPT Prompt" },
+            { "<leader>ce",  vim.cmd.ChatGPTEditWithInstruction,                             desc = "Edit with instruction" },
             -- {{ "<leader>cc", "ma<S-g><S-v>gg0",                                              desc = "Edit with instruction" },
-            { "<leader>cg", function() vim.cmd.ChatGPTRun("grammar_correction") end,        desc = "Grammar Correction" },
-            { "<leader>ck", function() vim.cmd.ChatGPTRun("keywords") end,                  desc = "Keywords" },
-            { "<leader>cd", function() vim.cmd.ChatGPTRun("docstring") end,                 desc = "Docstring" },
-            { "<leader>co", function() vim.cmd.ChatGPTRun("optimize_code") end,             desc = "Optimize Code" },
-            { "<leader>cz", function() vim.cmd.ChatGPTRun("summarize") end,                 desc = "Summarize" },
-            { "<leader>cb", function() vim.cmd.ChatGPTRun("fix_bugs") end,                  desc = "Fix Bugs" },
-            { "<leader>cx", function() vim.cmd.ChatGPTRun("explain_code") end,              desc = "Explain Code" },
-            { "<leader>cr", function() vim.cmd.ChatGPTRun("roxygen_edit") end,              desc = "Roxygen Edit" },
-            { "<leader>cl", function() vim.cmd.ChatGPTRun("code_readability_analysis") end, desc = "Code Readability Analysis" },
-            { "<leader>ct", function() vim.cmd.ChatGPTRun("translate") end,                 desc = "Translate" },
-            { "<leader>ci", vim.cmd.ChatGPTActAs,                                           desc = "Impersonate, Act as.." },
-            { "<leader>cu", function() vim.cmd.ChatGPTRun("add_tests") end,                 desc = "Add Unit Tests" },
-            { "<leader>cs", function() vim.cmd.ChatGPTRun("show_tests") end,                desc = "Show Tests" },
+            { "<leader>cgg", function() vim.cmd.ChatGPTRun("grammar_correction") end,        desc = "Grammar Correction" },
+            { "<leader>cgi", function() vim.cmd.ChatGPTRun("translate_into_italian") end,    desc = "Italian Translation" },
+            { "<leader>cgs", function() vim.cmd.ChatGPTRun("translate_into_spanish") end,    desc = "Spanish Translation" },
+            { "<leader>ck",  function() vim.cmd.ChatGPTRun("keywords") end,                  desc = "Keywords" },
+            { "<leader>cd",  function() vim.cmd.ChatGPTRun("docstring") end,                 desc = "Docstring" },
+            { "<leader>co",  function() vim.cmd.ChatGPTRun("optimize_code") end,             desc = "Optimize Code" },
+            { "<leader>cz",  function() vim.cmd.ChatGPTRun("summarize") end,                 desc = "Summarize" },
+            { "<leader>cb",  function() vim.cmd.ChatGPTRun("fix_bugs") end,                  desc = "Fix Bugs" },
+            { "<leader>cx",  function() vim.cmd.ChatGPTRun("explain_code") end,              desc = "Explain Code" },
+            { "<leader>cr",  function() vim.cmd.ChatGPTRun("roxygen_edit") end,              desc = "Roxygen Edit" },
+            { "<leader>cl",  function() vim.cmd.ChatGPTRun("code_readability_analysis") end, desc = "Code Readability Analysis" },
+            { "<leader>ct",  function() vim.cmd.ChatGPTRun("translate") end,                 desc = "Translate" },
+            { "<leader>ci",  vim.cmd.ChatGPTActAs,                                           desc = "Impersonate, Act as.." },
+            { "<leader>cu",  function() vim.cmd.ChatGPTRun("add_tests") end,                 desc = "Add Unit Tests" },
+            { "<leader>cs",  function() vim.cmd.ChatGPTRun("show_tests") end,                desc = "Show Tests" },
         },
     })
 
@@ -607,6 +609,10 @@ local function config()
         -- { '<leader>cc', ":@ <CR>",                 desc = 'Run last command' },
 
     })
+    local cucumber = require 'cucumber'
+    wk.add({
+        { '<leader>ttt', cucumber.runNearestScenario, desc = 'Cucumber' },
+    })
     -- unimpaired remap
     vim.cmd [[
         "nmap < [
@@ -621,64 +627,18 @@ local function config()
 end
 
 -- Function to build the test command
-local function buildRunNeasterScenarioCmd()
-    local filetype = vim.bo.filetype
-    local testCommand = ""
-    if filetype == "cucumber" then
-        local line_number = vim.fn.search('^scenario:', 'n')
-        if line_number > 0 then
-            testCommand = "npm run test:dev --feature " .. vim.fn.expand("%") .. ":" .. line_number
-        else
-            print("No scenario found in the current file")
-        end
-    end
-    return testCommand
-end
 
--- Function to build and execute the test command
-function runNearestScenario()
-    local testCommand = buildRunNeasterScenarioCmd()
-    if testCommand ~= "" then
-        vim.cmd(
-            'FloatermNew --height=0.8 --width=0.8 --wintype=float --autoclose=0 --name=cucumber-tests --position=center ' ..
-            testCommand
-        )
-    else
-        print("No test command found for the current file type")
-    end
-end
 
-local function buildRunFeatureFileCmd()
-    local filetype = vim.bo.filetype
-    local testCommand = ""
-    if filetype == "cucumber" then
-        testCommand = "npm run test:dev --feature " .. vim.fn.expand("%")
-    end
-    return testCommand
-end
--- Function to build and print the test command for running the entire file
-function runFeatureFileCmd()
-    local testCommand = buildRunFeatureFileCmd()
-    if testCommand ~= "" then
-        vim.cmd(
-            'FloatermNew --height=0.8 --width=0.8 --wintype=float --autoclose=0 --name=cucumber-tests --position=center ' ..
-            testCommand
-        )
-    else
-        print("No test command found for the current file type")
-    end
-end
+-- vim.cmd("command! -nargs=0 RunFeatureFile :lua cucumber.runFeatureFileCmd()")
+-- vim.cmd("command! -nargs=0 RunNearestScenario :lua cucumber.runNearestScenario()")
 
-vim.cmd("command! -nargs=0 RunFeatureFile :lua runFeatureFileCmd()")
-vim.cmd("command! -nargs=0 RunNearestScenario :lua runNearestScenario()")
-
-vim.cmd([[
-  augroup CucumberMappings
-    autocmd!
-    autocmd FileType cucumber nnoremap <buffer> <leader>tt :RunNearestScenario<CR>
-    autocmd FileType cucumber nnoremap <buffer> <leader>tf :RunFeatureFile<CR>
-  augroup END
-]])
+-- vim.cmd([[
+--   augroup CucumberMappings
+--     autocmd!
+--     autocmd FileType cucumber nnoremap <buffer> <leader>tt :RunNearestScenario<CR>
+--     autocmd FileType cucumber nnoremap <buffer> <leader>tf :RunFeatureFile<CR>
+--   augroup END
+-- ]])
 
 return {
     { "folke/which-key.nvim", config = config }

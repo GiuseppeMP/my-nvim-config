@@ -22,13 +22,14 @@ vim.api.nvim_set_hl(0, "Comment", { fg = util.darken(colors.blue, 0.7), italic =
 vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", { fg = util.darken(colors.blue, 0.7) })
 
 vim.cmd [[
-    "set guicursor=n-v-c:blinkon0-CursorBlock
+    "set guicursor=n-v-c:blinkon20-CursorBlock
     "set guicursor+=i:hor20-iCursor
+    "set guicursor+=n:ver20-iCursor
     "set guicursor+=n-v-c:blinkon0
     "set guicursor+=i:blinkon0
-    set guicursor=n-v-c:block,i-ci-ve:ver50,r-cr:hor20,o:hor50
-		  \,a:blinkwait250-blinkoff250-blinkon250-Cursor/lCursor
-		  \,sm:block-blinkwait175-blinkoff150-blinkon175
+    set guicursor=n-v-c:block,i-ci-ve:hor50,r-cr:hor20,o:hor50
+    \,a:blinkwait250-blinkoff250-blinkon250-Cursor/iCursor
+    \,sm:block-blinkwait175-blinkoff150-blinkon175
 
 ]]
 
