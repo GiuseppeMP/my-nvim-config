@@ -48,7 +48,7 @@ local function config()
         -- normal mode
         {
             { "<leader>f",  group = "[f]zf/telescope+" },
-            { "<leader>fa", MiniFiles.open,                                            desc = 'find [f]iles' },
+            { "<leader>fa", function() MiniFiles.open() end,                           desc = 'find [f]iles' },
             { "<leader>ff", builtin.find_files,                                        desc = 'find [f]iles' },
             { "<leader>fr", builtin.oldfiles,                                          desc = "Open [r]ecent file" },
             { "<leader>fn", "<cmd>enew<cr>",                                           desc = "[n]ew file" },
