@@ -1,3 +1,5 @@
+local gpg = require("user.utils.gpg")
+
 return {
     "yetone/avante.nvim",
     event = "VeryLazy",
@@ -8,13 +10,15 @@ return {
         provider = "openai",
         providers = {
             openai = {
+                model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
+                parse_api_key = gpg.decrypt_openai_key,
                 endpoint = "https://api.openai.com/v1",
-                model = "gpt-4o",    -- your desired model (or use gpt-4o, etc.)
+                timeout = 30000,
                 extra_request_body = {
-                    timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
                     temperature = 0,
-                    max_completion_tokens = 8192
-                }
+                    max_completion_tokens = 4096,
+                    stream = true
+                },
             }
         },
         hints = { enabled = true },
