@@ -198,10 +198,10 @@ M.get = function(params)
         vim.keymap.set('n', 'gO', builtin.lsp_outgoing_calls, buf_opts)
 
         --leader
-        if params.code_action == nil or params.code_action then
-            vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, buf_opts)
-            vim.keymap.set('v', '<leader>ca', vim.lsp.buf.code_action, buf_opts)
-        end
+        -- if params.code_action == nil or params.code_action then
+        --     vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, buf_opts)
+        --     vim.keymap.set('v', '<leader>ca', vim.lsp.buf.code_action, buf_opts)
+        -- end
 
         -- vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, buf_opts)
         vim.keymap.set('n', '<leader>D', builtin.lsp_type_definitions, buf_opts)
