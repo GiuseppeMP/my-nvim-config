@@ -1,7 +1,9 @@
----@diagnostic disable: inject-field
-vim.cmd "colorscheme tokyonight-moon"
-local colors = require("user.colors").colors
-local util = require("user.colors").util
+user_colors = require("user.colors")
+local colors = user_colors.colors
+local util = user_colors.util
+
+-- vim.cmd.colorscheme "tokyonight-moon"
+vim.cmd.colorscheme "catppuccin-mocha"
 
 -- fix xml sintax
 vim.cmd [[hi! link Function Label ]]
