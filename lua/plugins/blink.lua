@@ -133,7 +133,7 @@ return {
                     -- Display a preview of the selected item on the current line
                     ghost_text    = { enabled = true },
                 },
-                signature = { window = { border = 'single' } },
+                signature = { enabled = true, window = { border = 'single' } },
 
                 -- Default list of enabled providers defined so that you can extend it
                 -- elsewhere in your config, without redefining it, due to `opts_extend`
