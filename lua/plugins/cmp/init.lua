@@ -153,9 +153,9 @@ local function config()
         if conf.user.supermaven.enabled then
             table.insert(mainGroup, 1, { name = 'supermaven', group_index = 1, max_item_count = 5 })
         end
-        if conf.user.codeium.enabled then
-            table.insert(mainGroup, 3, { name = 'codeium', group_index = 1, max_item_count = 3 })
-        end
+        -- if conf.user.codeium.enabled then
+        --     table.insert(mainGroup, 3, { name = 'codeium', group_index = 1, max_item_count = 3 })
+        -- end
 
         return cmp.config.sources(mainGroup)
     end
@@ -308,19 +308,27 @@ local function config()
 end
 
 return {
-    { 'hrsh7th/cmp-nvim-lsp' }, -- lsp completions
-    { 'hrsh7th/cmp-buffer' },   -- buffer completions
-    { 'hrsh7th/cmp-path' },     -- path completions
-    { 'hrsh7th/cmp-cmdline' },  -- cmdline completions
     {
         'L3MON4D3/LuaSnip',
         version = "v2.*",
         build = "make install_jsregexp"
     },
-    { 'saadparwaiz1/cmp_luasnip' },
     { 'dcampos/nvim-snippy' },
-    { 'dcampos/cmp-snippy' },
     { "rafamadriz/friendly-snippets" },
-    { "SergioRibera/cmp-dotenv" },
-    { 'hrsh7th/nvim-cmp',            config = config, dependencies = { "hrsh7th/cmp-emoji" } }
+    {
+        'hrsh7th/nvim-cmp',
+        enabled = false,
+        config = config,
+        dependencies = {
+            "hrsh7th/cmp-emoji",
+            'hrsh7th/cmp-buffer',
+            "SergioRibera/cmp-dotenv",
+            'dcampos/cmp-snippy',
+            'saadparwaiz1/cmp_luasnip',
+            'hrsh7th/cmp-cmdline',
+            'hrsh7th/cmp-nvim-lsp', -- lsp completions
+            'hrsh7th/cmp-path',     -- path completions
+        }
+
+    }
 }
