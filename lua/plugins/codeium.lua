@@ -43,9 +43,9 @@ return {
                     -- Clear the virtual text.
                     clear = false,
                     -- Cycle to the next completion.
-                    next = "<M-]>",
+                    next = "<c-.>",
                     -- Cycle to the previous completion.
-                    prev = "<M-[>",
+                    prev = "<c-,>",
                 }
             }
         })
