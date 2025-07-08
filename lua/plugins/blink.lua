@@ -1,5 +1,6 @@
 local drawWithMiniIcons = function()
     return {
+        border = 'single',
         draw = {
             components = {
                 kind_icon = {
@@ -20,49 +21,50 @@ local drawWithMiniIcons = function()
                         return hl
                     end,
                 }
-            }
+            },
         },
-        border = 'single'
     }
 end
 
 local drawWithDevIcons = function()
-    return
-    {
-        components = {
-            kind_icon = {
-                text = function(ctx)
-                    local icon = ctx.kind_icon
-                    if vim.tbl_contains({ "Path" }, ctx.source_name) then
-                        local dev_icon, _ = require("nvim-web-devicons").get_icon(ctx.label)
-                        if dev_icon then
-                            icon = dev_icon
-                        end
-                    else
-                        icon = require("lspkind").symbolic(ctx.kind, {
-                            mode = "symbol",
-                        })
-                    end
+    return {
+        border = 'single',
 
-                    return icon .. ctx.icon_gap
-                end,
-
-                -- Optionally, use the highlight groups from nvim-web-devicons
-                -- You can also add the same function for `kind.highlight` if you want to
-                -- keep the highlight groups in sync with the icons.
-                highlight = function(ctx)
-                    local hl = ctx.kind_hl
-                    if vim.tbl_contains({ "Path" }, ctx.source_name) then
-                        local dev_icon, dev_hl = require("nvim-web-devicons").get_icon(ctx.label)
-                        if dev_icon then
-                            hl = dev_hl
+        draw = {
+            components = {
+                kind_icon = {
+                    text = function(ctx)
+                        local icon = ctx.kind_icon
+                        if vim.tbl_contains({ "Path" }, ctx.source_name) then
+                            local dev_icon, _ = require("nvim-web-devicons").get_icon(ctx.label)
+                            if dev_icon then
+                                icon = dev_icon
+                            end
+                        else
+                            icon = require("lspkind").symbolic(ctx.kind, {
+                                mode = "symbol",
+                            })
                         end
-                    end
-                    return hl
-                end,
-            }
-        },
-        border = 'single'
+
+                        return icon .. ctx.icon_gap
+                    end,
+
+                    -- Optionally, use the highlight groups from nvim-web-devicons
+                    -- You can also add the same function for `kind.highlight` if you want to
+                    -- keep the highlight groups in sync with the icons.
+                    highlight = function(ctx)
+                        local hl = ctx.kind_hl
+                        if vim.tbl_contains({ "Path" }, ctx.source_name) then
+                            local dev_icon, dev_hl = require("nvim-web-devicons").get_icon(ctx.label)
+                            if dev_icon then
+                                hl = dev_hl
+                            end
+                        end
+                        return hl
+                    end,
+                }
+            },
+        }
     }
 end
 
@@ -79,8 +81,12 @@ return {
 
         require("blink.cmp").setup(
             {
+                enabled    = function()
+                    print(vim.bo.filetype)
+                    return not vim.tbl_contains({ "chatgpt-input", "AvanteInput", "AvantePromptInput" }, vim.bo.filetype)
+                end,
                 -- keymap = { preset = 'default' },
-                keymap = {
+                keymap     = {
                     -- set to 'none' to disable the 'default' preset
                     preset = 'none',
                     ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
@@ -103,20 +109,12 @@ return {
                     ['<Down>'] = { 'select_next', 'fallback' },
                     ['<C-p>'] = { 'select_prev', 'fallback_to_mappings' },
                     ['<C-n>'] = { 'show', 'select_next', 'fallback_to_mappings' },
-
-                    -- ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
-                    -- ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
-
-                    -- ['<C-k>'] = { 'show_signature', 'hide_signature', 'fallback' },
                 },
 
                 appearance = {
-                    -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-                    -- Adjusts spacing to ensure icons are aligned
                     nerd_font_variant = 'mono'
                 },
 
-                -- (Default) Only show the documentation popup when manually triggered
                 completion = {
                     trigger       = {
                         show_in_snippet = true
@@ -133,15 +131,15 @@ return {
                     -- Display a preview of the selected item on the current line
                     ghost_text    = { enabled = true },
                 },
-                signature = { enabled = true, window = { border = 'single' } },
+                signature  = { enabled = true, window = { border = 'single' } },
 
                 -- Default list of enabled providers defined so that you can extend it
                 -- elsewhere in your config, without redefining it, due to `opts_extend`
                 -- sources = {
                 --     default = { 'lsp', 'path', 'snippets', 'buffer' },
                 -- },
-                snippets = { preset = 'luasnip' },
-                sources = {
+                snippets   = { preset = 'luasnip' },
+                sources    = {
                     default = { 'lsp', 'path', 'snippets', 'buffer', 'codeium' },
                     providers = {
                         codeium = {
@@ -164,8 +162,8 @@ return {
                 -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
                 --
                 -- See the fuzzy documentation for more information
-                fuzzy = { implementation = "prefer_rust_with_warning" },
-                cmdline = {
+                fuzzy      = { implementation = "prefer_rust_with_warning" },
+                cmdline    = {
                     keymap = { preset = 'inherit' },
                     completion = { menu = { auto_show = true } },
                 },
