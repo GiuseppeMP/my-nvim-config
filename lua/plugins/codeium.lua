@@ -13,8 +13,8 @@ return {
             enable_cmp_source = false,
             virtual_text = {
                 enabled = true,
-                manual = false,
-                filetypes = {},
+                manual = true,
+                -- filetypes = { 'java', 'javascript' },
                 default_filetype_enabled = true,
                 idle_delay = 100,
                 virtual_text_priority = 65535,

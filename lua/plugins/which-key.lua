@@ -376,10 +376,15 @@ local function config()
     -- codeium
     wk.add({
         mode = { 'i' },
-        { "<c-;>", require('codeium.virtual_text').debounced_complete,                   desc = 'Codeium trigger suggestion' },
+        { "<c-;>", require('codeium.virtual_text').complete,                             desc = 'Codeium trigger suggestion' },
         { "<c-.>", function() require('codeium.virtual_text').cycle_or_complete(1) end,  desc = 'Codeium next suggestion' },
         { "<c-,>", function() require('codeium.virtual_text').cycle_or_complete(-1) end, desc = 'Codeium previous suggestion' },
         -- { "<c-y>", function() require('codeium.virtual_text').complete() end,            desc = 'Codeium accept suggestion' },
+
+    })
+    wk.add({
+        mode = { 'n' },
+        { "<c-;>", require('codeium.virtual_text').complete, desc = 'Codeium trigger suggestion' },
 
     })
 
