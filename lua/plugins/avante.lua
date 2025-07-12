@@ -16,7 +16,7 @@ return {
                 timeout = 30000,
                 extra_request_body = {
                     temperature = 0,
-                    max_completion_tokens = 4096,
+                    max_completion_tokens = 24000,
                     stream = true
                 },
             }
