@@ -1,6 +1,7 @@
 local drawWithMiniIcons = function()
     return {
-        border = 'single',
+        -- border = 'single',
+        border = 'rounded',
         draw = {
             components = {
                 kind_icon = {
@@ -28,8 +29,8 @@ end
 
 local drawWithDevIcons = function()
     return {
-        border = 'single',
-
+        -- border = 'single',
+        border = 'rounded',
         draw = {
             components = {
                 kind_icon = {
@@ -126,12 +127,12 @@ return {
                     },
                     menu          = drawWithDevIcons(),
                     -- Show documentation when selecting a completion item
-                    documentation = { auto_show = true, auto_show_delay_ms = 500, window = { border = 'single' } },
+                    documentation = { auto_show = true, auto_show_delay_ms = 500, window = { border = 'rounded' } },
 
                     -- Display a preview of the selected item on the current line
-                    ghost_text    = { enabled = true },
+                    ghost_text    = { enabled = false },
                 },
-                signature  = { enabled = true, window = { border = 'single' } },
+                signature  = { enabled = true, window = { border = 'rounded' } },
 
                 -- Default list of enabled providers defined so that you can extend it
                 -- elsewhere in your config, without redefining it, due to `opts_extend`
