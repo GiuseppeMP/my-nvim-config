@@ -13,19 +13,23 @@ return {
         event = 'VeryLazy',
         config = function()
             require('nvim-dap-virtual-text').setup {
+                highlight_changed_variables = true,
+                highlight_new_as_changed = false,
                 virt_text_pos = 'inline',
-                all_frames = true,  -- show virtual text for all stack frames not only current. Only works for debugpy on my machine.
-                virt_lines = false, -- show virtual lines instead of virtual text (will flicker!)
-                -- virt_text_win_col = 80,
+                commented = true,        -- prefix virtual text with comment string
+                show_stop_reason = true, -- show stop reason when stopped for exceptions
+                all_frames = true,       -- show virtual text for all stack frames not only current. Only works for debugpy on my machine.
+                virt_lines = false,      -- show virtual lines instead of virtual text (will flicker!)
+                virt_text_win_col = 80,
                 display_callback = function(variable, _buf, _stackframe, _node, _options)
                     local name = variable.name
                     local value = variable.value
 
                     local function mask_secret(val)
                         if #val > 5 then
-                            return val:sub(1, 3) .. string.rep("*", #val - 5) .. val:sub(-2)
+                            return name .. " " .. val:sub(1, 3) .. string.rep("*", #val - 5) .. val:sub(-2)
                         else
-                            return val
+                            return name .. ' ' .. val
                         end
                     end
 
@@ -53,7 +57,7 @@ return {
                     if #value > max_len then
                         value = value:sub(1, max_len) .. "..."
                     end
-                    return ' = ' .. value:gsub("%s+", " ")
+                    return name .. ' = ' .. value:gsub("%s+", " ")
 
                     -- return name .. " = " .. value
                 end,

@@ -58,19 +58,25 @@ vim.cmd [[vnoremap <leader>de <Cmd>lua require("dapui").eval()<CR>]]
 --     vim.cmd.NvimTreeToggle()
 -- end
 
-dap.listeners.before.attach.dapui_config = function()
+dap.listeners.before.attach.dapui_config = function(event)
     dapui.open()
 end
-dap.listeners.before.launch.dapui_config = function()
+dap.listeners.before.launch.dapui_config = function(event)
     dapui.open()
 end
-dap.listeners.before.event_terminated.dapui_config = function()
+dap.listeners.before.event_terminated.dapui_config = function(event)
     dapui.close()
+    if event.exitCode == 0 then
+        vim.notify("Debug terminated")
+        dapui.close()
+    end
 end
-dap.listeners.before.event_exited.dapui_config = function()
-    dapui.close()
+dap.listeners.before.event_exited.dapui_config = function(event)
+    if event.exitCode == 0 then
+        vim.notify("Tests passed")
+        dapui.close()
+    end
 end
-
 
 
 require("dapui").setup({
