@@ -63,6 +63,12 @@ end
 
 -- on_attach custom for nvim-jdtls
 local on_attach_jdtls = function(_client, buf_nr)
+    _client.server_capabilities.semanticTokensProvider = nil
+
+    if vim.api.nvim_get_option_value('bufhidden', { buf = buf_nr }) == 'wipe' then
+        return
+    end
+
     -- default on_attach
     require("plugins.lsp.utils.on_attach_options").get { format_on_save = true, format = true, lsp_client =
     'jdtls' } (_client, buf_nr)
@@ -84,6 +90,7 @@ local on_attach_jdtls = function(_client, buf_nr)
 
     -- setup dap
     jdtls.setup_dap({ hotcodereplace = 'auto', config_overrides = {} })
+    require('jdtls.dap').setup_dap_main_class_configs({ verbose = false })
 end
 
 -- create bundles table
@@ -273,16 +280,23 @@ local jdtls_config = {
     }
 }
 -- Not working as expected
-require('lspconfig').jdtls.setup(jdtls_config)
+-- require('lspconfig').jdtls.setup(jdtls_config)
 
--- local function jdtls_start_or_attach()
---     jdtls.start_or_attach(jdtls_config)
--- end
+local function jdtls_start_or_attach()
+    jdtls.start_or_attach(jdtls_config)
+end
 
--- vim.api.nvim_create_autocmd("Filetype", {
---     pattern = "java",
---     callback = jdtls_start_or_attach
--- })
+vim.api.nvim_exec([[
+  augroup JDTLSAutocmd
+    autocmd!
+    autocmd BufRead,BufNewFile *.class lua jdtls_start_or_attach()
+  augroup END
+]], false)
+
+vim.api.nvim_create_autocmd("Filetype", {
+    pattern = "java",
+    callback = jdtls_start_or_attach
+})
 -- vim.api.nvim_create_autocmd("Filetype", {
 --     pattern = "groovy",
 --     callback = jdtls_start_or_attach
