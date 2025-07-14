@@ -6,13 +6,14 @@ local function config()
         },
         -- User defined loops
         additions = {
-            { 'private', 'public',       'protected' },
-            { 'String',  'List<String>' },
-            { 'int',     'float32',      'string',    'bool' },
-            { 'Integer', 'List<Integer>' },
-            { 'require', 'import',       'export' },
-            { 'at',      'on',           'in' },
-            { 'or',      'and' },
+            { 'private',    'public',       'protected' },
+            { 'String',     'List<String>' },
+            { 'int',        'float32',      'string',   'bool' },
+            { 'Integer',    'List<Integer>' },
+            { 'require',    'import',       'export' },
+            { 'openrouter', 'claude',       'openai',   'ollama', 'grok4', 'gemini' },
+            { 'at',         'on',           'in' },
+            { 'or',         'and' },
         },
 
     })
