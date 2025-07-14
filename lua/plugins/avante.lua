@@ -8,34 +8,12 @@ return {
         provider = "gemini",
         providers = {
             gemini = {
-                -- endpoint = "https://api.x.ai/v1",
                 parse_api_key = gpg.decrypt_gemini_key,
                 model = "gemini-2.0-flash",
                 timeout = 300000, -- 5 minutes timeout for long tasks
                 extra_request_body = {
-                    temperature = 0,
+                    temperature = 0.7
                 },
-                -- parse_curl_args = function(opts, code_opts) end,
-                -- parse_response = function(data_stream, event_state, opts) end,
-                -- parse_stream_data = function(data, handler_opts) end
-            },
-            openrouter = {
-                __inherited_from = "openai",
-                endpoint = "https://openrouter.ai/api/v1",
-                parse_api_key = gpg.decrypt_openrouter_key,
-                -- model = "mistralai/devstral-small:free",
-                -- parse_curl_args = function(opts, code_opts) end,
-                -- parse_response = function(data_stream, event_state, opts) end,
-                -- parse_stream_data = function(data, handler_opts) end
-            },
-            grok4 = {
-                __inherited_from = "openai",
-                endpoint = "https://api.x.ai/v1",
-                parse_api_key = gpg.decrypt_grok4_key,
-                model = "grok-3-latest",
-                -- parse_curl_args = function(opts, code_opts) end,
-                -- parse_response = function(data_stream, event_state, opts) end,
-                -- parse_stream_data = function(data, handler_opts) end
             },
             ollama = {
                 endpoint = "http://192.168.1.59:11434",
@@ -65,10 +43,28 @@ return {
                     max_tokens = 20480,
                 },
             }
+            -- openrouter = {
+            --     __inherited_from = "openai",
+            --     endpoint = "https://openrouter.ai/api/v1",
+            --     parse_api_key = gpg.decrypt_openrouter_key,
+            -- model = "mistralai/devstral-small:free",
+            -- parse_curl_args = function(opts, code_opts) end,
+            -- parse_response = function(data_stream, event_state, opts) end,
+            -- parse_stream_data = function(data, handler_opts) end
+            -- },
+            -- grok4 = {
+            --     __inherited_from = "openai",
+            --     endpoint = "https://api.x.ai/v1",
+            --     parse_api_key = gpg.decrypt_grok4_key,
+            --     model = "grok-3-latest",
+            -- parse_curl_args = function(opts, code_opts) end,
+            -- parse_response = function(data_stream, event_state, opts) end,
+            -- parse_stream_data = function(data, handler_opts) end
+            -- },
         },
         web_search_engine = {
             provider = 'tavily',
-            parse_api_key = gpg.decrypt_tavily_key
+            -- parse_api_key = gpg.decrypt_tavily_key
         },
         hints = { enabled = true },
         behaviour = {
