@@ -83,7 +83,7 @@ return {
         require("blink.cmp").setup(
             {
                 enabled    = function()
-                    print(vim.bo.filetype)
+                    -- print(vim.bo.filetype)
                     return not vim.tbl_contains({ "chatgpt-input", "AvanteInput", "AvantePromptInput" }, vim.bo.filetype)
                 end,
                 -- keymap = { preset = 'default' },
