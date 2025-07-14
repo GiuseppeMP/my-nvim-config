@@ -5,21 +5,70 @@ return {
     event = "VeryLazy",
     version = false, -- Never set this value to "*"! Never!
     opts = {
-        -- add any opts here
-        -- for example
-        provider = "openai",
+        provider = "openrouter",
         providers = {
+            gemini = {
+                -- endpoint = "https://api.x.ai/v1",
+                parse_api_key = gpg.decrypt_gemini_key,
+                model = "gemini-2.0-flash",
+                timeout = 300000, -- 5 minutes timeout for long tasks
+                extra_request_body = {
+                    temperature = 0,
+                },
+                -- parse_curl_args = function(opts, code_opts) end,
+                -- parse_response = function(data_stream, event_state, opts) end,
+                -- parse_stream_data = function(data, handler_opts) end
+            },
+            openrouter = {
+                __inherited_from = "openai",
+                endpoint = "https://openrouter.ai/api/v1",
+                parse_api_key = gpg.decrypt_openrouter_key,
+                -- model = "mistralai/devstral-small:free",
+                -- parse_curl_args = function(opts, code_opts) end,
+                -- parse_response = function(data_stream, event_state, opts) end,
+                -- parse_stream_data = function(data, handler_opts) end
+            },
+            grok4 = {
+                __inherited_from = "openai",
+                endpoint = "https://api.x.ai/v1",
+                parse_api_key = gpg.decrypt_grok4_key,
+                model = "grok-3-latest",
+                -- parse_curl_args = function(opts, code_opts) end,
+                -- parse_response = function(data_stream, event_state, opts) end,
+                -- parse_stream_data = function(data, handler_opts) end
+            },
+            ollama = {
+                endpoint = "http://192.168.1.59:11434",
+                -- model = "qwen3:30b-a3b",
+                -- model = "deepseek-r1:14b",
+                model = "qwen3:8b",
+                -- model = "codestral:22b",
+            },
             openai = {
                 model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
                 parse_api_key = gpg.decrypt_openai_key,
                 endpoint = "https://api.openai.com/v1",
                 timeout = 30000,
                 extra_request_body = {
-                    temperature = 0,
-                    max_completion_tokens = 24000,
+                    temperature = 0.1,
+                    max_completion_tokens = 16384,
                     stream = true
                 },
+            },
+            claude = {
+                endoint = "https://api.anthropic.com",
+                model = "claude-sonnet-4-20250514",
+                parse_api_key = gpg.decrypt_claude_key,
+                timeout = 30000, -- Timeout in milliseconds
+                extra_request_body = {
+                    temperature = 0.75,
+                    max_tokens = 20480,
+                },
             }
+        },
+        web_search_engine = {
+            provider = 'tavily',
+            parse_api_key = gpg.decrypt_tavily_key
         },
         hints = { enabled = true },
         behaviour = {
