@@ -2,6 +2,7 @@ return {
     {
         "folke/todo-comments.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
+        enabled = false,
         config = function()
             require("todo-comments").setup({
                 merge_keywords = true,
