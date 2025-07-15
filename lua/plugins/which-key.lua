@@ -277,17 +277,14 @@ local function config()
         { "gi", desc = "Go to implementation" },
         { "gu", desc = "Go to usages/references" },
         {
-            "gA",
-            function()
-                vim.cmd(":w")
-                vim.cmd(":AS")
-            end,
             desc = 'split [A]lternate'
         },
         {
             "ga",
             function()
-                vim.cmd(":w")
+                if vim.api.nvim_buf_get_option(0, 'modified') then
+                    vim.cmd(":w")
+                end
                 vim.cmd(":A")
             end,
             desc = 'buffer [a]lternate'
