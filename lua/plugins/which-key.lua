@@ -280,6 +280,16 @@ local function config()
             desc = 'split [A]lternate'
         },
         {
+            "gA",
+            function()
+                if vim.api.nvim_buf_get_option(0, 'modified') then
+                    vim.cmd(":w")
+                end
+                vim.cmd(":AS")
+            end,
+            desc = 'buffer [A]lternate split'
+        },
+        {
             "ga",
             function()
                 if vim.api.nvim_buf_get_option(0, 'modified') then
