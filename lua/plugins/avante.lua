@@ -1,26 +1,43 @@
 local gpg = require("user.utils.gpg")
 
+local getOllama = function(model)
+    return {
+        __inherited_from = "ollama",
+        endpoint = "192.168.1.20:11434",
+        model = model,
+        disable_tools = false,
+        extra_request_body = {
+            temperature = 0.7,
+            max_completion_tokens = 8192 * 2,
+            max_prompt_tokens = 8192 * 15,
+            stream = true
+        },
+    }
+end
+
 return {
     "yetone/avante.nvim",
     event = "VeryLazy",
     version = false, -- Never set this value to "*"! Never!
     opts = {
-        provider = "gemini",
+        -- provider = "ollama_codestral_22b",
+        -- provider = "ollama_qwen3_30b",
+        -- provider = "ollama_devstral",
+        provider = "ollama_llama3_8b",
         providers = {
+            ollama_qwen3_30b = getOllama("qwen3:30b-a3b"),
+            ollama_codestral_22b = getOllama("codestral:22b"),
+            ollama_llama3_8b = getOllama("llama3.1:8b"),
+            ollama_deepseek_coder_v2_16b = getOllama("deepseek-coder-v2:16b"),
+            ollama_devstral = getOllama("devstral:24b"),
             gemini = {
                 parse_api_key = gpg.decrypt_gemini_key,
                 model = "gemini-2.0-flash",
                 timeout = 300000, -- 5 minutes timeout for long tasks
                 extra_request_body = {
-                    temperature = 0.7
+                    temperature = 0.7,
+                    stream = true
                 },
-            },
-            ollama = {
-                endpoint = "http://192.168.1.59:11434",
-                -- model = "qwen3:30b-a3b",
-                -- model = "deepseek-r1:14b",
-                model = "qwen3:8b",
-                -- model = "codestral:22b",
             },
             openai = {
                 model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
@@ -28,7 +45,7 @@ return {
                 endpoint = "https://api.openai.com/v1",
                 timeout = 30000,
                 extra_request_body = {
-                    temperature = 0.1,
+                    temperature = 0.8,
                     max_completion_tokens = 16384,
                     stream = true
                 },
@@ -43,36 +60,18 @@ return {
                     max_tokens = 20480,
                 },
             }
-            -- openrouter = {
-            --     __inherited_from = "openai",
-            --     endpoint = "https://openrouter.ai/api/v1",
-            --     parse_api_key = gpg.decrypt_openrouter_key,
-            -- model = "mistralai/devstral-small:free",
-            -- parse_curl_args = function(opts, code_opts) end,
-            -- parse_response = function(data_stream, event_state, opts) end,
-            -- parse_stream_data = function(data, handler_opts) end
-            -- },
-            -- grok4 = {
-            --     __inherited_from = "openai",
-            --     endpoint = "https://api.x.ai/v1",
-            --     parse_api_key = gpg.decrypt_grok4_key,
-            --     model = "grok-3-latest",
-            -- parse_curl_args = function(opts, code_opts) end,
-            -- parse_response = function(data_stream, event_state, opts) end,
-            -- parse_stream_data = function(data, handler_opts) end
-            -- },
         },
         web_search_engine = {
             provider = 'tavily',
-            -- parse_api_key = gpg.decrypt_tavily_key
         },
         hints = { enabled = true },
         behaviour = {
+            enable_fastapply = false,
             auto_suggestions = false, -- Experimental stage
             auto_set_highlight_group = true,
             auto_set_keymaps = true,
             auto_apply_diff_after_generation = false,
-            support_paste_from_clipboard = true,
+            support_paste_from_clipboard = false,
             minimize_diff = true,         -- Whether to remove unchanged lines when applying a code block
             enable_token_counting = true, -- Whether to enable token counting. Default to true.
         },
@@ -80,7 +79,7 @@ return {
             ---@type "right" | "left" | "top" | "bottom"
             position = "right",   -- the position of the sidebar
             wrap = true,          -- similar to vim.o.wrap
-            width = 30,           -- default % based on available width
+            width = 35,           -- default % based on available width
             sidebar_header = {
                 enabled = true,   -- true, false to enable/disable the header
                 align = "center", -- left, center, right for title
@@ -95,8 +94,8 @@ return {
                 start_insert = true, -- Start insert mode when opening the edit window
             },
             ask = {
-                floating = false,    -- Open the 'AvanteAsk' prompt in a floating window
-                start_insert = true, -- Start insert mode when opening the ask window
+                floating = false,     -- Open the 'AvanteAsk' prompt in a floating window
+                start_insert = false, -- Start insert mode when opening the ask window
                 border = "rounded",
                 ---@type "ours" | "theirs"
                 focus_on_apply = "ours", -- which diff to focus after applying
