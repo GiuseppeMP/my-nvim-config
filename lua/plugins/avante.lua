@@ -1,9 +1,15 @@
 local gpg = require("user.utils.gpg")
 
+local ollamaHost = os.getenv("OLLAMA_EXT")
+
+if (ollamaHost == nil) then
+    ollamaHost = "http://localhost"
+end
+
 local getOllama = function(model)
     return {
         __inherited_from = "ollama",
-        endpoint = "192.168.1.20:11434",
+        endpoint = ollamaHost .. ":11434",
         model = model,
         disable_tools = false,
         extra_request_body = {
