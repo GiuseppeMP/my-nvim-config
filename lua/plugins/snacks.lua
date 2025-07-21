@@ -12,7 +12,7 @@ return {
             dashboard = { enabled = false },
             indent = { enabled = false },
             input = { enabled = false },
-            notifier = { enabled = true },
+            notifier = { enabled = false },
             quickfile = { enabled = true },
             scroll = { enabled = false },
             statuscolumn = { enabled = true },

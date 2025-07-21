@@ -14,7 +14,7 @@ local function config()
 
     require("noice").setup({
         messages = {
-            enabled = false
+            enabled = true
         },
         lsp = {
             signature = {
@@ -201,6 +201,7 @@ return
 {
     "folke/noice.nvim",
     event = "VeryLazy",
+    enabled = true,
     config = config,
     dependencies = {
         "MunifTanjim/nui.nvim",
