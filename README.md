@@ -1,6 +1,6 @@
 # My nvim configs
 
-> README in WIP...
+<h1>README in WIP... NEED TO BE UPDATED</h1> 
 
 Hello, I'm Giuseppe Matheus (Beppe) a software engineer from Brazil. 👋
 
