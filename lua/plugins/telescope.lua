@@ -128,6 +128,12 @@ local config = function()
                     },
                 },
             },
+            find_files = {
+                find_command = { "rg", "--files", "--hidden", "-L", "--glob", "!**/.git/*" }
+            },
+            live_grep = {
+                find_command = { "rg", "--files", "--hidden", "-L", "--glob", "!**/.git/*" }
+            },
             git_branches = {
                 theme = "dropdown",
             },
