@@ -42,9 +42,11 @@ local drawWithDevIcons = function()
                                 icon = dev_icon
                             end
                         else
-                            icon = require("lspkind").symbolic(ctx.kind, {
+                            local lsp_icon = require("lspkind").symbolic(ctx.kind, {
                                 mode = "symbol",
                             })
+                            -- bug lsp_icon shows blank to custom transform_items
+                            -- icon = lsp_icon
                         end
 
                         return icon .. ctx.icon_gap
@@ -71,7 +73,7 @@ end
 
 return {
     'saghen/blink.cmp',
-    dependencies = { 'rafamadriz/friendly-snippets', 'L3MON4D3/LuaSnip' },
+    dependencies = { 'rafamadriz/friendly-snippets', 'L3MON4D3/LuaSnip', 'Kaiser-Yang/blink-cmp-avante' },
     version = '1.*',
     config = function()
         -- require("luasnip.loaders.from_vscode").load()
@@ -141,16 +143,37 @@ return {
                 -- },
                 snippets   = { preset = 'luasnip' },
                 sources    = {
-                    default = { 'lsp', 'path', 'snippets', 'buffer', 'codeium' },
+                    default = {
+                        'lsp',
+                        'path',
+                        'snippets',
+                        'avante',
+                        'buffer',
+                        'codeium',
+                    },
                     providers = {
+                        avante = {
+                            module = 'blink-cmp-avante',
+                            name = 'avante',
+                            opts = {
+                                -- options for blink-cmp-avante
+                            },
+                            transform_items = function(ctx, items)
+                                for _, item in ipairs(items) do
+                                    item.kind_icon = '󰯫 '
+                                    item.kind_name = 'avante'
+                                end
+                                return items
+                            end
+                        },
                         codeium = {
-                            name = 'Codeium',
+                            name = 'codeium',
                             module = 'codeium.blink',
                             async = true,
                             transform_items = function(ctx, items)
                                 for _, item in ipairs(items) do
-                                    item.kind_icon = ''
-                                    item.kind_name = 'Codeium'
+                                    item.kind_icon = ' '
+                                    item.kind_name = 'codeium'
                                 end
                                 return items
                             end
