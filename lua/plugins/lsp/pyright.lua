@@ -25,7 +25,7 @@ local get_python_path = function()
 end
 
 
-require('lspconfig').pyright.setup {
+vim.lsp.config('pyright', {
     on_attach = on_attach_pyright,
     capabilities = require 'plugins.lsp.utils.capabilities_options'.default,
     filetypes = { "python", "py" },
@@ -43,4 +43,4 @@ require('lspconfig').pyright.setup {
             }
         }
     }
-}
+})
