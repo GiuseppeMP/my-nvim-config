@@ -169,8 +169,9 @@ return {
     {
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdate',
+        -- branch = 'main',
         config = config,
-        event = 'VeryLazy'
+        -- event = 'VeryLazy'
     },
     { 'nvim-treesitter/nvim-treesitter-textobjects' },
     { 'RRethy/nvim-treesitter-textsubjects',         event = 'VeryLazy' },
