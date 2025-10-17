@@ -36,7 +36,7 @@
     "translate_into_gherkin": {
         "type": "chat",
         "opts": {
-            "template": "Transform the following state into gherkin format :\n\n{{input}}",
+            "template": "Transform the following state into gherkin format :\n\n{{input}}, instructions: use Given _____ if you re genrating gherkin",
             "strategy": "replace",
             "params": {
                 "model": "gpt-3.5-turbo"
