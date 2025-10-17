@@ -1,6 +1,5 @@
 local on_attach_options = require("plugins.lsp.utils.on_attach_options")
 local capabilities_options = require("plugins.lsp.utils.capabilities_options")
-local lspconfig = require 'lspconfig'
 require "mason"
 
 -- mason utils to get installation path
@@ -28,7 +27,7 @@ local root_dir = function() return require('jdtls.setup').find_root(root_markers
 
 vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format()' ]])
 
-lspconfig.groovyls.setup {
+vim.lsp.config('groovyls', {
     on_attach = on_attach_options.get {
         lsp_client = 'groovyls',
         format_on_save = true,
@@ -44,4 +43,4 @@ lspconfig.groovyls.setup {
         },
     },
     cmd = { "java", "-jar", groovyls_exec .. "/build/libs/groovy-language-server-all.jar" }
-}
+})
