@@ -1,8 +1,7 @@
 local on_attach_options = require("plugins.lsp.utils.on_attach_options")
 local capabilities_options = require("plugins.lsp.utils.capabilities_options")
-local lspconfig = require 'lspconfig'
 
-lspconfig.ts_ls.setup {
+vim.lsp.config('ts_ls', {
     -- format options delegated to eslint lsp
     on_attach = on_attach_options.get({
         inlay = false,
@@ -30,4 +29,4 @@ lspconfig.ts_ls.setup {
         },
     },
     capabilities = capabilities_options.default
-}
+})
