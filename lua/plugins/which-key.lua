@@ -1,4 +1,6 @@
-local vim_test_support = { "java" }
+local vim_test_support = {
+    "java",
+}
 
 local function config()
     -- TODO: check if this is still needed
@@ -425,6 +427,7 @@ local function config()
             { "<leader>cgg", function() vim.cmd.ChatGPTRun("grammar_correction") end,        desc = "Grammar Correction" },
             { "<leader>cgi", function() vim.cmd.ChatGPTRun("translate_into_italian") end,    desc = "Italian Translation" },
             { "<leader>cgs", function() vim.cmd.ChatGPTRun("translate_into_spanish") end,    desc = "Spanish Translation" },
+            { "<leader>cgc", function() vim.cmd.ChatGPTRun("translate_into_gherkin") end,    desc = "Cucumber Translation" },
             { "<leader>ck",  function() vim.cmd.ChatGPTRun("keywords") end,                  desc = "Keywords" },
             { "<leader>cd",  function() vim.cmd.ChatGPTRun("docstring") end,                 desc = "Docstring" },
             { "<leader>co",  function() vim.cmd.ChatGPTRun("optimize_code") end,             desc = "Optimize Code" },
