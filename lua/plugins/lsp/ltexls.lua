@@ -1,7 +1,6 @@
 ---@diagnostic disable: need-check-nil
 local on_attach_options = require("plugins.lsp.utils.on_attach_options")
 local capabilities_options = require("plugins.lsp.utils.capabilities_options")
-local lspconfig = require 'lspconfig'
 
 -- ===========================================
 --  Add user dictionary for ltex-ls
@@ -33,7 +32,7 @@ end
 add_new_words(path_en)
 add_new_words(path_pt)
 
-lspconfig.ltex.setup {
+vim.lsp.config('ltex', {
     on_attach = on_attach_options.get { lsp_client = 'ltex' },
     capabilities = capabilities_options.default,
     settings = {
@@ -48,5 +47,4 @@ lspconfig.ltex.setup {
     filetypes = {
         "ltex",
     },
-
-}
+})
