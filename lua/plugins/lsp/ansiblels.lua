@@ -1,8 +1,7 @@
 local on_attach_options = require("plugins.lsp.utils.on_attach_options")
 local capabilities_options = require("plugins.lsp.utils.capabilities_options")
-local lspconfig = require 'lspconfig'
 
-lspconfig.ansiblels.setup {
+vim.lsp.config("ansiblels", {
     -- format options delegated to eslint lsp
     on_attach = on_attach_options.get({ format_on_save = false, format = false, lsp_client = 'ansiblels' }),
     capabilities = capabilities_options.default,
@@ -14,4 +13,4 @@ lspconfig.ansiblels.setup {
     },
     root_dir = require 'lspconfig.util'.root_pattern('ansible.cfg', '.ansible-lint'),
     single_file_support = true
-}
+})
