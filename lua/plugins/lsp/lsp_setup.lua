@@ -27,7 +27,7 @@ utils.init_err_handler('terraformls', function() require "plugins.lsp.terraforml
 utils.init_err_handler('typescript-tools', function() require "plugins.lsp.typescript-tools" end)
 -- utils.init_err_handler('snyk-ls', function() require "plugins.lsp.snyk_ls" end)
 utils.init_err_handler('yamlls', function() require "plugins.lsp.yamlls" end)
-utils.init_err_handler('taplo', function() require "lspconfig".taplo.setup {} end)
+utils.init_err_handler('taplo', function() vim.lsp.config("taplo", {}) end)
 -- utils.init_err_handler('vtsls', function() require "plugins.lsp.vtsls" end)
 
 -- diagnostic signs
