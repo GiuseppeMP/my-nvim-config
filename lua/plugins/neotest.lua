@@ -32,7 +32,7 @@ local function config()
         adapters = {
             require("neotest-vitest"),
             require("neotest-golang"),
-            require("neotest-gradle"),
+            -- require("neotest-gradle"),
             require('neotest-jest')({
                 -- jestCommand = "npx jest --watch ",
                 jestCommand = "npm test --",
@@ -48,7 +48,7 @@ local function config()
                 ignore_filetypes = { "lua", "javascript", "typescript", "python" },
                 allow_file_types = { "java" }
             }),
-            require("neotest-java"),
+            -- require("neotest-java"),
             require("neotest-python")(
                 {
                     dap = { justMyCode = true },
