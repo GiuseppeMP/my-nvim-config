@@ -1,4 +1,3 @@
-local lspconfig = require 'lspconfig'
 local on_attach_options = require("plugins.lsp.utils.on_attach_options")
 local capabilities_options = require("plugins.lsp.utils.capabilities_options")
 
@@ -10,8 +9,8 @@ local on_attach_snyk_ls = function(client, bufnr)
 end
 
 
-lspconfig.snyk_ls.setup {
+vim.lsp.config('snyk_ls', {
     on_attach = on_attach_snyk_ls,
     root_markers = { 'pom.xml', 'gradlew', 'mvnw', '.git', 'settings.gradle', '.lsp_root', '.snyk' },
     capabilities = capabilities_options.default
-}
+})
