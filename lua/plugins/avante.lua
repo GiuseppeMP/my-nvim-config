@@ -1,23 +1,139 @@
 local gpg = require("user.utils.gpg")
 
-local ollamaHost = os.getenv("OLLAMA_EXT")
 
-if (ollamaHost == nil) then
-    ollamaHost = "http://localhost"
+local isOllamaRunning = function(ollamaHost)
+    local cmd = "curl -s -o /dev/null -w \"%{http_code}\n\" -m 0.1 -I " .. ollamaHost .. ":11434"
+    return string.match(vim.fn.system(cmd), "200")
 end
 
-local getOllama = function(model)
+local conf = {
+    provider = "local_llm_2",
+    code_cmp = "local_llm_2",
+    rag_llm = "local_llm_2",
+    rag_embed = "local_embed_1"
+}
+
+if (isOllamaRunning(os.getenv("OLLAMA_EXT"))) then
+    conf = {
+        provider = "ext_llm_2",
+        -- provider = "local_llm_2",
+        code_cmp = "local_cmp_1",
+        rag_llm = "ext_llm_2",
+        rag_embed = "local_embed_1"
+    }
+end
+
+local localhost = function(model)
     return {
         __inherited_from = "ollama",
-        endpoint = ollamaHost .. ":11434",
-        model = model,
         disable_tools = false,
+        timeout = 15000,
+        endpoint = "http://0.0.0.0:11434",
+        model = model,
+        think = false,
         extra_request_body = {
-            temperature = 0.7,
-            max_completion_tokens = 8192 * 2,
+            temperature = 0.85,
+            max_completion_tokens = 8192 * 1,
             max_prompt_tokens = 8192 * 15,
-            stream = true
+            stream = true,
+            think = false
         },
+    }
+end
+
+local ext = function(model)
+    local ollamaExtHost = os.getenv("OLLAMA_EXT")
+    return {
+        __inherited_from = "ollama",
+        disable_tools = false,
+        timeout = nil,
+        endpoint = ollamaExtHost .. ":11434",
+        model = model,
+        extra_request_body = {
+            temperature = 0.85,
+            max_completion_tokens = 8192 * 1,
+            max_prompt_tokens = 8192 * 4,
+            stream = true,
+            think = false
+        },
+    }
+end
+
+
+local function get_providers()
+    return {
+        -- hosted llms (chatp, edit, apply)
+        ext_llm_1 = ext("llama3.1:8b"),
+        ext_llm_2 = ext("hf.co/unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF"),
+        ext_llm_3 = ext("hf.co/bartowski/Llama-3.2-3B-Instruct-GGUF:Q8_0"),
+        ext_llm_4 = ext("llama3.2"),
+        ext_llm_5 = ext("lukaspetrik/gemma3-tools:12b"),
+        ext_llm_6 = ext("gemma3:12b"),
+        ext_llm_7 = ext("qwen3:32b"),
+        -- embed and code cmp
+        ext_embed_1 = ext("nomic-embed-text:latest"),
+        ext_cmp_1 = ext("qwen2.5-coder:7b"),
+
+        -- localhost llms
+        local_llm_1 = localhost("llama3.1:8b"),
+        local_llm_2 = localhost("qwen3-coder:30b-a3b-q4_K_M"),
+        local_llm_3 = localhost("hf.co/bartowski/Llama-3.2-3B-Instruct-GGUF:Q8_0"),
+        local_llm_4 = localhost("gpt-oss:20b"),
+        -- embed and code cmp
+        local_cmp_1 = localhost("qwen2.5-coder:3b"),
+        local_embed_1 = localhost("nomic-embed-text:latest"),
+
+
+        -- platforms/3rd party
+        gemini = {
+            parse_api_key = gpg.decrypt_gemini_key,
+            model = "gemini-2.0-flash",
+            timeout = 300000, -- 5 minutes timeout for long tasks
+            extra_request_body = {
+                temperature = 0.7,
+                stream = true
+            },
+        },
+        openai = {
+            model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
+            parse_api_key = gpg.decrypt_openai_key,
+            endpoint = "https://api.openai.com/v1",
+            timeout = 30000,
+            extra_request_body = {
+                temperature = 0.8,
+                max_completion_tokens = 16384,
+                stream = true
+            },
+        },
+        claude = {
+            endoint = "https://api.anthropic.com",
+            model = "claude-sonnet-4-20250514",
+            parse_api_key = gpg.decrypt_claude_key,
+            timeout = 30000, -- Timeout in milliseconds
+            extra_request_body = {
+                temperature = 0.75,
+                max_tokens = 20480,
+            },
+        }
+    }
+end
+
+local function get_rag_service_conf()
+    return {                            -- RAG Service configuration
+        enabled = false,                -- Enables the RAG service
+        host_mount = os.getenv("HOME"), -- Host mount path for the rag service (Docker will mount this path)
+        runner = "docker",              -- Runner for the RAG service (can use docker or nix)
+        llm = {                         -- Language Model (LLM) configuration for RAG service
+            provider = conf.rag_llm,
+            extra = nil,
+        },
+        embed = { -- Embedding model configuration for RAG service
+            provider = conf.rag_embed,
+            extra = {
+                embed_batch_size = 10
+            },
+        },
+        docker_extra_args = "", -- Extra arguments to pass to the docker command
     }
 end
 
@@ -26,47 +142,11 @@ return {
     event = "VeryLazy",
     version = false, -- Never set this value to "*"! Never!
     opts = {
-        -- provider = "ollama_codestral_22b",
-        -- provider = "ollama_qwen3_30b",
-        -- provider = "ollama_devstral",
-        provider = "ollama_llama3_8b",
-        providers = {
-            ollama_qwen3_30b = getOllama("qwen3:30b-a3b"),
-            ollama_codestral_22b = getOllama("codestral:22b"),
-            ollama_llama3_8b = getOllama("llama3.1:8b"),
-            ollama_deepseek_coder_v2_16b = getOllama("deepseek-coder-v2:16b"),
-            ollama_devstral = getOllama("devstral:24b"),
-            gemini = {
-                parse_api_key = gpg.decrypt_gemini_key,
-                model = "gemini-2.0-flash",
-                timeout = 300000, -- 5 minutes timeout for long tasks
-                extra_request_body = {
-                    temperature = 0.7,
-                    stream = true
-                },
-            },
-            openai = {
-                model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
-                parse_api_key = gpg.decrypt_openai_key,
-                endpoint = "https://api.openai.com/v1",
-                timeout = 30000,
-                extra_request_body = {
-                    temperature = 0.8,
-                    max_completion_tokens = 16384,
-                    stream = true
-                },
-            },
-            claude = {
-                endoint = "https://api.anthropic.com",
-                model = "claude-sonnet-4-20250514",
-                parse_api_key = gpg.decrypt_claude_key,
-                timeout = 30000, -- Timeout in milliseconds
-                extra_request_body = {
-                    temperature = 0.75,
-                    max_tokens = 20480,
-                },
-            }
-        },
+        debug = true,
+        override_prompt_dir = vim.fn.expand("~/.config/nvim/avante_prompts"),
+        provider = conf.provider,
+        providers = get_providers(),
+        rag_service = get_rag_service_conf(),
         web_search_engine = {
             provider = 'tavily',
         },
@@ -78,7 +158,7 @@ return {
             auto_set_keymaps = true,
             auto_apply_diff_after_generation = false,
             support_paste_from_clipboard = false,
-            minimize_diff = true,         -- Whether to remove unchanged lines when applying a code block
+            minimize_diff = false,        -- Whether to remove unchanged lines when applying a code block
             enable_token_counting = true, -- Whether to enable token counting. Default to true.
         },
         windows = {
@@ -93,7 +173,13 @@ return {
             },
             input = {
                 prefix = "> ",
-                height = 8, -- Height of the input window in vertical layout
+                height = 8,          -- Height of the input window in vertical layout
+                provider = "snacks", -- "native" | "dressing" | "snacks"
+                provider_opts = {
+                    -- Snacks input configuration
+                    title = "Avante Input",
+                    icon = " ",
+                },
             },
             edit = {
                 border = "rounded",
