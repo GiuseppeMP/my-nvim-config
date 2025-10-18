@@ -8,7 +8,7 @@ return {
                 merge_keywords = true,
                 pattern = [[.*<(KEYWORDS)\s*]], -- pattern or table of patterns, used for highlighting (vim regex)
                 keywords = {
-                    BACKLOG = { color = 'backlog' },
+                    BACKLOG = { icon = ' ', color = 'backlog' },
                     FIX = {
                         icon = " ", -- icon used for the sign, and in search results
                         color = "warning", -- can be a hex color, or a named color (see below)
