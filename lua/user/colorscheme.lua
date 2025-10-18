@@ -215,3 +215,7 @@ vim.api.nvim_set_hl(0, "BufferLineBackground", {
     ctermfg = "NONE",
 })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none", nocombine = false })
+
+
+vim.api.nvim_set_hl(0, "@todo-comments.backlog",
+    { bg = "none", fg = colors.purple, force = true, nocombine = false, bold = true })

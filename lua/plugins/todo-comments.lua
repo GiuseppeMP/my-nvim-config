@@ -2,19 +2,20 @@ return {
     {
         "folke/todo-comments.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
-        enabled = false,
+        enabled = true,
         config = function()
             require("todo-comments").setup({
                 merge_keywords = true,
                 pattern = [[.*<(KEYWORDS)\s*]], -- pattern or table of patterns, used for highlighting (vim regex)
                 keywords = {
-                    BACKLOG = { color = '#7711FF' },
+                    BACKLOG = { color = 'backlog' },
                     FIX = {
                         icon = " ", -- icon used for the sign, and in search results
-                        color = "error", -- can be a hex color, or a named color (see below)
+                        color = "warning", -- can be a hex color, or a named color (see below)
                         alt = { "VERO", "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
                         -- signs = false, -- configure signs for some keywords individually
                     },
+                    ERROR = { icon = "x", color = "error" },
                     TODO = { icon = " ", color = "info" },
                     ARRANGE = { icon = " ", color = "hint" },
                     ACT = { icon = "󰙨", color = "info" },
@@ -25,14 +26,15 @@ return {
                     NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
                     TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
                 },
-                gui_style = {
-                    -- fg = "NONE", -- The gui style to use for the fg highlight group.
-                    bg = "NONE", -- The gui style to use for the bg highlight group.
-                },
-                highlight = {
-                    keyword = "fg",
-                },
+                -- gui_style = {
+                --     -- fg = "NONE", -- The gui style to use for the fg highlight group.
+                --     bg = "bold", -- The gui style to use for the bg highlight group.
+                -- },
+                -- highlight = {
+                --     keyword = "fg",
+                -- },
                 colors = {
+                    backlog = { "@todo-comments.backlog" },
                     error = { "DiagnosticError", "ErrorMsg", "#DC2626" },
                     warning = { "DiagnosticWarn", "WarningMsg", "#FBBF24" },
                     info = { "DiagnosticInfo", "#2563EB" },
