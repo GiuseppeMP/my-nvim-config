@@ -36,7 +36,26 @@ return {
     opts = {
         strategies = {
             chat = { adapter = "chat" },
-            inline = { adapter = "instruct" },
+            inline = {
+                adapter = "instruct",
+                keymaps = {
+                    stop = {
+                        modes = { n = "q" },
+                        index = 4,
+                        callback = "keymaps.stop",
+                        description = "Stop request",
+                    },
+                    accept_change = {
+                        modes = { n = "ga" },
+                        description = "Accept the suggested change",
+                    },
+                    reject_change = {
+                        modes = { n = "gr" },
+                        opts = { nowait = true },
+                        description = "Reject the suggested change",
+                    },
+                },
+            },
             agent = { adapter = "instruct" },
         },
         memory = {
@@ -47,8 +66,10 @@ return {
             },
         },
         adapters = {
-            instruct = register_adapter(available_models[1]),
-            chat = register_adapter(available_models[2]),
+            http = {
+                instruct = register_adapter(available_models[1]),
+                chat = register_adapter(available_models[2]),
+            }
         },
     },
     dependencies = {
