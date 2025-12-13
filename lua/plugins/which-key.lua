@@ -79,7 +79,13 @@ local function config()
         -- normal, insert and visual mode
         {
             mode = { 'n', 'i', 'v' },
-            { "<F1>", function() dap.toggle_breakpoint() end, desc = 'Debug toggle breakpoint' },
+            {
+                "<F1>",
+                function()
+                    dap.toggle_breakpoint()
+                end,
+                desc = 'Debug toggle breakpoint'
+            },
             {
                 "<F2>",
                 function()
@@ -96,12 +102,12 @@ local function config()
                 end,
                 desc = 'Clear all breakpoints'
             },
-            { "<F4>", dapui.eval,                             desc = 'Debug eval' },
-            { "<F5>", dap.continue,                           desc = 'Debug continue or attach' },
-            { "<F6>", dap.step_into,                          desc = 'Debug step into' },
-            { "<F7>", dap.step_out,                           desc = 'Debug step out' },
-            { "<F8>", dap.step_over,                          desc = 'Debug step over' },
-            { "<F9>", dap.run_last,                           desc = 'Debug run last' },
+            { "<F4>", dapui.eval,    desc = 'Debug eval' },
+            { "<F5>", dap.continue,  desc = 'Debug continue or attach' },
+            { "<F6>", dap.step_into, desc = 'Debug step into' },
+            { "<F7>", dap.step_out,  desc = 'Debug step out' },
+            { "<F8>", dap.step_over, desc = 'Debug step over' },
+            { "<F9>", dap.run_last,  desc = 'Debug run last' },
         },
     })
     -- [<leader>u] - utils
@@ -229,15 +235,16 @@ local function config()
 
     wk.add({
         { "<leader>t",  group = "[t]esting" },
-        { '<leader>tb', vim.cmd.TagbarToggle,                                 desc = 'Toggle tagbar' },
-        { "<leader>tt", test_nearest,                                         desc = 'Run nearest [t]est' },
+        { '<leader>tb', vim.cmd.TagbarToggle,                                                desc = 'Toggle tagbar' },
+        { "<leader>tt", test_nearest,                                                        desc = 'Run nearest [t]est' },
         -- { "<leader>tc", test_class,                                           desc = 'Run [c]lasstests with vim-test' },
-        { "<leader>tf", test_file,                                            desc = 'Run [f]ile test' },
-        { "<leader>ta", test_suite,                                           desc = 'Run [s]uite tests' },
-        { "<leader>td", function() neotest.run.run({ strategy = 'dap' }) end, desc = '[d]ebug nearest test' },
-        { "<leader>ts", function() neotest.summary.toggle() end,              desc = 'Toggle tests [s]ummary' },
-        { "<leader>to", function() neotest.output_panel.toggle() end,         desc = 'Toggle tests [o]utput window' },
+        { "<leader>tf", test_file,                                                           desc = 'Run [f]ile test' },
+        { "<leader>ta", test_suite,                                                          desc = 'Run [s]uite tests' },
+        { "<leader>td", function() neotest.run.run({ suite = false, strategy = 'dap' }) end, desc = '[d]ebug nearest test' },
+        { "<leader>ts", function() neotest.summary.toggle() end,                             desc = 'Toggle tests [s]ummary' },
+        { "<leader>to", function() neotest.output_panel.toggle() end,                        desc = 'Toggle tests [o]utput window' },
     })
+
 
     wk.add({
         { "<leader>c",  group = "code" },
