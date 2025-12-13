@@ -1,88 +1,66 @@
 local gpg = require("user.utils.gpg")
 
+local OLLAMA_EXT_ENV = os.getenv("OLLAMA_EXT")
 
-local isOllamaRunning = function(ollamaHost)
+local isOllamaServerRunning = function(ollamaHost)
     local cmd = "curl -s -o /dev/null -w \"%{http_code}\n\" -m 0.1 -I " .. ollamaHost .. ":11434"
     return string.match(vim.fn.system(cmd), "200")
 end
 
-local conf = {
-    provider = "local_llm_2",
-    code_cmp = "local_llm_2",
-    rag_llm = "local_llm_2",
-    rag_embed = "local_embed_1"
+local available_models = {
+    { name = "ministral-3:8b-instruct-2512-q8_0", think = false, stream = true,  ctx = 4096 * 2, temperature = 0.25 },
+    { name = "ministral-3:8b",                    think = true,  stream = true,  ctx = 4096 * 8, temperatura = 0.75 },
+    { name = "embeddinggemma",                    think = false, stream = false, ctx = 4096 * 1, temperature = 0.50, disable_tools = true },
 }
 
-if (isOllamaRunning(os.getenv("OLLAMA_EXT"))) then
+-- default localhost Ollama
+local conf = {
+    chat = available_models[1],
+    instruct = available_models[1],
+    rag = available_models[2],
+    embed = available_models[3]
+}
+
+-- use external local server if it's up and running.
+if (isOllamaServerRunning(OLLAMA_EXT_ENV)) then
+    local available_models_remote = {
+        { name = "ministral-3:3b-instruct-2512-q8_0", host = OLLAMA_EXT_ENV, think = false, stream = true,  temperature = 0.25, ctx = 4096 * 1 },
+        { name = "ministral-3:8b",                    host = OLLAMA_EXT_ENV, think = true,  stream = true,  temperatura = 0.75, ctx = 4096 * 2 },
+        { name = "embeddinggemma",                    host = OLLAMA_EXT_ENV, think = false, stream = false, temperature = 0.50, ctx = 4096 * 1, disable_tools = true },
+    }
     conf = {
-        provider = "ext_llm_2",
-        -- provider = "local_llm_2",
-        code_cmp = "local_cmp_1",
-        rag_llm = "ext_llm_2",
-        rag_embed = "local_embed_1"
+        chat = available_models_remote[1],
+        instruct = available_models_remote[1],
+        rag = available_models_remote[2],
+        embed = available_models_remote[3]
     }
 end
 
-local localhost = function(model)
+local register_model_as_provider = function(model)
     return {
         __inherited_from = "ollama",
-        disable_tools = false,
-        timeout = 15000,
-        endpoint = "http://0.0.0.0:11434",
-        model = model,
-        think = false,
+        disable_tools = model.disable_tools or false,
+        timeout = model.timeout or 30000,
+        endpoint = model.host or "http://0.0.0.0:11434",
+        model = model.name,
+        think = model.think or false,
         extra_request_body = {
-            temperature = 0.85,
-            max_completion_tokens = 8192 * 1,
-            max_prompt_tokens = 8192 * 15,
-            stream = true,
-            think = false
+            temperature = model.temperature or 0.55,
+            max_completion_tokens = 4096 * 1,
+            max_prompt_tokens = 4096 * 1,
+            stream = model.stream or true,
+            think = model.think or false
         },
     }
 end
-
-local ext = function(model)
-    local ollamaExtHost = os.getenv("OLLAMA_EXT")
-    return {
-        __inherited_from = "ollama",
-        disable_tools = false,
-        timeout = nil,
-        endpoint = ollamaExtHost .. ":11434",
-        model = model,
-        extra_request_body = {
-            temperature = 0.85,
-            max_completion_tokens = 8192 * 1,
-            max_prompt_tokens = 8192 * 4,
-            stream = true,
-            think = false
-        },
-    }
-end
-
 
 local function get_providers()
     return {
-        -- hosted llms (chatp, edit, apply)
-        ext_llm_1 = ext("llama3.1:8b"),
-        ext_llm_2 = ext("hf.co/unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF"),
-        ext_llm_3 = ext("hf.co/bartowski/Llama-3.2-3B-Instruct-GGUF:Q8_0"),
-        ext_llm_4 = ext("llama3.2"),
-        ext_llm_5 = ext("lukaspetrik/gemma3-tools:12b"),
-        ext_llm_6 = ext("gemma3:12b"),
-        ext_llm_7 = ext("qwen3:32b"),
-        -- embed and code cmp
-        ext_embed_1 = ext("nomic-embed-text:latest"),
-        ext_cmp_1 = ext("qwen2.5-coder:7b"),
-
-        -- localhost llms
-        local_llm_1 = localhost("llama3.1:8b"),
-        local_llm_2 = localhost("qwen3-coder:30b-a3b-q4_K_M"),
-        local_llm_3 = localhost("hf.co/bartowski/Llama-3.2-3B-Instruct-GGUF:Q8_0"),
-        local_llm_4 = localhost("gpt-oss:20b"),
-        -- embed and code cmp
-        local_cmp_1 = localhost("qwen2.5-coder:3b"),
-        local_embed_1 = localhost("nomic-embed-text:latest"),
-
+        -- local models
+        chat = register_model_as_provider(conf.chat),
+        instruct = register_model_as_provider(conf.instruct),
+        rag = register_model_as_provider(conf.rag),
+        embed = register_model_as_provider(conf.embed),
 
         -- platforms/3rd party
         gemini = {
@@ -124,11 +102,11 @@ local function get_rag_service_conf()
         host_mount = os.getenv("HOME"), -- Host mount path for the rag service (Docker will mount this path)
         runner = "docker",              -- Runner for the RAG service (can use docker or nix)
         llm = {                         -- Language Model (LLM) configuration for RAG service
-            provider = conf.rag_llm,
+            provider = "rag",
             extra = nil,
         },
         embed = { -- Embedding model configuration for RAG service
-            provider = conf.rag_embed,
+            provider = "embed",
             extra = {
                 embed_batch_size = 10
             },
@@ -142,9 +120,9 @@ return {
     event = "VeryLazy",
     version = false, -- Never set this value to "*"! Never!
     opts = {
-        debug = true,
+        debug = false,
         override_prompt_dir = vim.fn.expand("~/.config/nvim/avante_prompts"),
-        provider = conf.provider,
+        provider = "chat",
         providers = get_providers(),
         rag_service = get_rag_service_conf(),
         web_search_engine = {
@@ -158,7 +136,7 @@ return {
             auto_set_keymaps = true,
             auto_apply_diff_after_generation = false,
             support_paste_from_clipboard = false,
-            minimize_diff = false,        -- Whether to remove unchanged lines when applying a code block
+            minimize_diff = true,         -- Whether to remove unchanged lines when applying a code block
             enable_token_counting = true, -- Whether to enable token counting. Default to true.
         },
         windows = {
