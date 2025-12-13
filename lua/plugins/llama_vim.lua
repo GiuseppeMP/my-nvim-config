@@ -1,8 +1,10 @@
+-- dev notes: Ollama don't support infill
+-- https://huggingface.co/collections/ggml-org/llamavim
+-- https://github.com/ggml-org/llama.cpp/tree/master
 return {
     'ggml-org/llama.vim',
     init = function()
         vim.g.llama_config = {
-            -- endpoint = 'http://172.20.10.4:11434/infill',
             endpoint = 'http://localhost:8012/infill',
             api_key = ' ',
             model = ' ',
@@ -27,7 +29,4 @@ return {
             enable_at_startup = true,
         }
     end,
-
-
-
 }
