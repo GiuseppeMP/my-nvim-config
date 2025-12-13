@@ -46,8 +46,9 @@ local register_model_as_provider = function(model)
         think = model.think or false,
         extra_request_body = {
             temperature = model.temperature or 0.55,
-            max_completion_tokens = 4096 * 1,
-            max_prompt_tokens = 4096 * 1,
+            max_completion_tokens = model.ctx or 4096,
+            max_prompt_tokens = model.ctx or 4096,
+            max_tokens = model.ctx or 4096,
             stream = model.stream or true,
             think = model.think or false
         },
