@@ -124,6 +124,7 @@ return {
         debug = false,
         override_prompt_dir = vim.fn.expand("~/.config/nvim/avante_prompts"),
         provider = "chat",
+        instructions_file = "ai_rules.md",
         providers = get_providers(),
         rag_service = get_rag_service_conf(),
         web_search_engine = {
