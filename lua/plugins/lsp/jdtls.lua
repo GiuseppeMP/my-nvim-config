@@ -28,7 +28,7 @@ local root_markers = { 'pom.xml', 'gradlew', 'mvnw', '.git', 'settings.gradle', 
 
 -- root dir, workspace and project name
 -- local root_dir = function() return require('jdtls.setup').find_root(root_markers) end
-local root_dir = function() return vim.fs.root(0 , root_markers) end
+local root_dir = function() return vim.fs.root(0, root_markers) end
 
 -- project name is assumed by the folder name
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
@@ -137,6 +137,7 @@ local function get_settings()
             -- Specify any completion options
             completion = {
                 favoriteStaticMembers = {
+                    "org.assertj.core.api.Assertions.assertThat",
                     "org.awaitility.Awaitility.*",
                     "org.hamcrest.MatcherAssert.*",
                     "org.hamcrest.Matchers.*",
@@ -254,8 +255,8 @@ local function get_cmd()
         '-noverify',
         '-XX:TieredStopAtLevel=1',
         '-Dlog.level=ALL',
-        '-Xmx1G',
-        -- "-XX:+UseSerialGC",
+        '-Xmx3G',
+        "-XX:+UseShenandoahGC",
         '-javaagent:' .. lombok_jar,
         '--add-modules=ALL-SYSTEM',
         '--add-opens', 'java.base/java.util=ALL-UNNAMED',
