@@ -3,8 +3,26 @@
 --
 local o = vim.opt -- For the opt
 local g = vim.g   -- For the globals
+local wo = vim.wo -- For the window local options
 local dot = "·"
--- local w = vim.wo -- For the window local options
+local border_fillchar = {
+    horiz     = '─',
+    horizup   = '┴',
+    horizdown = '┬',
+    vert      = '│',
+    vertleft  = '┤',
+    vertright = '├',
+    verthoriz = '┼',
+}
+--local border_bold = = {
+--     horiz     = '━',
+--     horizup   = '┻',
+--     horizdown = '┳',
+--     vert      = '┃',
+--     vertleft  = '┫',
+--     vertright = '┣',
+--     verthoriz = '╋',
+-- }
 -- local b = vim.bo -- For the buffer local options
 
 o.termsync = true
@@ -65,7 +83,7 @@ o.guifont = 'Lilex Nerd Font Mono'
 g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
 o.list = true
-vim.opt.listchars:append {
+o.listchars:append {
     multispace = dot,
     space = dot,
     lead = " ",
@@ -77,21 +95,6 @@ vim.opt.listchars:append {
     precedes = "‹",
 }
 
--- vim.opt.fillchars = {
---     horiz     = '━',
---     horizup   = '┻',
---     horizdown = '┳',
---     vert      = '┃',
---     vertleft  = '┫',
---     vertright = '┣',
---     verthoriz = '╋',
--- }
-vim.opt.fillchars = {
-    horiz     = '─',
-    horizup   = '┴',
-    horizdown = '┬',
-    vert      = '│',
-    vertleft  = '┤',
-    vertright = '├',
-    verthoriz = '┼',
-}
+o.fillchars = border_fillchar
+o.winborder = "rounded"
+-- wo.border = "rounded"
