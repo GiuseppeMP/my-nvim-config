@@ -168,8 +168,8 @@ local function config()
     wk.add({
         { "<leader>h",  group = "harpoon, hop" },
         { '<leader>ha', function() harpoon:list():add() end, desc = 'Harpoon add mark file' },
-        { '<leader>hh', hop.hint_words,                      desc = 'Hop words' },
-        { '<leader>hl', tsht.nodes,                          desc = 'Hop syntax' },
+        { '<leader>hw', hop.hint_words,                      desc = 'Hop words' },
+        { '<leader>hs', tsht.nodes,                          desc = 'Hop syntax' },
     })
 
     -- [<C-x>] - harpoon fast nav
@@ -421,7 +421,6 @@ local function config()
             mode = { "v", "n" },
             { "<leader>c",   group = "ChatGPT" },
             { "<leader>cc",  "<cmd>ChatGPT<CR>",                                             desc = "ChatGPT Prompt" },
-            -- { "<c-g>",       "<cmd>ChatGPT<CR>",                                             desc = "ChatGPT Prompt" },
             { "<leader>ce",  vim.cmd.ChatGPTEditWithInstruction,                             desc = "Edit with instruction" },
             -- {{ "<leader>cc", "ma<S-g><S-v>gg0",                                              desc = "Edit with instruction" },
             { "<leader>cgg", function() vim.cmd.ChatGPTRun("grammar_correction") end,        desc = "Grammar Correction" },

@@ -77,8 +77,8 @@ local function config()
     end
     -- basic telescope configuration
 
-    vim.keymap.set("n", "<C-g>", function() toggle_telescope(harpoon:list()) end, { desc = "Open harpoon window" })
-    vim.keymap.set("n", "<leader>kt", function() select_term(1) end, { desc = "Select harpoon term 1" })
+    vim.keymap.set("n", "<leader>hh", function() toggle_telescope(harpoon:list()) end, { desc = "Open harpoon window" })
+    vim.keymap.set("n", "<leader>ht", function() select_term(1) end, { desc = "Select harpoon term 1" })
 end
 return {
     { 'ThePrimeagen/harpoon', config = config, branch = 'harpoon2' },
