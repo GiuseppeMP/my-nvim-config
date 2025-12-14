@@ -25,7 +25,7 @@ local format = {
 -- root dir, workspace and project name
 local root_dir = function() return require('jdtls.setup').find_root(root_markers) end
 
-vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format()' ]])
+-- vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format()' ]])
 
 vim.lsp.config('groovyls', {
     on_attach = on_attach_options.get {
@@ -44,3 +44,5 @@ vim.lsp.config('groovyls', {
     },
     cmd = { "java", "-jar", groovyls_exec .. "/build/libs/groovy-language-server-all.jar" }
 })
+
+vim.lsp.enable('groovyls')
