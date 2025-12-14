@@ -6,7 +6,7 @@ local function config()
                 package_pending = "➜",
                 package_uninstalled = "✗"
             },
-            border = "solid"
+            border = nil
         }
     })
 
