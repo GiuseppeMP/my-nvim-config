@@ -5,4 +5,6 @@
 
 All the configurations of plugins are present in the /lua/plugins folder, each .lua file in there is a atomic plugin configuration.
 
+Font;
+https://madmalik.github.io/mononoki/
 
