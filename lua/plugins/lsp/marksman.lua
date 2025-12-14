@@ -5,3 +5,5 @@ vim.lsp.config('marksman', {
     on_attach = on_attach_options.get { lsp_client = 'marksman' },
     capabilities = capabilities_options.default
 })
+
+vim.lsp.enable("marksman")

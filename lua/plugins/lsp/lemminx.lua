@@ -5,3 +5,4 @@ vim.lsp.config('lemminx', {
     on_attach = on_attach_options.get { lsp_client = 'lemminx' },
     capabilities = capabilities_options.default,
 })
+vim.lsp.enable("lemminx")

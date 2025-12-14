@@ -72,6 +72,12 @@ local function config()
 end
 return {
     {
+        "mason-org/mason-lspconfig.nvim",
+        opts = {
+            automatic_enable = false
+        },
+    },
+    {
         'williamboman/mason.nvim',
         config = config,
         dependencies = { 'williamboman/mason-lspconfig.nvim', 'WhoIsSethDaniel/mason-tool-installer.nvim' }
