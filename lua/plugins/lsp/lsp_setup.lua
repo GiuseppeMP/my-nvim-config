@@ -15,11 +15,8 @@ utils.init_err_handler('gopls', function() require "plugins.lsp.gopls" end)
 utils.init_err_handler('html', function() require "plugins.lsp.html" end)
 utils.init_err_handler('jdtls', function() require "plugins.lsp.jdtls" end)
 utils.init_err_handler('jsonls', function() require "plugins.lsp.jsonls" end)
-utils.init_err_handler('groovyls', function() require "plugins.lsp.groovyls" end)
-utils.init_err_handler('lemminx', function() require "plugins.lsp.lemminx" end)
 utils.init_err_handler('ltexls', function() require "plugins.lsp.ltexls" end)
 utils.init_err_handler('lua_ls', function() require "plugins.lsp.lua_ls" end)
-utils.init_err_handler('marksman', function() require "plugins.lsp.marksman" end)
 utils.init_err_handler('pyright', function() require "plugins.lsp.pyright" end)
 utils.init_err_handler('rust_analyzer', function() require "plugins.lsp.rust_analyzer" end)
 utils.init_err_handler('terraformls', function() require "plugins.lsp.terraformls" end)
@@ -29,6 +26,11 @@ utils.init_err_handler('typescript-tools', function() require "plugins.lsp.types
 utils.init_err_handler('yamlls', function() require "plugins.lsp.yamlls" end)
 utils.init_err_handler('taplo', function() vim.lsp.config("taplo", {}) end)
 -- utils.init_err_handler('vtsls', function() require "plugins.lsp.vtsls" end)
+
+-- enabled by mason-lsp-config:
+utils.init_err_handler('lemminx', function() require "plugins.lsp.lemminx" end)
+utils.init_err_handler('groovyls', function() require "plugins.lsp.groovyls" end)
+utils.init_err_handler('marksman', function() require "plugins.lsp.marksman" end)
 
 -- diagnostic signs
 vim.fn.sign_define(
