@@ -83,7 +83,7 @@ local function config()
             right_mouse_command = "Bdelete! %d",
             left_mouse_command = "buffer %d",
             middle_mouse_command = nil,
-            indicator_icon = '',
+            indicator_icon = '',
             -- indicator = 'none',
             -- indicator = diagnostics_indicator,
             buffer_close_icon = '',
