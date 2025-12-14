@@ -5,7 +5,8 @@ local function config()
                 package_installed = "✓",
                 package_pending = "➜",
                 package_uninstalled = "✗"
-            }
+            },
+            border = "solid"
         }
     })
 
