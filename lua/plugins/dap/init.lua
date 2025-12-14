@@ -9,6 +9,28 @@ return {
     { 'mfussenegger/nvim-dap-python' },
     { 'jayp0521/mason-nvim-dap.nvim' },
     {
+        "igorlfs/nvim-dap-view",
+        opts = {
+            winbar = {
+                default_section = "scopes",
+            },
+            switchbuf = "usetab,uselast",
+            auto_toggle = true,
+            windows = {
+                height = 0.20,
+                position = "below",
+                terminal = {
+                    width = 0.4,
+                    position = "left",
+                    -- List of debug adapters for which the terminal should be ALWAYS hidden
+                    hide = {},
+                    -- Hide the terminal when starting a new session
+                    start_hidden = true,
+                },
+            },
+        },
+    },
+    {
         "theHamsta/nvim-dap-virtual-text",
         event = 'VeryLazy',
         config = function()
@@ -16,11 +38,11 @@ return {
                 highlight_changed_variables = true,
                 highlight_new_as_changed = false,
                 virt_text_pos = 'inline',
-                commented = true,        -- prefix virtual text with comment string
-                show_stop_reason = true, -- show stop reason when stopped for exceptions
-                all_frames = true,       -- show virtual text for all stack frames not only current. Only works for debugpy on my machine.
-                virt_lines = false,      -- show virtual lines instead of virtual text (will flicker!)
-                virt_text_win_col = 80,
+                commented = true,         -- prefix virtual text with comment string
+                show_stop_reason = false, -- show stop reason when stopped for exceptions
+                all_frames = true,        -- show virtual text for all stack frames not only current. Only works for debugpy on my machine.
+                virt_lines = false,       -- show virtual lines instead of virtual text (will flicker!)
+                virt_text_win_col = 90,
                 display_callback = function(variable, _buf, _stackframe, _node, _options)
                     local name = variable.name
                     local value = variable.value
@@ -53,7 +75,7 @@ return {
                     end
 
                     -- Truncate long values
-                    local max_len = 160
+                    local max_len = 80
                     if #value > max_len then
                         value = value:sub(1, max_len) .. "..."
                     end

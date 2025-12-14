@@ -58,25 +58,31 @@ vim.cmd [[vnoremap <leader>de <Cmd>lua require("dapui").eval()<CR>]]
 --     vim.cmd.NvimTreeToggle()
 -- end
 
-dap.listeners.before.attach.dapui_config = function(event)
-    dapui.open()
-end
-dap.listeners.before.launch.dapui_config = function(event)
-    dapui.open()
-end
-dap.listeners.before.event_terminated.dapui_config = function(event)
-    dapui.close()
-    if event.exitCode == 0 then
-        vim.notify("Debug terminated")
-        dapui.close()
-    end
-end
-dap.listeners.before.event_exited.dapui_config = function(event)
-    if event.exitCode == 0 then
-        vim.notify("Tests passed")
-        dapui.close()
-    end
-end
+-- dap.listeners.before.attach.dapui_config = function(event)
+--     -- dapui.open()
+--     vim.cmd("DapViewOpen")
+-- end
+-- dap.listeners.before.launch.dapui_config = function(event)
+--     vim.cmd("DapViewOpen")
+-- end
+-- dap.listeners.before.event_terminated.dapui_config = function(event)
+--     -- dapui.close()
+--     vim.cmd("DapViewClose")
+--     -- print(vim.inspect(event))
+--     -- if event.exitCode == 0 then
+--     --     vim.notify("Debug terminated")
+--     --     -- dapui.close()
+--     --     vim.cmd("DapViewClose")
+--     -- end
+-- end
+-- dap.listeners.before.event_exited.dapui_config = function(event)
+--     vim.cmd("DapViewClose")
+--     -- if event.exitCode == 0 then
+--     --     vim.notify("Tests passed")
+--     --     -- dapui.close()
+--     --     vim.cmd("DapViewClose")
+--     -- end
+-- end
 
 
 require("dapui").setup({
@@ -102,23 +108,15 @@ require("dapui").setup({
         {
             -- Left panel: Watches only
             elements = {
-                { id = "scopes",  size = 0.5 },
-                { id = "watches", size = 0.5 },
+                -- { id = "scopes", size = 0.5 },
             },
             size = 45, -- width in columns
             position = "left",
         },
-        {
-            -- Bottom panel: Scopes (variables) and Console
-            elements = {
-                { id = "console" },
-            },
-            size = 7, -- height in lines
-            position = "bottom",
-        }, },
+    },
     controls = {
         -- Requires Neovim nightly (or 0.8 when released)
-        enabled = true,
+        enabled = false,
         -- Display controls in this element
         element = "repl",
         icons = {
@@ -141,10 +139,10 @@ require("dapui").setup({
         },
     },
     render = {
-        indent = 1,
-        max_value_lines = 2,
+        indent = 3,
+        max_value_lines = nil,
         format = function(value, variable)
-            local max_visible = 80
+            local max_visible = 40
 
             -- Define your regex pattern to match secret-like variable names
             local secret_patterns = {
@@ -181,7 +179,7 @@ require("dapui").setup({
 
             -- Truncate if too long
             if type(value) == "string" and #value > max_visible then
-                return value:sub(1, max_visible) .. "..."
+                return value:sub(1, max_visible) .. "...]>"
             end
 
             return value
