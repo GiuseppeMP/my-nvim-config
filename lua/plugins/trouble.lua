@@ -4,6 +4,11 @@ return {
         event = 'VeryLazy',
         config = function()
             require 'trouble'.setup {
+                follow = true,
+                auto_refresh = false,
+                modes = {
+                    diagnostics = { auto_open = true },
+                },
                 signs = {
                     error = conf.signs.error,
                     warning = conf.signs.warn,
@@ -12,7 +17,7 @@ return {
                     other = conf.signs.other
                 },
                 win = {
-                    size = 0.25,
+                    size = 0.20,
                     wo = {
                         wrap = true,
                     },
