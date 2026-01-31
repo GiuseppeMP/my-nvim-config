@@ -68,23 +68,22 @@ local function config()
     })
 end
 return {
+
     {
-        "mason-org/mason-lspconfig.nvim",
+        'williamboman/mason.nvim',
+        dependencies = { 'jay-babu/mason-nvim-dap.nvim', 'WhoIsSethDaniel/mason-tool-installer.nvim' },
+        config = config,
+    },
+
+
+    {
+        "williamboman/mason-lspconfig.nvim",
+        dependencies = { "williamboman/mason.nvim", "neovim/nvim-lspconfig" },
         config = function()
             require("mason-lspconfig").setup {
                 ensure_installed = { "marksman", "lemminx", "groovyls" },
-                automatic_enable = {
-                    "lemminx",
-                    "marksman",
-                    "groovyls"
-                }
+                automatic_installation = true,
             }
         end,
     },
-    {
-        'williamboman/mason.nvim',
-        config = config,
-        dependencies = { 'williamboman/mason-lspconfig.nvim', 'WhoIsSethDaniel/mason-tool-installer.nvim' }
-    }
-
 }
