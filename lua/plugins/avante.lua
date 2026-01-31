@@ -3,8 +3,11 @@ local gpg = require("user.utils.gpg")
 local OLLAMA_EXT_ENV = os.getenv("OLLAMA_EXT")
 
 local isOllamaServerRunning = function(ollamaHost)
-    local cmd = "curl -s -o /dev/null -w \"%{http_code}\n\" -m 0.1 -I " .. ollamaHost .. ":11434"
-    return string.match(vim.fn.system(cmd), "200")
+    if ollamaHost then
+        local cmd = "curl -s -o /dev/null -w \"%{http_code}\n\" -m 0.1 -I " .. ollamaHost .. ":11434"
+        return string.match(vim.fn.system(cmd), "200")
+    end
+    return false
 end
 
 local available_models = {

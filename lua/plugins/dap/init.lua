@@ -17,15 +17,15 @@ return {
             switchbuf = "usetab,uselast",
             auto_toggle = true,
             windows = {
-                height = 0.20,
+                -- height = 0.20, - this field raised:  windows.height: unexpected field found in configuration
                 position = "below",
                 terminal = {
-                    width = 0.4,
+                    --   width = 0.4, - this field raised:  windows.terminal.start_hidden: unexpected field found in configuration
                     position = "left",
                     -- List of debug adapters for which the terminal should be ALWAYS hidden
                     hide = {},
                     -- Hide the terminal when starting a new session
-                    start_hidden = true,
+                    -- start_hidden = true, - this filed raised: windows.terminal.start_hidden: unexpected field found in configuration
                 },
             },
         },
