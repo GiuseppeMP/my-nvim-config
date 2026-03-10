@@ -1,4 +1,79 @@
 local function config()
+    local function safe_require(module_name)
+        local ok, module = pcall(require, module_name)
+        if ok then
+            return module
+        end
+
+        vim.schedule(function()
+            vim.notify(
+                ("neotest adapter unavailable: %s"):format(module_name),
+                vim.log.levels.WARN
+            )
+        end)
+
+        return nil
+    end
+
+    local function build_vim_test_adapter()
+        local adapter_factory = safe_require("neotest-vim-test")
+        if not adapter_factory then
+            return nil
+        end
+
+        local adapter = adapter_factory({
+            ignore_file_types = { "lua", "javascript", "typescript", "python" },
+            allow_file_types = { "java" }
+        })
+
+        -- `neotest-vim-test` delegates to a subprocess that does a fresh `require`.
+        -- In this setup that subprocess does not see the adapter module on its package path,
+        -- so force the in-process implementation instead of crashing on CursorHold/test discovery.
+        adapter.is_test_file = adapter._is_test_file
+        adapter.discover_positions = adapter._discover_positions
+        adapter.build_spec = adapter._build_spec
+
+        return adapter
+    end
+
+    local adapters = vim.tbl_filter(function(adapter)
+        return adapter ~= nil
+    end, {
+        safe_require("neotest-vitest"),
+        safe_require("neotest-golang"),
+        -- safe_require("neotest-gradle"),
+        (function()
+            local jest = safe_require("neotest-jest")
+            if not jest then
+                return nil
+            end
+
+            return jest({
+                -- jestCommand = "npx jest --watch ",
+                jestCommand = "npm test --",
+                jestConfigFile = "jest.config.json",
+                env = { CI = true },
+                jest_test_discovery = true,
+                cwd = function(_)
+                    return vim.fn.getcwd()
+                end,
+            })
+        end)(),
+        safe_require("neotest-plenary"),
+        build_vim_test_adapter(),
+        (function()
+            local python = safe_require("neotest-python")
+            if not python then
+                return nil
+            end
+
+            return python({
+                dap = { justMyCode = true },
+                args = { "--log-level", "DEBUG" }
+            })
+        end)(),
+    })
+
     vim.cmd([[
     let test#python#runner = 'pytest'
     let test#javascript#runner = 'jest'
@@ -29,33 +104,7 @@ local function config()
         running = {
             concurrent = false
         },
-        adapters = {
-            require("neotest-vitest"),
-            require("neotest-golang"),
-            -- require("neotest-gradle"),
-            require('neotest-jest')({
-                -- jestCommand = "npx jest --watch ",
-                jestCommand = "npm test --",
-                jestConfigFile = "jest.config.json",
-                env = { CI = true },
-                jest_test_discovery = true,
-                cwd = function(_)
-                    return vim.fn.getcwd()
-                end,
-            }),
-            require("neotest-plenary"),
-            require("neotest-vim-test")({
-                ignore_filetypes = { "lua", "javascript", "typescript", "python" },
-                allow_file_types = { "java" }
-            }),
-            -- require("neotest-java"),
-            require("neotest-python")(
-                {
-                    dap = { justMyCode = true },
-                    args = { "--log-level", "DEBUG" }
-                }
-            )
-        },
+        adapters = adapters,
         quickfix = {
             enabled = true,
             open = true,
