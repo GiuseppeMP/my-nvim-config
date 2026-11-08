@@ -1,10 +1,27 @@
 return {
-    { 'lewis6991/async.nvim',                               enabled = false },
+    { 'lewis6991/async.nvim',     enabled = false },
     { 'mbbill/undotree' },
     { 'tpope/vim-repeat' },
     { 'powerline/powerline-fonts' },
-    { "tpope/vim-commentary",                               enabled = false },
-    { 'windwp/nvim-ts-autotag' },
+    { "tpope/vim-commentary",     enabled = false },
+    {
+        "windwp/nvim-ts-autotag",
+        opts = {
+            opts = {
+                enable_close = true,
+                enable_rename = true,
+                enable_close_on_slash = true,
+            },
+            per_filetype = {
+                html = {
+                    enable_close = true,
+                },
+                xml = {
+                    enable_close = true,
+                },
+            },
+        },
+    },
     -- { 'HiPhish/nvim-ts-rainbow2',                    event = 'VeryLazy' },
     { 'https://gitlab.com/HiPhish/rainbow-delimiters.nvim', event = 'VeryLazy' },
     { 'moll/vim-bbye' },
