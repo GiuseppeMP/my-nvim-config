@@ -7,13 +7,14 @@ local function config()
         -- User defined loops
         additions = {
             { 'private',    'public',       'protected' },
-            { 'String',     'List<String>' },
-            { 'int',        'float32',      'string',   'bool' },
-            { 'Integer',    'List<Integer>' },
             { 'require',    'import',       'export' },
+            { 'String',     'List<String>' },
+            { 'Integer',    'List<Integer>' },
+            { 'who',        'what',         'when',     'why',    'where' },
+            { 'int',        'float32',      'string',   'bool' },
             { 'openrouter', 'claude',       'openai',   'ollama', 'grok4', 'gemini' },
-            { 'at',         'on',           'in' },
-            { 'or',         'and' },
+            { 'at',         'on',           'in',       'off' },
+            { 'or',         'and',          'xor',      'xand' },
         },
 
     })
