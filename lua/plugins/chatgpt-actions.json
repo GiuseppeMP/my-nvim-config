@@ -6,10 +6,34 @@
             "template": "Implement tests for the following code.\n\nCode:\n```{{filetype}}\n{{input}}\n```\n\nTests:\n```{{filetype}}",
             "strategy": "display",
             "params": {
-                "model": "gpt-3.5-turbo",
+                "temperature": 0.2,
+                "model": "gpt-4.1-mini",
                 "stop": [
                     "```"
                 ]
+            }
+        }
+    },
+    "write_tests": {
+        "type": "chat",
+        "title": " Show potential tests",
+        "opts": {
+            "template": "I need to write some tests to cover the following code: \n\n <code>{{input}}</code> \n <instructions> dont expand, try to use parametrized tests and given/whenthen structure. </instructions>",
+            "strategy": "display",
+            "params": {
+                "temperature": 0.2,
+                "model": "gpt-4.1-mini"
+            }
+        }
+    },
+    "translate_into_english": {
+        "type": "chat",
+        "opts": {
+            "template": "Correct this to standard, not so formal into English :\n\n{{input}}",
+            "strategy": "replace",
+            "params": {
+                "temperature": 0.2,
+                "model": "gpt-4.1-mini"
             }
         }
     },
@@ -19,7 +43,8 @@
             "template": "Correct this to standard, not so formal into Spanish :\n\n{{input}}",
             "strategy": "replace",
             "params": {
-                "model": "gpt-3.5-turbo"
+                "temperature": 0.2,
+                "model": "gpt-4.1-mini"
             }
         }
     },
@@ -29,7 +54,8 @@
             "template": "Correct this to standard, not so formal into Italian :\n\n{{input}}",
             "strategy": "replace",
             "params": {
-                "model": "gpt-3.5-turbo"
+                "temperature": 0.2,
+                "model": "gpt-4.1-mini"
             }
         }
     },
@@ -39,7 +65,8 @@
             "template": "Transform the following state into gherkin format :\n\n{{input}}, instructions: use Given _____ if you re genrating gherkin",
             "strategy": "replace",
             "params": {
-                "model": "gpt-3.5-turbo"
+                "temperature": 0.2,
+                "model": "gpt-4.1-mini"
             }
         }
     }
