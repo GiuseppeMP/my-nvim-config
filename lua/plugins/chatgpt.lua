@@ -58,17 +58,13 @@ return
                 },
                 api_key_cmd = "gpg --decrypt " .. home .. "/.config/secrets/open_ai_key.txt.gpg",
                 openai_params = {
-                    frequency_penalty = 0,
-                    presence_penalty = 0,
-                    max_tokens = 600,
-                    temperature = 0,
-                    top_p = 1,
+                    model = "gpt-5.4-mini",
+                    max_completion_tokens = 4096,
                     n = 1,
                 },
                 openai_edit_params = {
-                    max_tokens = 600,
-                    temperature = 0.1,
-                    top_p = 1,
+                    model = "gpt-4.1-mini",
+                    temperature = "0.2",
                     n = 1,
                 },
             }
