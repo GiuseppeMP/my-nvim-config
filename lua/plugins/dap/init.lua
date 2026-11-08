@@ -16,18 +16,18 @@ return {
             },
             switchbuf = "usetab,uselast",
             auto_toggle = true,
-            windows = {
-                height = 0.20,
-                position = "below",
-                terminal = {
-                    width = 0.4,
-                    position = "left",
-                    -- List of debug adapters for which the terminal should be ALWAYS hidden
-                    hide = {},
-                    -- Hide the terminal when starting a new session
-                    start_hidden = true,
-                },
-            },
+            -- windows = {
+            --     height = 0.20,
+            --     position = "below",
+            --     terminal = {
+            --         width = 0.4,
+            --         position = "left",
+            --         -- List of debug adapters for which the terminal should be ALWAYS hidden
+            --         hide = {},
+            --         -- Hide the terminal when starting a new session
+            --         start_hidden = true,
+            --     },
+            -- },
         },
     },
     {
