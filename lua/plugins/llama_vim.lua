@@ -28,7 +28,7 @@ return {
             ring_chunk_size = 64,
             ring_scope = 1024,
             ring_update_ms = 1000,
-            keymap_trigger = "<c-e>",
+            keymap_trigger = "<c-;>",
             keymap_accept_full = "<c-e>",
             keymap_accept_line = "",
             keymap_accept_word = "",
