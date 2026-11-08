@@ -1,5 +1,7 @@
 local vim_test_support = {
     "java",
+    "javascript",
+    "js"
 }
 
 local function config()
@@ -201,7 +203,8 @@ local function config()
 
 
     local function is_vim_test()
-        return vim.tbl_contains(vim_test_support, vim.bo.filetype)
+        -- return vim.tbl_contains(vim_test_support, vim.bo.filetype)
+        return true
     end
 
     local function test_nearest()
@@ -430,10 +433,12 @@ local function config()
             { "<leader>cc",  "<cmd>ChatGPT<CR>",                                             desc = "ChatGPT Prompt" },
             { "<leader>ce",  vim.cmd.ChatGPTEditWithInstruction,                             desc = "Edit with instruction" },
             -- {{ "<leader>cc", "ma<S-g><S-v>gg0",                                              desc = "Edit with instruction" },
-            { "<leader>cgg", function() vim.cmd.ChatGPTRun("grammar_correction") end,        desc = "Grammar Correction" },
+            { "<leader>cgG", function() vim.cmd.ChatGPTRun("grammar_correction") end,        desc = "Grammar Correction" },
+            { "<leader>cgg", function() vim.cmd.ChatGPTRun("translate_into_english") end,    desc = "English Translation" },
             { "<leader>cgi", function() vim.cmd.ChatGPTRun("translate_into_italian") end,    desc = "Italian Translation" },
             { "<leader>cgs", function() vim.cmd.ChatGPTRun("translate_into_spanish") end,    desc = "Spanish Translation" },
             { "<leader>cgc", function() vim.cmd.ChatGPTRun("translate_into_gherkin") end,    desc = "Cucumber Translation" },
+            { "<leader>cgt", function() vim.cmd.ChatGPTRun("show_tests") end,                desc = "Suggest tests" },
             { "<leader>ck",  function() vim.cmd.ChatGPTRun("keywords") end,                  desc = "Keywords" },
             { "<leader>cd",  function() vim.cmd.ChatGPTRun("docstring") end,                 desc = "Docstring" },
             { "<leader>co",  function() vim.cmd.ChatGPTRun("optimize_code") end,             desc = "Optimize Code" },
@@ -445,7 +450,7 @@ local function config()
             { "<leader>ct",  function() vim.cmd.ChatGPTRun("translate") end,                 desc = "Translate" },
             { "<leader>ci",  vim.cmd.ChatGPTActAs,                                           desc = "Impersonate, Act as.." },
             { "<leader>cu",  function() vim.cmd.ChatGPTRun("add_tests") end,                 desc = "Add Unit Tests" },
-            { "<leader>cs",  function() vim.cmd.ChatGPTRun("show_tests") end,                desc = "Show Tests" },
+            -- { "<leader>cs",  function() vim.cmd.ChatGPTRun("show_tests") end,                desc = "Show Tests" },
         },
     })
 
