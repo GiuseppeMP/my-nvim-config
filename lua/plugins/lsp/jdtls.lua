@@ -20,8 +20,9 @@ local home = os.getenv "HOME"
 -- local java_14 = os.getenv "JAVA_14"
 -- local java_17 = os.getenv "JAVA_17"
 -- local java_19 = os.getenv "JAVA_19"
-local java_21 = os.getenv "JAVA_21"
--- local java_21_jdtls = home .. "/.asdf/installs/java/corretto-21.0.6.7.1"
+-- local java_jdk = os.getenv "JAVA_21"
+local java_jdk = os.getenv "JAVA_24"
+java_jdk = home .. "/.asdf/installs/java/temurin-24.0.2+12"
 
 -- maybe needs to improve marks because multimodule projects (maven/gradle)
 local root_markers = { 'pom.xml', 'gradlew', 'mvnw', '.git', 'settings.gradle', '.lsp_root' }
@@ -223,9 +224,9 @@ local function get_settings()
                     --     path = java_19
                     -- },
                     {
-                        name = "JavaSE-21",
+                        name = "JavaSE-24",
                         default = true,
-                        path = java_21
+                        path = java_jdk
                     },
                 }
             }
@@ -247,7 +248,7 @@ end
 -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
 local function get_cmd()
     return {
-        java_21 .. "/bin/java",
+        java_jdk .. "/bin/java",
         '-Declipse.application=org.eclipse.jdt.ls.core.id1',
         '-Dosgi.bundles.defaultStartLevel=4',
         '-Declipse.product=org.eclipse.jdt.ls.core.product',
