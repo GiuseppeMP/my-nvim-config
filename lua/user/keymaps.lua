@@ -42,6 +42,9 @@ t("<S-Right>", ":vertical resize +3<CR>")
 n("<S-l>", ":bnext<CR>")
 n("<S-h>", ":bprevious<CR>")
 
+n("<C-S-l>", ":tabnext<CR>")
+n("<C-S-h>", ":tabprevious<CR>")
+
 -- Insert opts --
 --
 i("jk", "<ESC>")
